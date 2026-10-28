@@ -1,0 +1,75 @@
+# TimeFlow V0.5.0 - Archivos que no deben subirse a Git
+
+# Dependencias, compilaciones y archivos generados
+**/node_modules/
+**/dist/
+**/dist-ssr/
+**/target/
+**/build/
+**/.gradle/
+**/.mvn/wrapper/maven-wrapper.jar
+**/*.class
+
+# Herramientas y configuracion de esta PC
+**/.timeflow-tools/
+**/.timeflow-backups/
+**/.timeflow-config-*.tmp
+**/.timeflow-deps-ok
+**/.timeflow-installer-completed
+**/config_local*.bat
+**/INSTALADOR_DIAGNOSTICO*.txt
+
+# Variables privadas. Se permiten solo ejemplos sin claves reales.
+**/.env
+**/.env.*
+**/*.env
+!**/.env.example
+!**/*.env.example
+**/credentials.json
+**/secrets.json
+**/service-account*.json
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+**/*.jks
+**/*.keystore
+
+# Respaldos de datos, nunca el esquema SQL del proyecto
+**/backups/
+**/respaldos_bd/
+**/*.dump
+**/*.bak
+**/*.sqlite
+**/*.sqlite3
+**/*.db
+
+# Registros, IDE y sistema operativo
+**/*.log
+**/npm-debug.log*
+**/yarn-debug.log*
+**/pnpm-debug.log*
+**/.idea/
+**/.vscode/
+**/.settings/
+**/.DS_Store
+**/Thumbs.db
+**/*.tmp
+**/*.swp
+
+# Los archivos .java, .jsx, .sql, .docx, .xlsx, .pdf, .png,
+# .json y .postman_collection.json no se excluyen.
+# Revisar igualmente que documentos y evidencias no contengan claves.
+
+# TXT antiguos de cambios y notas internas en la raiz del proyecto
+# Los documentos de Documentacion/ y Evidencias/ no se ven afectados.
+/CAMBIOS_V*.txt
+/PRUEBA_*.txt
+/INSTRUCCIONES_V*.txt
+/INSTRUCCIONES_PRUEBA_*.txt
+/RESULTADOS_REVISION_*.txt
+/SPRINT4_HALLAZGOS_*.txt
+/LEEME_PRIMERO_MIGRACION_V*.txt
+
+# Guia para configurar Git: es auxiliar, no forma parte del proyecto
+/GUIA_PRIMER_COMMIT_TIMEFLOW.txt

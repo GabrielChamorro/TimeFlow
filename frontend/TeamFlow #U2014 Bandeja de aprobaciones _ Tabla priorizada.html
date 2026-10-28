@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta name="kombai-design-canvas" content="true">
+  
+  
+  
+  <script src="https://unpkg.com/@tailwindcss/browser@4.3.3/dist/index.global.js" integrity="sha384-2ql948lIdLcGEE0/qxNiudyTjgauA3RDJERu5xW75kFCvSl5a9odyQYCb6tEjnmB" crossorigin="anonymous"></script>
+  
+  <style>html, body { margin: 0; padding: 0; } #root { display: contents; }</style>
+</head><body>
+  <div id="root"><style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  .teamflow-admin { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+  .teamflow-admin ::-webkit-scrollbar { width: 8px; height: 8px; }
+  .teamflow-admin ::-webkit-scrollbar-track { background: #e2e8f0; }
+  .teamflow-admin ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 999px; }
+</style>
+<script src="https://unpkg.com/lucide@latest">
+</script>
+<div class="teamflow-admin min-h-screen bg-slate-100 text-slate-900" data-kid="1" data-name="teamflow application container">
+    <header class="bg-slate-950 text-white border-b border-slate-800 shadow-sm" data-kid="1-1" data-name="header section">
+        <div class="mx-auto flex max-w-[1280px] items-center justify-between gap-6 px-7 py-4" data-kid="1-1-1" data-name="header layout container">
+            <div class="flex items-center gap-3" data-kid="1-1-1-1" data-name="branding and title container">
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-600 text-sm font-extrabold tracking-wide text-white shadow-sm" data-kid="1-1-1-1-1" data-name="brand logo initials">
+                    TF
+                </div>
+                <div data-kid="1-1-1-1-2" data-name="application title container">
+                    <h1 class="text-lg font-bold leading-none tracking-tight" data-kid="1-1-1-1-2-1" data-name="application name headline">
+                        TeamFlow
+                    </h1>
+                    <p class="mt-1 text-xs text-slate-400" data-kid="1-1-1-1-2-2" data-name="application subtitle">
+                        Mockup de Requerimientos
+                    </p>
+                </div>
+            </div>
+            <div class="flex min-h-11 items-center gap-3 rounded-xl border border-slate-700 bg-slate-900 px-3.5 py-2" data-kid="1-1-1-2" data-name="user session container">
+                <div class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 text-xs font-bold text-white" data-kid="1-1-1-2-1" data-name="user avatar initials">
+                    AD
+                </div>
+                <div class="min-w-[190px]" data-kid="1-1-1-2-2" data-name="user info text container">
+                    <span class="block text-[10px] font-bold uppercase tracking-wide text-slate-400" data-kid="1-1-1-2-2-1" data-name="user role label">
+                        Usuario en sesión
+                    </span>
+                    <span class="block text-sm font-semibold text-slate-100" data-kid="1-1-1-2-2-2" data-name="user name">
+                        Administrador General
+                    </span>
+                </div>
+                <i class="h-4 w-4 text-slate-400" data-kid="1-1-1-2-3" data-lucide="chevron-down" data-name="user menu chevron icon">
+                </i>
+            </div>
+        </div>
+    </header>
+    <nav aria-label="Navegación principal" class="border-b border-slate-200 bg-slate-100" data-kid="1-2" data-name="main navigation bar">
+        <div class="mx-auto flex max-w-[1280px] items-center gap-1.5 overflow-x-auto px-7 py-3" data-kid="1-2-1" data-name="navigation items container">
+            <button class="min-h-11 whitespace-nowrap rounded-lg px-4 text-sm font-semibold text-slate-500 hover:bg-white hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" data-kid="1-2-1-1" data-name="monitoring navigation link">
+                Monitoreo espacial
+            </button>
+            <button class="min-h-11 whitespace-nowrap rounded-lg px-4 text-sm font-semibold text-slate-500 hover:bg-white hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" data-kid="1-2-1-2" data-name="my work navigation link">
+                Mi jornada
+            </button>
+            <button class="min-h-11 whitespace-nowrap rounded-lg px-4 text-sm font-semibold text-slate-500 hover:bg-white hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" data-kid="1-2-1-3" data-name="chat navigation link">
+                Chat y anuncios
+            </button>
+            <button aria-current="page" class="min-h-11 whitespace-nowrap rounded-lg border border-indigo-100 bg-white px-4 text-sm font-bold text-indigo-700 shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" data-kid="1-2-1-4" data-name="approvals navigation link">
+                <span class="flex items-center gap-2" data-kid="1-2-1-4-1" data-name="approvals label and badge wrapper">
+                    <i class="h-4 w-4" data-kid="1-2-1-4-1-1" data-lucide="inbox" data-name="inbox icon">
+                    </i>
+                    Aprobaciones
+                    <span class="rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-bold text-indigo-700" data-kid="1-2-1-4-1-2" data-name="approvals count badge">
+                        3
+                    </span>
+                </span>
+            </button>
+            <button class="min-h-11 whitespace-nowrap rounded-lg px-4 text-sm font-semibold text-slate-500 hover:bg-white hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" data-kid="1-2-1-5" data-name="catalog navigation link">
+                Catálogo
+            </button>
+        </div>
+    </nav>
+    <main class="mx-auto max-w-[1280px] space-y-5 px-7 py-7" data-kid="1-3" data-name="main content area">
+        <div class="flex flex-wrap items-end justify-between gap-4" data-kid="1-3-1" data-name="header breadcrumbs and actions">
+            <div data-kid="1-3-1-1" data-name="breadcrumbs and page header container">
+                <div class="mb-2 flex items-center gap-2 text-xs font-semibold text-slate-500" data-kid="1-3-1-1-1" data-name="breadcrumbs navigation container">
+                    <span data-kid="1-3-1-1-1-1" data-name="administration label">
+                        Administración
+                    </span>
+                    <i class="h-3.5 w-3.5" data-kid="1-3-1-1-1-2" data-lucide="chevron-right" data-name="breadcrumb separator icon">
+                    </i>
+                    <span class="text-indigo-700" data-kid="1-3-1-1-1-3" data-name="approvals label">
+                        Aprobaciones
+                    </span>
+                </div>
+                <h2 class="text-[28px] font-extrabold tracking-tight text-slate-950" data-kid="1-3-1-1-2" data-name="page main headline">
+                    Revisión de tareas
+                </h2>
+                <p class="mt-1 text-sm text-slate-600" data-kid="1-3-1-1-3" data-name="page description text">
+                    Valida el trabajo entregado y cierra los pendientes de tu equipo.
+                </p>
+            </div>
+            <button class="inline-flex min-h-11 items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 text-sm font-semibold text-slate-700 shadow-xs hover:border-indigo-300 hover:text-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" data-kid="1-3-1-2" data-name="view history button">
+                <i class="h-4 w-4" data-kid="1-3-1-2-1" data-lucide="history" data-name="history icon">
+                </i>
+                Ver historial
+            </button>
+        </div>
+        <div class="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3" data-kid="1-3-2" data-name="urgent priority alert banner">
+            <div class="flex items-start gap-3" data-kid="1-3-2-1" data-name="alert message and icon wrapper">
+                <div class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-amber-100 text-amber-700" data-kid="1-3-2-1-1" data-name="alert icon container">
+                    <i class="h-4 w-4" data-kid="1-3-2-1-1-1" data-lucide="clock-3" data-name="clock icon">
+                    </i>
+                </div>
+                <div data-kid="1-3-2-1-2" data-name="alert text content">
+                    <p class="text-sm font-bold text-amber-950" data-kid="1-3-2-1-2-1" data-name="urgent priority headline">
+                        Prioridad de hoy: NODE-103 vence a las 17:00
+                    </p>
+                    <p class="mt-0.5 text-xs text-amber-800" data-kid="1-3-2-1-2-2" data-name="urgency reason text">
+                        Lleva 2 h 15 min esperando aprobación. Revisa la evidencia antes de cerrar.
+                    </p>
+                </div>
+            </div>
+            <span class="rounded-full border border-amber-300 bg-white/70 px-3 py-1 text-xs font-bold text-amber-800" data-kid="1-3-2-2" data-name="pending urgent count badge">
+                1 pendiente urgente
+            </span>
+        </div>
+        <section aria-label="Resumen de aprobaciones" class="grid grid-cols-2 divide-x divide-slate-200 rounded-xl border border-slate-200 bg-white shadow-xs md:grid-cols-4" data-kid="1-3-3" data-name="approvals summary grid">
+            <div class="px-5 py-4" data-kid="1-3-3-1" data-name="pending tasks stat card">
+                <p class="text-xs font-semibold uppercase tracking-wide text-slate-500" data-kid="1-3-3-1-1" data-name="pending tasks label">
+                    Pendientes
+                </p>
+                <div class="mt-1 flex items-end gap-2" data-kid="1-3-3-1-2" data-name="pending tasks value and sub-label">
+                    <strong class="text-2xl font-extrabold text-slate-950" data-kid="1-3-3-1-2-1" data-name="pending tasks count">
+                        3
+                    </strong>
+                    <span class="mb-1 text-xs font-semibold text-amber-700" data-kid="1-3-3-1-2-2" data-name="pending tasks status">
+                        por revisar
+                    </span>
+                </div>
+            </div>
+            <div class="px-5 py-4" data-kid="1-3-3-2" data-name="today deadline stat card">
+                <p class="text-xs font-semibold uppercase tracking-wide text-slate-500" data-kid="1-3-3-2-1" data-name="today deadline label">
+                    Vencen hoy
+                </p>
+                <div class="mt-1 flex items-end gap-2" data-kid="1-3-3-2-2" data-name="today deadline value and sub-label">
+                    <strong class="text-2xl font-extrabold text-amber-700" data-kid="1-3-3-2-2-1" data-name="today deadline count">
+                        1
+                    </strong>
+                    <span class="mb-1 text-xs font-semibold text-slate-500" data-kid="1-3-3-2-2-2" data-name="today deadline status">
+                        antes de 18:00
+                    </span>
+                </div>
+            </div>
+            <div class="px-5 py-4" data-kid="1-3-3-3" data-name="with evidence stat card">
+                <p class="text-xs font-semibold uppercase tracking-wide text-slate-500" data-kid="1-3-3-3-1" data-name="with evidence label">
+                    Con evidencia
+                </p>
+                <div class="mt-1 flex items-end gap-2" data-kid="1-3-3-3-2" data-name="with evidence value and sub-label">
+                    <strong class="text-2xl font-extrabold text-emerald-700" data-kid="1-3-3-3-2-1" data-name="with evidence count">
+                        2
+                    </strong>
+                    <span class="mb-1 text-xs font-semibold text-slate-500" data-kid="1-3-3-3-2-2" data-name="with evidence status">
+                        listas para validar
+                    </span>
+                </div>
+            </div>
+            <div class="px-5 py-4" data-kid="1-3-3-4" data-name="average time stat card">
+                <p class="text-xs font-semibold uppercase tracking-wide text-slate-500" data-kid="1-3-3-4-1" data-name="average time label">
+                    Tiempo medio
+                </p>
+                <div class="mt-1 flex items-end gap-2" data-kid="1-3-3-4-2" data-name="average time value and sub-label">
+                    <strong class="text-2xl font-extrabold text-indigo-700" data-kid="1-3-3-4-2-1" data-name="average time count">
+                        1 h 42
+                    </strong>
+                    <span class="mb-1 text-xs font-semibold text-slate-500" data-kid="1-3-3-4-2-2" data-name="average time status">
+                        en revisión
+                    </span>
+                </div>
+            </div>
+        </section>
+        <section class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs" data-kid="1-3-4" data-name="approvals queue section">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 px-5 py-4" data-kid="1-3-4-1" data-name="queue header container">
+                <div data-kid="1-3-4-1-1" data-name="queue title and description">
+                    <h3 class="text-base font-bold text-slate-950" data-kid="1-3-4-1-1-1" data-name="queue section headline">
+                        Cola de aprobación
+                    </h3>
+                    <p class="mt-0.5 text-xs text-slate-500" data-kid="1-3-4-1-1-2" data-name="queue section sub-text">
+                        Ordenada por límite más próximo y tiempo de espera.
+                    </p>
+                </div>
+                <div aria-label="Filtrar tareas" class="flex min-h-11 items-center gap-1 rounded-lg bg-slate-100 p-1" data-kid="1-3-4-1-2" data-name="filter group buttons" role="group">
+                    <button class="min-h-9 rounded-md bg-white px-3 text-xs font-bold text-indigo-700 shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" data-kid="1-3-4-1-2-1" data-name="in-review filter button">
+                        En revisión · 3
+                    </button>
+                    <button class="min-h-9 rounded-md px-3 text-xs font-semibold text-slate-500 hover:bg-white hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" data-kid="1-3-4-1-2-2" data-name="today-deadline filter button">
+                        Vencen hoy · 1
+                    </button>
+                    <button class="min-h-9 rounded-md px-3 text-xs font-semibold text-slate-500 hover:bg-white hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" data-kid="1-3-4-1-2-3" data-name="all-tasks filter button">
+                        Todas · 8
+                    </button>
+                </div>
+            </div>
+            <div class="overflow-x-auto" data-kid="1-3-4-2" data-name="queue table wrapper">
+                <table class="w-full min-w-[930px] border-collapse text-left" data-kid="1-3-4-2-1" data-name="approvals data table">
+                    <thead class="bg-slate-50 text-xs font-bold uppercase tracking-wide text-slate-500" data-kid="1-3-4-2-1-1" data-name="table header row">
+                        <tr data-kid="1-3-4-2-1-1-1" data-name="table header cells">
+                            <th class="px-5 py-3" data-kid="1-3-4-2-1-1-1-1" data-name="task column header" scope="col">
+                                Tarea
+                            </th>
+                            <th class="px-4 py-3" data-kid="1-3-4-2-1-1-1-2" data-name="responsible column header" scope="col">
+                                Responsable
+                            </th>
+                            <th class="px-4 py-3" data-kid="1-3-4-2-1-1-1-3" data-name="sent date column header" scope="col">
+                                Enviada
+                            </th>
+                            <th class="px-4 py-3" data-kid="1-3-4-2-1-1-1-4" data-name="limit date column header" scope="col">
+                                Límite
+                            </th>
+                            <th class="px-4 py-3" data-kid="1-3-4-2-1-1-1-5" data-name="evidence column header" scope="col">
+                                Evidencia
+                            </th>
+                            <th class="px-4 py-3" data-kid="1-3-4-2-1-1-1-6" data-name="status column header" scope="col">
+                                Estado
+                            </th>
+                            <th class="px-5 py-3 text-right" data-kid="1-3-4-2-1-1-1-7" data-name="action column header" scope="col">
+                                Acción
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-sm" data-kid="1-3-4-2-1-2" data-name="table body">
+                        <tr aria-selected="true" class="border-l-4 border-indigo-500 bg-indigo-50/60" data-kid="1-3-4-2-1-2-1" data-name="table row 1">
+                            <td class="px-5 py-4" data-kid="1-3-4-2-1-2-1-1" data-name="task identifier cell">
+                                <div class="flex items-start gap-3" data-kid="1-3-4-2-1-2-1-1-1" data-name="task identifier wrapper">
+                                    <span class="mt-0.5 rounded-md bg-white px-2 py-1 font-mono text-xs font-bold text-indigo-700 shadow-xs" data-kid="1-3-4-2-1-2-1-1-1-1" data-name="node id code">
+                                        NODE-103
+                                    </span>
+                                    <div data-kid="1-3-4-2-1-2-1-1-1-2" data-name="task title and description">
+                                        <p class="font-bold text-slate-950" data-kid="1-3-4-2-1-2-1-1-1-2-1" data-name="task title">
+                                            Revisión y Testing de API
+                                        </p>
+                                        <p class="mt-0.5 text-xs text-slate-500" data-kid="1-3-4-2-1-2-1-1-1-2-2" data-name="task subtitle">
+                                            Validación de endpoints REST.
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-4" data-kid="1-3-4-2-1-2-1-2" data-name="responsible cell">
+                                <div class="flex items-center gap-2" data-kid="1-3-4-2-1-2-1-2-1" data-name="responsible avatar and name wrapper">
+                                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white" data-kid="1-3-4-2-1-2-1-2-1-1" data-name="responsible user initials">
+                                        GC
+                                    </span>
+                                    <span class="font-semibold text-slate-800" data-kid="1-3-4-2-1-2-1-2-1-2" data-name="responsible user name">
+                                        Gabriel Chamorro
+                                    </span>
+                                </div>
+                            </td>
+                            <td class="whitespace-nowrap px-4 py-4 text-xs font-medium text-slate-700" data-kid="1-3-4-2-1-2-1-3" data-name="sent date cell">
+                                Hoy, 10:15
+                            </td>
+                            <td class="whitespace-nowrap px-4 py-4" data-kid="1-3-4-2-1-2-1-4" data-name="limit date cell">
+                                <span class="font-bold text-amber-700" data-kid="1-3-4-2-1-2-1-4-1" data-name="deadline date">
+                                    Hoy, 17:00
+                                </span>
+                                <span class="mt-0.5 block text-xs text-slate-500" data-kid="1-3-4-2-1-2-1-4-2" data-name="deadline countdown">
+                                    en 6 h 45 min
+                                </span>
+                            </td>
+                            <td class="px-4 py-4" data-kid="1-3-4-2-1-2-1-5" data-name="evidence status cell">
+                                <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700" data-kid="1-3-4-2-1-2-1-5-1" data-name="evidence label">
+                                    <i class="h-4 w-4" data-kid="1-3-4-2-1-2-1-5-1-1" data-lucide="paperclip" data-name="paperclip icon">
+                                    </i>
+                                    Disponible
+                                </span>
+                            </td>
+                            <td class="px-4 py-4" data-kid="1-3-4-2-1-2-1-6" data-name="task status cell">
+                                <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-2.5 py-1 text-xs font-bold text-amber-800" data-kid="1-3-4-2-1-2-1-6-1" data-name="task status label">
+                                    <span class="h-2 w-2 rounded-full bg-amber-500" data-kid="1-3-4-2-1-2-1-6-1-1" data-name="task status dot">
+                                    </span>
+                                    En revisión
+                                </span>
+                            </td>
+                            <td class="px-5 py-4 text-right" data-kid="1-3-4-2-1-2-1-7" data-name="action cell">
+                                <button class="inline-flex min-h-10 items-center gap-1.5 rounded-lg border border-indigo-200 bg-white px-3 text-xs font-bold text-indigo-700 hover:border-indigo-400 hover:bg-indigo-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" data-kid="1-3-4-2-1-2-1-7-1" data-name="open task button">
+                                    <i class="h-4 w-4" data-kid="1-3-4-2-1-2-1-7-1-1" data-lucide="eye" data-name="eye icon">
+                                    </i>
+                                    Abrir
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-50" data-kid="1-3-4-2-1-2-2" data-name="table row 2">
+                            <td class="px-5 py-4" data-kid="1-3-4-2-1-2-2-1" data-name="task identifier cell">
+                                <div class="flex items-start gap-3" data-kid="1-3-4-2-1-2-2-1-1" data-name="task identifier wrapper">
+                                    <span class="mt-0.5 rounded-md bg-slate-100 px-2 py-1 font-mono text-xs font-bold text-slate-600" data-kid="1-3-4-2-1-2-2-1-1-1" data-name="node id code">
+                                        NODE-106
+                                    </span>
+                                    <div data-kid="1-3-4-2-1-2-2-1-1-2" data-name="task title and description">
+                                        <p class="font-bold text-slate-900" data-kid="1-3-4-2-1-2-2-1-1-2-1" data-name="task title">
+                                            Auditoría de Seguridad
+                                        </p>
+                                        <p class="mt-0.5 text-xs text-slate-500" data-kid="1-3-4-2-1-2-2-1-1-2-2" data-name="task subtitle">
+                                            Revisión de vulnerabilidades y puertos.
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-4" data-kid="1-3-4-2-1-2-2-2" data-name="responsible cell">
+                                <div class="flex items-center gap-2" data-kid="1-3-4-2-1-2-2-2-1" data-name="responsible avatar and name wrapper">
+                                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white" data-kid="1-3-4-2-1-2-2-2-1-1" data-name="responsible user initials">
+                                        AO
+                                    </span>
+                                    <span class="font-semibold text-slate-800" data-kid="1-3-4-2-1-2-2-2-1-2" data-name="responsible user name">
+                                        Andrea Ortega
+                                    </span>
+                                </div>
+                            </td>
+                            <td class="whitespace-nowrap px-4 py-4 text-xs font-medium text-slate-700" data-kid="1-3-4-2-1-2-2-3" data-name="sent date cell">
+                                Hoy, 09:42
+                            </td>
+                            <td class="whitespace-nowrap px-4 py-4" data-kid="1-3-4-2-1-2-2-4" data-name="limit date cell">
+                                <span class="font-semibold text-slate-800" data-kid="1-3-4-2-1-2-2-4-1" data-name="deadline date">
+                                    Hoy, 17:30
+                                </span>
+                                <span class="mt-0.5 block text-xs text-slate-500" data-kid="1-3-4-2-1-2-2-4-2" data-name="deadline countdown">
+                                    en 7 h 15 min
+                                </span>
+                            </td>
+                            <td class="px-4 py-4" data-kid="1-3-4-2-1-2-2-5" data-name="evidence status cell">
+                                <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700" data-kid="1-3-4-2-1-2-2-5-1" data-name="evidence label">
+                                    <i class="h-4 w-4" data-kid="1-3-4-2-1-2-2-5-1-1" data-lucide="paperclip" data-name="paperclip icon">
+                                    </i>
+                                    Disponible
+                                </span>
+                            </td>
+                            <td class="px-4 py-4" data-kid="1-3-4-2-1-2-2-6" data-name="task status cell">
+                                <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-2.5 py-1 text-xs font-bold text-amber-800" data-kid="1-3-4-2-1-2-2-6-1" data-name="task status label">
+                                    <span class="h-2 w-2 rounded-full bg-amber-500" data-kid="1-3-4-2-1-2-2-6-1-1" data-name="task status dot">
+                                    </span>
+                                    En revisión
+                                </span>
+                            </td>
+                            <td class="px-5 py-4 text-right" data-kid="1-3-4-2-1-2-2-7" data-name="action cell">
+                                <button class="inline-flex min-h-10 items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 text-xs font-bold text-slate-700 hover:border-indigo-300 hover:text-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" data-kid="1-3-4-2-1-2-2-7-1" data-name="open task button">
+                                    <i class="h-4 w-4" data-kid="1-3-4-2-1-2-2-7-1-1" data-lucide="eye" data-name="eye icon">
+                                    </i>
+                                    Abrir
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-50" data-kid="1-3-4-2-1-2-3" data-name="table row 3">
+                            <td class="px-5 py-4" data-kid="1-3-4-2-1-2-3-1" data-name="task identifier cell">
+                                <div class="flex items-start gap-3" data-kid="1-3-4-2-1-2-3-1-1" data-name="task identifier wrapper">
+                                    <span class="mt-0.5 rounded-md bg-slate-100 px-2 py-1 font-mono text-xs font-bold text-slate-600" data-kid="1-3-4-2-1-2-3-1-1-1" data-name="node id code">
+                                        NODE-107
+                                    </span>
+                                    <div data-kid="1-3-4-2-1-2-3-1-1-2" data-name="task title and description">
+                                        <p class="font-bold text-slate-900" data-kid="1-3-4-2-1-2-3-1-1-2-1" data-name="task title">
+                                            Documentación técnica
+                                        </p>
+                                        <p class="mt-0.5 text-xs text-slate-500" data-kid="1-3-4-2-1-2-3-1-1-2-2" data-name="task subtitle">
+                                            Bitácora de cambios y especificaciones.
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-4" data-kid="1-3-4-2-1-2-3-2" data-name="responsible cell">
+                                <div class="flex items-center gap-2" data-kid="1-3-4-2-1-2-3-2-1" data-name="responsible avatar and name wrapper">
+                                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white" data-kid="1-3-4-2-1-2-3-2-1-1" data-name="responsible user initials">
+                                        MS
+                                    </span>
+                                    <span class="font-semibold text-slate-800" data-kid="1-3-4-2-1-2-3-2-1-2" data-name="responsible user name">
+                                        María Silva
+                                    </span>
+                                </div>
+                            </td>
+                            <td class="whitespace-nowrap px-4 py-4 text-xs font-medium text-slate-700" data-kid="1-3-4-2-1-2-3-3" data-name="sent date cell">
+                                Ayer, 16:20
+                            </td>
+                            <td class="whitespace-nowrap px-4 py-4" data-kid="1-3-4-2-1-2-3-4" data-name="limit date cell">
+                                <span class="font-semibold text-slate-800" data-kid="1-3-4-2-1-2-3-4-1" data-name="deadline date">
+                                    Mañana, 12:00
+                                </span>
+                                <span class="mt-0.5 block text-xs text-slate-500" data-kid="1-3-4-2-1-2-3-4-2" data-name="deadline countdown">
+                                    en 25 h
+                                </span>
+                            </td>
+                            <td class="px-4 py-4" data-kid="1-3-4-2-1-2-3-5" data-name="evidence status cell">
+                                <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500" data-kid="1-3-4-2-1-2-3-5-1" data-name="evidence label">
+                                    <i class="h-4 w-4" data-kid="1-3-4-2-1-2-3-5-1-1" data-lucide="paperclip" data-name="paperclip icon">
+                                    </i>
+                                    No adjunta
+                                </span>
+                            </td>
+                            <td class="px-4 py-4" data-kid="1-3-4-2-1-2-3-6" data-name="task status cell">
+                                <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-2.5 py-1 text-xs font-bold text-amber-800" data-kid="1-3-4-2-1-2-3-6-1" data-name="task status label">
+                                    <span class="h-2 w-2 rounded-full bg-amber-500" data-kid="1-3-4-2-1-2-3-6-1-1" data-name="task status dot">
+                                    </span>
+                                    En revisión
+                                </span>
+                            </td>
+                            <td class="px-5 py-4 text-right" data-kid="1-3-4-2-1-2-3-7" data-name="action cell">
+                                <button class="inline-flex min-h-10 items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 text-xs font-bold text-slate-700 hover:border-indigo-300 hover:text-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" data-kid="1-3-4-2-1-2-3-7-1" data-name="open task button">
+                                    <i class="h-4 w-4" data-kid="1-3-4-2-1-2-3-7-1-1" data-lucide="eye" data-name="eye icon">
+                                    </i>
+                                    Abrir
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section class="grid gap-5 lg:grid-cols-[1.55fr_0.8fr]" data-kid="1-3-5" data-name="detailed task view container">
+            <article class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs" data-kid="1-3-5-1" data-name="task details article">
+                <div class="flex flex-wrap items-start justify-between gap-4 border-b border-slate-200 px-5 py-5" data-kid="1-3-5-1-1" data-name="task header wrapper">
+                    <div class="flex items-start gap-3" data-kid="1-3-5-1-1-1" data-name="task identifier and info wrapper">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-50 text-indigo-700" data-kid="1-3-5-1-1-1-1" data-name="task icon container">
+                            <i class="h-5 w-5" data-kid="1-3-5-1-1-1-1-1" data-lucide="file-check-2" data-name="task type icon">
+                            </i>
+                        </div>
+                        <div data-kid="1-3-5-1-1-1-2" data-name="task meta and title container">
+                            <div class="flex items-center gap-2" data-kid="1-3-5-1-1-1-2-1" data-name="task meta wrapper">
+                                <span class="font-mono text-xs font-bold text-indigo-700" data-kid="1-3-5-1-1-1-2-1-1" data-name="task id code">
+                                    NODE-103
+                                </span>
+                                <span class="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-bold text-amber-800" data-kid="1-3-5-1-1-1-2-1-2" data-name="status badge">
+                                    En revisión
+                                </span>
+                            </div>
+                            <h3 class="mt-1 text-lg font-extrabold text-slate-950" data-kid="1-3-5-1-1-1-2-2" data-name="task title">
+                                Revisión y Testing de API
+                            </h3>
+                            <p class="mt-1 text-sm text-slate-500" data-kid="1-3-5-1-1-1-2-3" data-name="task reporter details">
+                                Responsable: Gabriel Chamorro · Enviada hoy, 10:15
+                            </p>
+                        </div>
+                    </div>
+                    <button aria-label="Más opciones de la tarea" class="flex h-10 w-10 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" data-kid="1-3-5-1-1-2" data-name="more options button">
+                        <i class="h-5 w-5" data-kid="1-3-5-1-1-2-1" data-lucide="more-horizontal" data-name="more options icon">
+                        </i>
+                    </button>
+                </div>
+                <div class="space-y-6 px-5 py-5" data-kid="1-3-5-1-2" data-name="task content container">
+                    <div data-kid="1-3-5-1-2-1" data-name="process progress container">
+                        <div class="mb-3 flex items-center justify-between" data-kid="1-3-5-1-2-1-1" data-name="progress label and status">
+                            <h4 class="text-sm font-bold text-slate-900" data-kid="1-3-5-1-2-1-1-1" data-name="progress title">
+                                Progreso del proceso
+                            </h4>
+                            <span class="text-xs font-bold text-amber-700" data-kid="1-3-5-1-2-1-1-2" data-name="progress stages text">
+                                2 de 3 etapas
+                            </span>
+                        </div>
+                        <div class="relative flex items-start justify-between" data-kid="1-3-5-1-2-1-2" data-name="progress visual bar">
+                            <div class="absolute left-[8%] right-[8%] top-3 h-0.5 bg-slate-200" data-kid="1-3-5-1-2-1-2-1" data-name="progress bar track">
+                                <div class="h-full w-1/2 bg-amber-500" data-kid="1-3-5-1-2-1-2-1-1" data-name="progress bar fill">
+                                </div>
+                            </div>
+                            <div class="relative z-10 flex w-1/3 flex-col items-start gap-2" data-kid="1-3-5-1-2-1-2-2" data-name="step 1">
+                                <span class="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-600 text-white" data-kid="1-3-5-1-2-1-2-2-1" data-name="step 1 indicator">
+                                    <i class="h-3.5 w-3.5" data-kid="1-3-5-1-2-1-2-2-1-1" data-lucide="check" data-name="check icon">
+                                    </i>
+                                </span>
+                                <span class="text-xs font-semibold text-slate-700" data-kid="1-3-5-1-2-1-2-2-2" data-name="step 1 label">
+                                    En progreso
+                                </span>
+                            </div>
+                            <div class="relative z-10 flex w-1/3 flex-col items-center gap-2" data-kid="1-3-5-1-2-1-2-3" data-name="step 2">
+                                <span class="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-white ring-4 ring-amber-100" data-kid="1-3-5-1-2-1-2-3-1" data-name="step 2 indicator">
+                                    <span class="h-2 w-2 rounded-full bg-white" data-kid="1-3-5-1-2-1-2-3-1-1" data-name="step 2 current status dot">
+                                    </span>
+                                </span>
+                                <span class="text-xs font-bold text-amber-800" data-kid="1-3-5-1-2-1-2-3-2" data-name="step 2 label">
+                                    En revisión
+                                </span>
+                            </div>
+                            <div class="relative z-10 flex w-1/3 flex-col items-end gap-2" data-kid="1-3-5-1-2-1-2-4" data-name="step 3">
+                                <span class="flex h-6 w-6 items-center justify-center rounded-full border-2 border-slate-300 bg-white text-slate-400" data-kid="1-3-5-1-2-1-2-4-1" data-name="step 3 indicator">
+                                    <i class="h-3 w-3" data-kid="1-3-5-1-2-1-2-4-1-1" data-lucide="lock" data-name="lock icon">
+                                    </i>
+                                </span>
+                                <span class="text-xs font-semibold text-slate-400" data-kid="1-3-5-1-2-1-2-4-2" data-name="step 3 label">
+                                    Finalizada
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid gap-5 border-t border-slate-100 pt-5 md:grid-cols-[0.7fr_1.3fr]" data-kid="1-3-5-1-2-2" data-name="task details info grid">
+                        <div data-kid="1-3-5-1-2-2-1" data-name="assigned goal container">
+                            <p class="text-xs font-bold uppercase tracking-wide text-slate-500" data-kid="1-3-5-1-2-2-1-1" data-name="goal label">
+                                Meta asignada
+                            </p>
+                            <p class="mt-2 text-sm font-semibold leading-6 text-slate-800" data-kid="1-3-5-1-2-2-1-2" data-name="goal description">
+                                Testear endpoints de autenticación
+                            </p>
+                            <p class="mt-3 text-xs font-semibold text-emerald-700" data-kid="1-3-5-1-2-2-1-3" data-name="goal status text">
+                                Meta reportada como cumplida
+                            </p>
+                        </div>
+                        <div data-kid="1-3-5-1-2-2-2" data-name="logbook container">
+                            <div class="mb-2 flex items-center justify-between" data-kid="1-3-5-1-2-2-2-1" data-name="logbook header">
+                                <p class="text-xs font-bold uppercase tracking-wide text-slate-500" data-kid="1-3-5-1-2-2-2-1-1" data-name="logbook label">
+                                    Bitácora de trabajo
+                                </p>
+                                <span class="text-xs text-slate-400" data-kid="1-3-5-1-2-2-2-1-2" data-name="logbook timestamp">
+                                    Última actualización 10:15
+                                </span>
+                            </div>
+                            <p class="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-700" data-kid="1-3-5-1-2-2-2-2" data-name="logbook entry text">
+                                Pruebas unitarias al 100%. Esperando visto bueno. Se validaron los endpoints de autenticación y se revisaron las respuestas de error.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <aside class="flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs" data-kid="1-3-5-2" data-name="validation aside container">
+                <div class="border-b border-slate-200 px-5 py-5" data-kid="1-3-5-2-1" data-name="validation header">
+                    <h3 class="text-base font-bold text-slate-950" data-kid="1-3-5-2-1-1" data-name="validation headline">
+                        Validación de cierre
+                    </h3>
+                    <p class="mt-1 text-xs leading-5 text-slate-500" data-kid="1-3-5-2-1-2" data-name="validation instruction">
+                        Confirma los requisitos antes de finalizar esta tarea.
+                    </p>
+                </div>
+                <div class="flex-1 space-y-4 px-5 py-5" data-kid="1-3-5-2-2" data-name="validation checklist container">
+                    <label class="flex items-start gap-3" data-kid="1-3-5-2-2-1" data-name="checklist item 1">
+                        <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-emerald-100 text-emerald-700" data-kid="1-3-5-2-2-1-1" data-name="checkbox icon container">
+                            <i class="h-3.5 w-3.5" data-kid="1-3-5-2-2-1-1-1" data-lucide="check" data-name="checkmark icon">
+                            </i>
+                        </span>
+                        <span data-kid="1-3-5-2-2-1-2" data-name="checklist item label wrapper">
+                            <strong class="block text-sm font-semibold text-slate-800" data-kid="1-3-5-2-2-1-2-1" data-name="checklist item title">
+                                Meta cumplida
+                            </strong>
+                            <span class="mt-0.5 block text-xs text-slate-500" data-kid="1-3-5-2-2-1-2-2" data-name="checklist item subtitle">
+                                Confirmada por el responsable
+                            </span>
+                        </span>
+                    </label>
+                    <label class="flex items-start gap-3" data-kid="1-3-5-2-2-2" data-name="checklist item 2">
+                        <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-emerald-100 text-emerald-700" data-kid="1-3-5-2-2-2-1" data-name="checkbox icon container">
+                            <i class="h-3.5 w-3.5" data-kid="1-3-5-2-2-2-1-1" data-lucide="check" data-name="checkmark icon">
+                            </i>
+                        </span>
+                        <span data-kid="1-3-5-2-2-2-2" data-name="checklist item label wrapper">
+                            <strong class="block text-sm font-semibold text-slate-800" data-kid="1-3-5-2-2-2-2-1" data-name="checklist item title">
+                                Evidencia disponible
+                            </strong>
+                            <span class="mt-0.5 block text-xs text-slate-500" data-kid="1-3-5-2-2-2-2-2" data-name="checklist item subtitle">
+                                1 archivo adjunto para revisar
+                            </span>
+                        </span>
+                    </label>
+                    <label class="flex items-start gap-3" data-kid="1-3-5-2-2-3" data-name="checklist item 3">
+                        <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2 border-slate-300 bg-white text-slate-400" data-kid="1-3-5-2-2-3-1" data-name="checkbox icon container">
+                        </span>
+                        <span data-kid="1-3-5-2-2-3-2" data-name="checklist item label wrapper">
+                            <strong class="block text-sm font-semibold text-slate-800" data-kid="1-3-5-2-2-3-2-1" data-name="checklist item title">
+                                Límite revisado
+                            </strong>
+                            <span class="mt-0.5 block text-xs text-amber-700" data-kid="1-3-5-2-2-3-2-2" data-name="checklist item subtitle">
+                                Requiere confirmación antes de aprobar
+                            </span>
+                        </span>
+                    </label>
+                    <div class="border-t border-slate-100 pt-4" data-kid="1-3-5-2-2-4" data-name="deadline section">
+                        <p class="text-xs font-bold uppercase tracking-wide text-slate-500" data-kid="1-3-5-2-2-4-1" data-name="deadline label">
+                            Fecha límite
+                        </p>
+                        <div class="mt-2 flex items-center gap-2 text-sm font-bold text-amber-700" data-kid="1-3-5-2-2-4-2" data-name="deadline value wrapper">
+                            <i class="h-4 w-4" data-kid="1-3-5-2-2-4-2-1" data-lucide="calendar-clock" data-name="calendar icon">
+                            </i>
+                            Hoy, 17:00
+                            <span class="text-xs font-medium text-slate-500" data-kid="1-3-5-2-2-4-2-2" data-name="countdown remaining text">
+                                · 6 h 45 min
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-2 border-t border-slate-200 bg-slate-50 px-5 py-5" data-kid="1-3-5-2-3" data-name="validation action buttons">
+                    <button class="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-rose-200 bg-white px-4 text-sm font-bold text-rose-700 hover:bg-rose-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400" data-kid="1-3-5-2-3-1" data-name="revert button">
+                        <i class="h-4 w-4" data-kid="1-3-5-2-3-1-1" data-lucide="rotate-ccw" data-name="rotate icon">
+                        </i>
+                        Devolver a progreso
+                    </button>
+                    <button class="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 text-sm font-bold text-white shadow-xs hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500" data-kid="1-3-5-2-3-2" data-name="approve button">
+                        <i class="h-4 w-4" data-kid="1-3-5-2-3-2-1" data-lucide="check-circle-2" data-name="checkmark icon">
+                        </i>
+                        Aprobar y finalizar
+                    </button>
+                </div>
+            </aside>
+        </section>
+        <div class="flex items-center gap-3 rounded-lg border border-dashed border-slate-300 bg-slate-50 px-4 py-3 text-slate-500" data-kid="1-3-6" data-name="empty tray state container">
+            <i class="h-4 w-4 shrink-0" data-kid="1-3-6-1" data-lucide="inbox" data-name="inbox icon">
+            </i>
+            <p class="text-xs" data-kid="1-3-6-2" data-name="empty state message">
+                <span class="font-semibold text-slate-700" data-kid="1-3-6-2-1" data-name="empty state instruction">
+                    Cuando no haya pendientes:
+                </span>
+                Esta bandeja mostrará aquí el estado vacío y un enlace para consultar el historial.
+            </p>
+            <button class="ml-auto min-h-9 whitespace-nowrap rounded-md px-2.5 text-xs font-bold text-indigo-700 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500" data-kid="1-3-6-3" data-name="view history button">
+                Ver historial
+            </button>
+        </div>
+    </main>
+</div>
+<script>
+    lucide.createIcons();
+</script>
+</div>
+</body></html>

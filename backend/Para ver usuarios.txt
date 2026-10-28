@@ -1,0 +1,11 @@
+Para consultar usuarios desde MySQL sin guardar la contraseña en este archivo:
+
+1. Abre CMD o PowerShell.
+2. Ejecuta:
+   mysql -u root -p
+3. Ingresa la contraseña de MySQL cuando se solicite.
+4. Ejecuta:
+   USE teamflow_db;
+   SELECT id, nombre, email, password_hash, rol, estado FROM usuarios;
+
+Por seguridad, TimeFlow V0.4.0 ya no guarda ni consulta una columna de contraseña en texto plano.
