@@ -14,6 +14,12 @@ public class Usuario {
     @Column(nullable = false)
     private String nombre;
 
+    @Version
+    @Column(nullable=false)
+    private Long version;
+    public Long getVersion() { return version; }
+    public void setVersion(Long version) { this.version=version; }
+
     @Column(nullable = false, unique = true)
     private String email;
 

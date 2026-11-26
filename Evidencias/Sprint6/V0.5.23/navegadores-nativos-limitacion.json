@@ -1,0 +1,17 @@
+{
+  "version": "0.5.23-SNAPSHOT",
+  "chromeInstalled": true,
+  "edgeInstalled": true,
+  "disposableChromeProfileCreated": true,
+  "chromeLoginObserved": true,
+  "passwordSaveDeclined": true,
+  "chromeF5Certified": false,
+  "chromeBrowserFullRestartCertified": false,
+  "edgeStarted": false,
+  "twoNativeIndependentProfilesCertified": false,
+  "cookiesBlockedDeletedNativeCertified": false,
+  "policyBlock": "Computer Use no pudo determinar la URL actual del navegador en Windows con confianza suficiente para aplicar la política. La acción F5 fue detenida; se cerró la fase CUA y no se continuó ni se usó otra vía de automatización de navegadores.",
+  "personalProfilesTouched": false,
+  "temporaryChromeProcessCleanedUp": true,
+  "scope": "Login Chrome observado antes del bloqueo. Las confirmaciones IAB anteriores tienen evidencia independiente. No se presenta IAB ni clientes HTTP como certificación nativa Chrome/Edge."
+}

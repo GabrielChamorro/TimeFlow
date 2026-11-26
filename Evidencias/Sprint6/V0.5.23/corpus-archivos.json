@@ -1,0 +1,373 @@
+{
+  "version": "0.5.23-SNAPSHOT",
+  "checks": [
+    {
+      "case": "login s6-7eff1ef2-worker23@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "login s6-7eff1ef2-ajeno23@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "crear tarea Corpus controlado V23",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Subir imagen23.png",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Descargar imagen23.png",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "SHA256 exacto imagen23.png",
+      "passed": true
+    },
+    {
+      "case": "Protección no-store/nosniff imagen23.png",
+      "passed": true
+    },
+    {
+      "case": "Ajeno no descarga imagen23.png",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Sin sesión no descarga imagen23.png",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "Decodificación imagen imagen23.png",
+      "passed": true
+    },
+    {
+      "case": "Subir imagen23.jpg",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Descargar imagen23.jpg",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "SHA256 exacto imagen23.jpg",
+      "passed": true
+    },
+    {
+      "case": "Protección no-store/nosniff imagen23.jpg",
+      "passed": true
+    },
+    {
+      "case": "Ajeno no descarga imagen23.jpg",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Sin sesión no descarga imagen23.jpg",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "Decodificación imagen imagen23.jpg",
+      "passed": true
+    },
+    {
+      "case": "Subir multipagina23.pdf",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Descargar multipagina23.pdf",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "SHA256 exacto multipagina23.pdf",
+      "passed": true
+    },
+    {
+      "case": "Protección no-store/nosniff multipagina23.pdf",
+      "passed": true
+    },
+    {
+      "case": "Ajeno no descarga multipagina23.pdf",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Sin sesión no descarga multipagina23.pdf",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "PDF descargado conserva tres páginas",
+      "passed": true
+    },
+    {
+      "case": "Subir documento23.docx",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Descargar documento23.docx",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "SHA256 exacto documento23.docx",
+      "passed": true
+    },
+    {
+      "case": "Protección no-store/nosniff documento23.docx",
+      "passed": true
+    },
+    {
+      "case": "Ajeno no descarga documento23.docx",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Sin sesión no descarga documento23.docx",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "DOCX descargado íntegro",
+      "passed": true
+    },
+    {
+      "case": "Subir clip23.mp4",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Descargar clip23.mp4",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "SHA256 exacto clip23.mp4",
+      "passed": true
+    },
+    {
+      "case": "Protección no-store/nosniff clip23.mp4",
+      "passed": true
+    },
+    {
+      "case": "Ajeno no descarga clip23.mp4",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Sin sesión no descarga clip23.mp4",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "Decodificación audiovisual completa clip23.mp4",
+      "passed": true
+    },
+    {
+      "case": "Subir clip23.webm",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Descargar clip23.webm",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "SHA256 exacto clip23.webm",
+      "passed": true
+    },
+    {
+      "case": "Protección no-store/nosniff clip23.webm",
+      "passed": true
+    },
+    {
+      "case": "Ajeno no descarga clip23.webm",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Sin sesión no descarga clip23.webm",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "Decodificación audiovisual completa clip23.webm",
+      "passed": true
+    },
+    {
+      "case": "Corpus rechazado disfraz.png",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Corpus rechazado cortado.png",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Corpus rechazado cortado.pdf",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Corpus rechazado vacio.mp4",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Corpus rechazado ruta.docx",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Corpus rechazado limite-expansion.docx",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Corpus rechazado archivo.exe",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Corpus rechazado ../ruta.png",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Firma admitida sin certificar decodificación solo-firma.pdf",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Firma admitida sin certificar decodificación solo-firma.mp4",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    }
+  ],
+  "passed": true,
+  "scope": "HTTP/MySQL y decodificadores locales. No reproducción ni paginación PDF UI nueva tras bloqueo de Computer Use. Límites 60MiB/300MiB/25 se verifican además en regresión general.",
+  "validFiles": [
+    {
+      "name": "imagen23.png",
+      "bytes": 13057,
+      "sha256": "881ffbcaafc212e49addad08846a5b82761355fa20624253af3477ba33262c5c",
+      "http": 200,
+      "decoder": "ffmpeg: imagen completa"
+    },
+    {
+      "name": "imagen23.jpg",
+      "bytes": 22146,
+      "sha256": "f4b4a4f3cec89ff68f363829d802206116c279514b7d17901e96f58ee0e35180",
+      "http": 200,
+      "decoder": "ffmpeg: imagen completa"
+    },
+    {
+      "name": "multipagina23.pdf",
+      "bytes": 2742,
+      "sha256": "808f756e8982fcd74fe6270cb39a160e737e62a1b6c898e545aa8d584a9c9721",
+      "http": 200,
+      "decoder": "Poppler: tres páginas; rasterizado previo"
+    },
+    {
+      "name": "documento23.docx",
+      "bytes": 42729,
+      "sha256": "15c70d2caa1b9e59962a9627c7cb7855effbc44bff251b23fedede00f79bd6d6",
+      "http": 200,
+      "decoder": "ZIP CRC + estructura OOXML, sin edición ni macros"
+    },
+    {
+      "name": "clip23.mp4",
+      "bytes": 79904,
+      "sha256": "7ff995ed5b37da373e52b392b530f218be1f34c8e367d2c06475c2a61da6e32a",
+      "http": 200,
+      "decoder": "ffmpeg: vídeo+audio 5s"
+    },
+    {
+      "name": "clip23.webm",
+      "bytes": 79622,
+      "sha256": "6dde12ba8fb99ab0c4bce216f14785574ebf19f5440ac4f1715518dec4dae012",
+      "http": 200,
+      "decoder": "ffmpeg: vídeo+audio 5s"
+    }
+  ],
+  "headerOnlyAccepted": [
+    "solo-firma.pdf",
+    "solo-firma.mp4"
+  ],
+  "limitation": "La firma PDF/MP4 no valida completamente estructura/codecs. Se conservan protegidos; no se certifica que todo archivo admitido pueda previsualizarse. DOCX acota entradas/expansión/rutas; no es antivirus ni sanitizador completo de relaciones externas.",
+  "noMalwareUsed": true,
+  "headerOnlyDecoderChecks": [
+    {
+      "name": "solo-firma.pdf",
+      "sha256": "59a7c0d96f000bfa2054c56b3d54f0bfc63bbac8d421d26e6db7895bf5217c2f",
+      "decoderExit": 1,
+      "rejectedByDecoder": true
+    },
+    {
+      "name": "solo-firma.mp4",
+      "sha256": "c43403fe022af967a0b859d3e14ea12d6633f4c8ad475816b0c55d85896e8e35",
+      "decoderExit": 3199971767,
+      "rejectedByDecoder": true
+    }
+  ]
+}

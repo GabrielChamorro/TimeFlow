@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='utf8'?>
+<testsuites xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.AdministracionV0511Tests" time="1.503" tests="3" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="soloAdministradorListaCuentasInactivas" classname="com.teamflow.backend.AdministracionV0511Tests" time="1.387">
+    </testcase>
+  <testcase name="soloAdministradorListaPlantillasInactivas" classname="com.teamflow.backend.AdministracionV0511Tests" time="0.074" />
+  <testcase name="erroresDeUnicidadDevuelvenConflictoYNoDatosDeBD" classname="com.teamflow.backend.AdministracionV0511Tests" time="0.003" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.AuditoriaSeguridadV056Tests" time="0.591" tests="5" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="jwtNoEsValidoSiOtraCuentaReutilizaElCorreo" classname="com.teamflow.backend.AuditoriaSeguridadV056Tests" time="0.427" />
+  <testcase name="evidenciaAjenaNoSePuedeConsultarNiDescargar" classname="com.teamflow.backend.AuditoriaSeguridadV056Tests" time="0.147" />
+  <testcase name="mismoNombreNoPermiteRobarUnaTareaConResponsablePorId" classname="com.teamflow.backend.AuditoriaSeguridadV056Tests" time="0.002" />
+  <testcase name="peticionJsonDeCincoMbSeRechazaPeroMultipartDeEvidenciaSePermite" classname="com.teamflow.backend.AuditoriaSeguridadV056Tests" time="0.006" />
+  <testcase name="nombreDuplicadoNoDaPermisosSobreUnaTareaAntigua" classname="com.teamflow.backend.AuditoriaSeguridadV056Tests" time="0.001" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.AutoLayoutPreflightV0517Tests" time="0.081" tests="2" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="rechazaMovimientoManualSinCoordenadas" classname="com.teamflow.backend.AutoLayoutPreflightV0517Tests" time="0.002" />
+  <testcase name="rechazaMovimientoManualFueraDeRango" classname="com.teamflow.backend.AutoLayoutPreflightV0517Tests" time="0.001" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.AutoLayoutV0516Tests" time="0.025" tests="5" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="rutaPorLoteUsaTransaccion" classname="com.teamflow.backend.AutoLayoutV0516Tests" time="0.007" />
+  <testcase name="siFallaUnaTareaNoModificaNinguna" classname="com.teamflow.backend.AutoLayoutV0516Tests" time="0.006" />
+  <testcase name="posicionesAntiguasEvitanSobrescribirOtrosCambios" classname="com.teamflow.backend.AutoLayoutV0516Tests" time="0.002" />
+  <testcase name="soloAdministradorPuedeAutoorganizar" classname="com.teamflow.backend.AutoLayoutV0516Tests" time="0.001" />
+  <testcase name="noGuardaSiHayIdDuplicado" classname="com.teamflow.backend.AutoLayoutV0516Tests" time="0.002" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.BackendMockMvcTests" time="4.772" tests="41" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="checkOutSinJornadaEsRechazado" classname="com.teamflow.backend.BackendMockMvcTests" time="0.171">
+    </testcase>
+  <testcase name="loginIncorrectoDevuelve401" classname="com.teamflow.backend.BackendMockMvcTests" time="0.51" />
+  <testcase name="trabajadorNoPuedeCrearUsuario" classname="com.teamflow.backend.BackendMockMvcTests" time="0.016" />
+  <testcase name="tokenModificadoDevuelve401" classname="com.teamflow.backend.BackendMockMvcTests" time="0.013" />
+  <testcase name="desactivarUsuarioMantieneSuFila" classname="com.teamflow.backend.BackendMockMvcTests" time="0.017" />
+  <testcase name="trabajadorNoPuedePublicarAnuncio" classname="com.teamflow.backend.BackendMockMvcTests" time="0.038" />
+  <testcase name="listaDeTareasSoloActivas" classname="com.teamflow.backend.BackendMockMvcTests" time="0.018" />
+  <testcase name="trabajadorNoPuedeEditarTareaAjena" classname="com.teamflow.backend.BackendMockMvcTests" time="0.024" />
+  <testcase name="adminPuedeGuardarPosicionMapa" classname="com.teamflow.backend.BackendMockMvcTests" time="0.028" />
+  <testcase name="tareaDesactivadaNoPuedeModificarse" classname="com.teamflow.backend.BackendMockMvcTests" time="0.017" />
+  <testcase name="tareaFinalizadaQuedaBloqueada" classname="com.teamflow.backend.BackendMockMvcTests" time="0.013" />
+  <testcase name="desactivarMensajeMantieneLaFila" classname="com.teamflow.backend.BackendMockMvcTests" time="0.014" />
+  <testcase name="checkInDuplicadoEsRechazado" classname="com.teamflow.backend.BackendMockMvcTests" time="0.014" />
+  <testcase name="tareaSinCheckInEsRechazadaPorBackend" classname="com.teamflow.backend.BackendMockMvcTests" time="0.015" />
+  <testcase name="passwordDebilEsRechazada" classname="com.teamflow.backend.BackendMockMvcTests" time="0.016" />
+  <testcase name="horaLimiteAntiguaSeCompletaConFecha" classname="com.teamflow.backend.BackendMockMvcTests" time="0.016" />
+  <testcase name="caidaDeMysqlNoInvalidaUnaSesionComo401" classname="com.teamflow.backend.BackendMockMvcTests" time="0.012" />
+  <testcase name="desactivarTareaNoLaBorraDeMySQL" classname="com.teamflow.backend.BackendMockMvcTests" time="0.012" />
+  <testcase name="tareaSinNombreDevuelve400" classname="com.teamflow.backend.BackendMockMvcTests" time="0.012" />
+  <testcase name="mensajesSinTokenNoSeConsultan" classname="com.teamflow.backend.BackendMockMvcTests" time="0.009" />
+  <testcase name="evidenciaInvalidaEsRechazada" classname="com.teamflow.backend.BackendMockMvcTests" time="0.012" />
+  <testcase name="administradorNoSeAutoDesactiva" classname="com.teamflow.backend.BackendMockMvcTests" time="0.013" />
+  <testcase name="tareaFinalizadaNoPuedeEliminarse" classname="com.teamflow.backend.BackendMockMvcTests" time="0.012" />
+  <testcase name="checkInPersistido" classname="com.teamflow.backend.BackendMockMvcTests" time="0.014" />
+  <testcase name="checkOutPersistido" classname="com.teamflow.backend.BackendMockMvcTests" time="0.012" />
+  <testcase name="endpointSinTokenDevuelve401" classname="com.teamflow.backend.BackendMockMvcTests" time="0.008" />
+  <testcase name="adminPuedePublicarAnuncio" classname="com.teamflow.backend.BackendMockMvcTests" time="0.012" />
+  <testcase name="tareaNuevaRecibeFechaActual" classname="com.teamflow.backend.BackendMockMvcTests" time="0.018" />
+  <testcase name="desactivarPlantillaConservaLaFila" classname="com.teamflow.backend.BackendMockMvcTests" time="0.012" />
+  <testcase name="administradorReactivaTarea" classname="com.teamflow.backend.BackendMockMvcTests" time="0.012" />
+  <testcase name="tipoDuplicadoDevuelve409" classname="com.teamflow.backend.BackendMockMvcTests" time="0.018" />
+  <testcase name="consultaJornadaPropia" classname="com.teamflow.backend.BackendMockMvcTests" time="0.011" />
+  <testcase name="jornadaSinJwtSeRechaza" classname="com.teamflow.backend.BackendMockMvcTests" time="0.009" />
+  <testcase name="estadoArbitrarioDeTareaEsRechazado" classname="com.teamflow.backend.BackendMockMvcTests" time="0.013" />
+  <testcase name="trabajadorNoPuedeGuardarPosicionMapa" classname="com.teamflow.backend.BackendMockMvcTests" time="0.012" />
+  <testcase name="cuentaInactivaNoPuedeUsarTokenAnterior" classname="com.teamflow.backend.BackendMockMvcTests" time="0.009" />
+  <testcase name="loginCorrectoDevuelveJwt" classname="com.teamflow.backend.BackendMockMvcTests" time="0.465" />
+  <testcase name="mensajesSeFiltranEnRepositorio" classname="com.teamflow.backend.BackendMockMvcTests" time="0.012" />
+  <testcase name="mensajeMuyLargoEsRechazado" classname="com.teamflow.backend.BackendMockMvcTests" time="0.011" />
+  <testcase name="sinHistorialJornada" classname="com.teamflow.backend.BackendMockMvcTests" time="0.01" />
+  <testcase name="rolInvalidoEsRechazado" classname="com.teamflow.backend.BackendMockMvcTests" time="0.011" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.CreacionV0521Tests" time="0.006" tests="2" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="creacionValidaIniciaEnProgresoSinPermitirCierreFalsificado" classname="com.teamflow.backend.CreacionV0521Tests" time="0.003" />
+  <testcase name="nombreMetaYHoraSonObligatoriosSinValoresSustitutos" classname="com.teamflow.backend.CreacionV0521Tests" time="0.001" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.DependenciasYArchivosTests" time="0.022" tests="12" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="noPermiteRelacionConTareaDesactivada" classname="com.teamflow.backend.DependenciasYArchivosTests" time="0.002" />
+  <testcase name="rechazaReferenciaInexistente" classname="com.teamflow.backend.DependenciasYArchivosTests" time="0.001" />
+  <testcase name="limiteEvidenciaDeSesentaMbYCuotaPorTarea" classname="com.teamflow.backend.DependenciasYArchivosTests" time="0.001" />
+  <testcase name="aceptaPdfConFirma" classname="com.teamflow.backend.DependenciasYArchivosTests" time="0.0" />
+  <testcase name="noPermiteAutoDependencia" classname="com.teamflow.backend.DependenciasYArchivosTests" time="0.0" />
+  <testcase name="rechazaDuplicados" classname="com.teamflow.backend.DependenciasYArchivosTests" time="0.001" />
+  <testcase name="redLargaNoDesbordaLaPila" classname="com.teamflow.backend.DependenciasYArchivosTests" time="0.009" />
+  <testcase name="sinDependenciaEsValida" classname="com.teamflow.backend.DependenciasYArchivosTests" time="0.001" />
+  <testcase name="detectaCicloIndirectoEnRama" classname="com.teamflow.backend.DependenciasYArchivosTests" time="0.001" />
+  <testcase name="rechazaArchivoHtmlCamuflado" classname="com.teamflow.backend.DependenciasYArchivosTests" time="0.0" />
+  <testcase name="rechazaNombresConRutas" classname="com.teamflow.backend.DependenciasYArchivosTests" time="0.0" />
+  <testcase name="aceptaVariasDependencias" classname="com.teamflow.backend.DependenciasYArchivosTests" time="0.001" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.EdicionTareasV0519Tests" time="0.006" tests="4" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="permisoSeCompruebaAntesDeRevelarConflictos" classname="com.teamflow.backend.EdicionTareasV0519Tests" time="0.001" />
+  <testcase name="versionActualConservaPosicionYDependenciasMultiples" classname="com.teamflow.backend.EdicionTareasV0519Tests" time="0.002" />
+  <testcase name="versionOmitidaDevuelve400" classname="com.teamflow.backend.EdicionTareasV0519Tests" time="0.001" />
+  <testcase name="versionAnteriorDevuelve409SinModificarLaFila" classname="com.teamflow.backend.EdicionTareasV0519Tests" time="0.001" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.EdicionTiposV0519Tests" time="0.004" tests="3" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="desactivarMientrasSeEditaDevuelve409" classname="com.teamflow.backend.EdicionTiposV0519Tests" time="0.001" />
+  <testcase name="versionActualActualizaBajoBloqueo" classname="com.teamflow.backend.EdicionTiposV0519Tests" time="0.0" />
+  <testcase name="versionObsoletaNoSobrescribeDescripcion" classname="com.teamflow.backend.EdicionTiposV0519Tests" time="0.0" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.EdicionUsuariosV0519Tests" time="0.008" tests="4" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="bajaDuranteEdicionDevuelve409" classname="com.teamflow.backend.EdicionUsuariosV0519Tests" time="0.0" />
+  <testcase name="versionActualPermiteNombreSinRevocarSesiones" classname="com.teamflow.backend.EdicionUsuariosV0519Tests" time="0.002" />
+  <testcase name="cambioDeRolRevocaSesionesDeLaCuenta" classname="com.teamflow.backend.EdicionUsuariosV0519Tests" time="0.001" />
+  <testcase name="edicionObsoletaNoSobrescribeNiRevoca" classname="com.teamflow.backend.EdicionUsuariosV0519Tests" time="0.0" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.EstabilizacionV0518Tests" time="0.016" tests="10" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="editarContenidoReleeLaFilaBloqueadaYConservaPosicion" classname="com.teamflow.backend.EstabilizacionV0518Tests" time="0.001" />
+  <testcase name="hora24NoSeAceptaComoMedianoche" classname="com.teamflow.backend.EstabilizacionV0518Tests" time="0.002" />
+  <testcase name="movimientoManualObsoletoNoSobrescribeOtraSesion" classname="com.teamflow.backend.EstabilizacionV0518Tests" time="0.001" />
+  <testcase name="cuotaSeReleeTrasEsperarElBloqueoMysql" classname="com.teamflow.backend.EstabilizacionV0518Tests" time="0.0" />
+  <testcase name="fechaInexistenteNoSeNormalizaSilenciosamente" classname="com.teamflow.backend.EstabilizacionV0518Tests" time="0.002" />
+  <testcase name="excesoMultipartDevuelve413SinRedireccionDeAutenticacion" classname="com.teamflow.backend.EstabilizacionV0518Tests" time="0.001" />
+  <testcase name="movimientoManualActualSeGuarda" classname="com.teamflow.backend.EstabilizacionV0518Tests" time="0.001" />
+  <testcase name="movimientoManualExigeLaPosicionOriginal" classname="com.teamflow.backend.EstabilizacionV0518Tests" time="0.001" />
+  <testcase name="passwordUnicodeQueExcedeBcryptSeRechazaAntesDeCodificar" classname="com.teamflow.backend.EstabilizacionV0518Tests" time="0.002" />
+  <testcase name="descargaAjenaNoCargaElBlobEnMemoria" classname="com.teamflow.backend.EstabilizacionV0518Tests" time="0.0" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.EvidenciaDesactivacionTests" time="0.002" tests="2" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="archivoDesactivadoSeGuardaSinBorrarlo" classname="com.teamflow.backend.EvidenciaDesactivacionTests" time="0.001" />
+  <testcase name="archivoDesactivadoNoSePuedeDescargar" classname="com.teamflow.backend.EvidenciaDesactivacionTests" time="0.001" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.HistorialV0521Tests" time="0.188" tests="6" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="mockMvcEntregaSoloPaginaSolicitada" classname="com.teamflow.backend.HistorialV0521Tests" time="0.019">
+    </testcase>
+  <testcase name="validacionRechazaFechasYPaginacionSinConsultarBase" classname="com.teamflow.backend.HistorialV0521Tests" time="0.002" />
+  <testcase name="sqlLimitaFilasYColumnasYAplicaResponsableAntesDePaginar" classname="com.teamflow.backend.HistorialV0521Tests" time="0.128" />
+  <testcase name="rangoIncluyeDiaHastaCompletoEnUtc" classname="com.teamflow.backend.HistorialV0521Tests" time="0.001" />
+  <testcase name="detalleAjenoNoSeExponeAunqueEsteFinalizado" classname="com.teamflow.backend.HistorialV0521Tests" time="0.001" />
+  <testcase name="noHayHistorialSinAutenticar" classname="com.teamflow.backend.HistorialV0521Tests" time="0.001" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.JornadaServiceTests" time="0.109" tests="4" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="segundoCheckInNoCreaOtraJornada" classname="com.teamflow.backend.JornadaServiceTests" time="0.1" />
+  <testcase name="unCheckInGuardaUsuarioYHoraDelServidor" classname="com.teamflow.backend.JornadaServiceTests" time="0.003" />
+  <testcase name="sinUsuarioBloqueadoNoSePermiteCrearTarea" classname="com.teamflow.backend.JornadaServiceTests" time="0.002" />
+  <testcase name="checkOutCierraLaJornadaYLiberaIndiceUnico" classname="com.teamflow.backend.JornadaServiceTests" time="0.002" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.LoginAttemptLimiterTests" time="0.002" tests="1" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="bloqueaTrasOchoFallosSinAfectarOtrosUsuarios" classname="com.teamflow.backend.LoginAttemptLimiterTests" time="0.0" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.NotasV0521Tests" time="0.029" tests="7" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="legadoNoInventaFechaNiAutor" classname="com.teamflow.backend.NotasV0521Tests" time="0.001" />
+  <testcase name="rechazaNotasVaciasYExcesivas" classname="com.teamflow.backend.NotasV0521Tests" time="0.003" />
+  <testcase name="tareaAjenaNoPuedeLeerNiAgregar" classname="com.teamflow.backend.NotasV0521Tests" time="0.001" />
+  <testcase name="mockMvcValidaCuerpoYSerializaAutorFecha" classname="com.teamflow.backend.NotasV0521Tests" time="0.014">
+    </testcase>
+  <testcase name="fechaYAutorSeAsignanEnServidor" classname="com.teamflow.backend.NotasV0521Tests" time="0.001" />
+  <testcase name="limitaPaginacionYTipoAntesDeConsultar" classname="com.teamflow.backend.NotasV0521Tests" time="0.001" />
+  <testcase name="revisionYFinalizadaBloqueanNotas" classname="com.teamflow.backend.NotasV0521Tests" time="0.001" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.RechazosV0521Tests" time="0.018" tests="6" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="motivoVacioNoCambiaEstadoNiEscribeHistorial" classname="com.teamflow.backend.RechazosV0521Tests" time="0.001" />
+  <testcase name="trabajadorNoPuedeRechazarNiSiEsResponsable" classname="com.teamflow.backend.RechazosV0521Tests" time="0.0" />
+  <testcase name="mockMvcRechazaPeticionSinMotivo" classname="com.teamflow.backend.RechazosV0521Tests" time="0.01">
+    </testcase>
+  <testcase name="aprobacionConservaTransicionSinExigirMotivo" classname="com.teamflow.backend.RechazosV0521Tests" time="0.001" />
+  <testcase name="rechazoObsoletoNoRegistraMotivo" classname="com.teamflow.backend.RechazosV0521Tests" time="0.001" />
+  <testcase name="rechazoConservaMotivoAutorYFecha" classname="com.teamflow.backend.RechazosV0521Tests" time="0.001" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.RenovacionV0519Tests" time="0.081" tests="7" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="csrfRechazaOrigenAusenteAjenoYCabeceraAusente" classname="com.teamflow.backend.RenovacionV0519Tests" time="0.0" />
+  <testcase name="cookieGuardNoAutenticaOperacionesBearer" classname="com.teamflow.backend.RenovacionV0519Tests" time="0.001" />
+  <testcase name="produccionNoPermiteHttpNiComodines" classname="com.teamflow.backend.RenovacionV0519Tests" time="0.002" />
+  <testcase name="tokenRenovacionInvalidoNoConsultaLaBase" classname="com.teamflow.backend.RenovacionV0519Tests" time="0.001" />
+  <testcase name="cookieDeProduccionEsSecureHttpOnlyYNoSeBorraPorDuplicado" classname="com.teamflow.backend.RenovacionV0519Tests" time="0.068" />
+  <testcase name="crearSesionUsaAleatoriedadYNoAlmacenaTokenEnClaro" classname="com.teamflow.backend.RenovacionV0519Tests" time="0.007" />
+  <testcase name="csrfPermiteSoloOrigenExactoConCabecera" classname="com.teamflow.backend.RenovacionV0519Tests" time="0.0" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.SecurityAuditV0510Tests" time="0.015" tests="3" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="administradorNoPuedeDesactivarSuPropiaCuentaPorPut" classname="com.teamflow.backend.SecurityAuditV0510Tests" time="0.001" />
+  <testcase name="cambioDeContrasenaInvalidaTokenAnterior" classname="com.teamflow.backend.SecurityAuditV0510Tests" time="0.006" />
+  <testcase name="directorioTrabajadoresNoExponeCorreoAjeno" classname="com.teamflow.backend.SecurityAuditV0510Tests" time="0.006" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.SecurityDatabaseMigrationTests" time="0.011" tests="3" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="noHaceCambiosSiNoExisteColumnaAntigua" classname="com.teamflow.backend.SecurityDatabaseMigrationTests" time="0.004" />
+  <testcase name="noBorraClavesAntiguasSiFaltanHashes" classname="com.teamflow.backend.SecurityDatabaseMigrationTests" time="0.002" />
+  <testcase name="permiteLimpiarColumnaAntiguaCuandoTodosTienenBCrypt" classname="com.teamflow.backend.SecurityDatabaseMigrationTests" time="0.001">
+    </testcase>
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.SeguridadV0513Tests" time="0.859" tests="5" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="noAceptaArchivoZipRenombradoComoDocx" classname="com.teamflow.backend.SeguridadV0513Tests" time="0.001" />
+  <testcase name="aceptaEstructuraBasicaDeDocx" classname="com.teamflow.backend.SeguridadV0513Tests" time="0.001" />
+  <testcase name="rechazaDocxConExpansionExcesiva" classname="com.teamflow.backend.SeguridadV0513Tests" time="0.854" />
+  <testcase name="rechazaDocxConRutaDeEscape" classname="com.teamflow.backend.SeguridadV0513Tests" time="0.001" />
+  <testcase name="evitaAtaquesQuePruebanMuchosCorreosDesdeLaMismaIp" classname="com.teamflow.backend.SeguridadV0513Tests" time="0.001" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.SeguridadV0514Tests" time="0.03" tests="4" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="reenviaCuerpoPequenoIntegroSinLongitudDeclarada" classname="com.teamflow.backend.SeguridadV0514Tests" time="0.0" />
+  <testcase name="mantieneLimiteMultipartEspecialDeEvidencias" classname="com.teamflow.backend.SeguridadV0514Tests" time="0.0" />
+  <testcase name="laValidacionConcurrenteDeclaraBloqueoYLecturasConfirmadas" classname="com.teamflow.backend.SeguridadV0514Tests" time="0.001" />
+  <testcase name="rechazaCuerpoChunkedQueSuperaCuatroMiB" classname="com.teamflow.backend.SeguridadV0514Tests" time="0.027" />
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.SeguridadV0520Tests" time="0.012" tests="3" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="loginsCorrectosNoConsumenElLimiteDeFallosPorIp" classname="com.teamflow.backend.SeguridadV0520Tests" time="0.002" />
+  <testcase name="solicitudesParalelasNoSuperanOchoReservasAntesDeVerificarClaves" classname="com.teamflow.backend.SeguridadV0520Tests" time="0.006" />
+  <testcase name="mantenimientoEliminaSoloCaducadosDeFormaAcotadaYToleraCaidas" classname="com.teamflow.backend.SeguridadV0520Tests" time="0.003">
+    </testcase>
+</testsuite><testsuite xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.teamflow.backend.SesionesV0519Tests" time="0.026" tests="6" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="jwtFirmadoPeroNoRegistradoSeRechaza" classname="com.teamflow.backend.SesionesV0519Tests" time="0.003" />
+  <testcase name="cambiarPasswordRevocaTodasLasSesionesAntesDeGuardar" classname="com.teamflow.backend.SesionesV0519Tests" time="0.006" />
+  <testcase name="registroNoAlmacenaTokenNiJtiEnClaro" classname="com.teamflow.backend.SesionesV0519Tests" time="0.002" />
+  <testcase name="falloDeRegistroNoEntregaToken" classname="com.teamflow.backend.SesionesV0519Tests" time="0.002" />
+  <testcase name="logoutRevocaSoloElIdentificadorFirmadoDeEsaSesion" classname="com.teamflow.backend.SesionesV0519Tests" time="0.005" />
+  <testcase name="desactivarYReactivarRevocanSinRecuperarSesiones" classname="com.teamflow.backend.SesionesV0519Tests" time="0.002" />
+</testsuite></testsuites>

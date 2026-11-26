@@ -1,0 +1,241 @@
+{
+  "version": "0.5.23-SNAPSHOT",
+  "checks": [
+    {
+      "case": "login admin@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "login admin@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "crear usuario sincronizacion23",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "login s6-ad655e9b-sincronizacion23@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "crear tarea Latencia de consulta",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Sondeo HTTP detecta salida de jornada",
+      "passed": true
+    },
+    {
+      "case": "Sondeo HTTP detecta entrada de jornada",
+      "passed": true
+    },
+    {
+      "case": "Sondeo HTTP detecta edición remota",
+      "passed": true
+    },
+    {
+      "case": "Sondeo HTTP detecta nota nueva",
+      "passed": true
+    },
+    {
+      "case": "Sondeo HTTP detecta cierre e historial",
+      "passed": true
+    },
+    {
+      "case": "Caída controlada se detecta como error de conexión HTTP",
+      "passed": true
+    },
+    {
+      "case": "Sesión y datos vuelven después del reinicio de backend",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    }
+  ],
+  "passed": true,
+  "scope": "Consultas HTTP locales y procesos propios Java/MySQL. No mide pantalla, FPS, comportamiento de pestañas ni recuperación de Internet en navegadores. Caída real del backend y reconexión HTTP; no emulación de red productiva.",
+  "latencySamples": [
+    {
+      "change": "salida de jornada",
+      "pollMs": 5000,
+      "observedAfterMutationMs": 3703.14,
+      "scope": "Dos sesiones JWT independientes HTTP; no latencia de interfaz ni perfiles nativos."
+    },
+    {
+      "change": "entrada de jornada",
+      "pollMs": 5000,
+      "observedAfterMutationMs": 3696.44,
+      "scope": "Dos sesiones JWT independientes HTTP; no latencia de interfaz ni perfiles nativos."
+    },
+    {
+      "change": "edición remota",
+      "pollMs": 5000,
+      "observedAfterMutationMs": 3674.82,
+      "scope": "Dos sesiones JWT independientes HTTP; no latencia de interfaz ni perfiles nativos."
+    },
+    {
+      "change": "nota nueva",
+      "pollMs": 5000,
+      "observedAfterMutationMs": 3684.24,
+      "scope": "Dos sesiones JWT independientes HTTP; no latencia de interfaz ni perfiles nativos."
+    },
+    {
+      "change": "cierre e historial",
+      "pollMs": 5000,
+      "observedAfterMutationMs": 3676.84,
+      "scope": "Dos sesiones JWT independientes HTTP; no latencia de interfaz ni perfiles nativos."
+    }
+  ],
+  "load": {
+    "seconds": 61.04,
+    "requests": 165,
+    "p50Ms": 26.08940002392046,
+    "p95Ms": 33.615299995290115,
+    "maxMs": 39.109099976485595,
+    "sampling": "Secuencial, tres rutas por segundo aproximadamente, con instrumentación PowerShell cada 10 s. Carga moderada, no prueba de saturación.",
+    "processSamples": [
+      {
+        "seconds": 0.0,
+        "processes": [
+          {
+            "Id": 10208,
+            "CPU": 34.40625,
+            "WorkingSet64": 608514048,
+            "PrivateMemorySize64": 685801472
+          },
+          {
+            "Id": 33028,
+            "CPU": 0.015625,
+            "WorkingSet64": 40808448,
+            "PrivateMemorySize64": 33230848
+          }
+        ]
+      },
+      {
+        "seconds": 10.04,
+        "processes": [
+          {
+            "Id": 10208,
+            "CPU": 35.59375,
+            "WorkingSet64": 539521024,
+            "PrivateMemorySize64": 614703104
+          },
+          {
+            "Id": 33028,
+            "CPU": 0.015625,
+            "WorkingSet64": 40808448,
+            "PrivateMemorySize64": 33230848
+          }
+        ]
+      },
+      {
+        "seconds": 20.03,
+        "processes": [
+          {
+            "Id": 10208,
+            "CPU": 36.328125,
+            "WorkingSet64": 539541504,
+            "PrivateMemorySize64": 614801408
+          },
+          {
+            "Id": 33028,
+            "CPU": 0.015625,
+            "WorkingSet64": 40808448,
+            "PrivateMemorySize64": 33230848
+          }
+        ]
+      },
+      {
+        "seconds": 31.0,
+        "processes": [
+          {
+            "Id": 10208,
+            "CPU": 37.25,
+            "WorkingSet64": 548831232,
+            "PrivateMemorySize64": 623587328
+          },
+          {
+            "Id": 33028,
+            "CPU": 0.015625,
+            "WorkingSet64": 40808448,
+            "PrivateMemorySize64": 33230848
+          }
+        ]
+      },
+      {
+        "seconds": 40.85,
+        "processes": [
+          {
+            "Id": 10208,
+            "CPU": 38.125,
+            "WorkingSet64": 537292800,
+            "PrivateMemorySize64": 612421632
+          },
+          {
+            "Id": 33028,
+            "CPU": 0.015625,
+            "WorkingSet64": 40808448,
+            "PrivateMemorySize64": 33230848
+          }
+        ]
+      },
+      {
+        "seconds": 50.74,
+        "processes": [
+          {
+            "Id": 10208,
+            "CPU": 38.8125,
+            "WorkingSet64": 530001920,
+            "PrivateMemorySize64": 604684288
+          },
+          {
+            "Id": 33028,
+            "CPU": 0.015625,
+            "WorkingSet64": 40808448,
+            "PrivateMemorySize64": 33230848
+          }
+        ]
+      },
+      {
+        "seconds": 60.73,
+        "processes": [
+          {
+            "Id": 10208,
+            "CPU": 39.078125,
+            "WorkingSet64": 535343104,
+            "PrivateMemorySize64": 610086912
+          },
+          {
+            "Id": 33028,
+            "CPU": 0.015625,
+            "WorkingSet64": 40808448,
+            "PrivateMemorySize64": 33230848
+          }
+        ]
+      }
+    ]
+  },
+  "browserValidationPending": true
+}

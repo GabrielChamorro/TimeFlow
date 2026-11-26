@@ -1,0 +1,479 @@
+[
+  {
+    "id": "US-01",
+    "function": "Registro de entrada (Check-in)",
+    "acceptance": [
+      "Registra automáticamente la fecha y hora del servidor al presionar el botón.",
+      "Deshabilita el botón de Check-in para evitar marcas dobles durante la misma jornada."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 8,
+    "testAndResult": "Check-in sin sesión/duplicado/concurrente y existencia real de jornada. Login no abre jornada.",
+    "evidence": "integracion-mysql-final.json; presencia-mysql.json",
+    "status": "Verificación técnica local V0.5.23",
+    "evidenceVersion": "V0.5.23; UI V22 solo como antecedente cuando se nombra",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-02",
+    "function": "Registro de salida (Check-out)",
+    "acceptance": [
+      "Calcula y muestra el tiempo total laborado en la sesión.",
+      "Muestra una advertencia si el trabajador intenta marcar salida con tareas aún activas en paralelo."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 16,
+    "testAndResult": "Check-out y duplicado, jornadas/duración de servidor; no pausa relojes de tareas en progreso, según regla aceptada.",
+    "evidence": "presencia-mysql.json; cronometros-publica-final.json; funcionalidades-final.json",
+    "status": "Verificación técnica local V0.5.23",
+    "evidenceVersion": "V0.5.23; UI V22 solo como antecedente cuando se nombra",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-03",
+    "function": "Indicador de presencia del equipo",
+    "acceptance": [
+      "Muestra un círculo verde si el colaborador tiene una jornada iniciada sin Check-out.",
+      "Cambia automáticamente a rojo cuando el usuario marca su salida."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 25,
+    "testAndResult": "Presencia por jornada abierta con dos trabajadores, baja/reactivación, concurrencia y reinicio,63 comprobaciones API/MySQL. Latencia de sondeo HTTP medida, sin certificación UI nativa nueva.",
+    "evidence": "presencia-mysql.json; sincronizacion-y-carga-http.json",
+    "status": "Verificación técnica local V0.5.23",
+    "evidenceVersion": "V0.5.23; UI V22 solo como antecedente cuando se nombra",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-04",
+    "function": "Iniciar tarea personalizada",
+    "acceptance": [
+      "Valida obligatoriamente los campos de nombre, meta y hora límite antes de guardar.",
+      "Inicia la tarea de inmediato en estado \"En progreso\"."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 34,
+    "testAndResult": "Alta exige jornada, nombre/meta/fecha y se conserva el contrato; tiempo originado por servidor.",
+    "evidence": "integracion-mysql-final.json; funcionalidades-final.json; cronometros-mysql.json",
+    "status": "Verificación técnica local V0.5.23",
+    "evidenceVersion": "V0.5.23; UI V22 solo como antecedente cuando se nombra",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-05",
+    "function": "Iniciar tarea desde plantilla frecuente",
+    "acceptance": [
+      "Despliega la lista de tareas preestablecidas activas creadas por la jefatura.",
+      "Rellena automáticamente los campos de título y descripción al seleccionarla."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 43,
+    "testAndResult": "Plantillas activas, selección y copia de datos; legado y tipos conservados. Verificación API y Node, sin nueva aceptación UI nativa.",
+    "evidence": "tipos-mysql.json; funcionalidades-final.json; resumen-pruebas.json",
+    "status": "Verificación técnica local V0.5.23",
+    "evidenceVersion": "V0.5.23; UI V22 solo como antecedente cuando se nombra",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-06",
+    "function": "Múltiples tareas simultáneas",
+    "acceptance": [
+      "Permite mantener abiertas dos o más tarjetas de trabajo de forma simultánea.",
+      "Mantiene los cronómetros y datos de cada tarea aislados sin cruzar información."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 51,
+    "testAndResult": "Regla de tiempo transcurrido aceptada por usuario; clase de reglas intacta. Pruebas64 públicas y81 por etapa: aislamiento, checkout no pausa, estados/reinicio/legadoNULL.",
+    "evidence": "cronometros-publica-final.json; cronometros-mysql.json; preentrega-verificacion.json",
+    "status": "Verificación técnica local V0.5.23",
+    "evidenceVersion": "V0.5.23; UI V22 solo como antecedente cuando se nombra",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-07",
+    "function": "Bitácora independiente y privada",
+    "acceptance": [
+      "Cada nota ingresada guarda la fecha y hora exacta de registro.",
+      "Bloquea el acceso de edición a otros trabajadores que no sean el dueño de la tarea."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 60,
+    "testAndResult": "Notas privadas por tarea con autor/hora de servidor, permisos, concurrencia y legado. Se preservan borradores y marcador sin reiniciar reloj.",
+    "evidence": "funcionalidades-final.json; cronometros-mysql.json; migraciones-y-respaldo.json",
+    "status": "Verificación técnica local V0.5.23",
+    "evidenceVersion": "V0.5.23; UI V22 solo como antecedente cuando se nombra",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-08",
+    "function": "Adjuntar foto de evidencia",
+    "acceptance": [
+      "Soporta subida de archivos en formatos estándar (PNG, JPG).",
+      "Muestra una vista previa de la imagen dentro de la bitácora de la tarea."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 68,
+    "testAndResult": "PNG/JPG nuevos descargados con hash y decodificados localmente; protegido401/403. Imagen UI V22 es antecedente; cancelación/confirmación de archivo nueva en IAB.",
+    "evidence": "corpus-archivos.json; confirmaciones-navegador.json; confirmaciones-mysql-ui.json",
+    "status": "Verificación técnica local V0.5.23",
+    "evidenceVersion": "V0.5.23; UI V22 solo como antecedente cuando se nombra",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-09",
+    "function": "Flujo de Aprobación y Cierre\nUS-09: Enviar tarea lista a revisión",
+    "acceptance": [
+      "Cambia el estado visual de la tarea a \"En Revisión\".",
+      "Deshabilita el ingreso de nuevas notas de bitácora mientras esté en revisión."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 77,
+    "testAndResult": "Envío a revisión y reloj congelado, permisos y conflictos repetidos en API; UI V22 antecedente.",
+    "evidence": "cronometros-publica-final.json; tareas-mysql.json; funcionalidades-final.json",
+    "status": "Verificación técnica local V0.5.23",
+    "evidenceVersion": "V0.5.23; UI V22 solo como antecedente cuando se nombra",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-10",
+    "function": "Aprobar o devolver tareas",
+    "acceptance": [
+      "Permite pulsar \"Aprobar\" para pasar la tarea a estado finalizado.",
+      "Si se devuelve la tarea, solicita escribir un motivo obligatorio y la regresa a estado \"En progreso\"."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 85,
+    "testAndResult": "Administrador aprueba/devuelve con motivo y trabajador no puede aprobar; reloj reanuda sin contar pausa, notas de rechazo conservadas.",
+    "evidence": "funcionalidades-final.json; tareas-mysql.json; cronometros-publica-final.json",
+    "status": "Verificación técnica local V0.5.23",
+    "evidenceVersion": "V0.5.23; UI V22 solo como antecedente cuando se nombra",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-11",
+    "function": "Bloqueo total tras la aprobación",
+    "acceptance": [
+      "El backend bloquea peticiones de edición sobre tareas en estado aprobado.",
+      "La interfaz elimina los botones de edición y muestra la tarea en modo solo lectura."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 94,
+    "testAndResult": "Finalizada bloquea edición/baja/notas/subida en backend para ambos roles; posiciones administrativas separadas. UI V22 antecedente, nativa V23 pendiente.",
+    "evidence": "integracion-mysql-final.json; cronometros-publica-final.json; funcionalidades-final.json",
+    "status": "Verificación técnica local V0.5.23",
+    "evidenceVersion": "V0.5.23; UI V22 solo como antecedente cuando se nombra",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-12",
+    "function": "Mantenimiento de plantillas de tareas",
+    "acceptance": [
+      "Formulario para ingresar nombre y descripción base de la tarea.",
+      "Las modificaciones no alteran los nombres de tareas que ya fueron creadas en el pasado."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 103,
+    "testAndResult": "CRUD/baja/reactivación/versiones y permisos repetidos,18 casos específicos. Baja de dos pasos en IAB conserva texto obligatorio y cancelaciones.",
+    "evidence": "tipos-mysql.json; confirmaciones-http.json; confirmaciones-navegador.json",
+    "status": "Verificación técnica local V0.5.23",
+    "evidenceVersion": "V0.5.23; UI V22 solo como antecedente cuando se nombra",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-13",
+    "function": "Mapa visual de constelación",
+    "acceptance": [
+      "Renderiza nodos y enlaces SVG dinámicos con los colores correspondientes al estado operativo.",
+      "Soporta hasta 100 tarjetas/nodos simultáneos sin degradar la fluidez del navegador (RNF-4).",
+      "Funciona de manera online en navegadores web modernos (RNF-2)."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 113,
+    "testAndResult": "V23:100 tareas nuevas/294 vínculos, autoorganización y estados/métricas/relojes conservados en API; cálculos10/30/100 con carga y memoria. No se midieron FPS/ratón nativos ni se repitió toda UI. Antecedente V22: 100 nodos montados, 90 enlaces y colores de tres estados visibles en IAB. Dos muestras rAF de 30 s con intervalos >50 ms. Autoorganización API/IAB conserva datos. Online y rendimiento prolongado/comparativo pendientes.",
+    "evidence": "V23/mapa100-http.json; V23/rendimiento-calculos-node.json; V23/navegadores-nativos-limitacion.json; antecedente V22/parciales-y-mapa100.json; mapa-interaccion.json; mapa-100-metricas.jpg; autoorganizacion-navegador.json",
+    "status": "Parcial V0.5.23; evidencia visual antecedente V0.5.22",
+    "evidenceVersion": "V0.5.23 API/Node; V0.5.22 visual",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-14",
+    "function": "Navegación libre por el mapa",
+    "acceptance": [
+      "Permite desplazamiento de pantalla (pan 1:1) fluido al hacer clic y arrastrar.",
+      "Implementa acercamiento y alejamiento progresivo con la rueda del ratón (scroll)."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 122,
+    "testAndResult": "V23:100 tareas nuevas/294 vínculos, autoorganización y estados/métricas/relojes conservados en API; cálculos10/30/100 con carga y memoria. No se midieron FPS/ratón nativos ni se repitió toda UI. Antecedente V22: Rueda real cambia zoom 0,160156 a 0,24. Arrastre de ratón 100×60 cambia pan exactamente 100×60; seis ciclos con doce arrastres y doce ruedas. No se mide latencia individual ni se certifica uso prolongado/navegadores nativos.",
+    "evidence": "V23/mapa100-http.json; V23/rendimiento-calculos-node.json; V23/navegadores-nativos-limitacion.json; antecedente V22/mapa-interaccion.json; parciales-navegador.json",
+    "status": "Parcial V0.5.23; evidencia visual antecedente V0.5.22",
+    "evidenceVersion": "V0.5.23 API/Node; V0.5.22 visual",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-15",
+    "function": "Modo de pantalla completa",
+    "acceptance": [
+      "Botón dedicado para expandir el lienzo a pantalla completa.",
+      "Permite salir del modo de pantalla completa presionando la tecla Escape."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 131,
+    "testAndResult": "V23:100 tareas nuevas/294 vínculos, autoorganización y estados/métricas/relojes conservados en API; cálculos10/30/100 con carga y memoria. No se midieron FPS/ratón nativos ni se repitió toda UI. Antecedente V22: Botón expande lienzo; Escape devuelve el botón Pantalla completa. Comprobado con 100 nodos reales en IAB.",
+    "evidence": "V23/mapa100-http.json; V23/rendimiento-calculos-node.json; V23/navegadores-nativos-limitacion.json; antecedente V22/parciales-navegador.json; mapa-100-metricas.jpg",
+    "status": "Parcial V0.5.23; evidencia visual antecedente V0.5.22",
+    "evidenceVersion": "V0.5.23 API/Node; V0.5.22 visual",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-16",
+    "function": "Tarjeta ampliada con detalles",
+    "acceptance": [
+      "Despliega un panel o modal con toda la información detallada de la tarea.",
+      "Muestra los botones de acción pertinentes según si el usuario es administrador o trabajador."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 139,
+    "testAndResult": "V23:100 tareas nuevas/294 vínculos, autoorganización y estados/métricas/relojes conservados en API; cálculos10/30/100 con carga y memoria. No se midieron FPS/ratón nativos ni se repitió toda UI. Antecedente V22: Detalle con campos, notas y evidencias. Admin en revisión dispone de Aprobar/Devolver con motivo; trabajador no. Responsable En Progreso puede guardar; finalizada carece de acciones de edición en ambos roles.",
+    "evidence": "V23/mapa100-http.json; V23/rendimiento-calculos-node.json; V23/navegadores-nativos-limitacion.json; antecedente V22/parciales-navegador.json; imagen-jpg-vista-previa-final.jpg; tarea-aprobada-solo-lectura-final.jpg",
+    "status": "Parcial V0.5.23; evidencia visual antecedente V0.5.22",
+    "evidenceVersion": "V0.5.23 API/Node; V0.5.22 visual",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-17",
+    "function": "Filtro por colaborador",
+    "acceptance": [
+      "Menú desplegable con la lista de colaboradores del equipo.",
+      "Al elegir un usuario, destaca sus nodos y recalcula las métricas visibles."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 148,
+    "testAndResult": "V23:100 tareas nuevas/294 vínculos, autoorganización y estados/métricas/relojes conservados en API; cálculos10/30/100 con carga y memoria. No se midieron FPS/ratón nativos ni se repitió toda UI. Antecedente V22: Menú filtra colaborador de cien tareas y recalcula total/revisión/aprobadas/metas. Se montan los cien nodos al encajar.",
+    "evidence": "V23/mapa100-http.json; V23/rendimiento-calculos-node.json; V23/navegadores-nativos-limitacion.json; antecedente V22/mapa-interaccion.json; mapa-100-metricas.jpg",
+    "status": "Parcial V0.5.23; evidencia visual antecedente V0.5.22",
+    "evidenceVersion": "V0.5.23 API/Node; V0.5.22 visual",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-18",
+    "function": "Indicadores clave de rendimiento (KPIs)",
+    "acceptance": [
+      "Muestra tarjetas resumen con total de tareas, tareas aprobadas y metas alcanzadas.",
+      "Actualiza los valores en tiempo real a medida que cambian los estados."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 156,
+    "testAndResult": "V23:100 tareas nuevas/294 vínculos, autoorganización y estados/métricas/relojes conservados en API; cálculos10/30/100 con carga y memoria. No se midieron FPS/ratón nativos ni se repitió toda UI. Antecedente V22: Cien tareas/33 revisiones/33 aprobadas/33 metas contrastadas con API. Cambio externo a revisión+meta llega a 100/34/33/34 sin F5. Consulta ligera de 5 s; no se promete instantaneidad.",
+    "evidence": "V23/mapa100-http.json; V23/rendimiento-calculos-node.json; V23/navegadores-nativos-limitacion.json; antecedente V22/parciales-y-mapa100.json; metricas-mutacion-servidor.json; mapa-interaccion.json; mapa-100-metricas.jpg",
+    "status": "Parcial V0.5.23; evidencia visual antecedente V0.5.22",
+    "evidenceVersion": "V0.5.23 API/Node; V0.5.22 visual",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-19",
+    "function": "Historial y trazabilidad",
+    "acceptance": [
+      "Tabla paginada que lista todas las tareas finalizadas con fechas y responsables.",
+      "Permite buscar y filtrar registros por rango de fechas."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 165,
+    "testAndResult": "Historial privado paginado y filtros repetidos en API; cierre remoto/consulta siguiente medidos por HTTP. Firma de IDs finalizadas y recuperación cliente añadidas, pendientes de nueva comprobación visual.",
+    "evidence": "funcionalidades-final.json; sincronizacion-y-carga-http.json; resumen-pruebas.json",
+    "status": "Verificación técnica local V0.5.23",
+    "evidenceVersion": "V0.5.23; UI V22 solo como antecedente cuando se nombra",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-20",
+    "function": "Confirmación de borrado accidental",
+    "acceptance": [
+      "Muestra un cuadro emergente de confirmación al presionar cualquier botón de eliminación.",
+      "Cancela la acción si el usuario cierra el diálogo o presiona \"Cancelar\"."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 174,
+    "testAndResult": "Cancelar/X/Escape/Confirmar verificados en IAB y MySQL por roles aplicables;17 comparaciones sin escrituras indebidas. Cuenta3 pasos y tipo2 con comprobación textual.409 conserva borrador de tarea. Dos administradores HTTP independientes; nativos pendientes.",
+    "evidence": "confirmaciones-navegador.json; confirmaciones-mysql-ui.json; confirmaciones-http.json; baja-obsoleta-borrador-conservado.jpg",
+    "status": "Verificación técnica local V0.5.23; repetición nativa pendiente",
+    "evidenceVersion": "V0.5.23; UI V22 solo como antecedente cuando se nombra",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-21",
+    "function": "Control de acceso por tipo de usuario",
+    "acceptance": [
+      "Oculta botones de gestión administrativa en las sesiones de rol Trabajador.",
+      "El backend en Spring Boot rechaza intentos no autorizados con código de acceso denegado."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 183,
+    "testAndResult": "Roles, JWT/cookies/CSRF/CORS, datos privados, cuentas inactivas, bloqueo final y revocación repetidos; API de restore con login/key nueva. Matriz nativa incompleta.",
+    "evidence": "integracion-mysql-final.json; renovacion-mysql.json; confirmaciones-http.json; restauracion-completa-operativa.json",
+    "status": "Verificación técnica local V0.5.23",
+    "evidenceVersion": "V0.5.23; UI V22 solo como antecedente cuando se nombra",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-22",
+    "function": "Chat interno de equipo",
+    "acceptance": [
+      "Permite enviar y leer mensajes en una sala general compartida.",
+      "Permite abrir chats individuales entre dos personas con historial privado."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 192,
+    "testAndResult": "Mensajes privados/general y permisos repetidos en HTTP/Newman; consulta del directorio cancela sesión anterior. Nueva comprobación visual de chat tras corrección pendiente.",
+    "evidence": "integracion-mysql-final.json; postman-newman.json; calidad-codigo.md",
+    "status": "Verificación técnica local V0.5.23",
+    "evidenceVersion": "V0.5.23; UI V22 solo como antecedente cuando se nombra",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "US-23",
+    "function": "Tablón de anuncios oficiales",
+    "acceptance": [
+      "Los trabajadores únicamente pueden leer los avisos publicados.",
+      "Solo la cuenta de Administrador cuenta con formulario para redactar y enviar comunicados."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 201,
+    "testAndResult": "Publicación/lectura y permisos del tablón repetidos en HTTP/Newman. No se inventa aceptación de usuarios ni nueva certificación UI nativa.",
+    "evidence": "integracion-mysql-final.json; postman-newman.json",
+    "status": "Verificación técnica local V0.5.23",
+    "evidenceVersion": "V0.5.23; UI V22 solo como antecedente cuando se nombra",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "RNF-1",
+    "function": "Facilidad de uso, mediante interfaz visual",
+    "acceptance": [
+      "La interfaz debe ser visual y fácil de entender a primera vista, evitando listas densas sin estructura."
+    ],
+    "source": "Requerimientos_TimeFlow_V0.5.0.xlsx",
+    "sourceSheet": "Hoja1",
+    "sourceRow": 22,
+    "testAndResult": "IAB V23 confirma foco, teclado/Escape y protecciones de baja; conserva diseño/pasos. No hubo participantes representativos ni evaluación de satisfacción. Nativos incompletos.",
+    "evidence": "confirmaciones-navegador.json; navegadores-nativos-limitacion.json",
+    "status": "Parcial; aceptación humana pendiente",
+    "evidenceVersion": "V0.5.23",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "RNF-2",
+    "function": "Página web",
+    "acceptance": [
+      "El sistema debe ser una página web online."
+    ],
+    "source": "Requerimientos_TimeFlow_V0.5.0.xlsx",
+    "sourceSheet": "Hoja1",
+    "sourceRow": 23,
+    "testAndResult": "No se publicó ni contrató infraestructura. Guía de orígenes, cookies Secure, backend/DB limitados y recuperación preparada; local no acredita online.",
+    "evidence": "Documentacion/Sprint6/INSTALAR_Y_MIGRAR_V0.5.23.md; AUDITORIA_V0.5.23.md",
+    "status": "Pendiente de entorno online autorizado",
+    "evidenceVersion": "V0.5.23",
+    "implementation": "Aplicación web y guía HTTPS presentes; requisito online sin certificar.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "RNF-3",
+    "function": "Actualización de página en tiempo real",
+    "acceptance": [
+      "La página debe actualizarse en tiempo real sin recargar manualmente el navegador."
+    ],
+    "source": "Requerimientos_TimeFlow_V0.5.0.xlsx",
+    "sourceSheet": "Hoja1",
+    "sourceRow": 24,
+    "testAndResult": "Presencia/estado/nota/historial detectados por sondeo HTTP de5s en3,67–3,71s con fase programada. No es latencia de pantalla. Caída/reinicio del backend y sesión recuperada. Historial invalida por IDs finales y reintenta; respuestas tardías protegidas. Pestañas/fondo y red Internet nativas sin certificar.",
+    "evidence": "sincronizacion-y-carga-http.json; resumen-pruebas.json; calidad-codigo.md; navegadores-nativos-limitacion.json",
+    "status": "Parcial: técnica HTTP/cliente; visual nativa pendiente",
+    "evidenceVersion": "V0.5.23; antecedente UI V0.5.22 identificado aparte",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "RNF-4",
+    "function": "Capacidad de nodos de trabajo",
+    "acceptance": [
+      "Soportar 100 tarjetas/nodos simultáneos sin degradar el rendimiento (Métrica: 100 nodos/tarjetas)."
+    ],
+    "source": "Requerimientos_TimeFlow_V0.5.0.xlsx",
+    "sourceSheet": "Hoja1",
+    "sourceRow": 25,
+    "testAndResult": "100 nodos/294 enlaces API íntegros. Node compara10/30/100 y múltiple, y60s carga de cálculo/memoria;99 objetos reutilizados con una modificación. No mide cuadros, rasterización ni ratón. V22 rAF46,30/40,46fps es antecedente, no mejora FPS probada V23. Falta comparación visual prolongada con gestos.",
+    "evidence": "mapa100-http.json; rendimiento-calculos-node.json; equipo-de-prueba.json; navegadores-nativos-limitacion.json",
+    "status": "Parcial; fluidez visual100 nodos sin certificación final",
+    "evidenceVersion": "V0.5.23 cálculo/API; V0.5.22 rAF como antecedente",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  },
+  {
+    "id": "RNF-5",
+    "function": "Accesibilidad y control por teclado/ratón",
+    "acceptance": [
+      "La interfaz gráfica debe admitir interacción por gestos del ratón (scroll wheel para zoom, arrastre 1:1 sin retardo) y el uso de la tecla Escape para restablecer o salir del modo de pantalla completa."
+    ],
+    "source": "Requerimientos_TimeFlow_V0.5.0.xlsx",
+    "sourceSheet": "Hoja1",
+    "sourceRow": 31,
+    "testAndResult": "Teclado, Escape y foco de confirmaciones comprobados en IAB V23. Gestos/pantalla completa V22 antecedente. Chrome login observado, F5 bloqueado por confianza URL; Edge no certificado. No se eludió la restricción.",
+    "evidence": "confirmaciones-navegador.json; navegadores-nativos-limitacion.json",
+    "status": "Parcial; nativos/gestos integrales pendientes",
+    "evidenceVersion": "V0.5.23 parcial; V0.5.22 gestos antecedente",
+    "implementation": "Código presente; alcance y restricciones descritos en la fila.",
+    "humanAcceptance": "Pendiente de aceptación real del equipo/usuario; regla de relojes expresamente aceptada.",
+    "productionCertification": "Pendiente de infraestructura HTTPS y operación autorizadas."
+  }
+]

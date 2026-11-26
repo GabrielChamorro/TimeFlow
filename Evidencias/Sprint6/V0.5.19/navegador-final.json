@@ -1,0 +1,13 @@
+{
+  "version": "0.5.19-SNAPSHOT",
+  "login": true,
+  "f5RestoredUserAndRole": true,
+  "newTabRestoredSession": true,
+  "monitoringOpened": true,
+  "logoutThenF5RequiresLogin": true,
+  "userConflictDraftPreservedAndSavedAfterReview": true,
+  "typeConflictDraftPreservedAndSavedAfterReview": true,
+  "finalFreshTabReactConsoleErrors": [],
+  "fullBrowserProcessRestartTested": false,
+  "productionHttpsDeploymentTested": false
+}

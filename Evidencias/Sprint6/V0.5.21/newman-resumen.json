@@ -1,0 +1,51 @@
+{
+  "version": "0.5.21-SNAPSHOT",
+  "stats": {
+    "iterations": {
+      "total": 1,
+      "pending": 0,
+      "failed": 0
+    },
+    "items": {
+      "total": 28,
+      "pending": 0,
+      "failed": 0
+    },
+    "scripts": {
+      "total": 56,
+      "pending": 0,
+      "failed": 0
+    },
+    "prerequests": {
+      "total": 28,
+      "pending": 0,
+      "failed": 0
+    },
+    "requests": {
+      "total": 28,
+      "pending": 0,
+      "failed": 0
+    },
+    "tests": {
+      "total": 28,
+      "pending": 0,
+      "failed": 0
+    },
+    "assertions": {
+      "total": 32,
+      "pending": 0,
+      "failed": 0
+    },
+    "testScripts": {
+      "total": 28,
+      "pending": 0,
+      "failed": 0
+    },
+    "prerequestScripts": {
+      "total": 28,
+      "pending": 0,
+      "failed": 0
+    }
+  },
+  "failures": 0
+}

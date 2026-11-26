@@ -1,0 +1,12 @@
+{
+  "http": 200,
+  "httpAckAtMs": 1794803051945,
+  "expected": {
+    "total": 100,
+    "revision": 34,
+    "aprobadas": 33,
+    "metas": 34
+  },
+  "taskId": 305,
+  "scope": "Cambio desde otro cliente HTTP; el mapa abierto debe actualizar sin F5"
+}

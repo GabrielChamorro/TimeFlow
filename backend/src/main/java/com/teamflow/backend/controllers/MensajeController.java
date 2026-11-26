@@ -38,11 +38,7 @@ public class MensajeController {
         }
 
         Long usuarioId = usuario.getId();
-        List<Mensaje> visibles = mensajeRepository.findAll().stream()
-                .filter(mensaje -> esCanalPublico(mensaje)
-                        || usuarioId.equals(mensaje.getSenderId())
-                        || usuarioId.equals(mensaje.getRecipientId()))
-                .toList();
+        List<Mensaje> visibles = mensajeRepository.findVisiblesParaUsuario(usuarioId);
 
         return ResponseEntity.ok(visibles);
     }
@@ -79,7 +75,8 @@ public class MensajeController {
             if (usuario.getId().equals(mensaje.getRecipientId())) {
                 return ResponseEntity.badRequest().body(Map.of("message", "No puedes enviarte un mensaje directo a ti mismo"));
             }
-            if (!usuarioRepository.existsById(mensaje.getRecipientId())) {
+            if (usuarioRepository.findById(mensaje.getRecipientId())
+                    .filter(destino -> !"inactivo".equalsIgnoreCase(destino.getEstado())).isEmpty()) {
                 return ResponseEntity.badRequest().body(Map.of("message", "El destinatario no existe"));
             }
             mensaje.setChatId(null);
@@ -90,6 +87,7 @@ public class MensajeController {
 
         // Estos datos siempre salen de la identidad JWT y del reloj del servidor.
         mensaje.setId(null);
+        mensaje.setActivo(true);
         mensaje.setSenderId(usuario.getId());
         mensaje.setSenderName(usuario.getNombre());
         mensaje.setSenderRole(usuario.getRol());
@@ -100,9 +98,28 @@ public class MensajeController {
         return ResponseEntity.status(HttpStatus.CREATED).body(mensajeRepository.save(mensaje));
     }
 
-    private boolean esCanalPublico(Mensaje mensaje) {
-        return "general".equalsIgnoreCase(mensaje.getChatId())
-                || "announcements".equalsIgnoreCase(mensaje.getChatId());
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> desactivarMensaje(@PathVariable Long id, Authentication authentication) {
+        Usuario usuario = obtenerUsuarioAutenticado(authentication);
+        if (usuario == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        Mensaje mensaje = mensajeRepository.findById(id).orElse(null);
+        if (mensaje == null || !mensaje.isActivo()) return ResponseEntity.notFound().build();
+        if (!esAdmin(usuario) && !usuario.getId().equals(mensaje.getSenderId()))
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        mensaje.setActivo(false);
+        mensajeRepository.save(mensaje);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}/reactivar")
+    public ResponseEntity<?> reactivarMensaje(@PathVariable Long id, Authentication authentication) {
+        Usuario usuario = obtenerUsuarioAutenticado(authentication);
+        if (usuario == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        if (!esAdmin(usuario)) return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        Mensaje mensaje = mensajeRepository.findById(id).orElse(null);
+        if (mensaje == null || mensaje.isActivo()) return ResponseEntity.notFound().build();
+        mensaje.setActivo(true);
+        return ResponseEntity.ok(mensajeRepository.save(mensaje));
     }
 
     private Usuario obtenerUsuarioAutenticado(Authentication authentication) {

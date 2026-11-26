@@ -1,0 +1,20 @@
+TIMEFLOW V0.4.9 - CORRECCION DE LA COMPROBACION DE JAVA
+
+Base: proyecto V0.4.8. No se reconstruyeron las funciones.
+
+1. Se sustituyo la deteccion de version Java ejecutada como un FOR /F de CMD
+   por un verificador PowerShell independiente (_verificar_java21.ps1).
+   Esto evita comillas, parentesis y redirecciones ambiguas en Windows CMD.
+2. Se mantiene la exigencia de Java 21 con parche minimo 21.0.13.0.2,
+   sin cambiar el Java 17 del sistema.
+3. La comprobacion de Java ahora deja su resultado en
+   backend\INSTALADOR_DIAGNOSTICO.txt.
+4. Se agrego un marcador interno de finalizacion del resumen para que
+   el lanzador elevado detecte si el instalador termina inesperadamente.
+5. Version actualizada en POM, frontend y textos de los scripts.
+
+PRUEBAS:
+- Se reviso que los archivos BAT/CMD tengan formato CRLF.
+- Se comprueba la integridad y las rutas del ZIP.
+- No se ha probado la instalacion real en Windows en este entorno.
+- No se afirman exitos de Maven, JUnit, MySQL o npm.

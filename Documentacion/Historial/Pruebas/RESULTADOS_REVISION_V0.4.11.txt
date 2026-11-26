@@ -1,0 +1,37 @@
+RESULTADOS DE REVISION - TIMEFLOW V0.4.11
+
+Material revisado: proyecto completo V0.4.10 y contexto de continuidad Sprint 4.
+Estado: cambios aplicados, comprobaciones estaticas realizadas; funcionamiento en Windows NO verificado.
+
+HALLAZGOS CONFIRMADOS EN EL CODIGO ANTERIOR
+- config_local.bat solicitaba la contrasena en pantalla y la guardaba sin comprobar si funcionaba.
+- El instalador aplicaba SQL de ejemplo de forma automatica sobre teamflow_db.
+- El instalador eliminaba la columna heredada usuarios.password antes de verificar que hubiera credenciales BCrypt para todos los usuarios.
+- Los codigos de tareas empleaban numeros aleatorios de tres digitos con riesgo de colisiones.
+- Maven se comprobaba con validate, que no confirma disponibilidad del conjunto de dependencias.
+- El navegador conservaba una sesion invalida tras cambios de JWT y mostraba una jornada bloqueada.
+
+CAMBIOS EN V0.4.11
+- Configuracion segura y validacion de clave MySQL en el servidor antes de guardarla.
+- Copia de seguridad local antes de preparar la estructura de una base existente.
+- Migracion de esquema sin inserciones automaticas de datos de demostracion.
+- Deteccion de credenciales de usuarios legados que necesitan migracion BCrypt.
+- Codigo unico de tarea generado del lado del servidor.
+- Recuperacion del login al perder validez el JWT anterior.
+- Nuevo test de migracion de columnas heredadas y test de codigo unico.
+
+COMPROBACIONES HECHAS
+- Todos los 13 archivos BAT/CMD: CRLF, etiquetas y destinos de GOTO/CALL verificados estaticamente.
+- Los 12 archivos JS/JSX del frontend: sintaxis parseada, sin errores de parseo.
+- Tres archivos JS tambien pasaron node --check.
+- pom.xml y package-lock.json validos y version 0.4.11 sincronizada.
+- Los 112 archivos de V0.4.10 se conservaron; se incorporaron archivos nuevos.
+- npm ci --offline intentado: bloqueado por ausencia del tarball de vite 8.2.2 en cache.
+
+NO COMPROBADO
+- Ejecucion real de CMD/PowerShell con permisos en Windows.
+- Conexion real al servicio MySQL, copia/restauracion, compatibilidad concreta de los esquemas legados.
+- Compilacion Maven/JUnit y build completo React.
+
+PRIVACIDAD
+- No compartir config_local.bat ni las copias SQL de .timeflow-backups.

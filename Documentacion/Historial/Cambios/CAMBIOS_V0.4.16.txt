@@ -1,0 +1,25 @@
+TIMEFLOW V0.4.16 - CORRECCION DE INFORMES OWASP
+=================================================
+BASE: TimeFlow V0.4.15.
+
+Correcciones:
+- El auditor usaba -Dformat=HTML,JSON, interpretado por
+  OWASP 13.0.0 como una plantilla inexistente.
+- Ahora usa -Dformat=ALL, valido y compatible con HTML y JSON.
+- Nuevo REGENERAR_INFORMES_OWASP.bat: analiza con cache NVD y
+  -DautoUpdate=false para evitar repetir la descarga inicial.
+- Se conserva AUDITAR_SEGURIDAD_BACKEND.bat para auditoria normal
+  con clave NVD y actualizaciones de la base.
+- Informacion mas clara cuando los informes aparecen pese a un
+  codigo distinto de cero por hallazgos de gravedad alta.
+- Version del pom.xml y paquetes npm ajustada a 0.4.16.
+- Sin modificaciones al codigo funcional de React, Java, SQL o MySQL.
+
+Verificado en el entorno de preparacion:
+- La configuracion fue cotejada con la documentacion oficial
+  de dependency-check-maven 13.0.0.
+- Sintaxis estructural basica de BAT, PS1, JSON y XML revisada.
+- Archivo ZIP comprobado mediante CRC.
+
+PENDIENTE: ejecutar OWASP, JUnit, npm y el sistema en Windows.
+No hay base para afirmar ausencia de vulnerabilidades Maven sin informe.

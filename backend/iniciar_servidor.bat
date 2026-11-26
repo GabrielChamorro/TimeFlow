@@ -2,11 +2,11 @@
 setlocal EnableExtensions DisableDelayedExpansion
 chcp 65001 >nul
 cd /d "%~dp0"
-title Backend TimeFlow V0.5.0
+title Backend TimeFlow V0.5.23
 set "FAILED=0"
 
 echo ============================================================
-echo    TimeFlow V0.5.0 - Comprobacion previa del BACKEND
+echo    TimeFlow V0.5.23 - Comprobacion previa del BACKEND
 echo ============================================================
 
 call usar_java21_seguro.bat >nul 2>&1
@@ -14,7 +14,7 @@ if errorlevel 1 (
     call :red "JDK 21 seguro: FALTA"
     set "FAILED=1"
 ) else (
-    for /f "delims=" %%V in ('"%JAVA_HOME%\bin\java.exe" -version 2^>^&1 ^| findstr /i "version"') do call :green "JDK: %%V"
+    call :green "JDK 21 seguro: PRESENTE"
 )
 
 if exist "mvnw.cmd" (call :green "Maven Wrapper: PRESENTE") else (call :red "Maven Wrapper: FALTA" & set "FAILED=1")
@@ -27,6 +27,8 @@ if exist "config_local.bat" (
     set "FAILED=1"
 )
 
+rem Este lanzador es local. En produccion establecer AUTH_LOCAL_HTTP=false y HTTPS.
+if not defined AUTH_LOCAL_HTTP set "AUTH_LOCAL_HTTP=true"
 call usar_mysql.bat >nul 2>&1
 if errorlevel 1 (
     call :red "MySQL cliente: FALTA"
@@ -59,7 +61,7 @@ endlocal & exit /b %RC%
 
 :check_mysql_version
 set "MYSQL_FOUND_VERSION="
-for /f "usebackq delims=" %%V in (`powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0_verificar_mysql.ps1" -MySqlExe "%MYSQL_EXE%"`) do set "MYSQL_FOUND_VERSION=%%V"
+for /f "usebackq delims=" %%V in (`powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0interno\_verificar_mysql.ps1" -MySqlExe "%MYSQL_EXE%"`) do set "MYSQL_FOUND_VERSION=%%V"
 if not defined MYSQL_FOUND_VERSION (
     set "FAILED=1"
     call :red "No se pudo identificar el cliente MySQL."
@@ -89,7 +91,7 @@ if not "%MYSQL_TEST_RC%"=="0" (
     exit /b 1
 )
 set "MYSQL_PWD=%DB_PASSWORD%"
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0_verificar_mysql.ps1" -MySqlExe "%MYSQL_EXE%" -Servidor -ComprobarSeguridad >nul
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0interno\_verificar_mysql.ps1" -MySqlExe "%MYSQL_EXE%" -Servidor -ComprobarSeguridad -DbUser "%DB_USER%" >nul
 set "MYSQL_SECURITY_RC=%ERRORLEVEL%"
 set "MYSQL_PWD="
 if not "%MYSQL_SECURITY_RC%"=="0" (
@@ -97,7 +99,22 @@ if not "%MYSQL_SECURITY_RC%"=="0" (
     call :red "MySQL Server necesita actualizacion de seguridad o no pudo verificarse."
     exit /b 1
 )
-call :green "MySQL Server: CONEXION Y VERSION CORRECTAS"
+rem No arrancar contra un esquema V19 o migrado a medias.
+if not exist "%~dp0interno\_comprobar_bd_v0523.ps1" (
+    set "FAILED=1"
+    call :red "Falta el verificador de estructura de la base."
+    exit /b 1
+)
+set "MYSQL_PWD=%DB_PASSWORD%"
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0interno\_comprobar_bd_v0523.ps1" -MySqlExe "%MYSQL_EXE%" -DbUser "%DB_USER%" >nul
+set "TF_SCHEMA_READY_RC=%ERRORLEVEL%"
+set "MYSQL_PWD="
+if not "%TF_SCHEMA_READY_RC%"=="0" (
+    set "FAILED=1"
+    call :red "La base necesita migracion o no se pudo verificar. Ejecuta el instalador principal."
+    exit /b 1
+)
+call :green "MySQL Server y estructura V0.5.23: CORRECTOS"
 exit /b 0
 
 :check_maven

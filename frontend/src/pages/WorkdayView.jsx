@@ -1,4 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { findTaskTemplate, getValidTaskTemplateId } from "../utils/taskTemplateSelection.js";
+import TaskTimer from "../components/TaskTimer.jsx";
+import TaskInlineEditor from "../components/TaskInlineEditor.jsx";
+import EvidenceDropzone from "../components/EvidenceDropzone.jsx";
+import EvidenceGallery from "../components/EvidenceGallery.jsx";
+import DependencyPicker from "../components/DependencyPicker.jsx";
 
 const getLocalDateISO = () => {
   const now = new Date();
@@ -34,6 +40,9 @@ export default function WorkdayView({
   currentUser,
   tareasPreestablecidas = [],
   userTasks = [],
+  tasksReady = true,
+  allTasks = [],
+  onUploadEvidence,
   jornada,
   jornadaCargando,
   jornadaGuardando,
@@ -42,7 +51,6 @@ export default function WorkdayView({
   onCheckOut,
   onAddTask,
   onUpdateTask,
-  onSendToReview,
 }) {
   const [taskType, setTaskType] = useState("pre");
   const [selectedPreId, setSelectedPreId] = useState("");
@@ -51,18 +59,27 @@ export default function WorkdayView({
   const [meta, setMeta] = useState("");
   const [deadline, setDeadline] = useState("");
   const [bitacoraInput, setBitacoraInput] = useState("");
-  const [previewImage, setPreviewImage] = useState(null);
-  const [evidenceError, setEvidenceError] = useState("");
+  const [evidenceFiles, setEvidenceFiles] = useState([]);
+  const [dependenciaIds, setDependenciaIds] = useState([]);
   const [taskError, setTaskError] = useState("");
   const [creatingTask, setCreatingTask] = useState(false);
+  // El detalle se carga solo cuando el usuario lo abre, evitando solicitudes por cada tarea.
+  const [evidenceTaskOpen, setEvidenceTaskOpen] = useState(null);
+  const [checkoutConfirm, setCheckoutConfirm] = useState(false);
+  const activeTaskCount = userTasks.filter(task => task.estado !== "Finalizada").length;
+  const requestCheckOut = () => {
+    if (!tasksReady) return;
+    if (activeTaskCount) setCheckoutConfirm(true);
+    else onCheckOut();
+  };
 
   const formatJornadaDate = (value) => value
     ? new Date(value).toLocaleString("es-CL", { dateStyle: "short", timeStyle: "short" })
     : null;
   const durationLabel = (seconds) => {
     if (seconds == null) return null;
-    const totalMinutes = Math.floor(seconds / 60);
-    return `${Math.floor(totalMinutes / 60)} h ${totalMinutes % 60} min`;
+    const totalSeconds = Math.max(0, Math.floor(seconds));
+    return `${Math.floor(totalSeconds / 3600)} h ${Math.floor(totalSeconds % 3600 / 60)} min ${totalSeconds % 60} s`;
   };
 
   // Solo se pueden crear tareas mientras exista una jornada activa.
@@ -70,56 +87,26 @@ export default function WorkdayView({
   const hasActiveCheckIn = Boolean(jornada?.activa) && !jornadaCargando && !jornadaGuardando && !jornadaError;
   const controlesBloqueados = jornadaCargando || jornadaGuardando || Boolean(jornadaError);
 
-  // Inicializar o sincronizar la plantilla seleccionada y su descripción
+  // El <select> entrega IDs como texto, aunque MySQL los envíe como números.
+  // Mantener un único tipo de ID evita volver a la primera plantilla al cambiarla.
   useEffect(() => {
-    if (taskType === "pre" && tareasPreestablecidas.length > 0) {
-      const plantillaValida = tareasPreestablecidas.find((t) => t.id === selectedPreId)
-        ? selectedPreId
-        : tareasPreestablecidas[0].id;
+    if (taskType !== "pre") return;
 
-      setSelectedPreId(plantillaValida);
-      const plantilla = tareasPreestablecidas.find((t) => t.id === plantillaValida);
-      if (plantilla) {
-        setDescripcion(plantilla.descripcion || "");
-      }
-    }
+    const validId = getValidTaskTemplateId(tareasPreestablecidas, selectedPreId);
+    if (validId !== selectedPreId) setSelectedPreId(validId);
+
+    const plantilla = findTaskTemplate(tareasPreestablecidas, validId);
+    if (plantilla) setDescripcion(plantilla.descripcion || "");
+    else setDescripcion("");
   }, [taskType, tareasPreestablecidas, selectedPreId]);
 
   const handlePlantillaChange = (e) => {
-    const id = e.target.value;
-    setSelectedPreId(id);
-    const found = tareasPreestablecidas.find((t) => String(t.id) === String(id));
-    if (found) {
-      setDescripcion(found.descripcion || "");
-    }
+    const plantilla = findTaskTemplate(tareasPreestablecidas, e.target.value);
+    if (!plantilla) return;
+    setSelectedPreId(String(plantilla.id));
+    setDescripcion(plantilla.descripcion || "");
   };
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files?.[0];
-    setEvidenceError("");
-    setPreviewImage(null);
-
-    if (!file) return;
-
-    const allowedTypes = ["image/png", "image/jpeg", "image/gif", "image/webp"];
-    if (!allowedTypes.includes(file.type)) {
-      setEvidenceError("Solo se permiten imágenes PNG, JPG/JPEG, GIF o WEBP.");
-      e.target.value = "";
-      return;
-    }
-    if (file.size > 2 * 1024 * 1024) {
-      setEvidenceError("La imagen no puede superar 2 MB.");
-      e.target.value = "";
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      if (typeof reader.result === "string") setPreviewImage(reader.result);
-    };
-    reader.onerror = () => setEvidenceError("No se pudo leer la imagen seleccionada.");
-    reader.readAsDataURL(file);
-  };
 
   const handleCreateTask = async (e) => {
     e.preventDefault();
@@ -127,15 +114,22 @@ export default function WorkdayView({
 
     // Doble validación en el frontend: aunque se intente enviar el formulario
     // manualmente, no se crea una tarea sin un Check In activo.
-    if (!hasActiveCheckIn || evidenceError || creatingTask) return;
+    if (!hasActiveCheckIn || creatingTask) return;
 
-    let taskName = customName.trim();
+    const form = new FormData(e.currentTarget);
+    const taskMeta = String(form.get("meta") || "").trim();
+    const taskDeadline = String(form.get("deadline") || "");
+    let taskName = String(form.get("customName") || "").trim();
     if (taskType === "pre") {
-      const selectedObj = tareasPreestablecidas.find((t) => String(t.id) === String(selectedPreId));
-      taskName = selectedObj?.nombre || "Nueva Tarea";
+      const selectedObj = findTaskTemplate(tareasPreestablecidas, selectedPreId);
+      if (!selectedObj) {
+        setTaskError("Selecciona una plantilla válida antes de crear la tarea.");
+        return;
+      }
+      taskName = selectedObj.nombre;
     }
 
-    if (!taskName) return;
+    if (!taskName || !taskMeta || !taskDeadline) { setTaskError("Completa el nombre, la meta y la fecha y hora límite antes de guardar."); return; }
 
     const nuevaTarea = {
       // El backend genera un codigo unico al guardar la tarea.
@@ -146,17 +140,28 @@ export default function WorkdayView({
       fecha: getLocalDateISO(),
       fechaInicio: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false }),
       fechaFin: null,
-      fechaLimite: deadline || `${getLocalDateISO()}T18:00`,
-      meta: meta || "Completar entregable asignado",
+      fechaLimite: taskDeadline,
+      meta: taskMeta,
       metaCumplida: false,
       estado: "En Progreso",
       bitacora: bitacoraInput || "Iniciando bloque de trabajo.",
-      evidencia: previewImage || null,
+      evidencia: null,
+      dependenciaIds,
     };
 
     setCreatingTask(true);
     try {
-      await onAddTask(nuevaTarea);
+      const guardada = await onAddTask(nuevaTarea);
+      const fallidos=[];
+      if (guardada?.id && onUploadEvidence) {
+        for (const file of evidenceFiles) {
+          try { await onUploadEvidence(guardada.id, file); }
+          catch (error) { fallidos.push(`${file.name}: ${error.message}`); }
+        }
+      }
+      if (fallidos.length) {
+        setTaskError(`La tarea se creó, pero no se pudieron subir estos archivos: ${fallidos.join(", ")}. Puedes adjuntarlos desde el detalle de la tarea.`);
+      }
     } catch (err) {
       setTaskError(err.message || "No se pudo guardar la tarea.");
       setCreatingTask(false);
@@ -169,12 +174,22 @@ export default function WorkdayView({
     setMeta("");
     setDeadline("");
     setBitacoraInput("");
-    setPreviewImage(null);
-    setEvidenceError("");
+    setEvidenceFiles([]);
+    setDependenciaIds([]);
   };
 
   return (
     <div className="space-y-6">
+      {checkoutConfirm && <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4">
+        <div role="alertdialog" aria-modal="true" aria-labelledby="checkout-title" onKeyDown={e => { if (e.key === "Escape") setCheckoutConfirm(false); }} className="w-full max-w-md space-y-4 rounded-2xl bg-white p-6">
+          <h3 id="checkout-title" className="font-bold">Tienes tareas activas</h3>
+          <p className="text-sm">Tienes {activeTaskCount} tarea(s) sin finalizar. ¿Registrar salida igualmente?</p>
+          <div className="flex justify-end gap-3">
+            <button type="button" autoFocus onClick={() => setCheckoutConfirm(false)} className="rounded-lg border px-3 py-2">Cancelar salida</button>
+            <button type="button" disabled={jornadaGuardando} onClick={() => { setCheckoutConfirm(false); onCheckOut(); }} className="rounded-lg bg-rose-600 px-3 py-2 text-white">Confirmar Check-out</button>
+          </div>
+        </div>
+      </div>}
       {/* Control de Asistencia */}
       <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-wrap items-center justify-between gap-4">
         <div>
@@ -196,6 +211,7 @@ export default function WorkdayView({
 
         <div className="flex gap-3">
           <button
+            data-loading={jornadaGuardando}
             onClick={onCheckIn}
             disabled={controlesBloqueados || Boolean(jornada?.activa)}
             className={`px-5 py-2.5 rounded-xl font-semibold text-xs text-white transition-all ${
@@ -207,8 +223,9 @@ export default function WorkdayView({
             Registrar ingreso
           </button>
           <button
-            onClick={onCheckOut}
-            disabled={controlesBloqueados || !jornada?.activa}
+            data-loading={jornadaGuardando}
+            onClick={requestCheckOut}
+            disabled={controlesBloqueados || !jornada?.activa || !tasksReady}
             className={`px-5 py-2.5 rounded-xl font-semibold text-xs text-white transition-all ${
               controlesBloqueados || !jornada?.activa
                 ? "bg-slate-300 cursor-not-allowed"
@@ -221,7 +238,7 @@ export default function WorkdayView({
       </div>
 
       {jornadaError && (
-        <div role="alert" className="rounded-xl border border-rose-200 bg-rose-50 p-4 text-xs text-rose-800">
+        <div role="alert" className="tf-ui-panel-enter rounded-xl border border-rose-200 bg-rose-50 p-4 text-xs text-rose-800">
           {jornadaError} Recarga la página para volver a consultar el estado del servidor.
         </div>
       )}
@@ -270,16 +287,24 @@ export default function WorkdayView({
               <div>
                 <label className="block text-[11px] font-semibold text-slate-600 mb-1">Plantilla</label>
                 <select
-                  value={selectedPreId}
+                  aria-label="Plantilla"
+                  value={getValidTaskTemplateId(tareasPreestablecidas, selectedPreId)}
                   onChange={handlePlantillaChange}
+                  disabled={tareasPreestablecidas.length === 0}
                   className="w-full p-2.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-indigo-500"
                 >
+                  {tareasPreestablecidas.length === 0 && (
+                    <option value="">No hay plantillas disponibles</option>
+                  )}
                   {tareasPreestablecidas.map((t) => (
-                    <option key={t.id} value={t.id}>
+                    <option key={String(t.id)} value={String(t.id)}>
                       {t.nombre}
                     </option>
                   ))}
                 </select>
+                <label className="mt-2 block text-[11px] font-semibold text-slate-600">Título de plantilla
+                  <input readOnly value={findTaskTemplate(tareasPreestablecidas, getValidTaskTemplateId(tareasPreestablecidas, selectedPreId))?.nombre || ""} className="mt-1 w-full rounded-lg border border-slate-200 bg-slate-50 p-2.5 text-xs"/>
+                </label>
               </div>
             ) : (
               <div>
@@ -287,6 +312,8 @@ export default function WorkdayView({
                 <input
                   type="text"
                   placeholder="Ej. Análisis de Logs de Servidor"
+                  name="customName"
+                  aria-label="Nombre Tarea"
                   value={customName}
                   maxLength={180}
                   onChange={(e) => setCustomName(e.target.value)}
@@ -301,6 +328,7 @@ export default function WorkdayView({
               <textarea
                 rows={2}
                 value={descripcion}
+                aria-label="Descripción"
                 maxLength={3000}
                 onChange={(e) => setDescripcion(e.target.value)}
                 placeholder="Objetivo de la actividad..."
@@ -314,6 +342,9 @@ export default function WorkdayView({
                 <input
                   type="text"
                   placeholder="Ej. Revisar 50 registros"
+                  name="meta"
+                  required
+                  aria-label="Meta"
                   value={meta}
                   maxLength={500}
                   onChange={(e) => setMeta(e.target.value)}
@@ -324,6 +355,9 @@ export default function WorkdayView({
                 <label className="block text-[11px] font-semibold text-slate-600 mb-1">Fecha y hora límite</label>
                 <input
                   type="datetime-local"
+                  name="deadline"
+                  required
+                  aria-label="Fecha y hora límite"
                   min={`${getLocalDateISO()}T00:00`}
                   value={deadline}
                   onChange={(e) => setDeadline(e.target.value)}
@@ -332,6 +366,9 @@ export default function WorkdayView({
               </div>
             </div>
 
+            <div>
+              <DependencyPicker tasks={allTasks} value={dependenciaIds} onChange={setDependenciaIds} />
+            </div>
             <div>
               <label className="block text-[11px] font-semibold text-slate-600 mb-1">Bitácora Inicial</label>
               <textarea
@@ -344,24 +381,14 @@ export default function WorkdayView({
               />
             </div>
 
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-600 mb-1">Evidencia (Imagen opcional)</label>
-              <input
-                type="file"
-                accept="image/png,image/jpeg,image/gif,image/webp"
-                onChange={handleImageUpload}
-                className="text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
-              />
-              {evidenceError && (
-                <p className="mt-1 text-[11px] font-medium text-rose-600">{evidenceError}</p>
-              )}
-            </div>
+            <EvidenceDropzone files={evidenceFiles} onChange={setEvidenceFiles} disabled={creatingTask}/>
 
             <button
               type="submit"
-              disabled={!hasActiveCheckIn || creatingTask || Boolean(evidenceError)}
+              data-loading={creatingTask}
+              disabled={!hasActiveCheckIn || creatingTask || (taskType === "pre" && tareasPreestablecidas.length === 0)}
               className={`w-full py-2.5 text-white font-semibold rounded-xl text-xs transition-colors ${
-                hasActiveCheckIn && !evidenceError
+                hasActiveCheckIn
                   ? "bg-indigo-600 hover:bg-indigo-700 cursor-pointer"
                   : "bg-slate-300 cursor-not-allowed"
               }`}
@@ -412,6 +439,7 @@ export default function WorkdayView({
                           <span className="block text-[11px] text-slate-400 mt-0.5">Límite: {formatDeadline(task.fechaLimite, task.fecha)}</span>
                         </div>
                         <h4 className="font-bold text-slate-900 text-sm mt-1">{task.nombre}</h4>
+                        <TaskTimer task={task}/>
                         <p className="text-xs text-slate-500">{task.descripcion}</p>
                       </div>
 
@@ -428,59 +456,34 @@ export default function WorkdayView({
                       </span>
                     </div>
 
-                    {/* Meta y Checkbox */}
-                    <div className="flex items-center justify-between text-xs pt-2 border-t border-slate-100">
-                      <span className="text-slate-600">
-                        <strong>Meta:</strong> {task.meta}
-                      </span>
-                      {!isApproved && !isUnderReview && (
-                        <label className="flex items-center gap-2 cursor-pointer font-medium text-slate-700">
-                          <input
-                            type="checkbox"
-                            checked={task.metaCumplida || false}
-                            onChange={(e) =>
-                              onUpdateTask({ ...task, metaCumplida: e.target.checked })
-                            }
-                            className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                    <TaskInlineEditor key={task.id} task={task} onUpdateTask={onUpdateTask} />
+
+                    {/* La misma galería de Monitoreo Espacial, sin duplicar reglas de archivos ni rutas. */}
+                    <div className="space-y-2 border-t border-slate-100 pt-3">
+                      <button
+                        type="button"
+                        aria-expanded={evidenceTaskOpen === String(task.id)}
+                        aria-controls={`jornada-evidencias-${task.id}`}
+                        onClick={() => setEvidenceTaskOpen(current => current === String(task.id) ? null : String(task.id))}
+                        className="rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-2 text-xs font-semibold text-indigo-700 hover:bg-indigo-100"
+                      >
+                        {evidenceTaskOpen === String(task.id)
+                          ? "Ocultar evidencias"
+                          : task.estado === "En Progreso"
+                            ? "Adjuntar / ver archivos"
+                            : "Ver archivos adjuntos"}
+                      </button>
+                      {evidenceTaskOpen === String(task.id) && (
+                        <div id={`jornada-evidencias-${task.id}`}>
+                          <EvidenceGallery
+                            taskId={task.id}
+                            taskVersion={task.version}
+                            legacyEvidence={task.evidencia}
+                            canEdit={task.estado === "En Progreso"}
                           />
-                          Meta cumplida
-                        </label>
+                        </div>
                       )}
                     </div>
-
-                    {/* Editor de Bitácora Individual */}
-                    <div className="space-y-1">
-                      <div className="flex justify-between items-center">
-                        <label className="text-[11px] font-bold text-slate-700">Bitácora Individual (Editable en vivo):</label>
-                        {!isApproved && !isUnderReview && (
-                          <span className="text-[10px] text-indigo-600">Sincronización activa</span>
-                        )}
-                      </div>
-                      <textarea
-                        rows={3}
-                        disabled={isUnderReview || isApproved}
-                        value={task.bitacora || ""}
-                        onChange={(e) => onUpdateTask({ ...task, bitacora: e.target.value })}
-                        placeholder="Escribe avances o novedades de esta tarea específica..."
-                        className={`w-full p-2.5 text-xs rounded-xl border ${
-                          isUnderReview || isApproved
-                            ? "bg-slate-100 text-slate-500 border-slate-200 cursor-not-allowed"
-                            : "bg-white border-indigo-200 focus:ring-2 focus:ring-indigo-500"
-                        }`}
-                      />
-                    </div>
-
-                    {/* Botón para enviar a revisión */}
-                    {!isApproved && !isUnderReview && (
-                      <div className="flex justify-end pt-1">
-                        <button
-                          onClick={() => onSendToReview(task.id)}
-                          className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl text-xs transition-colors shadow-xs cursor-pointer"
-                        >
-                          Marcar como lista (enviar a aprobación)
-                        </button>
-                      </div>
-                    )}
 
                     {isUnderReview && (
                       <p className="text-[11px] text-amber-700 bg-amber-50 p-2 rounded-lg border border-amber-200 font-medium text-center">

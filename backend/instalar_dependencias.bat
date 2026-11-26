@@ -2,10 +2,10 @@
 setlocal EnableExtensions DisableDelayedExpansion
 chcp 65001 >nul
 cd /d "%~dp0"
-title TimeFlow V0.5.0 - Instalador completo
+title TimeFlow V0.5.23 - Instalador completo
 
 set "TF_INSTALL_LOG=%~dp0INSTALADOR_DIAGNOSTICO.txt"
-> "%TF_INSTALL_LOG%" echo Inicio TimeFlow V0.5.0 - %DATE% %TIME%
+> "%TF_INSTALL_LOG%" echo Inicio TimeFlow V0.5.23 - %DATE% %TIME%
 >> "%TF_INSTALL_LOG%" echo Registro de etapas del instalador, sin contrasenas.
 
 rem Node.js, Visual C++ y MySQL pueden requerir permisos de administrador.
@@ -24,7 +24,7 @@ goto :after_elevation
 >> "%TF_INSTALL_LOG%" echo Solicitando permisos de administrador...
 rem Lanza un script auxiliar desde la carpeta real del backend.
 rem Evita usar %%~f0: con CALL relativo y un CD previo puede resolver backend\backend.
-if not exist "%~dp0_iniciar_instalador_admin.bat" (
+if not exist "%~dp0interno\_iniciar_instalador_admin.bat" (
     echo [ERROR] Falta el auxiliar _iniciar_instalador_admin.bat.
     >> "%TF_INSTALL_LOG%" echo ERROR: Falta auxiliar de elevacion.
     pause
@@ -34,7 +34,7 @@ echo Solicitando permisos de administrador para completar la instalacion...
 echo La nueva ventana permanecera abierta incluso si ocurre un error.
 rem El script PowerShell resuelve una ruta ABSOLUTA y la pasa a cmd.exe con comillas.
 rem No depende de la carpeta inicial de la consola elevada (System32).
-powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0_elevate_installer.ps1" -InstallerPath "%~dp0_iniciar_instalador_admin.bat"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0interno\_elevate_installer.ps1" -InstallerPath "%~dp0interno\_iniciar_instalador_admin.bat"
 if errorlevel 1 (
     echo [ERROR] No se pudo abrir la ventana como administrador.
     >> "%TF_INSTALL_LOG%" echo ERROR: No fue posible abrir una ventana elevada.
@@ -80,7 +80,7 @@ set "FAILED=0"
 if not exist "%TF_DOWNLOAD_DIR%" mkdir "%TF_DOWNLOAD_DIR%" >nul 2>&1
 
 echo ============================================================
-echo     TimeFlow V0.5.0 - INSTALADOR COMPLETO PARA WINDOWS
+echo     TimeFlow V0.5.23 - INSTALADOR COMPLETO PARA WINDOWS
 echo ============================================================
 echo Instala/verifica: Java 21 seguro, Node.js/npm, Visual C++,
 echo MySQL, Maven/Spring Boot y paquetes React/Vite.
@@ -146,7 +146,7 @@ exit /b 0
 
 :node
 call :section "2/9 - Node.js y npm"
-call "..\frontend\usar_node.bat" >nul 2>&1
+call "..\frontend\interno\usar_node.bat" >nul 2>&1
 if not errorlevel 1 (
     set "ST_NODE=YA ESTABA INSTALADO"
     call :green "Node.js y npm verificados; no se reinstalaran."
@@ -164,7 +164,7 @@ if errorlevel 1 (
     call :info "Revisa INSTALADOR_DIAGNOSTICO.txt para ver la causa."
     exit /b 1
 )
-call "..\frontend\usar_node.bat" >nul 2>&1
+call "..\frontend\interno\usar_node.bat" >nul 2>&1
 if errorlevel 1 (
     set "ST_NODE=EXTRAIDO PERO NO FUNCIONA"
     set "FAILED=1"
@@ -269,7 +269,7 @@ exit /b 0
 
 :mysql_existing
 set "MYSQL_FOUND_VERSION="
-for /f "usebackq delims=" %%V in (`powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0_verificar_mysql.ps1" -MySqlExe "%MYSQL_EXE%"`) do set "MYSQL_FOUND_VERSION=%%V"
+for /f "usebackq delims=" %%V in (`powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0interno\_verificar_mysql.ps1" -MySqlExe "%MYSQL_EXE%"`) do set "MYSQL_FOUND_VERSION=%%V"
 if not defined MYSQL_FOUND_VERSION (
     set "ST_MYSQL=VERSION DEL CLIENTE NO IDENTIFICADA"
     set "FAILED=1"
@@ -279,7 +279,7 @@ if not defined MYSQL_FOUND_VERSION (
 set "ST_MYSQL=CLIENTE DETECTADO"
 call :persist_mysql
 call :green "Cliente MySQL %MYSQL_FOUND_VERSION% encontrado."
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0_verificar_mysql.ps1" -MySqlExe "%MYSQL_EXE%" -ComprobarSeguridad >nul
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0interno\_verificar_mysql.ps1" -MySqlExe "%MYSQL_EXE%" -ComprobarSeguridad >nul
 if errorlevel 1 call :info "El cliente MySQL tambien requiere revision/actualizacion; sin cambios automaticos."
 call :info "La version de seguridad del SERVIDOR se verificara con credenciales."
 exit /b 0
@@ -296,7 +296,7 @@ if errorlevel 1 (
     set "PATH_FAIL=1"
     call :red "No se pudo localizar JDK 21 para TimeFlow."
 )
-call "..\frontend\usar_node.bat" >nul 2>&1
+call "..\frontend\interno\usar_node.bat" >nul 2>&1
 if errorlevel 1 (
     set "PATH_FAIL=1"
     call :red "No se pudo localizar Node.js/npm compatibles."
@@ -363,7 +363,7 @@ if errorlevel 1 (
 call config_local.bat
 set "MYSQL_PWD=%DB_PASSWORD%"
 set "MYSQL_SERVER_VERSION="
-for /f "usebackq delims=" %%V in (`powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0_verificar_mysql.ps1" -MySqlExe "%MYSQL_EXE%" -Servidor`) do set "MYSQL_SERVER_VERSION=%%V"
+for /f "usebackq delims=" %%V in (`powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0interno\_verificar_mysql.ps1" -MySqlExe "%MYSQL_EXE%" -Servidor -DbUser "%DB_USER%"`) do set "MYSQL_SERVER_VERSION=%%V"
 if not defined MYSQL_SERVER_VERSION (
     set "MYSQL_PWD="
     set "ST_MYSQL_SERVER=NO SE PUDO COMPROBAR"
@@ -372,7 +372,7 @@ if not defined MYSQL_SERVER_VERSION (
     call :red "No se pudo consultar la version de MySQL Server. Comprueba servicio y credenciales."
     exit /b 1
 )
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0_verificar_mysql.ps1" -MySqlExe "%MYSQL_EXE%" -Servidor -ComprobarSeguridad >nul
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0interno\_verificar_mysql.ps1" -MySqlExe "%MYSQL_EXE%" -Servidor -ComprobarSeguridad -DbUser "%DB_USER%" >nul
 set "SERVER_SECURITY_RC=%ERRORLEVEL%"
 set "MYSQL_PWD="
 if "%SERVER_SECURITY_RC%"=="2" (
@@ -436,7 +436,7 @@ exit /b 0
 
 :frontend
 call :section "9/9 - Dependencias React/Vite"
-call "..\frontend\usar_node.bat" >nul 2>&1
+call "..\frontend\interno\usar_node.bat" >nul 2>&1
 if errorlevel 1 (
     set "ST_FRONTEND=NO EJECUTADO: FALTA NODE"
     set "FAILED=1"
@@ -499,7 +499,7 @@ call :status "Dependencias React/Vite" "%ST_FRONTEND%"
 echo ============================================================
 if "%FAILED%"=="0" (
     call :green "TODO LISTO. TimeFlow tiene las dependencias necesarias."
-    > "%~dp0.timeflow-deps-ok" echo TimeFlow V0.5.0 dependencies verified %DATE% %TIME%
+    > "%~dp0.timeflow-deps-ok" echo TimeFlow V0.5.23 dependencies verified %DATE% %TIME%
 ) else (
     call :red "INSTALACION INCOMPLETA. Revisa los elementos rojos de arriba."
     if exist "%~dp0.timeflow-deps-ok" del /q "%~dp0.timeflow-deps-ok" >nul 2>&1

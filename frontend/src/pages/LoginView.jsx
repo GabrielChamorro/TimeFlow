@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ENDPOINTS } from "../config/api_interaccion_backend";
+import { loginSession } from "../config/session.js";
 
 /* ---------- Iconos SVG inline (trazo, currentColor) ---------- */
 const Svg = ({ children, className }) => (
@@ -143,32 +143,8 @@ export default function LoginView({ onLogin }) {
     setSubmitting(true);
 
     try {
-      // manda el correo y la contraseña al backend
-      const response = await fetch(ENDPOINTS.LOGIN, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: normalizedEmail,
-          password: password,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || "Error al iniciar sesión");
-      }
-
-      // guarda el token para usarlo en las demas peticiones
-      if (data.token) {
-        localStorage.setItem("token", data.token);
-      }
-
-      // guarda tambien los datos del usuario que inicio sesion
-      const loggedUser = data.user || data;
-      localStorage.setItem("currentUser", JSON.stringify(loggedUser));
+      const data = await loginSession(normalizedEmail, password);
+      const loggedUser = data.user;
       onLogin?.(loggedUser);
 
     } catch (err) {
@@ -179,7 +155,7 @@ export default function LoginView({ onLogin }) {
   };
 
   return (
-    <div className="min-h-screen w-full grid grid-cols-1 lg:grid-cols-2 bg-slate-100 font-sans text-slate-900">
+    <div className="tf-ui min-h-screen w-full grid grid-cols-1 lg:grid-cols-2 bg-slate-100 font-sans text-slate-900">
       {/* Panel de marca */}
       <aside className="relative hidden lg:flex flex-col justify-between overflow-hidden bg-slate-950 text-white px-12 py-10 border-r border-slate-800">
         <div
@@ -224,7 +200,7 @@ export default function LoginView({ onLogin }) {
 
         <div className="relative flex items-center gap-2 text-xs text-slate-500">
           <IconLock className="w-3.5 h-3.5" />
-          <span>Conectado al servidor backend (`http://localhost:8080`).</span>
+          <span>Usa tu cuenta para acceder al espacio de trabajo.</span>
         </div>
       </aside>
 

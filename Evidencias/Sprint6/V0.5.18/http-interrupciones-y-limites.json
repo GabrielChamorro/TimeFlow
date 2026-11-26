@@ -1,0 +1,40 @@
+{
+  "version": "0.5.18-SNAPSHOT",
+  "tests": [
+    {
+      "case": "login admin@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "JSON chunked mayor a 4 MiB",
+      "passed": true,
+      "http": 413,
+      "expected": 413
+    },
+    {
+      "case": "subida interrumpida no persiste archivo parcial",
+      "passed": true
+    },
+    {
+      "case": "ocho intentos erróneos y noveno limitado",
+      "passed": true
+    }
+  ],
+  "loginHttp": [
+    401,
+    401,
+    401,
+    401,
+    401,
+    401,
+    401,
+    401,
+    429
+  ]
+}

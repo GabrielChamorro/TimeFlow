@@ -1,0 +1,16 @@
+PRUEBA EN WINDOWS - TIMEFLOW V0.4.7
+
+1. Extraer el ZIP COMPLETO a una carpeta nueva.
+2. Mantener una copia de seguridad de la base de datos antes de migraciones.
+3. Si ya se utilizaba config_local.bat, copiarlo solo dentro de
+   backend\config_local.bat de la nueva version; no compartir ese archivo.
+4. Hacer doble clic en INSTALAR_DEPENDENCIAS_TIMEFLOW.bat.
+5. Aceptar los permisos cuando Windows los solicite.
+6. Debe aparecer el paso 1/9 del instalador de dependencias.
+7. Al finalizar, revisar el resumen y los errores; no asumir exito
+   si algun componente indica ERROR.
+8. Si falla: enviar captura SIN contrasenas y, si existe,
+   backend\INSTALADOR_DIAGNOSTICO.txt (no config_local.bat).
+
+El archivo de diagnostico se crea al principio de ejecutar el BAT.
+No iniciar backend ni frontend hasta revisar los componentes fallidos.

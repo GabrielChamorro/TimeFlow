@@ -2,7 +2,7 @@
 setlocal EnableExtensions
 chcp 65001 >nul
 cd /d "%~dp0"
-title TimeFlow V0.5.0 - Instalar todo
+title TimeFlow V0.5.23 - Instalar todo
 if not exist "%~dp0backend\instalar_dependencias.bat" (
     echo [ERROR] No se encontro backend\instalar_dependencias.bat.
     echo Comprueba que extrajiste el ZIP completo.

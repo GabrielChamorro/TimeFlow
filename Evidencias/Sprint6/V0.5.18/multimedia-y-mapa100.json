@@ -1,0 +1,608 @@
+{
+  "version": "0.5.18-SNAPSHOT",
+  "tests": [
+    {
+      "case": "login admin@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "Check In",
+      "passed": true,
+      "http": 409,
+      "expected": [
+        201,
+        409
+      ]
+    },
+    {
+      "case": "crear tarea archivos multimedia válidos",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "subir archivo válido sprint6.mp4",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "descargar sprint6.mp4",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "SHA256 real sprint6.mp4",
+      "passed": true
+    },
+    {
+      "case": "video descargado se decodifica .mp4",
+      "passed": true
+    },
+    {
+      "case": "subir archivo válido sprint6.webm",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "descargar sprint6.webm",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "SHA256 real sprint6.webm",
+      "passed": true
+    },
+    {
+      "case": "video descargado se decodifica .webm",
+      "passed": true
+    },
+    {
+      "case": "subir archivo válido sprint6.pdf",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "descargar sprint6.pdf",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "SHA256 real sprint6.pdf",
+      "passed": true
+    },
+    {
+      "case": "subir archivo válido hero.png",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "descargar hero.png",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "SHA256 real hero.png",
+      "passed": true
+    },
+    {
+      "case": "subir archivo válido TimeFlow_Sprint_Backlog_6_Actualizado.docx",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "descargar TimeFlow_Sprint_Backlog_6_Actualizado.docx",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "SHA256 real TimeFlow_Sprint_Backlog_6_Actualizado.docx",
+      "passed": true
+    },
+    {
+      "case": "recargar tareas desde API",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa100 001",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 002",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 003",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 004",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 005",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 006",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 007",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 008",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 009",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 010",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 011",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 012",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 013",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 014",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 015",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 016",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 017",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 018",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 019",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 020",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 021",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 022",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 023",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 024",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 025",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 026",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 027",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 028",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 029",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 030",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 031",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 032",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 033",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 034",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 035",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 036",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 037",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 038",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 039",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 040",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 041",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 042",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 043",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 044",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 045",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 046",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 047",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 048",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 049",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 050",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 051",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 052",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 053",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 054",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 055",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 056",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 057",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 058",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 059",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 060",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 061",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 062",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 063",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 064",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 065",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 066",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 067",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 068",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 069",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 070",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 071",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 072",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 073",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 074",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 075",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 076",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 077",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 078",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa100 079",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "recargar tareas desde API",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "100 nodos reales disponibles",
+      "passed": true
+    }
+  ]
+}

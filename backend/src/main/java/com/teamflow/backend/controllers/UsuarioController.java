@@ -1,6 +1,7 @@
 package com.teamflow.backend.controllers;
 
 import com.teamflow.backend.models.Usuario;
+import com.teamflow.backend.dto.UsuarioDirectorio;
 import com.teamflow.backend.repositories.UsuarioRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,23 +27,48 @@ public class UsuarioController {
 
     private final UsuarioRepository usuarioRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final com.teamflow.backend.security.SessionRegistry sessions;
 
-    public UsuarioController(UsuarioRepository usuarioRepository, BCryptPasswordEncoder passwordEncoder) {
+    public UsuarioController(UsuarioRepository usuarioRepository, BCryptPasswordEncoder passwordEncoder, com.teamflow.backend.security.SessionRegistry sessions) {
+        this.sessions = sessions;
         this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> listarUsuarios() {
+    public ResponseEntity<?> listarUsuarios(org.springframework.security.core.Authentication autenticacion) {
+        if (autenticacion == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        List<Usuario> visibles = usuarioRepository.findVisibles();
+        if (esAdministrador(autenticacion)) return ResponseEntity.ok(visibles);
+        return ResponseEntity.ok(visibles.stream().map(UsuarioDirectorio::from).toList());
+    }
+
+    // Administración: incluye cuentas inactivas para permitir recuperarlas.
+    @GetMapping("/administracion")
+    public ResponseEntity<?> listarAdministracion(org.springframework.security.core.Authentication autenticacion) {
+        if (!esAdministrador(autenticacion)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(Map.of("message", "No tienes permisos para consultar esta lista"));
+        }
         return ResponseEntity.ok(usuarioRepository.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> obtenerUsuario(@PathVariable Long id) {
-        return usuarioRepository.findById(id)
-                .<ResponseEntity<?>>map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body(Map.of("message", "Usuario no encontrado")));
+    public ResponseEntity<?> obtenerUsuario(@PathVariable Long id,
+                                           org.springframework.security.core.Authentication autenticacion) {
+        if (autenticacion == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        Usuario usuario = usuarioRepository.findById(id)
+                .filter(u -> !"inactivo".equalsIgnoreCase(u.getEstado())).orElse(null);
+        if (usuario == null) return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(Map.of("message", "Usuario no encontrado"));
+        if (esAdministrador(autenticacion) || usuario.getEmail().equalsIgnoreCase(autenticacion.getName()))
+            return ResponseEntity.ok(usuario);
+        return ResponseEntity.ok(UsuarioDirectorio.from(usuario));
+    }
+
+    private boolean esAdministrador(org.springframework.security.core.Authentication auth) {
+        return auth != null && auth.getAuthorities() != null && auth.getAuthorities().stream()
+                .anyMatch(a -> "ROLE_ADMIN".equals(a.getAuthority()));
     }
 
     @PostMapping
@@ -64,6 +90,7 @@ public class UsuarioController {
         }
 
         usuario.setId(null);
+        usuario.setVersion(null);
         usuario.setNombre(usuario.getNombre().trim());
         usuario.setEmail(email);
         usuario.setRol(normalizarRol(usuario.getRol()));
@@ -75,14 +102,21 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(creado);
     }
 
+    @org.springframework.transaction.annotation.Transactional(isolation = org.springframework.transaction.annotation.Isolation.READ_COMMITTED)
     @PutMapping("/{id}")
-    public ResponseEntity<?> actualizarUsuario(@PathVariable Long id, @RequestBody Usuario datos) {
-        Optional<Usuario> existenteOpt = usuarioRepository.findById(id);
+    public ResponseEntity<?> actualizarUsuario(@PathVariable Long id, @RequestBody Usuario datos,
+                                                org.springframework.security.core.Authentication autenticacion) {
+        Optional<Usuario> existenteOpt = usuarioRepository.findByIdForUpdate(id);
         if (existenteOpt.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Map.of("message", "Usuario no encontrado"));
         }
 
+        if (datos==null) return ResponseEntity.badRequest().body(Map.of("message","Los datos del usuario son obligatorios"));
+        Usuario actual = existenteOpt.get();
+        if ("inactivo".equalsIgnoreCase(actual.getEstado()) || !java.util.Objects.equals(actual.getVersion(),datos.getVersion())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("message", "Otra sesión modificó o desactivó esta cuenta. Tu borrador se conserva; revisa los datos actuales."));
+        }
         String error = validarDatosBasicos(datos);
         if (error != null) {
             return ResponseEntity.badRequest().body(Map.of("message", error));
@@ -103,6 +137,18 @@ public class UsuarioController {
         }
 
         Usuario existente = existenteOpt.get();
+        // Evita perder accidentalmente el único acceso administrativo del propio usuario.
+        if (autenticacion != null && existente.getEmail().equalsIgnoreCase(autenticacion.getName())
+                && (!"admin".equalsIgnoreCase(normalizarRol(datos.getRol()))
+                    || "inactivo".equalsIgnoreCase(normalizarEstado(datos.getEstado())))) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(Map.of("message", "No puedes quitarte el rol administrador ni desactivar tu propia cuenta"));
+        }
+        boolean invalidar = (datos.getPassword() != null && !datos.getPassword().isBlank())
+                || !existente.getEmail().equalsIgnoreCase(email)
+                || !java.util.Objects.equals(existente.getRol(), normalizarRol(datos.getRol()))
+                || "inactivo".equalsIgnoreCase(normalizarEstado(datos.getEstado()));
+        if (invalidar) sessions.revokeAll(id);
         existente.setNombre(datos.getNombre().trim());
         existente.setEmail(email);
         existente.setRol(normalizarRol(datos.getRol()));
@@ -116,15 +162,42 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioRepository.save(existente));
     }
 
+    @org.springframework.transaction.annotation.Transactional(isolation = org.springframework.transaction.annotation.Isolation.READ_COMMITTED)
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminarUsuario(@PathVariable Long id) {
-        if (!usuarioRepository.existsById(id)) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Map.of("message", "Usuario no encontrado"));
+    public ResponseEntity<?> eliminarUsuario(@PathVariable Long id, org.springframework.security.core.Authentication autenticacion, @RequestParam(required=false) Long version) {
+        Usuario usuario = usuarioRepository.findByIdForUpdate(id).orElse(null);
+        if (usuario == null || "inactivo".equalsIgnoreCase(usuario.getEstado())) {
+            return ResponseEntity.notFound().build();
         }
-
-        usuarioRepository.deleteById(id);
+        // No permitimos que el administrador desactive su propia cuenta por accidente.
+        if (autenticacion != null && usuario.getEmail().equalsIgnoreCase(autenticacion.getName())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(Map.of("message", "No puedes desactivar tu propia cuenta"));
+        }
+        if (version != null && !java.util.Objects.equals(version,usuario.getVersion()))
+            return ResponseEntity.status(409).body(Map.of("message","Otra sesión modificó la cuenta. Actualiza el directorio y vuelve a revisar la confirmación."));
+        sessions.revokeAll(id);
+        usuario.setEstado("inactivo");
+        usuarioRepository.save(usuario);
         return ResponseEntity.noContent().build();
+    }
+
+    @org.springframework.transaction.annotation.Transactional(isolation = org.springframework.transaction.annotation.Isolation.READ_COMMITTED)
+    @PatchMapping("/{id}/reactivar")
+    public ResponseEntity<?> reactivarUsuario(@PathVariable Long id) {
+        Usuario usuario = usuarioRepository.findByIdForUpdate(id).orElse(null);
+        if (usuario == null || !"inactivo".equalsIgnoreCase(usuario.getEstado())) {
+            return ResponseEntity.notFound().build();
+        }
+        sessions.revokeAll(id);
+        usuario.setEstado("activo");
+        return ResponseEntity.ok(usuarioRepository.save(usuario));
+    }
+
+    @ExceptionHandler(org.springframework.dao.DataIntegrityViolationException.class)
+    public ResponseEntity<?> conflictoDeDatos() {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(Map.of("message", "No se pudo completar el cambio: ya existe un registro con esos datos o hay una restricción de base de datos"));
     }
 
     private String validarDatosBasicos(Usuario usuario) {
@@ -168,6 +241,9 @@ public class UsuarioController {
         }
         if (password.length() > MAX_PASSWORD) {
             return "La contraseña no puede superar 64 caracteres";
+        }
+        if (password.getBytes(java.nio.charset.StandardCharsets.UTF_8).length > 72) {
+            return "La contraseña no puede superar 72 bytes UTF-8";
         }
         if (!password.matches(".*[A-Za-z].*") || !password.matches(".*\\d.*")) {
             return "La contraseña debe incluir al menos una letra y un número";

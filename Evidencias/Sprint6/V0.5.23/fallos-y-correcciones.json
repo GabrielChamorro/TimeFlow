@@ -1,0 +1,45 @@
+{
+  "version": "0.5.23-SNAPSHOT",
+  "items": [
+    {
+      "finding": "V22: timeout en confirmación nativa y JPG desactivado",
+      "conclusion": "El registro no demuestra que se ejecutara Cancelar ni permite atribuir por sí solo un fallo lógico a Cancelar. Se identificó dependencia de window.confirm y una limitación de automatización.",
+      "change": "Sustituido por diálogo React accesible; Cancelar/X/Escape sin llamada de baja, preservando advertencia, pasos y validación. Nuevos controles UI+MySQL verifican el resultado."
+    },
+    {
+      "finding": "Confirmación abierta sobre versión anterior de entidad",
+      "change": "UI captura versión; DELETE condicional devuelve409 antes de modificar. API mantiene compatibilidad opcional. Borrador de tarea conservado y versión reciente revisable."
+    },
+    {
+      "finding": "Versión de query no numérica devolvía401",
+      "proof": "Reproducido HTTP antes de corrección",
+      "change": "Handler MethodArgumentTypeMismatchException devuelve400 JSON, comprobado con cadena MockMvc y HTTP."
+    },
+    {
+      "finding": "MotionPresence usaba refs durante render y estado sincronizado en efecto",
+      "change": "Estado de presencia retenida con generaciones y limpieza de temporizador; tres advertencias eliminadas, sin quitar animación."
+    },
+    {
+      "finding": "Cada GET reemplazaba identidades de las100 tareas",
+      "change": "Reutilización de filas idénticas y clonación solo del marcador de nota cambiado. Prueba:99 identidades preservadas con una tarea modificada; no se atribuye mejora FPS."
+    },
+    {
+      "finding": "Historial no se invalidaba al cierre remoto con la vista abierta",
+      "change": "Firma de IDs finalizadas, recuperación por visibilidad y reintento de red/5xx; aborta solicitudes al desmontar. Verificado en cálculos y API, pendiente nuevo control UI."
+    },
+    {
+      "finding": "Respuesta tardía en chat y detalle de historial tras cambio/desmontaje",
+      "change": "AbortController, época de sesión y directorio derivado de props; sin aplicar respuesta a otra sesión. Compilación y regresión estática/unitaria; certificación visual nueva pendiente."
+    },
+    {
+      "finding": "Respuestas GET inicial/manual podían llegar tras una escritura local",
+      "change": "Misma barrera monotónica de escrituras que la consulta periódica; conserva mutaciones más recientes."
+    },
+    {
+      "finding": "Arneses privados: nombre de SQL, codificación de Poppler, fixture de legado, variable sintética y comillas cmd de Newman",
+      "change": "Se corrigieron solo arneses. Migraciones11, corpus57, cronómetros81/64 y Newman40 repetidos sin relajar aserciones. El fixture de legado se crea con NULL explícito; la tarea nueva V23 con ancla no representaba legado."
+    }
+  ],
+  "noClockBusinessRuleChange": true,
+  "noLintRulesDisabled": true
+}

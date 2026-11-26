@@ -1,0 +1,92 @@
+{
+  "version": "0.5.21-SNAPSHOT",
+  "checks": [
+    {
+      "case": "login s6-10c38dc2-historial21@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "Campo obligatorio nombre",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Campo obligatorio nombre",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Campo obligatorio nombre",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Campo obligatorio meta",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Campo obligatorio meta",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Campo obligatorio meta",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Campo obligatorio fechaLimite",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Campo obligatorio fechaLimite",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Campo obligatorio fechaLimite",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Hora/fecha inválida",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Hora/fecha inválida",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Creación completa",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Inicia en progreso y sin cierre falso",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

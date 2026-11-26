@@ -1,0 +1,38 @@
+TIMEFLOW V0.4.0 - PRUEBA RÁPIDA EN TU PC
+=========================================
+
+PRIMER INICIO DE ESTA VERSIÓN
+1. Descomprime el proyecto en una carpeta nueva.
+2. Mantén MySQL iniciado.
+3. Ejecuta backend\iniciar_servidor.bat.
+4. Si no existe backend\config_local.bat, se abrirá la configuración una sola vez:
+   - contraseña de MySQL;
+   - correo del admin inicial;
+   - contraseña del admin inicial;
+   - JWT_SECRET se genera automáticamente.
+5. Si ya tienes la base y usuarios de V0.3.8, no se recrean ni cambian sus contraseñas.
+6. El backend eliminará automáticamente la columna histórica usuarios.password si todavía existe.
+7. Inicia el frontend como siempre.
+
+REGRESIÓN FUNCIONAL
+- Iniciar sesión.
+- Check In -> crear tarea.
+- Ver fecha y fecha/hora límite.
+- Abrir Monitoreo.
+- Como admin, mover tarea y recargar F5.
+- Como trabajador, confirmar que no puede mover nodos.
+- Abrir chat y usuarios.
+
+PRUEBAS DE SEGURIDAD
+A. Ejecuta backend\ejecutar_pruebas.bat.
+B. Confirma que no existan Failures ni Errors.
+C. Crea un usuario con contraseña "sololetras": debe rechazarse.
+D. Crea un usuario con contraseña como "Segura2026": debe aceptarse.
+E. Intenta eliminar una tarea Finalizada: debe rechazarse.
+F. Intenta subir HTML/SVG como evidencia: debe rechazarse.
+G. Revisa MySQL:
+   SHOW COLUMNS FROM usuarios;
+   Debe existir password_hash y NO debe existir password.
+
+IMPORTANTE
+V0.4.0 todavía no valida Check In desde Spring Boot. Esa corrección se implementará en V0.4.1.

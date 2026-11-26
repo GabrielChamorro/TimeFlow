@@ -1,0 +1,155 @@
+{
+  "version": "0.5.20-SNAPSHOT",
+  "checks": [
+    {
+      "case": "login admin@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "jornada admin",
+      "passed": true,
+      "http": 409,
+      "expected": [
+        201,
+        409
+      ]
+    },
+    {
+      "case": "crear tarea version-A",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea version-B",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea version-C",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "nueva tarea versiÃ³n cero",
+      "passed": true
+    },
+    {
+      "case": "ediciones simultÃ¡neas 200 y 409",
+      "passed": true
+    },
+    {
+      "case": "recargar tareas desde API",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "primer contenido confirmado conservado",
+      "passed": true
+    },
+    {
+      "case": "versiÃ³n incrementada",
+      "passed": true
+    },
+    {
+      "case": "dependencias mÃºltiples conservadas",
+      "passed": true
+    },
+    {
+      "case": "omitir versiÃ³n",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "versiÃ³n obsoleta sigue rechazada",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "revisar y guardar con versiÃ³n actual",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "recargar tareas desde API",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "ciclo sigue rechazado",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "mover nodo",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "ediciÃ³n anterior a movimiento detecta conflicto",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "recargar tareas desde API",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "editar despuÃ©s de revisar movimiento",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "recargar tareas desde API",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "posiciÃ³n no se pierde",
+      "passed": true
+    },
+    {
+      "case": "crear usuario sinpermiso",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "login s6-fcd51e09-sinpermiso@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "trabajador ajeno no edita aunque versiÃ³n obsoleta",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    }
+  ],
+  "passed": true
+}

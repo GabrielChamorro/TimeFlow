@@ -1,0 +1,33 @@
+TIMEFLOW V0.5.23 - INSTALACION FACIL (ajuste del instalador)
+
+Este ZIP usa las fuentes y los binarios originales de V0.5.23. Solo se
+modificaron los instaladores para que las tres migraciones desde V0.5.19
+se apliquen automaticamente cuando hagan falta.
+
+1. Extrae TODO el ZIP en una carpeta nueva. Conserva la V0.5.19 antigua.
+2. Asegurate de que el backend antiguo esta cerrado. MySQL debe seguir encendido.
+3. Haz doble clic en INSTALAR_DEPENDENCIAS_TIMEFLOW.bat y sigue el asistente.
+   Es posible que Windows solicite permisos de administrador.
+   Si ya tienes una base V0.5.19, confirma que 127.0.0.1:3306/teamflow_db
+   es tu base de datos. El instalador hace un respaldo y aplica, en orden:
+   - migracion_v0_5_21_registros.sql
+   - migracion_v0_5_21_historial.sql
+   - migracion_v0_5_22_tiempos.sql
+   Si ya esta actualizada, se omiten. Una instalacion nueva crea el esquema.
+   No necesitas ejecutar Migrar_V0523.ps1 por separado.
+4. Haz doble clic en backend/iniciar_servidor.bat.
+5. Haz doble clic en frontend/iniciar_servidor.bat.
+
+La primera instalacion puede pedir la contrasena ACTUAL de MySQL y una
+clave para el administrador inicial si la base esta vacia. No necesita
+copiar config_local.bat de la instalacion anterior; el instalador puede
+crearlo, aunque una clave JWT nueva cerrara las sesiones antiguas.
+
+Los respaldos de una actualizacion existente se guardan fuera de la carpeta
+del proyecto: %%LOCALAPPDATA%%\TimeFlow\Respaldos. No los compartas.
+Si el instalador da ERROR, NO arranques el backend y comparte solo el
+mensaje de error sin contrasenas.
+
+IMPORTANTE: ajuste del instalador no ejecutado en Windows en este entorno.
+Las comprobaciones locales son de estructura, sintaxis basica y archivos,
+no sustituyen la prueba de instalacion real en Windows/MySQL.

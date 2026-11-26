@@ -7,6 +7,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import javax.sql.DataSource;
 import java.sql.Connection;
 
+@org.springframework.scheduling.annotation.EnableScheduling
 @SpringBootApplication
 public class BackendApplication {
 

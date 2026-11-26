@@ -1,0 +1,17 @@
+TIMEFLOW V0.4.3 - INSTALADOR Y PRECHECK DE DEPENDENCIAS
+
+Cambios principales:
+- Nuevo instalador completo desde INSTALAR_DEPENDENCIAS_TIMEFLOW.bat.
+- backend\instalar_dependencias.bat ahora verifica/instala JDK 21 seguro, Node.js/npm, Visual C++ Runtime, MySQL, Maven y paquetes React/Vite.
+- JDK 21 se mantiene aislado para TimeFlow mediante TIMEFLOW_JAVA_HOME para no reemplazar Java 17 global.
+- Node.js y MySQL se agregan al PATH del usuario si corresponde.
+- Si una dependencia compatible ya existe, se omite la instalacion y se informa YA ESTABA INSTALADO en verde.
+- El resumen final muestra estados verdes o rojos.
+- MySQL existente en un rango vulnerable conocido se marca en rojo y NO se actualiza automaticamente para proteger los datos.
+- Instalaciones nuevas de MySQL usan 8.4.13 LTS y verifican MD5.
+- frontend\iniciar_servidor.bat verifica Node/npm, package files y node_modules antes de abrir Vite.
+- backend\iniciar_servidor.bat verifica JDK, Maven Wrapper, config local, MySQL y cache Maven antes de iniciar Spring Boot.
+- frontend\instalar_dependencias.bat redirige al instalador completo, para evitar instalaciones parciales.
+- El instalador se eleva automaticamente a administrador cuando hace falta.
+- El backend rechaza iniciar si detecta una version de MySQL dentro de los rangos vulnerables conocidos revisados en Sprint 4.
+- ejecutar_pruebas.bat tambien hace precheck de Java/Maven.

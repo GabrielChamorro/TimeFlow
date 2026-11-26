@@ -1,0 +1,21 @@
+PRUEBA RÁPIDA DE TIMEFLOW V0.4.4 EN WINDOWS 10
+
+1. Haz copia de seguridad de teamflow_db antes de actualizar. Esta versión mantiene tablas y tareas previas, y agrega jornadas.
+2. Extrae el ZIP completo en una carpeta nueva. No copies un frontend nuevo sobre un backend antiguo.
+3. Ejecuta INSTALAR_DEPENDENCIAS_TIMEFLOW.bat desde la raíz si es tu primera instalación, o backend\crear_base_datos.bat si las dependencias ya están listas.
+4. Conserva tu backend\config_local.bat en tu PC (NO lo subas al repositorio). Usa el JDK 21 seguro que prepara el instalador.
+5. Ejecuta backend\iniciar_servidor.bat y frontend\iniciar_servidor.bat. Comprueba que no tengan errores al iniciar.
+6. Inicia sesión como trabajador. En Mi Jornada debería indicar que no hay jornada activa (o mostrar la última cerrada).
+7. Sin pulsar Check In, prueba crear una tarea usando POST /api/tareas desde Postman con el Bearer JWT del usuario y un JSON válido: {"nombre":"Prueba sin jornada", "fechaLimite":"2030-12-01T18:00"}. Resultado esperado: HTTP 409, sin tarea nueva en MySQL.
+8. Pulsa Registrar ingreso. Debe aparecer la hora del servidor. Verifica en MySQL: SELECT id, usuario_id, entrada, salida, usuario_activo_id FROM teamflow_db.jornadas ORDER BY id DESC LIMIT 5;
+9. Refresca F5. La jornada activa debe seguir activa y debes poder crear una tarea válida desde la interfaz y desde la API (201).
+10. Registra ingreso por segunda vez en Postman (POST /api/jornadas/check-in con JWT). Debe devolver 409 sin duplicar la jornada.
+11. Pulsa Check Out. Si tienes tareas abiertas, aparecerá una advertencia. Debe mostrarse la hora de salida y tiempo total.
+12. Refresca F5. Comprueba que aparece la última salida y el formulario de creación queda deshabilitado.
+13. Intenta nuevamente POST /api/tareas con datos válidos: 409. POST /api/jornadas/check-out: 409.
+14. Vuelve a hacer Check In: debe crear una nueva fila de jornada, sin alterar el historial de la anterior.
+15. Inicia sesión con otra cuenta: no debe poder ver la jornada de la cuenta anterior. Comprueba GET /api/jornadas/actual con su propio JWT.
+16. Ejecuta backend\ejecutar_pruebas.bat y frontend\iniciar_servidor.bat / npm run build con las dependencias listas. Registra resultados reales en el informe de Sprint 4.
+
+Notas: GET /api/jornadas/actual devuelve 204 si nunca hubo jornada; 200 con la última en caso contrario. Las fechas del servidor se guardan en UTC y la interfaz las muestra en tu zona horaria.
+La eliminación de usuarios borra sus jornadas por cascada; para conservar historial, desactiva al usuario en vez de eliminarlo.

@@ -1,0 +1,16 @@
+TIMEFLOW V0.4.9 - PRUEBA EN WINDOWS
+
+1. Extraer ZIP completo en una carpeta nueva.
+2. Ejecutar INSTALAR_DEPENDENCIAS_TIMEFLOW.bat.
+3. Aceptar permisos de administrador.
+4. Revisar que la etapa "1/9 - JDK 21 seguro" muestre un resultado
+   o el mensaje de descarga de Liberica, y avance a "2/9".
+5. NO cierres la consola mientras el instalador trabaja.
+6. Si se detiene y aparece una linea tipo C:\...\backend>, comparte
+   el registro backend\INSTALADOR_DIAGNOSTICO.txt, sin compartir claves.
+   Tambien puedes ejecutar desde esa consola:
+       type INSTALADOR_DIAGNOSTICO.txt
+7. Si hay errores, el resumen final los marca; no iniciar los servidores
+   hasta resolver dependencias esenciales.
+
+AVISO: no compartas backend\config_local.bat: contiene contrasenas.

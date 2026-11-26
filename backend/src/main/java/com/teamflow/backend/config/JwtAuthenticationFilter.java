@@ -80,6 +80,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     }
                 }
             }
+        } catch (org.springframework.dao.DataAccessException unavailable) {
+            // Una caída de MySQL no convierte un JWT válido en credenciales incorrectas.
+            SecurityContextHolder.clearContext();
+            response.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("application/json");
+            response.getWriter().write("{\"message\":\"El servicio no está disponible temporalmente. Inténtalo nuevamente\"}");
+            return;
         } catch (Exception ignored) {
             // si el token esta vencido o mal formado no autentica al usuario
         }

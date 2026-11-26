@@ -1,0 +1,23 @@
+TimeFlow V0.4.11 - Auditoria y refuerzo antes de ejecutar en Windows
+Base: V0.4.10. Se conserva el codigo de jornadas Spring Boot + React.
+
+CAMBIOS CONFIRMADOS
+1. Configuracion de MySQL: contrasenas ocultas durante la entrada; se verifica conexion real ANTES de generar config_local.bat. No se inventa ni reemplaza la clave del usuario root.
+2. Si hay usuarios en MySQL, no solicita una nueva contrasena de administrador que no se utilizaria. El usuario de TimeFlow sigue usando su propia clave de login.
+3. Base existente: crea respaldo SQL en backend/.timeflow-backups/ antes de modificar tablas. Si el respaldo falla, detiene el cambio.
+4. El instalador no introduce tareas, mensajes o cuentas de ejemplo en la base existente.
+5. El SQL del esquema se ejecuta desde backend/sql/esquema_timeflow.sql, sin construir un comando SQL gigante en CMD.
+6. Se detectan cuentas legadas sin hash BCrypt y se detiene el arranque/proceso de migracion para evitar perder su antigua columna de claves en texto plano. Deben migrarse explicitamente.
+7. Los codigos de tareas nuevas se generan en el servidor con UUID (no al azar entre 100 y 999); ignora el codigo aportado por el navegador.
+8. La verificacion de Maven antes de arrancar revisa las dependencias offline, no solo la validez basica del POM.
+9. Se mantiene Java 21 local para TimeFlow; no sustituye Java 17 global.
+10. En caso de fallo se conservan diagnosticos no confidenciales.
+11. El frontend elimina una sesion JWT caducada o invalidada al consultar la jornada y vuelve al login, sin bloquear Check In.
+
+LIMITACIONES DE VERIFICACION
+- El sistema de trabajo no ejecuta CMD/PowerShell de Windows ni un servidor MySQL Windows.
+- La compilacion Maven/JUnit y la compilacion de React dependen de paquetes descargables que no estan presentes en este entorno.
+- No se ha comprobado el flujo de instalacion completo en Windows; no se declara aprobado.
+- Es imprescindible probarlo sobre una copia de seguridad real antes de usar datos importantes.
+
+NOTA: No compartas config_local.bat ni respaldos .sql: contienen secretos y/o datos.

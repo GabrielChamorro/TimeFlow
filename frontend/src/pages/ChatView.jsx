@@ -1,27 +1,30 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ENDPOINTS, apiFetch } from "../config/api_interaccion_backend";
+import { getSessionEpoch } from "../config/session.js";
 
 export default function ChatView({ currentUser, collaborators = [], messages = [], onSendMessage }) {
   const [activeChatId, setActiveChatId] = useState("announcements");
   const [inputText, setInputText] = useState("");
-  const [usersList, setUsersList] = useState(collaborators);
+  const [fallbackUsers, setFallbackUsers] = useState({ userId: null, items: [] });
+  const usersList = collaborators?.length ? collaborators
+    : fallbackUsers.userId === currentUser?.id ? fallbackUsers.items : [];
   const messagesEndRef = useRef(null);
 
   // Sincronizar lista de usuarios; si llega vacía, consultar la tabla usuarios directamente
   useEffect(() => {
-    if (collaborators && collaborators.length > 0) {
-      setUsersList(collaborators);
-    } else {
-      apiFetch(ENDPOINTS.USUARIOS)
+    if (collaborators?.length) return;
+    let cancelled = false;
+    const controller = new AbortController(), epoch = getSessionEpoch();
+      apiFetch(ENDPOINTS.USUARIOS, { signal: controller.signal })
         .then((res) => (res.ok ? res.json() : []))
         .then((data) => {
-          if (Array.isArray(data) && data.length > 0) {
-            setUsersList(data);
+          if (!cancelled && epoch === getSessionEpoch() && Array.isArray(data)) {
+            setFallbackUsers({ userId: currentUser?.id, items: data });
           }
         })
-        .catch((err) => console.warn("hubo un error al sincronizar usuarios en chat:", err));
-    }
-  }, [collaborators]);
+        .catch((err) => { if (!cancelled) console.warn("hubo un error al sincronizar usuarios en chat:", err); });
+    return () => { cancelled = true; controller.abort(); };
+  }, [collaborators, currentUser?.id]);
 
   const channels = [
     { id: "announcements", nombre: "Anuncios oficiales", tipo: "broadcast", subtitle: "Solo lectura para trabajadores" },
@@ -240,7 +243,7 @@ export default function ChatView({ currentUser, collaborators = [], messages = [
         </div>
 
         {/* Historial de Mensajes */}
-        <div className="flex-1 p-6 overflow-y-auto space-y-3">
+        <div key={activeChatId} className="tf-ui-chat-history flex-1 p-6 overflow-y-auto space-y-3">
           {activeMessages.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-slate-400 text-xs gap-1">
               <p>No hay mensajes en esta conversación.</p>

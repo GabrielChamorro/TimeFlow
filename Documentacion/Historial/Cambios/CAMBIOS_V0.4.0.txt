@@ -1,0 +1,84 @@
+TIMEFLOW V0.4.0 - SPRINT 4 / SEGURIDAD BASE
+=============================================
+
+Objetivo
+--------
+Primera versión del Sprint 4 enfocada en seguridad y endurecimiento. Se parte de
+TimeFlow V0.3.8 y se conservan las funciones existentes de mapa, fechas, fecha/hora
+límite y Check In del frontend.
+
+Cambios de seguridad implementados
+----------------------------------
+1. Secretos y configuración
+   - Se eliminó la contraseña de MySQL del application.properties.
+   - Se eliminó la clave JWT de respaldo del código.
+   - DB_PASSWORD y JWT_SECRET ahora deben venir del entorno/configuración local.
+   - JWT_SECRET debe tener al menos 32 bytes.
+   - Se agregó configurar_entorno_local.bat para crear config_local.bat (ignorado por Git).
+   - CORS puede configurarse con CORS_ALLOWED_ORIGINS.
+
+2. Contraseñas y usuarios
+   - BCrypt usa costo 12 para hashes nuevos.
+   - Al iniciar sesión, un hash BCrypt con costo anterior se actualiza automáticamente.
+   - Contraseñas nuevas: 8 a 64 caracteres, al menos una letra y un número.
+   - El campo password de Usuario es @Transient: nunca se guarda como columna.
+   - password_hash es de solo escritura en JSON y no se devuelve a React.
+   - Se elimina automáticamente la columna heredada usuarios.password si existe.
+   - Una instalación nueva no usa una contraseña admin conocida/fija: el administrador
+     inicial se crea desde INITIAL_ADMIN_EMAIL / INITIAL_ADMIN_PASSWORD solo si no hay usuarios.
+
+3. Permisos e historial
+   - Una tarea Finalizada ya no puede eliminarse, ni siquiera por administrador.
+   - Se conserva el cambio de posición del mapa exclusivamente para administradores.
+   - Roles y estados recibidos por API se validan contra los valores permitidos.
+
+4. Validación de entradas
+   - Límites de longitud para usuarios, tareas, tipos de tarea y mensajes.
+   - Evidencias: máximo 2 MB y solo PNG, JPG/JPEG, GIF o WEBP.
+   - El backend comprueba la firma real del archivo, no solo el MIME enviado por el navegador.
+   - Se rechazan payloads declarados de más de 4 MB.
+   - Fechas/horas y posiciones de mapa se validan antes de guardar.
+
+5. Mensajes
+   - El remitente, rol, avatar y hora se obtienen desde JWT/servidor.
+   - El cliente no puede falsificar esos datos.
+   - Canales válidos y destinatarios directos se validan.
+   - Mensajes limitados a 2000 caracteres.
+
+6. CORS y errores
+   - CORS se centralizó en Spring Security.
+   - No se habilitan credenciales/cookies cross-origin porque TimeFlow usa Bearer JWT.
+   - Respuestas 401/403 son genéricas y no exponen detalles internos.
+   - Spring no incluye stacktrace ni mensaje interno en respuestas de error.
+
+7. Dependencias
+   - Spring Boot: 3.2.3 -> 3.5.16.
+   - JJWT: 0.11.5 -> 0.12.7.
+   - Versión de backend/frontend: 0.4.0.
+
+8. Frontend
+   - Los límites del backend también se reflejan en formularios.
+   - La selección de evidencia acepta únicamente PNG/JPEG/GIF/WEBP y máximo 2 MB.
+   - El botón eliminar no aparece para tareas finalizadas.
+   - Validación visible de contraseña al crear/editar usuarios.
+
+Pruebas automáticas agregadas para Sprint 4
+-------------------------------------------
+S4-01: contraseña débil rechazada.
+S4-02: evidencia con formato HTML rechazada.
+S4-03: tarea finalizada no puede eliminarse ni por admin.
+S4-04: mensaje mayor a 2000 caracteres rechazado.
+S4-05: rol no reconocido rechazado.
+S4-06: estado arbitrario de tarea rechazado.
+
+Estado de ejecución en el entorno de ChatGPT
+--------------------------------------------
+El código se revisó estáticamente, pero Maven no pudo descargar sus dependencias desde
+Maven Central en este entorno y npm no pudo completar la instalación. Por eso NO se
+marca la batería como aprobada desde aquí. La ejecución real debe hacerse en el PC del
+proyecto con ejecutar_pruebas.bat y el build de frontend.
+
+Pendiente para V0.4.1
+---------------------
+Persistir la jornada/Check In en MySQL y hacer que Spring Boot exija un Check In activo
+antes de crear una tarea. En V0.4.0 se mantiene la regla de V0.3.8 en frontend.

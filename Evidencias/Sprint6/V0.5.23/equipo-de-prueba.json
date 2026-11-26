@@ -1,0 +1,22 @@
+{
+  "edge": "157.0.4341.60",
+  "scope": "Características del equipo; no contiene nombre de usuario, hostname ni número de serie.",
+  "chrome": "157.0.8103.52",
+  "processors": [
+    {
+      "Name": "AMD Ryzen 7 5700                               ",
+      "NumberOfCores": 8,
+      "NumberOfLogicalProcessors": 16
+    }
+  ],
+  "computer": {
+    "Manufacturer": "Micro-Star International Co., Ltd.",
+    "Model": "MS-7C95",
+    "TotalPhysicalMemory": 34247663616
+  },
+  "os": {
+    "Caption": "Microsoft Windows 11 Pro",
+    "Version": "10.0.26200",
+    "BuildNumber": "26200"
+  }
+}

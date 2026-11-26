@@ -1,0 +1,17 @@
+TIMEFLOW V0.3.8 - CHECK IN OBLIGATORIO PARA CREAR TAREAS
+
+Cambios realizados:
+- Ahora es obligatorio registrar ingreso (Check In) antes de crear una tarea.
+- El formulario de creación de tareas queda deshabilitado mientras no exista una jornada activa.
+- Si el usuario ya hizo Check Out, vuelve a bloquearse la creación de tareas hasta registrar un nuevo ingreso.
+- Se agregó una segunda validación en App.jsx para impedir que se envíe una tarea al backend si no hay Check In activo.
+- Se quitó el emoticono del botón Check Out.
+- No se modificó la lógica de tareas, fechas, mapa ni permisos de administrador de V0.3.7.
+
+Prueba manual recomendada:
+1. Iniciar sesión y entrar a Mi Jornada & Bitácora.
+2. Sin hacer Check In, comprobar que el formulario esté deshabilitado y muestre el aviso.
+3. Registrar ingreso y comprobar que el formulario quede habilitado.
+4. Crear una tarea y verificar que se guarde normalmente.
+5. Hacer Check Out y comprobar que el formulario vuelva a quedar bloqueado.
+6. Verificar que el botón muestre "Check Out (Salida)" sin emoticono.

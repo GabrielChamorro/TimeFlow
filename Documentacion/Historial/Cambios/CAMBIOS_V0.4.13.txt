@@ -1,0 +1,27 @@
+TIMEFLOW V0.4.13 - CORRECCION DEL DETECTOR DE NODE.JS
+
+Origen: TimeFlow V0.4.12. Se conserva el proyecto completo.
+
+ERROR CONFIRMADO EN FUENTE:
+- frontend\_verificar_node.ps1 utilizaba `foreach ($home in ...)`.
+- PowerShell no permite escribir en $HOME porque es una variable automatica protegida.
+- PowerShell no distingue mayusculas/minusculas en nombres de variables.
+- El fallo podia impedir detectar tanto Node.js MSI como el Node.js ZIP local.
+
+CORRECCION:
+- Se sustituyo `$home` por `$nodeDir` dentro del verificador.
+- El instalador ahora muestra las ultimas entradas NODE del archivo de diagnostico
+  si Node no pasa la verificacion tras extraerlo.
+- Se sincronizo la version 0.4.13 en las rutas y metadatos del proyecto.
+- Se conserva el contenido funcional anterior, incluidos Check In/Out y MySQL.
+
+VERIFICACIONES EN ESTE ENTORNO:
+- Comprobacion estatica de la sustitucion, rutas y nombres.
+- ZIP comprobado y archivos BAT conservados en formato Windows (CRLF).
+- No se pudo ejecutar PowerShell de Windows, CMD, Node para Windows o MySQL Server.
+
+IMPORTANTE:
+- No desinstalar Java, Node ni MySQL existentes.
+- El cliente MySQL 8.4.9 sigue requiriendo revision/actualizacion.
+- La version REAL del servidor MySQL se comprueba solo tras configurar credenciales.
+- Guarda copia de la BD antes de cualquier actualizacion de MySQL Server.

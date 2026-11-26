@@ -1,0 +1,12 @@
+PRUEBA RAPIDA - TIMEFLOW V0.4.2 / JDK SEGURO
+
+1. Deja Java 17 como Java predeterminado si lo necesitas.
+2. Ejecuta backend\instalar_dependencias.bat.
+3. Si no existe un JDK 21 seguro, el BAT debe descargar Liberica 21.0.13.0.2+5.
+4. Al terminar debe mostrar una linea similar a:
+   openjdk version "21.0.13.0.2" ... LTS
+5. Comprueba que java -version en una consola nueva puede seguir mostrando Java 17.
+6. Ejecuta backend\ejecutar_pruebas.bat y confirma que el encabezado muestre Java 21.0.13.0.2.
+7. Ejecuta backend\iniciar_servidor.bat y verifica que Spring Boot inicia normalmente.
+
+El JDK local queda en backend\.timeflow-tools\ y no se debe subir al repositorio.

@@ -1,0 +1,138 @@
+{
+  "version": "0.5.21-SNAPSHOT",
+  "checks": [
+    {
+      "case": "login admin@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "login s6-ee06c9f8-notas21@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "login s6-ee06c9f8-ajeno21@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "crear usuario rechazo-admin21",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "login s6-2383d7a1-rechazo-admin21@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "crear tarea Rechazo con motivo",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Backend rechaza motivo inválido",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Backend rechaza motivo inválido",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Backend rechaza motivo inválido",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Backend rechaza motivo inválido",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "recargar tareas desde API",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "recargar tareas desde API",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Sin motivo no altera estado/versión",
+      "passed": true
+    },
+    {
+      "case": "Sin motivo no crea historial",
+      "passed": true
+    },
+    {
+      "case": "Trabajador no devuelve su propia tarea",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Dos administradores desde misma versión: 200 y 409",
+      "passed": true
+    },
+    {
+      "case": "Trabajador consulta un rechazo con autor y fecha",
+      "passed": true
+    },
+    {
+      "case": "Ajeno no ve motivos",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Segundo rechazo válido",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Conserva ambos rechazos ordenados",
+      "passed": true
+    },
+    {
+      "case": "recargar tareas desde API",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    }
+  ],
+  "passed": true
+}

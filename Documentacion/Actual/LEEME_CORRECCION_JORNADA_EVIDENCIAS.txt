@@ -1,0 +1,36 @@
+TIMEFLOW V0.5.23 - MI JORNADA / EVIDENCIAS (REVISION PREVIA A PRUEBAS)
+
+FUNCIONAMIENTO:
+- En Mis Tareas Asignadas de Mi Jornada se pueden abrir evidencias.
+- SOLO las tareas activas en estado En Progreso permiten adjuntar archivos.
+- En Revisión y Finalizada: se pueden consultar y descargar evidencias,
+  pero no subir, desactivar ni reactivar.
+- El backend también valida el estado, incluso si se intenta llamar la API
+  directamente o cambia el estado mientras se usa la interfaz.
+- Al iniciar una nueva tarea su estado es En Progreso, por lo que sigue
+  siendo posible adjuntar archivos al crearla.
+- Se conservan permisos, formatos y cuotas originales.
+
+INSTALACION / ACTUALIZACION DESDE V0.5.23:
+1. Detener frontend y backend anteriores.
+2. Extraer este ZIP COMPLETO en una carpeta nueva.
+3. Ejecutar INSTALAR_DEPENDENCIAS_TIMEFLOW.bat (no reinstala dependencias
+   compatibles; prepara/compila componentes, verifica base de datos).
+4. Ejecutar backend/iniciar_servidor.bat.
+5. Ejecutar frontend/iniciar_servidor.bat.
+
+No necesita nuevas migraciones de MySQL.
+
+REVISION REALIZADA EN ESTE ENTORNO:
+- Backend: controlador Java compilado con Java 21 a partir de dependencias
+  presentes en el JAR original.
+- Backend: prueba funcional aislada del controlador con un TXT valido:
+  En Progreso => 201; En Revision, Finalizada y otros estados => 403.
+  Reactivar => 204 solo en progreso, 403 en otros estados.
+- Frontend: pruebas Node; comprobacion sintactica JSX.
+- Paquete: se verifico CRC del ZIP y el JAR recompuesto; se conservaron
+  las bibliotecas internas del JAR sin recomprimir.
+- No se ejecutaron pruebas Windows, navegador, MySQL real ni build Vite,
+  porque faltan dependencias Node en este entorno.
+
+No se alteran scripts de instalacion, SQL ni modelo de datos.

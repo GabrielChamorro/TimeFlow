@@ -1,0 +1,28 @@
+TIMEFLOW V0.4.7 - CORRECCION DE ELEVACION DEL INSTALADOR
+Fecha: 24-10-2026
+Base: TimeFlow V0.4.6, que incorpora jornadas MySQL / Check In y Check Out.
+
+ERROR REPORTADO EN WINDOWS:
+El sistema no encuentra la etiqueta por lotes especificada: elevate
+
+CAUSA CONFIRMADA EN EL CODIGO:
+El BAT backend\instalar_dependencias.bat usaba GOTO :elevate,
+pero no tenia una etiqueta :elevate declarada. El bloque de elevacion
+estaba despues de la comprobacion sin una bifurcacion valida.
+
+CORRECCION:
+- Se agrego :elevate y la bifurcacion goto :after_elevation.
+- Si ya hay privilegios de administrador, se omite solicitar UAC.
+- Sin privilegios, se usa el auxiliar y ruta absoluta de V0.4.6.
+- Se crea backend\INSTALADOR_DIAGNOSTICO.txt al comienzo de la
+  ejecucion, incluso si falla la solicitud de administrador.
+- Se registran errores del inicio sin incluir contrasenas.
+- No se modifican datos del proyecto ni la funcionalidad de las jornadas.
+- Se sincronizan versiones de POM, package y scripts a 0.4.7.
+
+VERIFICACIONES REALIZADAS:
+- Revisados saltos y etiquetas de los BAT del ZIP.
+- Archivos BAT/CMD en CRLF; ZIP comprobado.
+- XML y JSON validados; fuentes de V0.4.6 conservadas.
+- No se pudo ejecutar CMD / UAC en Windows desde este entorno.
+- Maven/JUnit/npm NO fueron ejecutados ni se declaran aprobados.

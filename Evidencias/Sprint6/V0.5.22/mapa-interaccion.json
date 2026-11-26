@@ -1,0 +1,61 @@
+{
+  "version": "0.5.22-SNAPSHOT",
+  "browser": "IAB Chromium real",
+  "datasetNodes": 100,
+  "mountedNodesAtFit": 100,
+  "edges": 90,
+  "initialMetrics": {
+    "total": 100,
+    "revision": 33,
+    "aprobadas": 33,
+    "metas": 33
+  },
+  "afterExternalMutation": {
+    "total": 100,
+    "revision": 34,
+    "aprobadas": 33,
+    "metas": 34
+  },
+  "updatedWithoutF5": true,
+  "wheel": {
+    "before": "transform: translate3d(201.562px, 28.3828px, 0px) scale(0.160156); transform-origin: 0px 0px; will-change: transform;",
+    "after": "transform: translate3d(201.562px, 28.3828px, 0px) scale(0.24); transform-origin: 0px 0px; will-change: transform;"
+  },
+  "pan": {
+    "mouseDx": 100,
+    "mouseDy": 60,
+    "before": "transform: translate3d(201.562px, 28.3828px, 0px) scale(0.24); transform-origin: 0px 0px; will-change: transform;",
+    "after": "transform: translate3d(301.562px, 88.3828px, 0px) scale(0.24); transform-origin: 0px 0px; will-change: transform;"
+  },
+  "continuousInputBatch": {
+    "cycles": 6,
+    "drags": 12,
+    "wheelGestures": 12,
+    "durationToolSeconds": 9.14
+  },
+  "frameSamples": [
+    {
+      "nodes": 100,
+      "seconds": 30.0017,
+      "frames": 1389,
+      "fps": 46.29737648199935,
+      "p95ms": 27.80000000000291,
+      "over50ms": 21,
+      "capturedAt": "2026-11-16T04:22:45.669Z"
+    },
+    {
+      "nodes": 100,
+      "seconds": 30.004606,
+      "frames": 1214,
+      "fps": 40.46045463819788,
+      "p95ms": 27.90000000000873,
+      "over50ms": 33,
+      "capturedAt": "2026-11-16T04:24:03.123Z"
+    }
+  ],
+  "limits": [
+    "rAF mide disponibilidad de cuadros, no FPS de rasterización ni latencia de entrada individual.",
+    "Dos muestras de 30 s; la segunda incluye lote de interacción de 9.14 s. No es carga prolongada ni comparación contra menos nodos.",
+    "No se certifican Chrome/Edge nativos ni despliegue online."
+  ]
+}

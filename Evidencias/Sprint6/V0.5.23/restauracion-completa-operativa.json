@@ -1,0 +1,185 @@
+{
+  "version": "0.5.23-SNAPSHOT",
+  "checks": [
+    {
+      "case": "Sesión fuente válida antes del respaldo",
+      "passed": true
+    },
+    {
+      "case": "Respaldo completo incluye BLOB y supera 1GiB",
+      "passed": true
+    },
+    {
+      "case": "Interrupción controlada del cliente de importación",
+      "passed": true
+    },
+    {
+      "case": "Restore íntegro tabla evidencias_tarea",
+      "passed": true
+    },
+    {
+      "case": "Restore íntegro tabla jornadas",
+      "passed": true
+    },
+    {
+      "case": "Restore íntegro tabla mensajes",
+      "passed": true
+    },
+    {
+      "case": "Restore íntegro tabla renovaciones_jwt",
+      "passed": true
+    },
+    {
+      "case": "Restore íntegro tabla sesiones_jwt",
+      "passed": true
+    },
+    {
+      "case": "Restore íntegro tabla tarea_dependencias",
+      "passed": true
+    },
+    {
+      "case": "Restore íntegro tabla tarea_registros",
+      "passed": true
+    },
+    {
+      "case": "Restore íntegro tabla tareas",
+      "passed": true
+    },
+    {
+      "case": "Restore íntegro tabla tipos_tarea",
+      "passed": true
+    },
+    {
+      "case": "Restore íntegro tabla usuarios",
+      "passed": true
+    },
+    {
+      "case": "Todas las tablas fuente restauradas",
+      "passed": true
+    },
+    {
+      "case": "SHA256 de todos los archivos restaurados coincide",
+      "passed": true
+    },
+    {
+      "case": "JWT previo al respaldo funciona en aplicación restaurada",
+      "passed": true
+    },
+    {
+      "case": "Login real contra backend y base restaurada",
+      "passed": true
+    },
+    {
+      "case": "Invalidación SQL revoca JWT restaurado",
+      "passed": true
+    },
+    {
+      "case": "Invalidación SQL revoca cookie restaurada",
+      "passed": true
+    },
+    {
+      "case": "Rotación y revocación rechazan JWT anterior",
+      "passed": true
+    },
+    {
+      "case": "Rotación y revocación rechazan renovación anterior",
+      "passed": true
+    },
+    {
+      "case": "Nuevo login y renovación funcionan con clave rotada",
+      "passed": true
+    },
+    {
+      "case": "Firma de JWT nuevo corresponde a clave nueva",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "scope": "Respaldo SQL completo de todas las tablas y BLOB del entorno sintético 33316; interrupción de importación, reimportación, backend restaurado real HTTP 18087, invalidación y rotación. Sin UI ni base personal. Root solo en réplica aislada, no certifica permisos productivos.",
+  "dumpBytes": 5034379281,
+  "dumpSha256": "f69fa6e01a1cb5370994a83075df4cfb3ab8c446325afbad6841e246b883b068",
+  "backupSeconds": 164.0,
+  "restoreSeconds": 458.74,
+  "tablesAtInterruptedImport": 0,
+  "tables": [
+    {
+      "table": "evidencias_tarea",
+      "rows": 466,
+      "mysqlExtendedChecksum": "3831485559"
+    },
+    {
+      "table": "jornadas",
+      "rows": 34,
+      "mysqlExtendedChecksum": "3890789515"
+    },
+    {
+      "table": "mensajes",
+      "rows": 17,
+      "mysqlExtendedChecksum": "4116243872"
+    },
+    {
+      "table": "renovaciones_jwt",
+      "rows": 188,
+      "mysqlExtendedChecksum": "1758874376"
+    },
+    {
+      "table": "sesiones_jwt",
+      "rows": 143,
+      "mysqlExtendedChecksum": "1575148989"
+    },
+    {
+      "table": "tarea_dependencias",
+      "rows": 408,
+      "mysqlExtendedChecksum": "2618895009"
+    },
+    {
+      "table": "tarea_registros",
+      "rows": 56,
+      "mysqlExtendedChecksum": "3013220609"
+    },
+    {
+      "table": "tareas",
+      "rows": 410,
+      "mysqlExtendedChecksum": "3829357916"
+    },
+    {
+      "table": "tipos_tarea",
+      "rows": 18,
+      "mysqlExtendedChecksum": "1673681403"
+    },
+    {
+      "table": "usuarios",
+      "rows": 83,
+      "mysqlExtendedChecksum": "4059722968"
+    }
+  ],
+  "personalDatabaseTouched": false,
+  "java": "Temurin21.0.13+9",
+  "finalJarRetest": {
+    "sha256": "3136391b19028bc2bbc038ef187921a0972323f043fe60502c1d542b42e10f8c",
+    "checks": [
+      {
+        "case": "JAR definitivo: login en copia restaurada",
+        "passed": true
+      },
+      {
+        "case": "JAR definitivo: revocación rechaza acceso y cookie",
+        "passed": true
+      },
+      {
+        "case": "JAR definitivo: rotación rechaza sesión anterior",
+        "passed": true
+      },
+      {
+        "case": "JAR definitivo: login y refresh con clave nueva",
+        "passed": true
+      },
+      {
+        "case": "JAR definitivo: firma con clave nueva comprobada",
+        "passed": true
+      }
+    ],
+    "passed": true,
+    "scope": "Repetición con el JAR definitivo generado por clean verify de Java21.0.13, sobre la misma copia completa ya restaurada. No reemplaza el cotejo de integridad previo."
+  }
+}

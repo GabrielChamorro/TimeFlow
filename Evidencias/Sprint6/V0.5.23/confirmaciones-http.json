@@ -1,0 +1,230 @@
+{
+  "version": "0.5.23-SNAPSHOT",
+  "checks": [
+    {
+      "case": "login s6-7eff1ef2-admin-a23@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "login s6-7eff1ef2-admin-b23@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "login s6-7eff1ef2-worker23@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "login s6-7eff1ef2-ajeno23@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "crear tarea Baja condicional HTTP23",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Ajeno no desactiva tarea",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Versión malformada no ejecuta baja",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Edición remota previa",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Baja obsoleta de tarea devuelve409",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "409 no altera reloj/estado/version",
+      "passed": true
+    },
+    {
+      "case": "Confirmaciones concurrentes: 204 y404, una sola baja",
+      "passed": true
+    },
+    {
+      "case": "MySQL preserva tarea y pausa cronómetro",
+      "passed": true
+    },
+    {
+      "case": "crear tarea Archivo condicional HTTP23",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Archivo para conflicto",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Archivo ajeno prohibido",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Archivo con padre obsoleto devuelve409",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "Archivo activo y contenido intactos tras409",
+      "passed": true
+    },
+    {
+      "case": "Archivo con versión reciente desactivado",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "Contenido preservado tras baja",
+      "passed": true
+    },
+    {
+      "case": "crear usuario usuario-conflicto23",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "login s6-52a663e0-usuario-conflicto23@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "Segunda sesión edita cuenta",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Trabajador no desactiva cuentas",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Cuenta obsoleta devuelve409",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "409 no revoca sesión de cuenta",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Cuenta actual se desactiva",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "Baja actual revoca acceso",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "MySQL cuenta conservada como inactiva",
+      "passed": true
+    },
+    {
+      "case": "Tipo sintético",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Segunda sesión edita tipo",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Trabajador no desactiva tipos",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Tipo obsoleto devuelve409",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "Tipo sigue activo tras409",
+      "passed": true
+    },
+    {
+      "case": "Tipo actual se desactiva",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "Mensaje de prueba",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Sin sesión no desactiva mensaje",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    }
+  ],
+  "passed": true,
+  "oldClientsWithoutVersion": "Compatibilidad conservada; UI V23 siempre envía versión capturada. Clientes que envían versión obsoleta reciben409.",
+  "scope": "Dos administradores con JWT independientes, propietario/ajeno, MySQL real; perfiles UI nativos se verifican por separado."
+}

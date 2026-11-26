@@ -1,0 +1,93 @@
+{
+  "version": "0.5.23-SNAPSHOT",
+  "node": {
+    "tests": 106,
+    "failed": 0,
+    "skipped": 0
+  },
+  "junit": {
+    "tests": 169,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "frontendBuildPassed": true,
+  "mavenCleanVerifyPassed": true,
+  "lint": {
+    "errors": 0,
+    "warnings": 9,
+    "rulesDisabled": false
+  },
+  "newman": {
+    "iterations": {
+      "total": 1,
+      "pending": 0,
+      "failed": 0
+    },
+    "items": {
+      "total": 32,
+      "pending": 0,
+      "failed": 0
+    },
+    "scripts": {
+      "total": 64,
+      "pending": 0,
+      "failed": 0
+    },
+    "prerequests": {
+      "total": 32,
+      "pending": 0,
+      "failed": 0
+    },
+    "requests": {
+      "total": 32,
+      "pending": 0,
+      "failed": 0
+    },
+    "tests": {
+      "total": 32,
+      "pending": 0,
+      "failed": 0
+    },
+    "assertions": {
+      "total": 40,
+      "pending": 0,
+      "failed": 0
+    },
+    "testScripts": {
+      "total": 32,
+      "pending": 0,
+      "failed": 0
+    },
+    "prerequestScripts": {
+      "total": 32,
+      "pending": 0,
+      "failed": 0
+    }
+  },
+  "httpSuites": {
+    "integracion-mysql-final.json": 152,
+    "funcionalidades-final.json": 49,
+    "cronometros-publica-final.json": 64,
+    "renovacion-mysql.json": 38,
+    "usuarios-mysql.json": 20,
+    "tipos-mysql.json": 18,
+    "tareas-mysql.json": 27,
+    "concurrencia-final.json": 2,
+    "presencia-mysql.json": 63,
+    "cronometros-mysql.json": 81,
+    "confirmaciones-http.json": 41,
+    "confirmaciones-mysql-ui.json": 17,
+    "migraciones-y-respaldo.json": 11,
+    "corpus-archivos.json": 57,
+    "restauracion-completa-operativa.json": 23,
+    "sincronizacion-y-carga-http.json": 15,
+    "mapa100-http.json": 212
+  },
+  "restoreFinalJarRetested": true,
+  "clockRulesUnchanged": true,
+  "browserCertification": "Parcial: IAB US20 y login Chrome; resto nativo bloqueado por confianza URL.",
+  "sprintState": "Abierto",
+  "productionCertified": false,
+  "humanAcceptance": false
+}

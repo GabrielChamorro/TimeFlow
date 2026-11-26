@@ -2,80 +2,148 @@
 setlocal EnableExtensions DisableDelayedExpansion
 chcp 65001 >nul
 cd /d "%~dp0"
-title TimeFlow V0.5.0 - Base de datos
+title TimeFlow V0.5.23 - Base de datos
+
 if not exist "%~dp0config_local.bat" (
-    echo [ERROR] Falta config_local.bat. Ejecuta configurar_entorno_local.bat.
-    if not defined TIMEFLOW_INSTALLER_MODE pause
-    endlocal & exit /b 1
+    echo [ERROR] Falta config_local.bat. Ejecuta el instalador completo.
+    goto :error_fin
 )
 call "%~dp0config_local.bat"
 call "%~dp0usar_mysql.bat" >nul 2>&1
 if errorlevel 1 (
-    echo [ERROR] No se encontro el cliente MySQL.
-    if not defined TIMEFLOW_INSTALLER_MODE pause
-    endlocal & exit /b 1
+    echo [ERROR] Falta mysql.exe.
+    goto :error_fin
 )
-if not exist "%~dp0sql\esquema_timeflow.sql" (
-    echo [ERROR] Falta sql\esquema_timeflow.sql.
-    if not defined TIMEFLOW_INSTALLER_MODE pause
-    endlocal & exit /b 1
+if not defined DB_USER (
+    echo [ERROR] DB_USER no esta configurado.
+    goto :error_fin
 )
+if not defined DB_PASSWORD (
+    echo [ERROR] DB_PASSWORD no esta configurado.
+    goto :error_fin
+)
+if not exist "%~dp0interno\_comprobar_bd_v0523.ps1" (
+    echo [ERROR] Falta _comprobar_bd_v0523.ps1.
+    goto :error_fin
+)
+
+rem La contrasena ya se obtuvo de config_local.bat. Nunca se pasa como argumento
+rem ni se escribe en la salida. Se elimina al finalizar este proceso.
 set "MYSQL_PWD=%DB_PASSWORD%"
-"%MYSQL_EXE%" -u "%DB_USER%" -h 127.0.0.1 -P 3306 -N -B -e "SELECT 1;" >nul 2>&1
-if errorlevel 1 goto :error_conexion
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0_estado_bd.ps1" -MySqlExe "%MYSQL_EXE%" -Modo Existe
-if "%ERRORLEVEL%"=="2" goto :error_conexion
-if "%ERRORLEVEL%"=="0" (
-    if not exist "%~dp0.timeflow-backups" mkdir "%~dp0.timeflow-backups"
-    call :hacer_respaldo
-    if errorlevel 1 goto :error_backup
+echo [INFO] Destino MySQL: 127.0.0.1:3306 / teamflow_db
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0interno\_comprobar_bd_v0523.ps1" -MySqlExe "%MYSQL_EXE%" -DbUser "%DB_USER%"
+set "TF_SCHEMA_RC=%ERRORLEVEL%"
+if "%TF_SCHEMA_RC%"=="0" goto :ya_actualizada
+if "%TF_SCHEMA_RC%"=="10" goto :migrar_existente
+if "%TF_SCHEMA_RC%"=="40" goto :instalacion_nueva
+if "%TF_SCHEMA_RC%"=="20" (
+    echo [ERROR] La base existe pero no corresponde a V0.5.19 o posterior.
+    echo [INFO] No se modificaron datos. Requiere una revision de migracion anterior.
+    goto :error_fin
 )
-echo [INFO] Actualizando esquema sin agregar datos de ejemplo ni eliminar registros...
-"%MYSQL_EXE%" --default-character-set=utf8mb4 -u "%DB_USER%" -h 127.0.0.1 -P 3306 --show-warnings < "%~dp0sql\esquema_timeflow.sql"
+echo [ERROR] No se pudo consultar el estado de teamflow_db.
+echo [INFO] Verifica que MySQL este iniciado y que la cuenta tenga permisos.
+goto :error_fin
+
+:ya_actualizada
+echo [OK] teamflow_db ya tiene las migraciones V0.5.21 y V0.5.22.
+echo [INFO] No se repetiran migraciones ni respaldos innecesarios.
+goto :verificar_usuarios
+
+:migrar_existente
+echo.
+echo [INFO] Se detecto una base existente desde V0.5.19.
+echo [INFO] Asegurate de que el backend anterior esta APAGADO.
+echo [INFO] Se guardara un respaldo completo FUERA de la carpeta del proyecto.
+choice /C SN /N /M "Confirmas que esta es tu base y el backend esta apagado? [S/N]: "
+if errorlevel 2 (
+    echo [INFO] Actualizacion cancelada. No se modifico la base.
+    goto :error_fin
+)
+if not exist "%~dp0sql\migracion_v0_5_21_registros.sql" goto :faltan_sql
+if not exist "%~dp0sql\migracion_v0_5_21_historial.sql" goto :faltan_sql
+if not exist "%~dp0sql\migracion_v0_5_22_tiempos.sql" goto :faltan_sql
+if not exist "%MYSQL_BIN%\mysqldump.exe" (
+    echo [ERROR] Falta mysqldump.exe. No se aplica ninguna migracion.
+    goto :error_fin
+)
+set "TF_BACKUP_DIR=%LOCALAPPDATA%\TimeFlow\Respaldos"
+if not exist "%TF_BACKUP_DIR%" mkdir "%TF_BACKUP_DIR%" >nul 2>&1
+if not exist "%TF_BACKUP_DIR%" (
+    echo [ERROR] No se pudo crear la carpeta de respaldo.
+    goto :error_fin
+)
+for /f "delims=" %%T in ('powershell.exe -NoProfile -Command "Get-Date -Format yyyyMMdd-HHmmss-fff"') do set "TF_BACKUP_TIME=%%T"
+if not defined TF_BACKUP_TIME goto :error_respaldo
+set "TF_BACKUP_FILE=%TF_BACKUP_DIR%\teamflow_db_antes_v0523_%TF_BACKUP_TIME%.sql"
+echo [INFO] Creando respaldo completo, sin modificar los datos...
+"%MYSQL_BIN%\mysqldump.exe" --no-defaults --protocol=TCP --host=127.0.0.1 --port=3306 "--user=%DB_USER%" --default-character-set=utf8mb4 --single-transaction --quick --routines --triggers "--result-file=%TF_BACKUP_FILE%" teamflow_db
+if errorlevel 1 goto :error_respaldo
+if not exist "%TF_BACKUP_FILE%" goto :error_respaldo
+for %%B in ("%TF_BACKUP_FILE%") do if %%~zB LSS 100 goto :error_respaldo
+powershell.exe -NoProfile -Command "Write-Host ('[OK] Respaldo SHA-256: '+(Get-FileHash -LiteralPath $env:TF_BACKUP_FILE -Algorithm SHA256).Hash)"
+if errorlevel 1 goto :error_respaldo
+echo [OK] Respaldo guardado en: %TF_BACKUP_FILE%
+echo [INFO] Aplicando solo las migraciones pendientes de esquema. Pueden repetirse sin borrar registros.
+call :aplicar_sql "migracion_v0_5_21_registros.sql"
 if errorlevel 1 goto :error_sql
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0_estado_bd.ps1" -MySqlExe "%MYSQL_EXE%" -Modo UsuariosSinHash
-if "%ERRORLEVEL%"=="3" goto :error_legado
-if errorlevel 1 goto :error_verificacion
+call :aplicar_sql "migracion_v0_5_21_historial.sql"
+if errorlevel 1 goto :error_sql
+call :aplicar_sql "migracion_v0_5_22_tiempos.sql"
+if errorlevel 1 goto :error_sql
+goto :verificar_esquema
+
+:instalacion_nueva
+if not exist "%~dp0sql\esquema_timeflow.sql" goto :faltan_sql
+echo [INFO] No existe teamflow_db. Se creara la estructura inicial.
+"%MYSQL_EXE%" --no-defaults --protocol=TCP --host=127.0.0.1 --port=3306 "--user=%DB_USER%" --default-character-set=utf8mb4 --show-warnings < "%~dp0sql\esquema_timeflow.sql"
+if errorlevel 1 goto :error_sql
+goto :verificar_esquema
+
+:aplicar_sql
+echo [INFO] Ejecutando %~1
+"%MYSQL_EXE%" --no-defaults --protocol=TCP --host=127.0.0.1 --port=3306 "--user=%DB_USER%" --default-character-set=utf8mb4 --database=teamflow_db --show-warnings < "%~dp0sql\%~1"
+exit /b %ERRORLEVEL%
+
+:verificar_esquema
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0interno\_comprobar_bd_v0523.ps1" -MySqlExe "%MYSQL_EXE%" -DbUser "%DB_USER%"
+if errorlevel 1 (
+    echo [ERROR] La verificacion posterior a la migracion fallo.
+    echo [INFO] No inicies el backend hasta revisar la base y el respaldo.
+    goto :error_fin
+)
+
+:verificar_usuarios
+rem Se conserva la comprobacion historica de contrasenas BCrypt.
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0interno\_estado_bd.ps1" -MySqlExe "%MYSQL_EXE%" -Modo UsuariosSinHash -DbUser "%DB_USER%"
+set "TF_USERS_RC=%ERRORLEVEL%"
+if "%TF_USERS_RC%"=="3" (
+    echo [ERROR] Existen usuarios con contrasenas antiguas sin hash BCrypt.
+    echo [INFO] No se borraron ni cambiaron sus contrasenas.
+    goto :error_fin
+)
+if not "%TF_USERS_RC%"=="0" (
+    echo [ERROR] No fue posible verificar los usuarios de MySQL.
+    goto :error_fin
+)
+echo [OK] Base de datos de TimeFlow V0.5.23 preparada.
 set "MYSQL_PWD="
-echo [OK] Estructura de teamflow_db preparada.
 if not defined TIMEFLOW_INSTALLER_MODE pause
 endlocal & exit /b 0
 
-:hacer_respaldo
-if not exist "%MYSQL_BIN%\mysqldump.exe" exit /b 1
-for /f "delims=" %%T in ('powershell.exe -NoProfile -Command "Get-Date -Format yyyyMMdd-HHmmss"') do set "TF_BACKUP_TIME=%%T"
-if not defined TF_BACKUP_TIME exit /b 1
-set "TF_BACKUP_FILE=%~dp0.timeflow-backups\teamflow_db_%TF_BACKUP_TIME%.sql"
-echo [INFO] Guardando respaldo de teamflow_db antes de modificar su estructura...
-"%MYSQL_BIN%\mysqldump.exe" -u "%DB_USER%" -h 127.0.0.1 -P 3306 --single-transaction --quick --routines --triggers teamflow_db > "%TF_BACKUP_FILE%"
-if errorlevel 1 exit /b 1
-for %%B in ("%TF_BACKUP_FILE%") do if %%~zB LSS 100 exit /b 1
-echo [OK] Copia de seguridad creada en backend\.timeflow-backups.
-exit /b 0
-
-:error_conexion
-set "MYSQL_PWD="
-echo [ERROR] MySQL no responde o rechazo las credenciales; no se modifico la BD.
+:faltan_sql
+echo [ERROR] Faltan archivos SQL. Extrae el ZIP completo antes de instalar.
 goto :error_fin
-:error_backup
-set "MYSQL_PWD="
-echo [ERROR] No fue posible respaldar la base existente. No se aplico ningun cambio.
-echo Verifica que mysqldump.exe exista y que haya espacio en disco.
-goto :error_fin
-:error_verificacion
-set "MYSQL_PWD="
-echo [ERROR] No se pudo verificar el estado de las contrasenas antiguas.
-echo [INFO] No se puede confirmar la instalacion; revisa MySQL y el respaldo.
-goto :error_fin
-:error_legado
-set "MYSQL_PWD="
-echo [ERROR] Hay usuarios antiguos sin password_hash BCrypt.
-echo [INFO] Se conservaron los datos; necesitan migracion antes de iniciar TimeFlow.
-echo [INFO] Revisa los respaldos de backend\.timeflow-backups y la guia V0.5.0.
+:error_respaldo
+echo [ERROR] El respaldo fallo. No se ejecutaron migraciones.
+echo [INFO] Comprueba el disco, los permisos y mysqldump.exe.
 goto :error_fin
 :error_sql
-set "MYSQL_PWD="
-echo [ERROR] MySQL devolvio un error al actualizar el esquema. Revisa la salida superior.
+echo [ERROR] MySQL fallo al aplicar el esquema o alguna migracion.
+echo [INFO] No inicies el backend; revisa el error y conserva el respaldo.
+echo [INFO] Los SQL son repetibles, pero no intentes restaurar sin revisar los datos.
+goto :error_fin
 :error_fin
+set "MYSQL_PWD="
 if not defined TIMEFLOW_INSTALLER_MODE pause
 endlocal & exit /b 1

@@ -1,0 +1,9 @@
+{
+  "version": "0.5.21-SNAPSHOT",
+  "bytes": 57608121,
+  "sha256": "00cc5c6f0bf318a770c3e5502763c1f042b4caf1e0cd002b3ba3900b7aea8882",
+  "crcValid": true,
+  "bootedWithMysql": true,
+  "runtimePort": 18086,
+  "mysqlPort": 33316
+}

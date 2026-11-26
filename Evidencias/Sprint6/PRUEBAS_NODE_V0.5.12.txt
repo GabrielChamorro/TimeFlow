@@ -1,0 +1,310 @@
+TAP version 13
+# Subtest: el listado de registros inactivos requiere rol administrador, antes del GET genérico
+ok 1 - el listado de registros inactivos requiere rol administrador, antes del GET genérico
+  ---
+  duration_ms: 0.637883
+  type: 'test'
+  ...
+# Subtest: las listas administrativas comprueban los permisos en el propio controlador
+ok 2 - las listas administrativas comprueban los permisos en el propio controlador
+  ---
+  duration_ms: 0.465518
+  type: 'test'
+  ...
+# Subtest: las operaciones de tipos propagan el error del servidor y el formulario espera confirmación
+ok 3 - las operaciones de tipos propagan el error del servidor y el formulario espera confirmación
+  ---
+  duration_ms: 0.157733
+  type: 'test'
+  ...
+# Subtest: la gestión de usuarios separa los inactivos del directorio general y permite recuperarlos
+ok 4 - la gestión de usuarios separa los inactivos del directorio general y permite recuperarlos
+  ---
+  duration_ms: 0.128029
+  type: 'test'
+  ...
+# Subtest: el cambio de contraseña propia termina la sesión inválida
+ok 5 - el cambio de contraseña propia termina la sesión inválida
+  ---
+  duration_ms: 0.105536
+  type: 'test'
+  ...
+# Subtest: con tareas reales, crea todas las curvas sin errores de variables
+ok 6 - con tareas reales, crea todas las curvas sin errores de variables
+  ---
+  duration_ms: 1.191601
+  type: 'test'
+  ...
+# Subtest: la flecha nace en el borde de la dependencia y termina en el de la tarea
+ok 7 - la flecha nace en el borde de la dependencia y termina en el de la tarea
+  ---
+  duration_ms: 0.134829
+  type: 'test'
+  ...
+# Subtest: las dependencias situadas a la derecha también apuntan al destino
+ok 8 - las dependencias situadas a la derecha también apuntan al destino
+  ---
+  duration_ms: 1.234144
+  type: 'test'
+  ...
+# Subtest: el límite de archivos es 60 MB exactos
+ok 9 - el límite de archivos es 60 MB exactos
+  ---
+  duration_ms: 0.687055
+  type: 'test'
+  ...
+# Subtest: el selector mantiene los tipos autorizados y rechaza archivos vacíos
+ok 10 - el selector mantiene los tipos autorizados y rechaza archivos vacíos
+  ---
+  duration_ms: 0.194688
+  type: 'test'
+  ...
+# Subtest: genera una flecha por cada requisito previo
+ok 11 - genera una flecha por cada requisito previo
+  ---
+  duration_ms: 1.132955
+  type: 'test'
+  ...
+# Subtest: selección ilumina ramas de ancestros sin repetir nodos
+ok 12 - selección ilumina ramas de ancestros sin repetir nodos
+  ---
+  duration_ms: 2.558212
+  type: 'test'
+  ...
+# Subtest: rechaza ciclo en cualquier rama
+ok 13 - rechaza ciclo en cualquier rama
+  ---
+  duration_ms: 0.227236
+  type: 'test'
+  ...
+# Subtest: organiza tareas con varios requisitos a la derecha de todos
+ok 14 - organiza tareas con varios requisitos a la derecha de todos
+  ---
+  duration_ms: 0.413772
+  type: 'test'
+  ...
+# Subtest: sin dependencias mantiene el mapa original
+ok 15 - sin dependencias mantiene el mapa original
+  ---
+  duration_ms: 0.214066
+  type: 'test'
+  ...
+# Subtest: omite referencias fuera del mapa sin inventar conexiones
+ok 16 - omite referencias fuera del mapa sin inventar conexiones
+  ---
+  duration_ms: 0.191082
+  type: 'test'
+  ...
+# Subtest: usa datos antiguos de prueba si no existe la lista
+ok 17 - usa datos antiguos de prueba si no existe la lista
+  ---
+  duration_ms: 0.234035
+  type: 'test'
+  ...
+# Subtest: 100 tareas generan posiciones únicas y compactas
+ok 18 - 100 tareas generan posiciones únicas y compactas
+  ---
+  duration_ms: 2.162767
+  type: 'test'
+  ...
+# Subtest: agregar nueva tarea no desplaza las existentes
+ok 19 - agregar nueva tarea no desplaza las existentes
+  ---
+  duration_ms: 1.34594
+  type: 'test'
+  ...
+# Subtest: mapa virtualizado muestra nodos cercanos, no los alejados
+ok 20 - mapa virtualizado muestra nodos cercanos, no los alejados
+  ---
+  duration_ms: 5.365912
+  type: 'test'
+  ...
+# Subtest: un segmento que cruza la pantalla no desaparece
+ok 21 - un segmento que cruza la pantalla no desaparece
+  ---
+  duration_ms: 0.223601
+  type: 'test'
+  ...
+# Subtest: encajar nodos produce zoom y desplazamiento finitos
+ok 22 - encajar nodos produce zoom y desplazamiento finitos
+  ---
+  duration_ms: 0.383968
+  type: 'test'
+  ...
+# Subtest: sin nodos se conserva la vista inicial
+ok 23 - sin nodos se conserva la vista inicial
+  ---
+  duration_ms: 0.144224
+  type: 'test'
+  ...
+# Subtest: todas las importaciones locales del frontend apuntan a archivos existentes
+ok 24 - todas las importaciones locales del frontend apuntan a archivos existentes
+  ---
+  duration_ms: 4.150364
+  type: 'test'
+  ...
+# Subtest: monitoreo tiene disponibles las constantes usadas para las flechas
+ok 25 - monitoreo tiene disponibles las constantes usadas para las flechas
+  ---
+  duration_ms: 1.112775
+  type: 'test'
+  ...
+# Subtest: diálogos de administración y tarea usan transiciones de cierre
+ok 26 - diálogos de administración y tarea usan transiciones de cierre
+  ---
+  duration_ms: 0.442584
+  type: 'test'
+  ...
+# Subtest: microinteracciones no ralentizan la navegación ni la edición del mapa
+ok 27 - microinteracciones no ralentizan la navegación ni la edición del mapa
+  ---
+  duration_ms: 0.235909
+  type: 'test'
+  ...
+# Subtest: indicadores de espera están ligados al estado real de la operación
+ok 28 - indicadores de espera están ligados al estado real de la operación
+  ---
+  duration_ms: 0.36526
+  type: 'test'
+  ...
+# Subtest: la subida de evidencias tiene un limite mayor que el de JSON
+ok 29 - la subida de evidencias tiene un limite mayor que el de JSON
+  ---
+  duration_ms: 0.865619
+  type: 'test'
+  ...
+# Subtest: la lectura de archivos necesita comprobar permisos
+ok 30 - la lectura de archivos necesita comprobar permisos
+  ---
+  duration_ms: 0.212154
+  type: 'test'
+  ...
+# Subtest: las tareas nuevas se vinculan al identificador del responsable
+ok 31 - las tareas nuevas se vinculan al identificador del responsable
+  ---
+  duration_ms: 0.28448
+  type: 'test'
+  ...
+# Subtest: las evidencias desactivadas tambien cuentan para el limite de almacenamiento
+ok 32 - las evidencias desactivadas tambien cuentan para el limite de almacenamiento
+  ---
+  duration_ms: 0.207056
+  type: 'test'
+  ...
+# Subtest: el JWT se vincula al ID del usuario, no solo al correo
+ok 33 - el JWT se vincula al ID del usuario, no solo al correo
+  ---
+  duration_ms: 0.151544
+  type: 'test'
+  ...
+# Subtest: rechaza respuestas mal formadas para no bloquear la interfaz
+ok 34 - rechaza respuestas mal formadas para no bloquear la interfaz
+  ---
+  duration_ms: 1.656499
+  type: 'test'
+  ...
+# Subtest: descarta respuestas de una sesión anterior
+ok 35 - descarta respuestas de una sesión anterior
+  ---
+  duration_ms: 0.134779
+  type: 'test'
+  ...
+# Subtest: los endpoints de borrado no eliminan filas de MySQL
+ok 36 - los endpoints de borrado no eliminan filas de MySQL
+  ---
+  duration_ms: 2.597719
+  type: 'test'
+  ...
+# Subtest: las tareas y plantillas se listan solo si estan activas
+ok 37 - las tareas y plantillas se listan solo si estan activas
+  ---
+  duration_ms: 0.333653
+  type: 'test'
+  ...
+# Subtest: el backend oculta usuarios, mensajes y archivos desactivados
+ok 38 - el backend oculta usuarios, mensajes y archivos desactivados
+  ---
+  duration_ms: 0.381434
+  type: 'test'
+  ...
+# Subtest: el frontend no anuncia borrado permanente
+ok 39 - el frontend no anuncia borrado permanente
+  ---
+  duration_ms: 0.688357
+  type: 'test'
+  ...
+# Subtest: existe una migracion que conserva filas y agrega un estado
+ok 40 - existe una migracion que conserva filas y agrega un estado
+  ---
+  duration_ms: 0.34486
+  type: 'test'
+  ...
+# Subtest: la demo contiene 100 tareas con identificadores únicos
+ok 41 - la demo contiene 100 tareas con identificadores únicos
+  ---
+  duration_ms: 1.789565
+  type: 'test'
+  ...
+# Subtest: cada detalle ficticio tiene los datos que muestra el visor
+ok 42 - cada detalle ficticio tiene los datos que muestra el visor
+  ---
+  duration_ms: 0.616592
+  type: 'test'
+  ...
+# Subtest: el detalle ficticio está separado de las funciones de escritura
+ok 43 - el detalle ficticio está separado de las funciones de escritura
+  ---
+  duration_ms: 0.639526
+  type: 'test'
+  ...
+# Subtest: los clics en los nodos de demostración abren su propio detalle
+ok 44 - los clics en los nodos de demostración abren su propio detalle
+  ---
+  duration_ms: 0.253945
+  type: 'test'
+  ...
+# Subtest: cambia a cualquier plantilla cuyo ID en MySQL sea numérico
+ok 45 - cambia a cualquier plantilla cuyo ID en MySQL sea numérico
+  ---
+  duration_ms: 0.674167
+  type: 'test'
+  ...
+# Subtest: mantiene la plantilla aunque se recargue la lista desde el backend
+ok 46 - mantiene la plantilla aunque se recargue la lista desde el backend
+  ---
+  duration_ms: 0.936905
+  type: 'test'
+  ...
+# Subtest: selecciona la primera solo al iniciar o si se eliminó la elegida
+ok 47 - selecciona la primera solo al iniciar o si se eliminó la elegida
+  ---
+  duration_ms: 0.157833
+  type: 'test'
+  ...
+# Subtest: no inventa una plantilla si el catálogo está vacío
+ok 48 - no inventa una plantilla si el catálogo está vacío
+  ---
+  duration_ms: 0.217111
+  type: 'test'
+  ...
+# Subtest: admite IDs numéricos o alfanuméricos sin mezclar otros valores
+ok 49 - admite IDs numéricos o alfanuméricos sin mezclar otros valores
+  ---
+  duration_ms: 0.197702
+  type: 'test'
+  ...
+# Subtest: la pantalla usa la validación normalizada al seleccionar y crear
+ok 50 - la pantalla usa la validación normalizada al seleccionar y crear
+  ---
+  duration_ms: 0.436395
+  type: 'test'
+  ...
+1..50
+# tests 50
+# suites 0
+# pass 50
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 236.805957

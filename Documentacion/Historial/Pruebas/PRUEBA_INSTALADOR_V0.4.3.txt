@@ -1,0 +1,31 @@
+TIMEFLOW V0.4.3 - PRUEBA DEL INSTALADOR COMPLETO
+
+1. Extrae el ZIP en una carpeta normal de Windows.
+2. Ejecuta INSTALAR_DEPENDENCIAS_TIMEFLOW.bat.
+3. Acepta la solicitud de administrador si Windows la muestra.
+4. El resumen final debe mostrar cada componente en VERDE cuando:
+   - YA ESTABA INSTALADO / CONFIGURADO, o
+   - fue INSTALADO / CONFIGURADO CORRECTAMENTE.
+5. Cualquier fallo se muestra en ROJO y el instalador termina como incompleto.
+
+Componentes revisados:
+- Liberica JDK 21.0.13.0.2+5 para TimeFlow.
+- Node.js/npm compatible con Vite (instalacion automatica 24.19.0 si falta).
+- Microsoft Visual C++ Runtime x64.
+- MySQL Server (instalacion nueva 8.4.13 LTS si falta).
+- PATH del usuario para Node.js y MySQL.
+- TIMEFLOW_JAVA_HOME para aislar Java 21 sin cambiar el Java 17 global.
+- config_local.bat y base teamflow_db.
+- Maven Wrapper y dependencias Spring Boot.
+- paquetes npm de React/Vite.
+
+PRECHECK DE INICIO
+- backend\iniciar_servidor.bat muestra en verde JDK, Maven, config y MySQL si estan listos.
+  Si falta algo, muestra rojo y NO intenta iniciar Spring Boot.
+- frontend\iniciar_servidor.bat muestra en verde Node, npm y paquetes React/Vite si estan listos.
+  Si falta algo, muestra rojo y NO intenta iniciar Vite.
+
+NOTA DE SEGURIDAD
+Si existe un MySQL instalado dentro de un rango vulnerable conocido por Sprint 4,
+el instalador NO hace una actualizacion automatica sobre tus datos. Lo marca en rojo
+para que la actualizacion se haga de forma controlada y con respaldo.

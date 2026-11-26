@@ -1,0 +1,116 @@
+{
+  "version": "0.5.19-SNAPSHOT",
+  "checks": [
+    {
+      "case": "login admin@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "crear usuario admin-version19",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "login s6-52aff7e7-admin-version19@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "crear usuario user-version19",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "dos administradores editan: 200 y 409",
+      "passed": true
+    },
+    {
+      "case": "ganador conservado y versión incrementada",
+      "passed": true
+    },
+    {
+      "case": "cuenta omite versión",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "versión de cuenta obsoleta",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "editar correo actual",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "baja durante edición",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "borrador de cuenta desactivada no guarda",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "reactivar conserva control de versión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "borrador anterior a reactivación sigue rechazado",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "edición revisada de rol",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear usuario worker-no-admin",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "login s6-52aff7e7-worker-no-admin@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "trabajador no edita cuentas",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    }
+  ],
+  "passed": true
+}

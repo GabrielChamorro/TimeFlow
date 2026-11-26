@@ -1,0 +1,22 @@
+{
+  "version": "0.5.21-SNAPSHOT",
+  "checks": [
+    {
+      "case": "Respaldo sintético restaura columnas V0.5.21 y registros sin pérdida",
+      "passed": true
+    },
+    {
+      "case": "Restauración conserva notas y rechazos",
+      "passed": true
+    },
+    {
+      "case": "No se restauran sesiones del entorno de prueba",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "scope": "Esquema completo V0.5.21, 2 tareas y sus notas/rechazos, usuarios sintéticos; solo SQL, sin permisos nuevos ni login HTTP del esquema restaurado",
+  "dumpBytes": 23964,
+  "dumpSha256": "d41174edaafd09cdfc80e19f04ea61beb046536cd7ada90a9e091a3f36baecc8",
+  "dataSha256": "92df37aa116adae5cbd0d78b8e5182ea1f40e215e30c6b7b2a95aecaba8d0ee7"
+}

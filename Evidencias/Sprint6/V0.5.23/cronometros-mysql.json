@@ -1,0 +1,413 @@
+{
+  "version": "0.5.23-SNAPSHOT",
+  "checks": [
+    {
+      "case": "login admin@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "crear usuario cronometros23",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear usuario ajeno-clock23",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "login s6-28585cf9-cronometros23@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "login s6-28585cf9-cronometros23@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "login s6-28585cf9-ajeno-clock23@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "Jornada para cronómetros",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Metadatos requieren sesión",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "crear tarea Cronómetro A",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Ancla A originada por servidor",
+      "passed": true
+    },
+    {
+      "case": "crear tarea Cronómetro B",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Ancla B originada por servidor",
+      "passed": true
+    },
+    {
+      "case": "crear tarea Cronómetro C",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Ancla C originada por servidor",
+      "passed": true
+    },
+    {
+      "case": "Sincronización válida",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Sincronización no almacenable en caché",
+      "passed": true
+    },
+    {
+      "case": "Tres anclas diferentes y ordenadas",
+      "passed": true
+    },
+    {
+      "case": "Crear B y C no reinicia A",
+      "passed": true
+    },
+    {
+      "case": "Sincronización válida",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Sincronización no almacenable en caché",
+      "passed": true
+    },
+    {
+      "case": "Jornada propia incluida",
+      "passed": true
+    },
+    {
+      "case": "Sincronización válida",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Sincronización no almacenable en caché",
+      "passed": true
+    },
+    {
+      "case": "Sincronización válida",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Sincronización no almacenable en caché",
+      "passed": true
+    },
+    {
+      "case": "Sincronización válida",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Sincronización no almacenable en caché",
+      "passed": true
+    },
+    {
+      "case": "Sincronización válida",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Sincronización no almacenable en caché",
+      "passed": true
+    },
+    {
+      "case": "Sincronización válida",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Sincronización no almacenable en caché",
+      "passed": true
+    },
+    {
+      "case": "Sincronización válida",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Sincronización no almacenable en caché",
+      "passed": true
+    },
+    {
+      "case": "Ajeno ve mapa pero no cronómetros privados",
+      "passed": true
+    },
+    {
+      "case": "Sincronización válida",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Sincronización no almacenable en caché",
+      "passed": true
+    },
+    {
+      "case": "Administrador puede supervisar cronómetros",
+      "passed": true
+    },
+    {
+      "case": "Agregar nota B",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Sincronización válida",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Sincronización no almacenable en caché",
+      "passed": true
+    },
+    {
+      "case": "Nota detectada por metadatos sin alterar tiempos",
+      "passed": true
+    },
+    {
+      "case": "Edición normal con campos de reloj inyectados",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Servidor ignora reloj del cliente",
+      "passed": true
+    },
+    {
+      "case": "Cambiar a En Revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Revisión congela segmento",
+      "passed": true
+    },
+    {
+      "case": "Revisión no acumula tiempo",
+      "passed": true
+    },
+    {
+      "case": "Cambiar a En Progreso",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Rechazo retiene acumulado y abre nuevo segmento",
+      "passed": true
+    },
+    {
+      "case": "Cambiar a En Revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Cambiar a Finalizada",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Finalizada permanece detenida",
+      "passed": true
+    },
+    {
+      "case": "Finalizada no admite edición que reactive reloj",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Desactivar C",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "Baja persiste reloj detenido",
+      "passed": true
+    },
+    {
+      "case": "Reactivar C",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Reactivación conserva acumulado e inicia segmento nuevo",
+      "passed": true
+    },
+    {
+      "case": "Dos sesiones modifican estado: una 200 y una 409",
+      "passed": true
+    },
+    {
+      "case": "Conflicto no duplica ni reinicia el segmento detenido",
+      "passed": true
+    },
+    {
+      "case": "Sincronización válida",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Sincronización no almacenable en caché",
+      "passed": true
+    },
+    {
+      "case": "Sincronización válida",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Sincronización no almacenable en caché",
+      "passed": true
+    },
+    {
+      "case": "Reinicio real no altera acumulados/anclas de tres tareas",
+      "passed": true
+    },
+    {
+      "case": "Sincronización válida",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Sincronización no almacenable en caché",
+      "passed": true
+    },
+    {
+      "case": "Sincronización válida",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Sincronización no almacenable en caché",
+      "passed": true
+    },
+    {
+      "case": "Sincronización válida",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Sincronización no almacenable en caché",
+      "passed": true
+    },
+    {
+      "case": "Dos clientes reciben tiempos y estados idénticos",
+      "passed": true
+    },
+    {
+      "case": "Tarea previa sin timestamps conserva desconocidos",
+      "passed": true
+    },
+    {
+      "case": "login s6-7476e7d6-presencia23-a@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "Abrir jornada fixture UI",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea UI23 cronómetro A",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea UI23 cronómetro B",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea UI23 cronómetro C",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    }
+  ],
+  "passed": true,
+  "backendRestarted": true,
+  "rules": "Cuenta En Progreso; revisión, finalización y baja detienen; rechazo/reactivación reanudan; jornada independiente; legado NULL.",
+  "scope": "HTTP/MySQL reales; fixture SQL con relojes NULL representa legado. F5/pestañas/frontend son antecedentes V22, no repetidos en navegador V23."
+}

@@ -1,0 +1,66 @@
+{
+  "version": "0.5.21-SNAPSHOT",
+  "checks": [
+    {
+      "case": "login admin@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "login s6-10c38dc2-historial21@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "Crear plantilla A",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Crear plantilla B",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Crear plantilla Inactiva",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Desactivar plantilla sintética",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "Lista activa accesible al trabajador",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Lista incluye A/B y excluye la inactiva",
+      "passed": true
+    },
+    {
+      "case": "Trabajador no crea plantillas",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    }
+  ],
+  "passed": true
+}

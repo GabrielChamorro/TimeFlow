@@ -1,0 +1,52 @@
+{
+  "version": "0.5.23-SNAPSHOT",
+  "stats": {
+    "iterations": {
+      "total": 1,
+      "pending": 0,
+      "failed": 0
+    },
+    "items": {
+      "total": 32,
+      "pending": 0,
+      "failed": 0
+    },
+    "scripts": {
+      "total": 64,
+      "pending": 0,
+      "failed": 0
+    },
+    "prerequests": {
+      "total": 32,
+      "pending": 0,
+      "failed": 0
+    },
+    "requests": {
+      "total": 32,
+      "pending": 0,
+      "failed": 0
+    },
+    "tests": {
+      "total": 32,
+      "pending": 0,
+      "failed": 0
+    },
+    "assertions": {
+      "total": 40,
+      "pending": 0,
+      "failed": 0
+    },
+    "testScripts": {
+      "total": 32,
+      "pending": 0,
+      "failed": 0
+    },
+    "prerequestScripts": {
+      "total": 32,
+      "pending": 0,
+      "failed": 0
+    }
+  },
+  "failures": 0,
+  "scope": "32 solicitudes de colecci\u00f3n p\u00fablica; entorno con credenciales solo privado, no exportado."
+}

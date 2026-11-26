@@ -1,0 +1,13 @@
+{
+  "name": "backend-0.5.18-SNAPSHOT.jar",
+  "sha256": "1ec5e94087bbd0e99f272539d324602804546e1ce45b7599fb056eaafceb6fd6",
+  "bytes": 57578215,
+  "zipCrcValid": true,
+  "implementationVersion": "0.5.18-SNAPSHOT",
+  "junit": {
+    "tests": 100,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "pages": 8,
+  "layoutClean": true,
+  "indexMatchesPages": true,
+  "formatPropertiesPreserved": true,
+  "primaryRenderer": "render_docx.py intentado; falta soffice.exe",
+  "fallback": "Word instalado exporta PDF; Poppler rasteriza; ocho páginas inspeccionadas visualmente",
+  "qaImagesExcludedFromDelivery": true
+}

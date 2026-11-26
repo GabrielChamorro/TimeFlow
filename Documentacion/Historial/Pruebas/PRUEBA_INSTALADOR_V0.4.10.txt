@@ -1,0 +1,18 @@
+PRUEBA TIMEFLOW V0.4.10 EN WINDOWS
+
+1. Extraer en una carpeta nueva. NO copiar config_local.bat dentro del ZIP
+   que compartas con terceros. Conserva respaldo fuera de la carpeta.
+2. Ejecutar INSTALAR_DEPENDENCIAS_TIMEFLOW.bat y aceptar UAC.
+3. Comprobar etapas:
+   1/9 Java 21: ya instalado si se conserva TIMEFLOW_JAVA_HOME.
+   2/9 Node.js: detecta node.exe y npm.cmd; no reinstala si valida.
+   4/9 MySQL: debe mostrar version real; nunca MySQL con version vacia.
+   5/9 PATH: debe indicar por separado cualquier componente faltante.
+   6/9 Config local: solo solicita credenciales si prechecks previos validaron.
+   7/9 BD: comprueba conexion real con el usuario/clave configurados.
+4. Revisar resumen final y INSTALADOR_DIAGNOSTICO.txt del backend.
+5. No enviar contrasenas ni config_local.bat en capturas.
+6. Probar Check In/Out, F5 y POST /api/tareas sin jornada en Windows.
+
+Si el instalador reporta "MySQL: cliente detectado" pero falla 7/9,
+puede faltar iniciar el servicio o ser incorrecta la contrasena. No borrar BD.

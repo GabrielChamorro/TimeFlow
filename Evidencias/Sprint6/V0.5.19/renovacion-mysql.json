@@ -1,0 +1,160 @@
+{
+  "version": "0.5.19-SNAPSHOT",
+  "checks": [
+    {
+      "case": "login correcto",
+      "passed": true
+    },
+    {
+      "case": "crear cuenta sintética",
+      "passed": true
+    },
+    {
+      "case": "login correcto",
+      "passed": true
+    },
+    {
+      "case": "login correcto",
+      "passed": true
+    },
+    {
+      "case": "cookie HttpOnly, SameSite Strict, ruta limitada y persistente",
+      "passed": true
+    },
+    {
+      "case": "respuesta login no incluye renovación ni hashes",
+      "passed": true
+    },
+    {
+      "case": "no-cache de login",
+      "passed": true
+    },
+    {
+      "case": "restauración tipo F5",
+      "passed": true
+    },
+    {
+      "case": "rotación cambia cookie",
+      "passed": true
+    },
+    {
+      "case": "nuevo cliente restaura cookie aún vigente",
+      "passed": true
+    },
+    {
+      "case": "cookie sola no autentica API de datos",
+      "passed": true
+    },
+    {
+      "case": "CSRF no autorizado se rechaza",
+      "passed": true
+    },
+    {
+      "case": "CSRF no autorizado se rechaza",
+      "passed": true
+    },
+    {
+      "case": "CSRF no autorizado se rechaza",
+      "passed": true
+    },
+    {
+      "case": "CSRF no autorizado se rechaza",
+      "passed": true
+    },
+    {
+      "case": "renovación simultánea 200 y 409",
+      "passed": true
+    },
+    {
+      "case": "ganador conserva acceso",
+      "passed": true
+    },
+    {
+      "case": "JWT breve expira",
+      "passed": true
+    },
+    {
+      "case": "renovación después de expirar acceso",
+      "passed": true
+    },
+    {
+      "case": "reutilización vieja rechazada",
+      "passed": true
+    },
+    {
+      "case": "reutilización revoca familia activa",
+      "passed": true
+    },
+    {
+      "case": "otra sesión independiente sigue vigente",
+      "passed": true
+    },
+    {
+      "case": "login correcto",
+      "passed": true
+    },
+    {
+      "case": "logout confirmado",
+      "passed": true
+    },
+    {
+      "case": "logout elimina cookie",
+      "passed": true
+    },
+    {
+      "case": "logout seguido de F5 no restaura",
+      "passed": true
+    },
+    {
+      "case": "desactivación",
+      "passed": true
+    },
+    {
+      "case": "cuenta inactiva no renueva",
+      "passed": true
+    },
+    {
+      "case": "reactivación",
+      "passed": true
+    },
+    {
+      "case": "reactivar no restaura cookie anterior",
+      "passed": true
+    },
+    {
+      "case": "login correcto",
+      "passed": true
+    },
+    {
+      "case": "cambio de contraseña desde administrador",
+      "passed": true
+    },
+    {
+      "case": "contraseña nueva invalida renovación y acceso",
+      "passed": true
+    },
+    {
+      "case": "login correcto",
+      "passed": true
+    },
+    {
+      "case": "JWT activo tras reiniciar backend",
+      "passed": true
+    },
+    {
+      "case": "renovación válida tras reiniciar backend",
+      "passed": true
+    },
+    {
+      "case": "JWT revocado sigue rechazado tras reinicio",
+      "passed": true
+    },
+    {
+      "case": "logout final",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "backendRestarted": true,
+  "browserFullExitTested": false
+}

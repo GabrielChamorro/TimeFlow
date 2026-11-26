@@ -1,0 +1,512 @@
+{
+  "baseVersion": "0.5.22-SNAPSHOT",
+  "version": "0.5.23-SNAPSHOT",
+  "changes": [
+    {
+      "path": "Documentacion/Sprint6/AUDITORIA_V0.5.23.md",
+      "status": "new",
+      "before": null,
+      "sha256": "bdc4e488f36cbbff46d838fcc9a92b28250122f8d2010af01856b15e2813d1fb"
+    },
+    {
+      "path": "Documentacion/Sprint6/CAMBIOS_V0.5.23.md",
+      "status": "new",
+      "before": null,
+      "sha256": "c20fcb75b53e5e78bb9eac8b02ba8440ff8aba6abd0b660ad39a1a14288f75c7"
+    },
+    {
+      "path": "Documentacion/Sprint6/INFORME_V0.5.23.md",
+      "status": "new",
+      "before": null,
+      "sha256": "606a6cdad9db6674edb7b9abcf4b71ae771f6b851ad2088bbbd98ae4db8a9197"
+    },
+    {
+      "path": "Documentacion/Sprint6/INSTALAR_Y_MIGRAR_V0.5.23.md",
+      "status": "new",
+      "before": null,
+      "sha256": "0f344c1024c638209b3d353c378fc0ac0e1b28092a8a304659f4c05db23ac4f1"
+    },
+    {
+      "path": "Documentacion/Sprint6/PENDIENTES_V0.5.23.md",
+      "status": "new",
+      "before": null,
+      "sha256": "fc8fdfec69fd0bc2c317d006b5c7d83ccc535d663df7527709c4752b23a1e402"
+    },
+    {
+      "path": "Documentacion/Sprint6/REGISTRO_VERSIONES_V0.5.23.md",
+      "status": "new",
+      "before": null,
+      "sha256": "deaa439a0dfded667576b37fde5681a75a906cda4ab1363c10ad5beb0513331e"
+    },
+    {
+      "path": "Documentacion/Sprint6/RESULTADOS_V0.5.23.md",
+      "status": "new",
+      "before": null,
+      "sha256": "0a922865e74fa002da88fe46eee822de9e51e82ea46ebca27a03b04e71fd845c"
+    },
+    {
+      "path": "Documentacion/Sprint6/TRAZABILIDAD_V0.5.23.md",
+      "status": "new",
+      "before": null,
+      "sha256": "9713a8dc2cb8f3034cb7ea6dff4c1362f6c19b2572d89155b050dab3a03b8ecb"
+    },
+    {
+      "path": "Documentacion/Sprint6/TimeFlow_Sprint_Backlog_6_Actualizado.docx",
+      "status": "modified",
+      "before": "15c70d2caa1b9e59962a9627c7cb7855effbc44bff251b23fedede00f79bd6d6",
+      "sha256": "c8fb89b0d7357a4051a5392b027c61018c6e6dc33e70a8aefa0e9da02e313e41"
+    },
+    {
+      "path": "ENTREGA_V0.5.23.md",
+      "status": "new",
+      "before": null,
+      "sha256": "6b6e76bcd7a8963b802ed41888eb0d386cc0fccaf58353caaf0a0e4e670e3cfa"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/baja-obsoleta-borrador-conservado.jpg",
+      "status": "new",
+      "before": null,
+      "sha256": "e4e6c2e3012cbcd1b5a91928b559801c255aa7334d60586c94c71c38de76ce90"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/calidad-codigo.md",
+      "status": "new",
+      "before": null,
+      "sha256": "c70dbbd53801efd6256f44488639b8d765e577008ffe7235de9128feae73c7eb"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/concurrencia-final.json",
+      "status": "new",
+      "before": null,
+      "sha256": "5c60a3d06a9e48963ee66367dcf18efe1dfd9f32262fcec4f7e61a6822bb2bfa"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/confirmacion-archivo-react.jpg",
+      "status": "new",
+      "before": null,
+      "sha256": "abd5ca7d8a5ddfa85f5fc98b11d2070065f04e9f794e3953f4a64c128eab6c40"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/confirmacion-cuenta-tres-pasos.jpg",
+      "status": "new",
+      "before": null,
+      "sha256": "0fb19b1edba76c619147eab388357d17f22ae112ba613645e216afbcdbea21e8"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/confirmacion-tipo-dos-pasos.jpg",
+      "status": "new",
+      "before": null,
+      "sha256": "b89894d5483e1d14dce8ef6dfd977fbd43867824345b2b788ef75b5f5e1dd62f"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/confirmaciones-http.json",
+      "status": "new",
+      "before": null,
+      "sha256": "479f235a4efeaa79bcf1ac3dbe9fd16b03173887f2f5092ce7cbcca8a28985fb"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/confirmaciones-mysql-ui.json",
+      "status": "new",
+      "before": null,
+      "sha256": "9a5fc54a7e956d4e901a531f0fe8310bee5117bd0a4a1ce1a0e234943b41f33a"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/confirmaciones-navegador.json",
+      "status": "new",
+      "before": null,
+      "sha256": "4ab1d4ca3cd30e36652acb9604b12f33c134eb2bb4da80fac147878a1733a8b6"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/corpus-archivos.json",
+      "status": "new",
+      "before": null,
+      "sha256": "ed000c9692d4cb5b5edd7aad83e935552f1004f5f94b485539f5ffc683a167c0"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/cronometros-mysql.json",
+      "status": "new",
+      "before": null,
+      "sha256": "8bc7e665c9ec1ea1d258893c93868d8123af5e3ba2722409ec7982d8e23e26fd"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/cronometros-publica-final.json",
+      "status": "new",
+      "before": null,
+      "sha256": "f233ab0a8548d5e3d0ac81800c87b43c7abf81412ef588ab5b89493b5b3a7604"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/docx-estructura.json",
+      "status": "new",
+      "before": null,
+      "sha256": "46fd47365a2e881db3fe14dc44e8a043f76e5ea7f1d3651a75c7eb8b943a1b79"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/equipo-de-prueba.json",
+      "status": "new",
+      "before": null,
+      "sha256": "787e5b2ad475f99e533fa76228a8853d1c0a35c98a230c4640110cca8821bf8d"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/fallos-y-correcciones.json",
+      "status": "new",
+      "before": null,
+      "sha256": "bcd7b4fef021d60f3931eb108256e771847f997b217cf1d1fb4a80697869e405"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/funcionalidades-final.json",
+      "status": "new",
+      "before": null,
+      "sha256": "e01b3c7716aed8f563f3adfc5647a03cc28381baed8f9f4007cd711eaa430d0f"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/integracion-mysql-final.json",
+      "status": "new",
+      "before": null,
+      "sha256": "1285f5209ea69861e5f6599c6fe83091cc733698f6b555b1a485707f84e51fdd"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/jar-integridad.json",
+      "status": "new",
+      "before": null,
+      "sha256": "7d4c8c8867653f5525c6cbdfbc166fec2242040b119a096e3330e2835663beb2"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/limpieza-entorno.json",
+      "status": "new",
+      "before": null,
+      "sha256": "ee02602abbe2a3091fde020ed369b83a3d6a08bc2ebfec0eca770c5040f66e89"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/mapa100-http.json",
+      "status": "new",
+      "before": null,
+      "sha256": "66291b7cb29e12573718e1a5b345585bfaee621a7aea578c8f031b11d02a5001"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/migraciones-y-respaldo.json",
+      "status": "new",
+      "before": null,
+      "sha256": "0a71fea00ae846e979b262084b900bd3d597b8a85b2aa29fd20643d2b3c981c6"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/navegadores-limitacion.json",
+      "status": "new",
+      "before": null,
+      "sha256": "1a1d6dd87aaa3591c5d63669d0d47e80c2f56e133396f98eabdcf7d3ad2260d0"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/navegadores-nativos-limitacion.json",
+      "status": "new",
+      "before": null,
+      "sha256": "baee9b57178301b96ec88714e2738c0e2e9b868f551241dc17dc375cd0839b15"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/npm-audit.json",
+      "status": "new",
+      "before": null,
+      "sha256": "1fbb61caef1b3675ea2e935998a0b4914cd661c370b234cc7511cd1319b9b44e"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/owasp-dependency-check-cache.json",
+      "status": "new",
+      "before": null,
+      "sha256": "0b6b52df46a7c78ba2a32b831bc35a78993efedfa4cab90f0430bde4503c146b"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/postman-newman.json",
+      "status": "new",
+      "before": null,
+      "sha256": "a54d37482f2ad61fc07aebddba6b3af9e087e9ccc73f16c35f02479c2a398538"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/preentrega-verificacion.json",
+      "status": "new",
+      "before": null,
+      "sha256": "cea518b5ed56c4d49e83383d6b5ac6eb725e2995269a2888fabed5464aa451e9"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/presencia-mysql.json",
+      "status": "new",
+      "before": null,
+      "sha256": "3c2464b618d25beb98ccf6c20664d2acbffca5ea1e5cc331cf46d04b0dd88a15"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/rendimiento-calculos-node.json",
+      "status": "new",
+      "before": null,
+      "sha256": "b963f27ed1abd6a2c18fc48655ec47db09c025d015acb657d96caab19d1c8c89"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/renovacion-mysql.json",
+      "status": "new",
+      "before": null,
+      "sha256": "4f4ff056cff517ea29482e1f9b75da44141d305c199bd97d53801219057c20e9"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/restauracion-completa-operativa.json",
+      "status": "new",
+      "before": null,
+      "sha256": "d1dda5619b11ce5a46146924c42c5f6da1fc82b62c7b4f45e5647aee811aab78"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/resumen-pruebas.json",
+      "status": "new",
+      "before": null,
+      "sha256": "7b53164bf345cc1f765a628b8cff7b7e50d2adaeb248dbca674529a9379601d7"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/revision-inicial.json",
+      "status": "new",
+      "before": null,
+      "sha256": "b18fb3df6e25a6872126816b18aabca7e0251ffb9b0ca1cda64130fa38ae032c"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/seguridad-dependencias.json",
+      "status": "new",
+      "before": null,
+      "sha256": "ede7d5a205be757d49230a78266184999f8af239c8a0a73ba79eb61f1e45b564"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/sincronizacion-y-carga-http.json",
+      "status": "new",
+      "before": null,
+      "sha256": "d55c41f1410339d51dbefa3ecf2be024469ad31084ae723d88261694f6b1eea0"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/tareas-mysql.json",
+      "status": "new",
+      "before": null,
+      "sha256": "ea46b2506002a4711f8f27ce3d8787d2a1a08120887f9f7a08d081de13f7b02e"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/tipos-mysql.json",
+      "status": "new",
+      "before": null,
+      "sha256": "a94e3dc313d213b086da9f29d56f428b83df1c264132f32d9689551100312f45"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/trazabilidad-original.json",
+      "status": "new",
+      "before": null,
+      "sha256": "7ab0b2a5a5814a4f6c437d7b9166d8a5441be4be3501feb5d26e10ebbba1700a"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/usuarios-mysql.json",
+      "status": "new",
+      "before": null,
+      "sha256": "1a45a88eec9ef90426f19d76e69d30095006251fbc37752ae782b0bc71567cb2"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/verificacion-build.txt",
+      "status": "new",
+      "before": null,
+      "sha256": "3a5c3ecc3fcea8b3ad52eb54fc0db294b6435545fb60d926bef6f61dafaa0846"
+    },
+    {
+      "path": "Evidencias/Sprint6/V0.5.23/word-revision.json",
+      "status": "new",
+      "before": null,
+      "sha256": "9d34125822bc0171d7de8dd7ea77279aa97e07086fca8914fdb9b33419a8cec4"
+    },
+    {
+      "path": "README.md",
+      "status": "modified",
+      "before": "cbbd18ae66e0423eb4c9b3c07478e2eaf3d61d036a9e0593109f0eb43698c9d8",
+      "sha256": "96ed8ba976fcf0113cee49713a9eba0b2f1186e846845916fdb59290e3bcafe0"
+    },
+    {
+      "path": "backend/iniciar_servidor.bat",
+      "status": "modified",
+      "before": "c667d9df89e9416b0f5e581740907ee751d1522084699ebcddd0a227164d10e6",
+      "sha256": "7ce458580b4904262e0a93af4e97f40b5bb567168ff0e4eed41a0c50b0068095"
+    },
+    {
+      "path": "backend/pom.xml",
+      "status": "modified",
+      "before": "f8bc1fe9285eb714e8598468100daf2ca49c333b652027abaf3c71714e7da592",
+      "sha256": "f3fe83c4e92acf38d5e956698b17a0c50224e1f8893ef56c6a2f5e3eba458fa1"
+    },
+    {
+      "path": "backend/src/main/java/com/teamflow/backend/controllers/ApiExceptionHandler.java",
+      "status": "modified",
+      "before": "48ce3759eac3fb013928fffb4cf008f81809de6ab01b81733fd685f84957e662",
+      "sha256": "3cce302e5656a7db8a78eaa940dc504bf48f69de131a08c59d28cb86c61f921a"
+    },
+    {
+      "path": "backend/src/main/java/com/teamflow/backend/controllers/EvidenciaTareaController.java",
+      "status": "modified",
+      "before": "bcf60093c62027491cb10fc27631743aca3e8d6bc05915e143821028d576198e",
+      "sha256": "1105c07b68a92e86a1cc81eef01e619b0a01589bf26946b7bc1d3ad2d6c832d3"
+    },
+    {
+      "path": "backend/src/main/java/com/teamflow/backend/controllers/TareaController.java",
+      "status": "modified",
+      "before": "aee7c431f71b8a5a02c7df8b7fe49cf86b8b85df7f67b243dfc1c3d18205ae51",
+      "sha256": "7f4ee4f8229cea6710024f72ee45808c62134202b0d66a1fd90fa6908bb98493"
+    },
+    {
+      "path": "backend/src/main/java/com/teamflow/backend/controllers/TipoTareaController.java",
+      "status": "modified",
+      "before": "29243fb79dedcdf514415bc6261635225ac0fe8de857a522e0db9130c6f87b6e",
+      "sha256": "8ca4f1e26e55fc88f101da9426c4acd359ec4ea7728c59be0be2d8703145f1a9"
+    },
+    {
+      "path": "backend/src/main/java/com/teamflow/backend/controllers/UsuarioController.java",
+      "status": "modified",
+      "before": "9fadc03486d4dc076e65f08e68647b9dce7aaa56d97e46c0e3657554c01e1c5a",
+      "sha256": "e182bdb95a1c2558f6ac12b4003ed19df3d05b6b765baffe5747ca6ccdc2a9d4"
+    },
+    {
+      "path": "backend/src/test/java/com/teamflow/backend/BackendMockMvcTests.java",
+      "status": "modified",
+      "before": "f8a27d4a722c1b3d4177dc2fce4b858c8ba234479eb1e03a7ca250004e83a438",
+      "sha256": "644db896ea532c4256318c935d2eb8702f9c9f93e24b21c60eb2f3da27a77432"
+    },
+    {
+      "path": "backend/src/test/java/com/teamflow/backend/DeactivationV0523Tests.java",
+      "status": "new",
+      "before": null,
+      "sha256": "43ba769cad159ac554468b4aa0842200c659ff5abe8dfd7c249e25c2c8a06c80"
+    },
+    {
+      "path": "backend/src/test/java/com/teamflow/backend/EvidenciaDesactivacionTests.java",
+      "status": "modified",
+      "before": "f4d47fb6ad7429e41c0b537f1f204a63fd4bfd16de93e75a85fd3bfbf088ffdf",
+      "sha256": "fd7e75a321538f60d31ba834d94a299b86565e119bc51f3cee5bd5181c1d6fd5"
+    },
+    {
+      "path": "backend/src/test/java/com/teamflow/backend/SesionesV0519Tests.java",
+      "status": "modified",
+      "before": "780e01f76ebf1cb91eb41e9ce82aa8c09f0bd4f732985240b14110cce674c9f0",
+      "sha256": "79f0e82cc37a53d8f567376df784e5de31c580b46c4cfa4a1fc302f575ec3769"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "status": "modified",
+      "before": "8ae93995dd75777c869f8667d2a7ef3ac78f794be40f51f922dbd11d83a80fd0",
+      "sha256": "e850118fe0e15881660e1280515f5d57354ac16398fed59ed7cef7eae7ac34d8"
+    },
+    {
+      "path": "frontend/package.json",
+      "status": "modified",
+      "before": "0b05520f94526d8bae0403a40029c31b998da8cffa8b24a7ad9cfe7cb66dbb56",
+      "sha256": "4e0e523fda8b1d49c91c28b656b1d43ef815a77e3cc808e95794b99a9c2153d5"
+    },
+    {
+      "path": "frontend/src/App.jsx",
+      "status": "modified",
+      "before": "f0369a25fc1c03c226f5cfdc4dc110821bc6fc06004a727e72bd99479c2d5735",
+      "sha256": "a1b1313a182f3acb5753e2ec895f4ffe9cacf5380a9f8aead93b25ad9c9f03d7"
+    },
+    {
+      "path": "frontend/src/components/ConfirmAction.jsx",
+      "status": "new",
+      "before": null,
+      "sha256": "42d06fb7fa598f4dde2b9657ae576fa092f731eceff95578565ef59809dec4ca"
+    },
+    {
+      "path": "frontend/src/components/ConfirmDeactivation.jsx",
+      "status": "modified",
+      "before": "ec225f0aa4a347b7d01f71e0fb05eaed20d80600951a9d2053e503531e37e0b5",
+      "sha256": "2dcbca4515d1996f9b8b25d51832b5f54ba36f8a335351bd99ec3cfbde0b05db"
+    },
+    {
+      "path": "frontend/src/components/EvidenceGallery.jsx",
+      "status": "modified",
+      "before": "94f7327c209f90da6553fa2328f23ba949b84041d41e0797164ea1dfcdece9b8",
+      "sha256": "9ea30c710c08b61354f2a0014443a0cea9fb1adc16348438a9657e1ae580e8d1"
+    },
+    {
+      "path": "frontend/src/components/MotionPresence.jsx",
+      "status": "modified",
+      "before": "d1f723ca1e584d187d1b02dd7140b6a3a7323bba2871ecb0081380bd474508cc",
+      "sha256": "0f7bf298c9b40633f6a5a567896acf66a39ce5b6703710ffd817605c2ec49d3f"
+    },
+    {
+      "path": "frontend/src/components/TaskModal.jsx",
+      "status": "modified",
+      "before": "d0b4fbda81b169feb1f11ad949f683b88fafdfdfe59fe3132ee7e7c577da81c7",
+      "sha256": "ad897b25149a9a6b9ba986c88b954f0d411501b4e65dd080cd5eb6d7539a654e"
+    },
+    {
+      "path": "frontend/src/pages/ChatView.jsx",
+      "status": "modified",
+      "before": "e2929597d939c15aaecdcb3520bf7b45b61312e7c68fa8fc914774a81e13076d",
+      "sha256": "6173fa14bdbc0311feec1e0d0a68af63fe991c2c379846864edd6ff529fde97e"
+    },
+    {
+      "path": "frontend/src/pages/HistoryView.jsx",
+      "status": "modified",
+      "before": "63294cef08b7fa81b16e74edaaf019e9dd5d2a1757546544a1b91363acaa19f0",
+      "sha256": "44a02c4276a49fd67b27f64f0453581c8d82d966964ae98a2a721553e669ca6d"
+    },
+    {
+      "path": "frontend/src/pages/TaskTypesView.jsx",
+      "status": "modified",
+      "before": "ba80a0c86c46084532da9b8466757e5f35b4138b8e35a86de064c51ac5618e00",
+      "sha256": "72388e04a1ad647a1a64971c2e33c42f62ed3fc58727a1b46cc47251d5019e05"
+    },
+    {
+      "path": "frontend/src/pages/Usuarios.jsx",
+      "status": "modified",
+      "before": "1b00d5b3196fc5451b4649be64a4a8a9ba808dbd0b8ac962334ec6d7bd2dfb6e",
+      "sha256": "f622a05bbdabb9f08dfb248cb8f05e99068afbf863400e1c1cae24b85937bac3"
+    },
+    {
+      "path": "frontend/src/utils/taskSyncState.js",
+      "status": "new",
+      "before": null,
+      "sha256": "86492c783af49e5aab1371dd9bd20ce20371a3961727f6054abe7f003fd25446"
+    },
+    {
+      "path": "frontend/tests/taskSyncV0523.test.mjs",
+      "status": "new",
+      "before": null,
+      "sha256": "ec02bef7d885777ad9529b311b413ecd53c7e1310db0e5610f2f6b04e6e7b694"
+    },
+    {
+      "path": "scripts/Migrar_V0523.ps1",
+      "status": "new",
+      "before": null,
+      "sha256": "5461113477523478a95b10b242b38a5950b6e856981c39dd09f671adf7d3063d"
+    },
+    {
+      "path": "scripts/postman/timeflow_sprint6.postman_collection.json",
+      "status": "modified",
+      "before": "67e5391ef31a609832f68aa2f8da85cd4e7e18db371afe0fa41d4be4b41fdbdf",
+      "sha256": "ae9418432e2626e42cc4f8437a7a8afedcc1e60726990a0a975b388894bff81f"
+    },
+    {
+      "path": "scripts/probar_concurrencia_mysql_sprint6.py",
+      "status": "modified",
+      "before": "466be9244fb339c98d5d766778cb8ee954d91a00f6e77b9570dc0d104f5955a0",
+      "sha256": "a9198ded909fbb345861ed89964a8708018852d5a4f81d351b73ff82132e6b75"
+    },
+    {
+      "path": "scripts/probar_funcionalidades_v0521.py",
+      "status": "modified",
+      "before": "c6f90872842951c56456577ae3bc1e37b6005c50cdf80449c0b0c3547311d826",
+      "sha256": "54e8a3ba974a243f14bd302ec15e6b4d975b411f9f9e40834ade148b9539d854"
+    },
+    {
+      "path": "scripts/probar_funcionalidades_v0522.py",
+      "status": "modified",
+      "before": "bb1c1b939e50188c00996e23340d2b156778a343031e74ba6ca97f8f658d37bd",
+      "sha256": "fffb028e61684d75a5cc521d80caf3f77258a5c7280f00d895913ebb27e69709"
+    },
+    {
+      "path": "scripts/probar_sesiones_v0519.py",
+      "status": "modified",
+      "before": "b74dc9826852eedc88d2cb6fb5c8e332b82ed51241397104ee321d909e4dd938",
+      "sha256": "b6a6956e5f7000924e335f51d4b631f9524c9fd58a883c4f416278cf41e5146c"
+    },
+    {
+      "path": "scripts/probar_sprint6.py",
+      "status": "modified",
+      "before": "90d7ea598237afe9ea3ba3cf800f95bef5c76c5a2750e91c0aee8dfffc95a8e0",
+      "sha256": "f3c13aedb06d9e9d42473491dd3b3262474aa58beb515c561d468eac07f00a59"
+    }
+  ],
+  "deleted": [],
+  "comparison": "SHA-256 frente al ZIP V0.5.22 entregado; copia sin Git. El manifiesto no contiene su propio hash."
+}

@@ -1,0 +1,70 @@
+{
+  "version": "0.5.22-SNAPSHOT",
+  "browser": "IAB Chromium real",
+  "images": {
+    "png": {
+      "complete": true,
+      "width": 343,
+      "height": 361
+    },
+    "jpg": {
+      "complete": true,
+      "height": 361,
+      "name": "preview22-corregida.jpg",
+      "width": 343
+    },
+    "lightboxAfterFix": {
+      "parent": "BODY",
+      "left": 0,
+      "top": 0,
+      "width": 1265,
+      "height": 720
+    },
+    "escapeCloses": true
+  },
+  "readOnly": {
+    "worker": {
+      "save": 0,
+      "remove": 0,
+      "approve": 0,
+      "adminNav": 0
+    },
+    "admin": {
+      "save": 0,
+      "remove": 0,
+      "approve": 0
+    },
+    "remoteApprovalLockedOpenModal": true
+  },
+  "roles": {
+    "workerAdminNavigationAbsent": true,
+    "adminApproveOnlyInReview": true
+  },
+  "cancelTask": true,
+  "cancelFile": {
+    "verified": false,
+    "reason": "La herramienta agotó tiempo al abrir confirmación nativa y el JPG acabó desactivado. Nunca se confirmó Cancelar. Archivo anterior sigue guardado en MySQL."
+  },
+  "map": {
+    "mounted100": true,
+    "wheel": true,
+    "panOneToOne": true,
+    "fullscreenEscape": true,
+    "autoLayoutPreviewCancelAndApply": true,
+    "changedPositions": 383,
+    "totalDataset": 397
+  },
+  "liveUpdates": {
+    "tasks": true,
+    "presence": true,
+    "metrics": true,
+    "ownJornada": true,
+    "manualReloadForTheseChanges": false
+  },
+  "reactRuntimeErrors": [],
+  "limits": [
+    "RNF4: dos muestras rAF de 30 s, sin comparación contra menos nodos ni prueba prolongada.",
+    "RNF2: localhost únicamente.",
+    "Sin certificación Chrome/Edge nativos ni todos los diálogos."
+  ]
+}

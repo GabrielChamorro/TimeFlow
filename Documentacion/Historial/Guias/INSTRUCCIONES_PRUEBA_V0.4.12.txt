@@ -1,0 +1,21 @@
+TimeFlow V0.4.12 — Instrucciones para probar en Windows
+
+1. Guarda respaldo de tu base existente ANTES de actualizar MySQL.
+   Desde CMD (solicitara la contrasena, no la escribas en el comando):
+   mysqldump -u root -p --single-transaction --routines --triggers --databases teamflow_db > "%USERPROFILE%\Desktop\teamflow_db_backup.sql"
+   Comprueba que se haya generado y que tenga contenido. Protege el archivo.
+2. Comprueba la version REAL del servidor con:
+   mysql -u root -p -e "SELECT VERSION();"
+   Si es 8.4.9, necesita actualizarse a 8.4.13 o superior de la rama 8.4.
+   No desinstales MySQL ni borres Data. Sigue la guia oficial para actualizar en Windows:
+   https://dev.mysql.com/doc/refman/8.4/en/windows-upgrading.html
+3. Extrae V0.4.12 como carpeta nueva. No copies configs con contrasenas en chats.
+4. Ejecuta INSTALAR_DEPENDENCIAS_TIMEFLOW.bat; revisa pasos 2/9, 4/9, 7/9, 9/9.
+5. Si el instalador detecta MySQL Server antiguo, detendra la creacion de la base:
+   es intencional hasta aplicar el parche; NO quita datos del servidor.
+6. La carpeta backend\INSTALADOR_DIAGNOSTICO.txt debe mostrar lineas NODE para
+   identificar por que Node global fue rechazado, sin incluir contrasenas.
+7. Cuando termine con todos los pasos verdes, abre backend\iniciar_servidor.bat
+   y frontend\iniciar_servidor.bat y prueba Check In/Out y tareas.
+
+Importante: no se han ejecutado pruebas reales sobre tu PC o base de datos.

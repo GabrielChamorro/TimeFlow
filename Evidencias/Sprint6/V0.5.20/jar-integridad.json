@@ -1,0 +1,8 @@
+{
+  "version": "0.5.20-SNAPSHOT",
+  "bytes": 57594795,
+  "sha256": "8ba4ac3da272a55838ad94d307526bd55a69b870007c4497e5c11e7c5e8bb6fe",
+  "crcValid": true,
+  "bootedWithMysql": true,
+  "bootedOverTls": true
+}

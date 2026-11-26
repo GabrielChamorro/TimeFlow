@@ -68,6 +68,7 @@ public class InitialAdminBootstrap implements CommandLineRunner {
         return valor != null
                 && valor.length() >= 8
                 && valor.length() <= 64
+                && valor.getBytes(java.nio.charset.StandardCharsets.UTF_8).length <= 72
                 && valor.matches(".*[A-Za-z].*")
                 && valor.matches(".*\\d.*");
     }

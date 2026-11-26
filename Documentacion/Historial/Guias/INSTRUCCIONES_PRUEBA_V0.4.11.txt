@@ -1,0 +1,14 @@
+TIMEFLOW V0.4.11 - PRUEBA SEGURA EN WINDOWS
+
+1) Haz una copia de tu carpeta de TimeFlow anterior y, si existe teamflow_db, de su base MySQL.
+2) Extrae esta version en una carpeta NUEVA. NO sobrescribas la V0.4.10.
+3) Ejecuta INSTALAR_DEPENDENCIAS_TIMEFLOW.bat. La clave que te pide MySQL es la misma que ya verificaste con "mysql -u root -p".
+4) El ingreso de esa clave ahora es oculto. Si el cliente MySQL rechaza la clave, no se crea config_local.bat.
+5) Si teamflow_db existe, el instalador guardara respaldo en backend/.timeflow-backups/ antes de cambiar su esquema.
+6) Si hay usuarios sin hash BCrypt, el instalador se detendra: no resetees contrasenas ni borres la base. Conserva el respaldo para migracion.
+7) Cuando el resumen de 9 etapas indique que esta completo, abre backend/iniciar_servidor.bat y luego frontend/iniciar_servidor.bat.
+8) Prueba Check In, creacion de tarea, F5, Check Out y rechazo de tarea sin jornada activa.
+9) Para verificar con Postman, una solicitud POST /api/tareas autenticada y sin Check In debe devolver HTTP 409.
+10) Si falla, comparte el TEXTO DEL ERROR y backend/INSTALADOR_DIAGNOSTICO.txt; NUNCA compartas config_local.bat ni backups SQL.
+
+La instalacion NO se ha probado en Windows en este entorno.

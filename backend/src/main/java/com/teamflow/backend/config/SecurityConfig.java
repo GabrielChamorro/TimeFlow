@@ -23,10 +23,12 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final List<String> allowedOrigins;
+    private final boolean localHttp;
 
     public SecurityConfig(
             JwtAuthenticationFilter jwtAuthenticationFilter,
-            @Value("${app.cors.allowed-origins:http://localhost:5173}") String allowedOrigins) {
+            @Value("${app.cors.allowed-origins:http://localhost:5173}") String allowedOrigins, @Value("${app.auth.local-http:false}") boolean localHttp) {
+        this.localHttp=localHttp;
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
         this.allowedOrigins = Arrays.stream(allowedOrigins.split(","))
                 .map(String::trim)
@@ -42,23 +44,27 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            // La API usa JWT en Authorization y no cookies de sesión, por eso CSRF no aplica
-            // al modelo actual de autenticación.
+            // El filtro CookieRequestGuard exige Origin exacto + cabecera no simple en login/refresh/logout.
+            // El resto de API solo admite Bearer explícito y no autentica mediante cookies.
             .csrf(csrf -> csrf.disable())
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .requestMatchers("/api/auth/login").permitAll()
+                .requestMatchers("/api/auth/login", "/api/auth/refresh", "/api/auth/logout").permitAll()
 
+                // Las listas completas (incluidos registros inactivos) son solo para administradores.
+                .requestMatchers(HttpMethod.GET, "/api/usuarios/administracion", "/api/tipos-tarea/administracion").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.GET, "/api/usuarios", "/api/usuarios/**").authenticated()
                 .requestMatchers(HttpMethod.POST, "/api/usuarios", "/api/usuarios/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/api/usuarios/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PATCH, "/api/usuarios/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/api/usuarios/**").hasRole("ADMIN")
 
                 .requestMatchers(HttpMethod.GET, "/api/tipos-tarea", "/api/tipos-tarea/**").authenticated()
                 .requestMatchers(HttpMethod.POST, "/api/tipos-tarea", "/api/tipos-tarea/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/api/tipos-tarea/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PATCH, "/api/tipos-tarea/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/api/tipos-tarea/**").hasRole("ADMIN")
 
                 .requestMatchers("/api/jornadas", "/api/jornadas/**").authenticated()
@@ -83,7 +89,8 @@ public class SecurityConfig {
             .headers(headers -> headers
                 .frameOptions(frame -> frame.deny())
             )
-            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+            .addFilterBefore(new com.teamflow.backend.security.CookieRequestGuard(allowedOrigins,localHttp), JwtAuthenticationFilter.class);
 
         return http.build();
     }
@@ -99,6 +106,10 @@ public class SecurityConfig {
         config.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration auth = new CorsConfiguration(config);
+        auth.setAllowedHeaders(List.of("Content-Type","Authorization","X-TimeFlow-CSRF"));
+        auth.setAllowCredentials(true);
+        source.registerCorsConfiguration("/api/auth/**",auth);
         source.registerCorsConfiguration("/**", config);
         return source;
     }

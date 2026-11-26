@@ -1,0 +1,39 @@
+TIMEFLOW V0.5.3 - SPRINT 5
+PRUEBAS FACILES DE RENDIMIENTO Y CONCURRENCIA
+
+PASOS (WINDOWS)
+1. Inicia SOLO el backend de TimeFlow como siempre. Debe funcionar en http://127.0.0.1:8080
+   MySQL debe estar iniciado. El frontend puede quedar cerrado.
+2. Extrae TODOS los archivos de este ZIP a una carpeta nueva.
+3. Haz doble clic en EJECUTAR_PRUEBAS_SPRINT5.bat
+4. Escribe el correo y contrasena de una cuenta ACTIVA de TimeFlow cuando se soliciten.
+   La contrasena se escribe oculta y no aparece en el archivo de resultados.
+5. Espera a que termine. Al final veras la ruta del resultado.
+6. Entra a la carpeta Resultados_Sprint5 y ENVIAME el .txt mas reciente al chat.
+   Tambien puedes abrirlo y pegar el texto completo.
+
+LA HERRAMIENTA
+- No requiere npm ci ni instalar paquetes: usa Node.js que ya utilizas con TimeFlow.
+- Prueba GET /api/tareas, /api/mensajes, /api/usuarios y /api/tipos-tarea.
+- En cada ruta realiza 20 lecturas secuenciales, 32 con un maximo de 4 simultaneas y
+  40 con un maximo de 8 simultaneas.
+- Mide mediana (p50), p95, media y volumen de peticiones por segundo.
+- Comprueba que todas las respuestas sean HTTP 200 y que el backend siga respondiendo.
+- No crea, edita ni elimina tareas, mensajes ni usuarios. La autenticacion inicial
+  puede actualizar un hash BCrypt antiguo si el servidor decide renovarlo.
+- Solo se conecta a localhost. No guarda tokens, contrasenas ni contenidos de la API.
+- Los resultados se almacenan en texto sin datos personales.
+
+SI FALLA
+- Si dice Node.js no disponible: revisa la instalacion de Node y el PATH de Windows.
+- Si dice No se pudo iniciar sesion: revisa backend, MySQL y tu cuenta de TimeFlow.
+- Si aparece 401/403: verifica permisos o sesion y enviame el TXT.
+- Si hay errores HTTP o tiempo de espera, enviame igualmente el TXT.
+- No ejecutes varias copias de la prueba al mismo tiempo.
+
+IMPORTANTE
+- Utiliza una base de datos de pruebas o un respaldo si tienes datos importantes.
+- La prueba mide lecturas simultaneas, NO escrituras concurrentes.
+- Los tiempos no se consideran aprobados automaticamente sin definir una meta.
+- No necesitas modificar el proyecto TimeFlow ni crear otra version.
+- El informe TXT puede compartirse en el chat. NO compartas tus credenciales.

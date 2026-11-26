@@ -1,0 +1,22 @@
+{
+  "browser": "IAB Chromium integrado",
+  "version": "0.5.20-SNAPSHOT",
+  "verified": [
+    "Login sintético",
+    "F5 restaura sesión vigente",
+    "Nueva pestaña restaura sesión; pestaña previa cerrada",
+    "Logout seguido de recarga muestra login",
+    "PDF en canvas 834x1179 con contenido visible",
+    "Mapa filtrado 100 nodos/160 relaciones",
+    "Clics de zoom/encaje",
+    "Pantalla completa y Escape",
+    "Vista previa de autoorganización de 223 tareas/296 relaciones y Cancelar"
+  ],
+  "pending": [
+    "Cierre de todas las pestañas y reapertura sin otra pestaña viva",
+    "Salida y reapertura del proceso completo Chrome/Edge",
+    "Dos perfiles independientes con dos administradores en UI",
+    "Arrastre continuo y rueda física con medición por navegador"
+  ],
+  "nativeBlocker": "Control de Chrome instalado no se habilitó: solicitud de autorización de la herramienta expiró; no se usó otra automatización para sortearla."
+}

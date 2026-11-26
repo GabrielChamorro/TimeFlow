@@ -34,6 +34,13 @@ public class Mensaje {
     @Column(nullable = false)
     private String timestamp;
 
+    // Desactivado = conservado en MySQL, oculto en la aplicacion.
+    @Column(name = "activo", nullable = false)
+    private Boolean activo = true;
+
+    public boolean isActivo() { return !Boolean.FALSE.equals(activo); }
+    public void setActivo(Boolean activo) { this.activo = activo; }
+
     public Mensaje() {}
 
     public Long getId() { return id; }

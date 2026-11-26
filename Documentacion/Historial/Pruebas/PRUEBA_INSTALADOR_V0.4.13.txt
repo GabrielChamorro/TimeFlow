@@ -1,0 +1,15 @@
+PRUEBA DE TIMEFLOW V0.4.13 EN WINDOWS
+
+1. Extrae la carpeta completa o aplica solo el parche _verificar_node.ps1 a tu
+   carpeta V0.4.12 existente si deseas reutilizar Java/Node descargados.
+2. Ejecuta INSTALAR_DEPENDENCIAS_TIMEFLOW.bat (ventana administrativa).
+3. Etapa 2/9: debe mostrar que Node y npm estan verificados o instalados.
+4. Si no es asi, revisa backend\INSTALADOR_DIAGNOSTICO.txt (lineas NODE:).
+5. Si te solicita credenciales MySQL, usalas solo en el instalador local.
+6. Si MySQL Server resulta desactualizado, NO elimines la BD para continuar.
+7. No declares el sistema listo hasta terminar todas las 9 etapas con exito.
+
+PARCHE RAPIDO A V0.4.12:
+Sustituye unicamente frontend\_verificar_node.ps1 por el archivo corregido.
+No cambies los demas archivos y vuelve a ejecutar el instalador de V0.4.12.
+La version mostrada seguira siendo V0.4.12, aunque el detector quede corregido.

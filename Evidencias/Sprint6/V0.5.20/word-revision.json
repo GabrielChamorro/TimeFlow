@@ -1,0 +1,9 @@
+{
+  "pages": 8,
+  "rendererAttempt": "render_docx.py falló porque no hay soffice.exe",
+  "fallback": "Word instalado abre en solo lectura y ExportAsFixedFormat; Poppler produce PNGs; ocho páginas inspeccionadas visualmente",
+  "layoutClean": true,
+  "indexPageUpdated": 7,
+  "formatPreserved": "pPr, rPr, sectPr y tablas OOXML iguales a V0.5.19; portada conservada",
+  "sprintClosed": false
+}

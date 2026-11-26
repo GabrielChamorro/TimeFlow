@@ -1,0 +1,10 @@
+PRUEBA DE INSTALACION V0.4.5 (WINDOWS)
+
+1. Descomprime todo el ZIP en una carpeta nueva.
+2. Ejecuta INSTALAR_DEPENDENCIAS_TIMEFLOW.bat (si Windows pide permisos de administrador, responde Si).
+3. La ventana que solicita administrador ahora permanece abierta aunque falle la instalacion.
+4. Verifica que se muestre el paso 1/9, despues el resumen y el mensaje para presionar una tecla.
+5. Si no continua, consulta backend\INSTALADOR_DIAGNOSTICO.txt y envia captura del error visible.
+6. No compartas backend\config_local.bat ni ningun dato de acceso.
+
+NOTA: el instalador conserva la configuracion Java 17 global y prioriza JDK 21 para TimeFlow.

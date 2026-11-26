@@ -1,0 +1,88 @@
+{
+  "version": "0.5.22-SNAPSHOT",
+  "browser": "IAB real, dos pestañas mismo trabajador; administrador en otra identidad/hostname",
+  "samples": [
+    {
+      "step": "initial",
+      "at": 1794801827586,
+      "values": [
+        "Tiempo no registrado",
+        "00:00:16En progreso",
+        "00:00:14En progreso",
+        "00:00:13En progreso"
+      ]
+    },
+    {
+      "step": "F5",
+      "at": 1794801833930,
+      "values": [
+        "Tiempo no registrado",
+        "00:00:30En progreso",
+        "00:00:28En progreso",
+        "00:00:27En progreso"
+      ]
+    },
+    {
+      "step": "returnFromChat",
+      "at": 1794801842358,
+      "values": [
+        "Tiempo no registrado",
+        "00:00:39En progreso",
+        "00:00:38En progreso",
+        "00:00:36En progreso"
+      ]
+    },
+    {
+      "step": "afterNoteB",
+      "at": 1794801854534,
+      "values": [
+        "Tiempo no registrado",
+        "00:00:51En progreso",
+        "00:00:50En progreso",
+        "00:00:48En progreso"
+      ]
+    }
+  ],
+  "peer": {
+    "first": [
+      "Tiempo no registrado",
+      "00:01:03En progreso",
+      "00:00:50Detenido",
+      "00:01:00En progreso"
+    ],
+    "second": [
+      "Tiempo no registrado",
+      "00:01:03En progreso",
+      "00:00:50Detenido",
+      "00:01:01En progreso"
+    ],
+    "at": 1794801867033
+  },
+  "afterFrontendRestart": [
+    "Tiempo no registrado",
+    "00:01:31En progreso",
+    "00:00:50Detenido",
+    "00:01:29En progreso"
+  ],
+  "afterSwitchTab": [
+    "Tiempo no registrado",
+    "00:01:59En progreso",
+    "00:00:50Detenido",
+    "00:01:56En progreso"
+  ],
+  "verified": [
+    "tres tarjetas simultáneas con anclas diferentes",
+    "legado muestra Tiempo no registrado",
+    "nota B aislada y A/C siguen",
+    "revisión B congela en 00:00:50",
+    "F5 restaura sesión y tiempos",
+    "Chat y Monitoreo no reinician",
+    "otro cliente muestra coherencia con diferencia máxima 1 s",
+    "reinicio real Vite del puerto 15177 conserva tiempos"
+  ],
+  "limitations": [
+    "El cambio de reloj del cliente se comprueba con pruebas puras del cálculo monotónico, sin cambiar el reloj del sistema.",
+    "Muestras de texto no constituyen medición de latencia; incluyen tiempo de operación de herramientas.",
+    "Chrome y Edge nativos no certificados."
+  ]
+}

@@ -1,0 +1,26 @@
+TIMEFLOW V0.5.3-SNAPSHOT - REPORTE POSTMAN
+Fecha: 9 nov de 2026
+Origen: capturas originales entregadas durante la revision.
+
+Coleccion sin escrituras
+Pruebas aprobadas: 15/15
+Fallos: 0
+Errores: 0
+Tiempo de respuesta promedio mostrado: 74 ms
+
+Coleccion completa, con escrituras autorizadas
+Pruebas aprobadas: 60/60
+Fallos: 0
+Errores: 0
+Tiempo de respuesta promedio mostrado: 44 ms
+
+Limpieza
+Las pruebas finales muestran eliminacion comprobada de usuarios, tareas y tipos temporales.
+
+Observacion
+La prueba 31 de archivo mayor a 2 MB esta marcada PASS y muestra 'No response'.
+Esto no equivale a una respuesta HTTP 400 confirmada en esa ejecucion.
+Algunas solicitudes de limpieza condicional no tuvieron respuesta ni aserciones,
+porque no habia datos adicionales que limpiar.
+
+Las imagenes de Postman se conservan en Capturas_Postman sin alterar.

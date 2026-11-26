@@ -1,0 +1,13 @@
+{
+  "version": "0.5.22-SNAPSHOT",
+  "datasetTasks": 397,
+  "scope": "Vista previa, cancelaci\u00f3n y aplicar en IAB; persistencia comprobada en MySQL.",
+  "cancel": {
+    "matchesOriginal": true,
+    "sha256": "bc80b974e6cffdbf0e5727689835cd9fc03c984dd7c949f46b5651c19efabe16"
+  },
+  "apply": {
+    "matchesOriginal": false,
+    "sha256": "cbf3fd94cd0c5c8b6a99390e108705ae7e22be53289660a1b2253d5d84f0530d"
+  }
+}

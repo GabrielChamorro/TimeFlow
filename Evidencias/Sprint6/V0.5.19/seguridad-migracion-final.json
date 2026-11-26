@@ -1,0 +1,31 @@
+{
+  "version": "0.5.19-SNAPSHOT",
+  "checks": [
+    {
+      "case": "login correcto",
+      "passed": true
+    },
+    {
+      "case": "CORS preflight /api/auth/refresh",
+      "passed": true
+    },
+    {
+      "case": "CORS preflight /api/tareas/1",
+      "passed": true
+    },
+    {
+      "case": "renovación vencida rechazada",
+      "passed": true
+    },
+    {
+      "case": "familia vencida eliminada",
+      "passed": true
+    },
+    {
+      "case": "esquema nuevo y migraciones repetibles",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "testSchema": "tf_schema19_ca41d4"
+}

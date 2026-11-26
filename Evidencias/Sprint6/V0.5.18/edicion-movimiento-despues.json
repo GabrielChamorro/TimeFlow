@@ -1,0 +1,10 @@
+{
+  "task": 18,
+  "http": [
+    200,
+    200
+  ],
+  "posicionX": 555.0,
+  "bitacora": "Edici\u00f3n concurrente",
+  "passed": true
+}

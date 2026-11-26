@@ -1,0 +1,40 @@
+{
+  "version": "0.5.21-SNAPSHOT",
+  "checks": [
+    {
+      "case": "login s6-10c38dc2-historial21@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "Jornada consultable después de confirmar",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Confirmación cierra la misma jornada que cancelar conservó",
+      "passed": true
+    },
+    {
+      "case": "Duración exacta coincide con timestamps del servidor",
+      "passed": true
+    },
+    {
+      "case": "Salida doble no altera jornada",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    }
+  ],
+  "passed": true,
+  "cancelKeepsActive": true,
+  "serverDurationSeconds": 29,
+  "checkInAt": "2026-11-15T20:34:00.772804Z",
+  "checkOutAt": "2026-11-15T20:34:30.621131Z"
+}

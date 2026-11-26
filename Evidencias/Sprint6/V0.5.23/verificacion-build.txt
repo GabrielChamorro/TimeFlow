@@ -1,0 +1,7 @@
+Version:0.5.23-SNAPSHOT
+Node: npm run test:sprint5;106 tests,106 pass,0 fail,0 skipped
+Frontend: npm run build;Vite build final aprobado
+Lint: npm run lint;0 errores,9 advertencias;sin supresiones
+Java: Maven clean verify;Temurin21.0.13+9
+[INFO] Tests run: 169, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS

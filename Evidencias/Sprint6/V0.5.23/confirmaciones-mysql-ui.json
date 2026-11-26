@@ -1,0 +1,137 @@
+{
+  "version": "0.5.23-SNAPSHOT",
+  "scope": "Acciones UI reales, comparación por fila en MySQL sintético; contenido de archivo contrastado SHA256",
+  "checks": [
+    {
+      "case": "archivo-admin-cancelar",
+      "mode": "cancel",
+      "passed": true,
+      "changedKeys": [],
+      "businessRowsCompared": 11
+    },
+    {
+      "case": "archivo-admin-cerrar-x",
+      "mode": "cancel",
+      "passed": true,
+      "changedKeys": [],
+      "businessRowsCompared": 11
+    },
+    {
+      "case": "archivo-admin-escape",
+      "mode": "cancel",
+      "passed": true,
+      "changedKeys": [],
+      "businessRowsCompared": 11
+    },
+    {
+      "case": "archivo-admin-confirmar",
+      "mode": "confirm",
+      "passed": true,
+      "changedKeys": [
+        "file:463"
+      ],
+      "businessRowsCompared": 11
+    },
+    {
+      "case": "tarea-admin-cancelar-x-escape",
+      "mode": "cancel",
+      "passed": true,
+      "changedKeys": [],
+      "businessRowsCompared": 11
+    },
+    {
+      "case": "tarea-admin-confirmar",
+      "mode": "confirm",
+      "passed": true,
+      "changedKeys": [
+        "task:405"
+      ],
+      "businessRowsCompared": 11
+    },
+    {
+      "case": "usuario-cancelar-x-escape-texto-incorrecto",
+      "mode": "cancel",
+      "passed": true,
+      "changedKeys": [],
+      "businessRowsCompared": 11
+    },
+    {
+      "case": "usuario-cancelar-tercer-paso",
+      "mode": "cancel",
+      "passed": true,
+      "changedKeys": [],
+      "businessRowsCompared": 11
+    },
+    {
+      "case": "usuario-confirmar-tres-pasos",
+      "mode": "confirm",
+      "passed": true,
+      "changedKeys": [
+        "user:81"
+      ],
+      "businessRowsCompared": 11
+    },
+    {
+      "case": "tipo-cancelar-x-escape-texto-incorrecto",
+      "mode": "cancel",
+      "passed": true,
+      "changedKeys": [],
+      "businessRowsCompared": 11
+    },
+    {
+      "case": "tipo-cancelar-segundo-paso",
+      "mode": "cancel",
+      "passed": true,
+      "changedKeys": [],
+      "businessRowsCompared": 11
+    },
+    {
+      "case": "tipo-confirmar-dos-pasos",
+      "mode": "confirm",
+      "passed": true,
+      "changedKeys": [
+        "type:17"
+      ],
+      "businessRowsCompared": 11
+    },
+    {
+      "case": "archivo-trabajador-cancelar-x-escape",
+      "mode": "cancel",
+      "passed": true,
+      "changedKeys": [],
+      "businessRowsCompared": 12
+    },
+    {
+      "case": "archivo-trabajador-confirmar",
+      "mode": "confirm",
+      "passed": true,
+      "changedKeys": [
+        "file:465"
+      ],
+      "businessRowsCompared": 12
+    },
+    {
+      "case": "tarea-trabajador-cancelar-x-escape",
+      "mode": "cancel",
+      "passed": true,
+      "changedKeys": [],
+      "businessRowsCompared": 12
+    },
+    {
+      "case": "tarea-trabajador-confirmar",
+      "mode": "confirm",
+      "passed": true,
+      "changedKeys": [
+        "task:406"
+      ],
+      "businessRowsCompared": 12
+    },
+    {
+      "case": "tarea-obsoleta-409-sin-escrituras",
+      "mode": "cancel",
+      "passed": true,
+      "changedKeys": [],
+      "businessRowsCompared": 12
+    }
+  ]
+}

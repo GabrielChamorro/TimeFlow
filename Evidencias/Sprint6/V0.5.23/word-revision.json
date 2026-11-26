@@ -1,0 +1,15 @@
+{
+  "version": "0.5.23-SNAPSHOT",
+  "pages": 8,
+  "allPagesVisuallyInspected": true,
+  "layoutClean": true,
+  "indexMatchesPages": true,
+  "formatPropertiesPreservedAgainstExactV22": true,
+  "coverPreserved": true,
+  "renderer": "render_docx.py con LibreOffice26.8.3.1 portable y perfil privado; Poppler del runtime incluido",
+  "initialAttempts": "Renderer inicial sin soffice; dos exportaciones Word readonly se detuvieron en PDF y se limpiaron solo sus instancias propias. Extracción de MSI oficial, mapa de archivos y bibliotecas amd64 locales, sin instalación global.",
+  "portableMsiSha256": "0e6918c273eabbdbbd800ee0dacbbf130a14c13c2e4cec861b06dd59e015bf94",
+  "officialDownload": "https://www.libreoffice.org/download/",
+  "qaPngPdfExcludedFromDelivery": true,
+  "finalDocxSha256": "c8fb89b0d7357a4051a5392b027c61018c6e6dc33e70a8aefa0e9da02e313e41"
+}

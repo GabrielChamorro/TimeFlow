@@ -1,0 +1,12 @@
+{
+  "privateDataExcludedFromDelivery": true,
+  "stoppedOwnProcesses": [
+    "backend",
+    "frontend23-admin",
+    "frontend23-worker",
+    "mysql33316"
+  ],
+  "version": "0.5.23-SNAPSHOT",
+  "testChromeCleanedPreviously": true,
+  "personalBrowsersOrDatabaseTouched": false
+}

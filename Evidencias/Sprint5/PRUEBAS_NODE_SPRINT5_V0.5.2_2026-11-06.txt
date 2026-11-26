@@ -1,0 +1,74 @@
+
+> mi-mockup@0.5.2-sprint5.0 test:sprint5
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: 100 tareas generan posiciones únicas y compactas
+ok 1 - 100 tareas generan posiciones únicas y compactas
+  ---
+  duration_ms: 1.852031
+  type: 'test'
+  ...
+# Subtest: agregar nueva tarea no desplaza las existentes
+ok 2 - agregar nueva tarea no desplaza las existentes
+  ---
+  duration_ms: 0.981063
+  type: 'test'
+  ...
+# Subtest: mapa virtualizado muestra nodos cercanos, no los alejados
+ok 3 - mapa virtualizado muestra nodos cercanos, no los alejados
+  ---
+  duration_ms: 4.41519
+  type: 'test'
+  ...
+# Subtest: un segmento que cruza la pantalla no desaparece
+ok 4 - un segmento que cruza la pantalla no desaparece
+  ---
+  duration_ms: 0.200951
+  type: 'test'
+  ...
+# Subtest: encajar nodos produce zoom y desplazamiento finitos
+ok 5 - encajar nodos produce zoom y desplazamiento finitos
+  ---
+  duration_ms: 0.390356
+  type: 'test'
+  ...
+# Subtest: sin nodos se conserva la vista inicial
+ok 6 - sin nodos se conserva la vista inicial
+  ---
+  duration_ms: 0.103165
+  type: 'test'
+  ...
+# Subtest: la demo contiene 100 tareas con identificadores únicos
+ok 7 - la demo contiene 100 tareas con identificadores únicos
+  ---
+  duration_ms: 1.801836
+  type: 'test'
+  ...
+# Subtest: cada detalle ficticio tiene los datos que muestra el visor
+ok 8 - cada detalle ficticio tiene los datos que muestra el visor
+  ---
+  duration_ms: 0.602635
+  type: 'test'
+  ...
+# Subtest: el detalle ficticio está separado de las funciones de escritura
+ok 9 - el detalle ficticio está separado de las funciones de escritura
+  ---
+  duration_ms: 0.482104
+  type: 'test'
+  ...
+# Subtest: los clics en los nodos de demostración abren su propio detalle
+ok 10 - los clics en los nodos de demostración abren su propio detalle
+  ---
+  duration_ms: 0.243005
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 60.73156

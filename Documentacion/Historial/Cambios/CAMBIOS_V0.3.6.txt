@@ -1,0 +1,23 @@
+TIMEFLOW V0.3.6 - FECHA DE TAREAS
+
+Cambios principales:
+- Se agregó una fecha calendario propia para cada tarea.
+- Al crear una tarea, el backend completa automáticamente la fecha actual si no viene informada.
+- El frontend también envía la fecha local actual al crear la tarea.
+- La hora de inicio se mantiene separada de la fecha para conservar compatibilidad con el sistema anterior.
+- Las tarjetas de Monitoreo Espacial y Nodos ahora muestran la fecha de cada tarea.
+- Las tarjetas de Mis Tareas muestran fecha e inicio.
+- El detalle de una tarea ahora separa Fecha de la tarea, Hora de inicio y Hora límite.
+- Las tareas antiguas que no tenían fecha no reciben una fecha inventada; se muestran como "Fecha no registrada".
+- Se agregó AUTO-08B para comprobar que una tarea nueva recibe la fecha actual.
+
+BASE DE DATOS:
+Hibernate está configurado con spring.jpa.hibernate.ddl-auto=update, por lo que al iniciar el backend se agrega la columna `fecha` a `tareas` automáticamente.
+
+PRUEBA MANUAL RECOMENDADA:
+1. Iniciar MySQL, backend y frontend.
+2. Crear una tarea nueva desde Mi Jornada.
+3. Revisar la tarjeta en Mis Tareas: debe mostrar la fecha actual y la hora de inicio.
+4. Entrar a Monitoreo Espacial y Nodos: la tarjeta debe mostrar la fecha actual.
+5. Abrir la tarea: el detalle debe mostrar Fecha de la tarea, Hora de inicio y Hora límite por separado.
+6. Recargar la página y confirmar que la fecha sigue igual porque quedó guardada en MySQL.

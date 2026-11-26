@@ -1,0 +1,9 @@
+{
+  "version": "0.5.22-SNAPSHOT",
+  "bytes": 57617741,
+  "sha256": "12eb13958438290d73b9884840c006474c39bc2c3f49954bccf1a7625a987889",
+  "crcValid": true,
+  "bootedWithMysql": true,
+  "runtimePort": 18086,
+  "mysqlPort": 33316
+}

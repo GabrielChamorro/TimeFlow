@@ -1,0 +1,20 @@
+TIMEFLOW V0.4.1 - JDK 21 SEGURO / SPRINT 4
+
+Cambios principales:
+- instalar_dependencias.bat ahora comprueba un JDK 21 seguro.
+- Si falta, intenta instalar/actualizar Oracle JDK 21 mediante winget.
+- La instalacion se valida despues: TimeFlow exige como minimo la linea parcheada
+  21.0.13.0.2 (o una version 21 posterior).
+- Si winget no ofrece aun una version segura, se abre la pagina oficial de Oracle
+  y la instalacion se detiene en lugar de usar un JDK vulnerable.
+- iniciar_servidor.bat y ejecutar_pruebas.bat seleccionan automaticamente el JDK 21
+  seguro para TimeFlow sin cambiar el Java 17 predeterminado de Windows.
+- Se agrego usar_java21_seguro.bat como selector/validador local.
+- Se rehizo el instalador backend para no restablecer la clave root de MySQL ni
+  generar usuarios con contrasenas fijas.
+
+Enlace oficial:
+https://www.oracle.com/java/technologies/downloads/#java21
+
+Version objetivo al 24/10/2026:
+Oracle JDK 21.0.13.0.2 x64 para Windows.

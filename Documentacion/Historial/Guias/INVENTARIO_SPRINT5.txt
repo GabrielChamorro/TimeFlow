@@ -1,0 +1,18 @@
+TIMEFLOW - ENTREGA DE CIERRE SPRINT 5
+Version de referencia: V0.5.3-SNAPSHOT
+Periodo planificado: 26 oct a 8 nov de 2026
+Validaciones finales: 9 nov de 2026
+
+Documentacion/Sprint5
+- Informe_Cierre_Sprint5_TimeFlow_V0.5.3.docx
+- TimeFlow_Sprint_Backlog_5_Finalizado.docx
+- Anexo_Evidencias_Sprint5_TimeFlow_V0.5.3.docx
+- REGISTRO_AVANCE_SPRINT5.md
+
+Evidencias/Sprint5
+- Capturas_Postman: capturas originales de 15/15, 60/60, limpieza y caso 31.
+- Reportes: mediciones originales y resumen de las pruebas.
+- Herramientas_Pruebas: ejecutor de rendimiento utilizado.
+
+Los documentos describen un cierre funcional con observaciones.
+No se incluyen credenciales de MySQL, tokens JWT ni respaldos privados de la base.

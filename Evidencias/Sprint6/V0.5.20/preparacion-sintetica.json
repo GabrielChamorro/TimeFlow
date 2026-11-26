@@ -1,0 +1,708 @@
+{
+  "checks": [
+    {
+      "case": "login admin@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "Check In admin",
+      "passed": true,
+      "http": 409,
+      "expected": [
+        201,
+        409
+      ]
+    },
+    {
+      "case": "crear usuario admin20-b",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear usuario cuenta20-objetivo",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear usuario mapa20-100",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "login s6-b2564158-mapa20-100@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "crear tarea S20-conflicto-real",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20-documentos",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "plantilla objetivo",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa001",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa002",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa003",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa004",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa005",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa006",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa007",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa008",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa009",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa010",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa011",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa012",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa013",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa014",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa015",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa016",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa017",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa018",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa019",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa020",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa021",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa022",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa023",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa024",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa025",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa026",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa027",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa028",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa029",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa030",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa031",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa032",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa033",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa034",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa035",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa036",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa037",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa038",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa039",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa040",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa041",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa042",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa043",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa044",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa045",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa046",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa047",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa048",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa049",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa050",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa051",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa052",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa053",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa054",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa055",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa056",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa057",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa058",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa059",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa060",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa061",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa062",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa063",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa064",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa065",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa066",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa067",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa068",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa069",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa070",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa071",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa072",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa073",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa074",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa075",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa076",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa077",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa078",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa079",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa080",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa081",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa082",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa083",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa084",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa085",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa086",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa087",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa088",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa089",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa090",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa091",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa092",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa093",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa094",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa095",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa096",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa097",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa098",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa099",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea S20Mapa100",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo válido sprint6.pdf",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo válido sprint6.mp4",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo válido sprint6.webm",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo válido sprint20.jpg",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo válido hero.png",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo válido TimeFlow_Sprint_Backlog_6_Actualizado.docx",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    }
+  ],
+  "mapNodes": 100,
+  "dependencyEdges": 160,
+  "mediaTaskId": 130
+}

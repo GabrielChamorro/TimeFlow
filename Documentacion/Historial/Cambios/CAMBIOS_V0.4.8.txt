@@ -1,0 +1,23 @@
+TIMEFLOW V0.4.8 - CORRECCION DEL LANZAMIENTO COMO ADMINISTRADOR
+=================================================================
+
+Problema reproducido por el usuario en V0.4.7:
+  ".\_iniciar_instalador_admin.bat" no se reconoce como un comando.
+  La consola elevada se iniciaba en C:\Windows\System32.
+
+Solucion:
+- El instalador ahora delega la elevacion en backend\_elevate_installer.ps1.
+- PowerShell obtiene la ruta ABSOLUTA del auxiliar, verifica que existe,
+  y abre cmd.exe con esa ruta entre comillas y con el directorio correcto.
+- Se conserva la ventana elevada abierta con cmd.exe /k.
+- Si Windows rechaza el permiso, se muestra un error y no se informa exito.
+- El diagnostico previo backend\INSTALADOR_DIAGNOSTICO.txt continua activo.
+- Las comprobaciones de dependencias siguen como en V0.4.7.
+- El backend, frontend y funcionalidad de jornadas MySQL no se modificaron.
+- Version sincronizada en pom.xml, package.json y package-lock.json.
+
+COMPROBACIONES
+- Integridad del ZIP y presencia del auxiliar: verificado.
+- Rutas absolutas, comillas y CRLF en los BAT: inspeccionados.
+- Ejecucion real del instalador en Windows: PENDIENTE.
+- Instalacion de dependencias y pruebas de aplicacion: NO ejecutadas aqui.

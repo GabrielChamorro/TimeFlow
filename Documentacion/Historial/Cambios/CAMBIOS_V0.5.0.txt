@@ -1,0 +1,16 @@
+TimeFlow 0.5.0 - Migracion de seguridad a Spring Boot 4
+------------------------------------------------------
+Candidata: pendiente verificacion real con Maven, MockMvc, MySQL y OWASP.
+
+Cambios tecnicos principales:
+- Spring Boot parent 4.1.2 (fuente 3.5.16) y Java 21 conservado.
+- spring-boot-starter-webmvc en lugar de starter-web.
+- spring-boot-starter-webmvc-test + security-test; MockitoBean reemplaza MockBean.
+- Jackson3 JsonMapper en prueba MVC; API HTTP conserva JSON y nombres de campos.
+- JJWT con Gson en runtime para no arrastrar jackson-databind 2.21.4.
+- JDBC MySQL Connector/J 26.10.0 explicitamente fijado.
+- DDL automatico desactivado preventivamente en Hibernate 7.
+- Nueva prueba de migracion PROBAR_MIGRACION_SPRING4.bat.
+- Auditor OWASP con reutilizacion de cache NVD mantenido.
+
+Codigo de negocio y frontend conservados de 0.4.16 (solo metadatos version).

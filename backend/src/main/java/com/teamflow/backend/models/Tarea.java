@@ -10,21 +10,57 @@ public class Tarea {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Version
+    @Column(nullable = false)
+    private Long version;
+    public Long getVersion() { return version; }
+    public void setVersion(Long version) { this.version = version; }
+
     private String codigo; // Ej: NODE-101
     private String nombre;
 
     @Column(columnDefinition = "TEXT")
     private String descripcion;
 
+    // Un requisito previo por fila en tarea_dependencias. La columna antigua
+    // tareas.dependencia_id se conserva en SQL solo por compatibilidad histórica.
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "tarea_dependencias", joinColumns = @JoinColumn(name = "tarea_id"))
+    @Column(name = "dependencia_id", nullable = false)
+    private java.util.List<Long> dependenciaIds = new java.util.ArrayList<>();
+
     private String tipo;
     @Column(name = "asignado_a")
     private String asignadoA;
+
+    // Identidad estable del responsable. El nombre se mantiene para mostrarlo en pantalla.
+    @Column(name = "asignado_usuario_id")
+    private Long asignadoUsuarioId;
 
     @Column(name = "fecha")
     private String fecha; // yyyy-MM-dd, fecha calendario de la tarea
 
     private String fechaInicio; // hora de inicio, HH:mm
     private String fechaFin;
+    @Column(name="finalizada_en_ms")
+    private Long finalizadaEnMs;
+    public Long getFinalizadaEnMs() { return finalizadaEnMs; }
+    public void setFinalizadaEnMs(Long value) { finalizadaEnMs = value; }
+    @Column(name="tiempo_acumulado_ms")
+    private Long tiempoAcumuladoMs;
+    @Column(name="tiempo_inicio_ms")
+    private Long tiempoInicioMs;
+    @com.fasterxml.jackson.annotation.JsonProperty(access=com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY)
+    public Long getTiempoAcumuladoMs() { return tiempoAcumuladoMs; }
+    public void setTiempoAcumuladoMs(Long value) { tiempoAcumuladoMs = value; }
+    @com.fasterxml.jackson.annotation.JsonProperty(access=com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY)
+    public Long getTiempoInicioMs() { return tiempoInicioMs; }
+    public void setTiempoInicioMs(Long value) { tiempoInicioMs = value; }
+    @Transient
+    private Long ultimoRegistroId;
+    @com.fasterxml.jackson.annotation.JsonProperty(access=com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY)
+    public Long getUltimoRegistroId() { return ultimoRegistroId; }
+    public void setUltimoRegistroId(Long value) { ultimoRegistroId = value; }
     private String fechaLimite; // fecha y hora límite, yyyy-MM-ddTHH:mm
     private String meta;
     private Boolean metaCumplida = false;
@@ -38,10 +74,21 @@ public class Tarea {
 
     @Column(columnDefinition = "TEXT")
     private String bitacora;
+    @Transient
+    private String motivoRechazo;
+    public String getMotivoRechazo() { return motivoRechazo; }
+    public void setMotivoRechazo(String motivoRechazo) { this.motivoRechazo = motivoRechazo; }
 
     @Lob
     @Column(columnDefinition = "LONGTEXT")
     private String evidencia;
+
+    // Desactivado = conservado en MySQL, oculto en la aplicacion.
+    @Column(name = "activo", nullable = false)
+    private Boolean activo = true;
+
+    public boolean isActivo() { return !Boolean.FALSE.equals(activo); }
+    public void setActivo(Boolean activo) { this.activo = activo; }
 
     public Tarea() {}
 
@@ -58,11 +105,20 @@ public class Tarea {
     public String getDescripcion() { return descripcion; }
     public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 
+    public java.util.List<Long> getDependenciaIds() {
+        return dependenciaIds == null ? java.util.List.of() : dependenciaIds;
+    }
+    public void setDependenciaIds(java.util.List<Long> dependenciaIds) {
+        this.dependenciaIds = dependenciaIds == null ? new java.util.ArrayList<>() : new java.util.ArrayList<>(dependenciaIds);
+    }
+
     public String getTipo() { return tipo; }
     public void setTipo(String tipo) { this.tipo = tipo; }
 
     public String getAsignadoA() { return asignadoA; }
     public void setAsignadoA(String asignadoA) { this.asignadoA = asignadoA; }
+    public Long getAsignadoUsuarioId() { return asignadoUsuarioId; }
+    public void setAsignadoUsuarioId(Long asignadoUsuarioId) { this.asignadoUsuarioId = asignadoUsuarioId; }
 
     public String getFecha() { return fecha; }
     public void setFecha(String fecha) { this.fecha = fecha; }

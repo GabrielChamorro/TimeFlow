@@ -54,12 +54,41 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         JornadaController.class,
         MensajeController.class
 })
-@Import({SecurityConfig.class, JwtAuthenticationFilter.class, JwtService.class})
+@Import({SecurityConfig.class, JwtAuthenticationFilter.class, JwtService.class,
+        com.teamflow.backend.security.LoginAttemptLimiter.class})
 @TestPropertySource(properties = {
         "jwt.secret=TimeFlowJWT2026_Clave_Test_32Bytes_Minimo_123456789",
-        "jwt.expiration-ms=86400000"
+        "jwt.expiration-ms=86400000", "app.auth.local-http=true"
 })
 class BackendMockMvcTests {
+    @Test void versionDeBajaMalformadaNoSeConfundeConSesionInvalida() throws Exception {
+        Usuario admin = usuario(2L, "Admin", "admin@teamflow.com", "admin", "activo");
+        when(usuarioRepository.findByEmail(admin.getEmail())).thenReturn(Optional.of(admin));
+        mockMvc.perform(delete("/api/tareas/2?version=invalida").header("Authorization", "Bearer " + jwtService.generateToken(admin)))
+            .andExpect(status().isBadRequest()).andExpect(jsonPath("$.message").value("El parámetro de la solicitud no es válido"));
+        verify(tareaRepository,never()).save(any());
+    }
+
+    @Test
+    void caidaDeMysqlNoInvalidaUnaSesionComo401() throws Exception {
+        Usuario admin = usuario(2L, "Admin", "admin@teamflow.com", "admin", "activo");
+        when(usuarioRepository.findByEmail(admin.getEmail()))
+                .thenThrow(new org.springframework.dao.DataAccessResourceFailureException("detalle privado de MySQL"));
+        mockMvc.perform(get("/api/tareas").header("Authorization", "Bearer " + jwtService.generateToken(admin)))
+                .andExpect(status().isServiceUnavailable())
+                .andExpect(jsonPath("$.message").value("El servicio no está disponible temporalmente. Inténtalo nuevamente"));
+    }
+
+    @MockitoBean
+    private com.teamflow.backend.security.RefreshSessions refreshSessions;
+    @MockitoBean
+    private com.teamflow.backend.security.SessionRegistry sessions;
+    @org.junit.jupiter.api.BeforeEach
+    void prepareSessions() {
+        when(refreshSessions.create(any(Usuario.class))).thenAnswer(i -> new com.teamflow.backend.security.RefreshSessions.Issued(
+                "00000000-0000-0000-0000-000000000019", "synthetic-cookie-fixture",System.currentTimeMillis()+60000,i.getArgument(0)));
+        when(sessions.isActive(org.mockito.ArgumentMatchers.anyString(), org.mockito.ArgumentMatchers.anyLong())).thenReturn(true);
+    }
 
     @Autowired
     private MockMvc mockMvc;
@@ -75,6 +104,9 @@ class BackendMockMvcTests {
 
     @MockitoBean
     private UsuarioRepository usuarioRepository;
+
+    @MockitoBean
+    private com.teamflow.backend.repositories.RegistroTareaRepository registroTareaRepository;
 
     @MockitoBean
     private TareaRepository tareaRepository;
@@ -95,8 +127,9 @@ class BackendMockMvcTests {
         admin.setPasswordHash(passwordEncoder.encode("teamflow"));
 
         when(usuarioRepository.findByEmail("admin@teamflow.com")).thenReturn(Optional.of(admin));
+        when(usuarioRepository.findByEmailForUpdate("admin@teamflow.com")).thenReturn(Optional.of(admin));
 
-        mockMvc.perform(post("/api/auth/login")
+        mockMvc.perform(post("/api/auth/login").header("Origin","http://localhost:5173").header("X-TimeFlow-CSRF","1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {
@@ -118,8 +151,9 @@ class BackendMockMvcTests {
         admin.setPasswordHash(passwordEncoder.encode("teamflow"));
 
         when(usuarioRepository.findByEmail("admin@teamflow.com")).thenReturn(Optional.of(admin));
+        when(usuarioRepository.findByEmailForUpdate("admin@teamflow.com")).thenReturn(Optional.of(admin));
 
-        mockMvc.perform(post("/api/auth/login")
+        mockMvc.perform(post("/api/auth/login").header("Origin","http://localhost:5173").header("X-TimeFlow-CSRF","1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {
@@ -206,6 +240,7 @@ class BackendMockMvcTests {
         existente.setId(10L);
 
         when(usuarioRepository.findByEmail("admin@teamflow.com")).thenReturn(Optional.of(admin));
+        when(usuarioRepository.findByEmailForUpdate("admin@teamflow.com")).thenReturn(Optional.of(admin));
         when(tipoTareaRepository.findByNombreIgnoreCase("Inventario")).thenReturn(Optional.of(existente));
 
         mockMvc.perform(post("/api/tipos-tarea")
@@ -264,6 +299,7 @@ class BackendMockMvcTests {
                         .content("""
                                 {
                                   "nombre": "Tarea con fecha",
+                                  "meta": "Meta verificable",
                                   "codigo": "NODE-ATAQUE",
                                   "descripcion": "Prueba de fecha automática",
                                   "tipo": "Custom",
@@ -299,6 +335,7 @@ class BackendMockMvcTests {
                         .content("""
                                 {
                                   "nombre": "Compatibilidad límite",
+                                  "meta": "Resultado de compatibilidad",
                                   "fechaLimite": "18:00"
                                 }
                                 """))
@@ -319,7 +356,7 @@ class BackendMockMvcTests {
         tareaAndrea.setEstado("En Progreso");
 
         when(usuarioRepository.findByEmail("gabriel@teamflow.com")).thenReturn(Optional.of(gabriel));
-        when(tareaRepository.findById(28L)).thenReturn(Optional.of(tareaAndrea));
+        when(tareaRepository.findByIdForUpdate(28L)).thenReturn(Optional.of(tareaAndrea));
 
         mockMvc.perform(put("/api/tareas/28")
                         .header("Authorization", "Bearer " + token)
@@ -347,7 +384,8 @@ class BackendMockMvcTests {
         finalizada.setEstado("Finalizada");
 
         when(usuarioRepository.findByEmail("admin@teamflow.com")).thenReturn(Optional.of(admin));
-        when(tareaRepository.findById(30L)).thenReturn(Optional.of(finalizada));
+        when(usuarioRepository.findByEmailForUpdate("admin@teamflow.com")).thenReturn(Optional.of(admin));
+        when(tareaRepository.findByIdForUpdate(30L)).thenReturn(Optional.of(finalizada));
 
         mockMvc.perform(put("/api/tareas/30")
                         .header("Authorization", "Bearer " + token)
@@ -391,6 +429,7 @@ class BackendMockMvcTests {
         String token = jwtService.generateToken(admin);
 
         when(usuarioRepository.findByEmail("admin@teamflow.com")).thenReturn(Optional.of(admin));
+        when(usuarioRepository.findByEmailForUpdate("admin@teamflow.com")).thenReturn(Optional.of(admin));
         when(mensajeRepository.save(any(Mensaje.class))).thenAnswer(invocacion -> {
             Mensaje mensaje = invocacion.getArgument(0);
             mensaje.setId(50L);
@@ -425,7 +464,8 @@ class BackendMockMvcTests {
         tarea.setEstado("Finalizada");
 
         when(usuarioRepository.findByEmail("admin@teamflow.com")).thenReturn(Optional.of(admin));
-        when(tareaRepository.findById(40L)).thenReturn(Optional.of(tarea));
+        when(usuarioRepository.findByEmailForUpdate("admin@teamflow.com")).thenReturn(Optional.of(admin));
+        when(tareaRepository.findByIdForUpdate(40L)).thenReturn(Optional.of(tarea));
         when(tareaRepository.save(any(Tarea.class))).thenAnswer(invocacion -> invocacion.getArgument(0));
 
         mockMvc.perform(patch("/api/tareas/40/posicion")
@@ -434,7 +474,9 @@ class BackendMockMvcTests {
                         .content("""
                                 {
                                   "posicionX": 520,
-                                  "posicionY": 340
+                                  "posicionY": 340,
+                                  "anteriorX": null,
+                                  "anteriorY": null
                                 }
                                 """))
                 .andExpect(status().isOk())
@@ -470,6 +512,7 @@ class BackendMockMvcTests {
         Usuario admin = usuario(2L, "Administrador Principal", "admin@teamflow.com", "admin", "activo");
         String token = jwtService.generateToken(admin);
         when(usuarioRepository.findByEmail("admin@teamflow.com")).thenReturn(Optional.of(admin));
+        when(usuarioRepository.findByEmailForUpdate("admin@teamflow.com")).thenReturn(Optional.of(admin));
 
         mockMvc.perform(post("/api/usuarios")
                         .header("Authorization", "Bearer " + token)
@@ -519,7 +562,8 @@ class BackendMockMvcTests {
         finalizada.setEstado("Finalizada");
 
         when(usuarioRepository.findByEmail("admin@teamflow.com")).thenReturn(Optional.of(admin));
-        when(tareaRepository.findById(60L)).thenReturn(Optional.of(finalizada));
+        when(usuarioRepository.findByEmailForUpdate("admin@teamflow.com")).thenReturn(Optional.of(admin));
+        when(tareaRepository.findByIdForUpdate(60L)).thenReturn(Optional.of(finalizada));
 
         mockMvc.perform(delete("/api/tareas/60")
                         .header("Authorization", "Bearer " + token))
@@ -548,11 +592,45 @@ class BackendMockMvcTests {
     }
 
     @Test
+    @DisplayName("S5-01 - La consulta de mensajes filtra por usuario en el repositorio")
+    void mensajesSeFiltranEnRepositorio() throws Exception {
+        Usuario trabajador = usuario(1L, "Gabriel Chamorro", "gabriel@teamflow.com", "trabajador", "activo");
+        String token = jwtService.generateToken(trabajador);
+        when(usuarioRepository.findByEmail("gabriel@teamflow.com")).thenReturn(Optional.of(trabajador));
+
+        Mensaje general = new Mensaje();
+        general.setId(10L);
+        general.setChatId("general");
+        general.setSenderId(2L);
+        general.setSenderName("Administrador");
+        general.setSenderRole("admin");
+        general.setText("Mensaje visible");
+        general.setTimestamp("12:30");
+        when(mensajeRepository.findVisiblesParaUsuario(1L)).thenReturn(java.util.List.of(general));
+
+        mockMvc.perform(get("/api/mensajes").header("Authorization", "Bearer " + token))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].id").value(10))
+                .andExpect(jsonPath("$[0].text").value("Mensaje visible"));
+        verify(mensajeRepository).findVisiblesParaUsuario(1L);
+        verify(mensajeRepository, never()).findAll();
+    }
+
+    @Test
+    @DisplayName("S5-02 - La consulta de mensajes no entrega datos sin JWT")
+    void mensajesSinTokenNoSeConsultan() throws Exception {
+        mockMvc.perform(get("/api/mensajes"))
+                .andExpect(status().isUnauthorized());
+        verify(mensajeRepository, never()).findAll();
+    }
+
+    @Test
     @DisplayName("S4-05 - Rol no reconocido es rechazado")
     void rolInvalidoEsRechazado() throws Exception {
         Usuario admin = usuario(2L, "Administrador Principal", "admin@teamflow.com", "admin", "activo");
         String token = jwtService.generateToken(admin);
         when(usuarioRepository.findByEmail("admin@teamflow.com")).thenReturn(Optional.of(admin));
+        when(usuarioRepository.findByEmailForUpdate("admin@teamflow.com")).thenReturn(Optional.of(admin));
 
         mockMvc.perform(post("/api/usuarios")
                         .header("Authorization", "Bearer " + token)
@@ -582,7 +660,8 @@ class BackendMockMvcTests {
         tarea.setEstado("En Progreso");
 
         when(usuarioRepository.findByEmail("admin@teamflow.com")).thenReturn(Optional.of(admin));
-        when(tareaRepository.findById(61L)).thenReturn(Optional.of(tarea));
+        when(usuarioRepository.findByEmailForUpdate("admin@teamflow.com")).thenReturn(Optional.of(admin));
+        when(tareaRepository.findByIdForUpdate(61L)).thenReturn(Optional.of(tarea));
 
         mockMvc.perform(put("/api/tareas/61")
                         .header("Authorization", "Bearer " + token)
@@ -663,7 +742,7 @@ class BackendMockMvcTests {
                         .header("Authorization", "Bearer " + jwtService.generateToken(trabajador))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                                {"nombre":"Intento sin jornada", "fechaLimite":"2030-12-01T18:00"}
+                                {"nombre":"Intento sin jornada", "meta":"Meta verificable", "fechaLimite":"2030-12-01T18:00"}
                                 """))
                 .andExpect(status().isConflict())
                 .andExpect(jsonPath("$.message").value("Debes registrar Check In antes de crear una tarea"));
@@ -692,6 +771,121 @@ class BackendMockMvcTests {
         mockMvc.perform(post("/api/jornadas/check-out")
                         .header("Authorization", "Bearer " + jwtService.generateToken(trabajador)))
                 .andExpect(status().isConflict());
+    }
+
+    @Test
+    @DisplayName("S5-ARCH-01 - Desactivar tarea guarda el estado, no elimina su fila")
+    void desactivarTareaNoLaBorraDeMySQL() throws Exception {
+        Usuario admin = usuario(2L, "Admin", "admin@teamflow.com", "admin", "activo");
+        String token = jwtService.generateToken(admin);
+        when(usuarioRepository.findByEmail(admin.getEmail())).thenReturn(Optional.of(admin));
+        Tarea tarea = new Tarea();
+        tarea.setId(99L);
+        tarea.setNombre("Tarea con historial");
+        tarea.setEstado("En Progreso");
+        when(tareaRepository.findByIdForUpdate(99L)).thenReturn(Optional.of(tarea));
+        mockMvc.perform(delete("/api/tareas/99").header("Authorization", "Bearer " + token))
+                .andExpect(status().isNoContent());
+        org.junit.jupiter.api.Assertions.assertFalse(tarea.isActivo());
+        verify(tareaRepository).save(tarea);
+        verify(tareaRepository, never()).delete(any(Tarea.class));
+    }
+
+    @Test
+    @DisplayName("S5-ARCH-02 - Tarea desactivada rechaza edicion y movimientos")
+    void tareaDesactivadaNoPuedeModificarse() throws Exception {
+        Usuario admin = usuario(2L, "Admin", "admin@teamflow.com", "admin", "activo");
+        when(usuarioRepository.findByEmail(admin.getEmail())).thenReturn(Optional.of(admin));
+        Tarea tarea = new Tarea(); tarea.setId(99L); tarea.setActivo(false);
+        when(tareaRepository.findByIdForUpdate(99L)).thenReturn(Optional.of(tarea));
+        String token = jwtService.generateToken(admin);
+        mockMvc.perform(put("/api/tareas/99").header("Authorization", "Bearer " + token)
+                .contentType(MediaType.APPLICATION_JSON).content("{\"nombre\":\"Intento\"}"))
+                .andExpect(status().isNotFound());
+        mockMvc.perform(patch("/api/tareas/99/posicion").header("Authorization", "Bearer " + token)
+                .contentType(MediaType.APPLICATION_JSON).content("{\"posicionX\":1,\"posicionY\":2}"))
+                .andExpect(status().isNotFound());
+        verify(tareaRepository, never()).save(any(Tarea.class));
+    }
+
+    @Test
+    @DisplayName("S5-ARCH-03 - Lista de tareas consulta solo activas")
+    void listaDeTareasSoloActivas() throws Exception {
+        Usuario admin = usuario(2L, "Admin", "admin@teamflow.com", "admin", "activo");
+        when(usuarioRepository.findByEmail(admin.getEmail())).thenReturn(Optional.of(admin));
+        when(tareaRepository.findByActivoTrue()).thenReturn(java.util.List.of());
+        mockMvc.perform(get("/api/tareas").header("Authorization", "Bearer " + jwtService.generateToken(admin)))
+                .andExpect(status().isOk());
+        verify(tareaRepository).findByActivoTrue();
+        verify(tareaRepository, never()).findAll();
+    }
+
+    @Test
+    @DisplayName("S5-ARCH-04 - Desactivar cuenta conserva usuario y rechaza su token")
+    void desactivarUsuarioMantieneSuFila() throws Exception {
+        Usuario admin = usuario(2L, "Admin", "admin@teamflow.com", "admin", "activo");
+        Usuario worker = usuario(5L, "Empleado", "empleado@teamflow.com", "trabajador", "activo");
+        when(usuarioRepository.findByEmail(admin.getEmail())).thenReturn(Optional.of(admin));
+        when(usuarioRepository.findByIdForUpdate(5L)).thenReturn(Optional.of(worker));
+        mockMvc.perform(delete("/api/usuarios/5").header("Authorization", "Bearer " + jwtService.generateToken(admin)))
+                .andExpect(status().isNoContent());
+        org.junit.jupiter.api.Assertions.assertEquals("inactivo", worker.getEstado());
+        verify(usuarioRepository).save(worker);
+        verify(usuarioRepository, never()).deleteById(5L);
+    }
+
+    @Test
+    @DisplayName("S5-ARCH-05 - No se puede desactivar el propio administrador")
+    void administradorNoSeAutoDesactiva() throws Exception {
+        Usuario admin = usuario(2L, "Admin", "admin@teamflow.com", "admin", "activo");
+        when(usuarioRepository.findByEmail(admin.getEmail())).thenReturn(Optional.of(admin));
+        when(usuarioRepository.findByIdForUpdate(2L)).thenReturn(Optional.of(admin));
+        mockMvc.perform(delete("/api/usuarios/2").header("Authorization", "Bearer " + jwtService.generateToken(admin)))
+                .andExpect(status().isConflict());
+        verify(usuarioRepository, never()).save(any(Usuario.class));
+    }
+
+    @Test
+    @DisplayName("S5-ARCH-06 - Plantilla desactivada se conserva")
+    void desactivarPlantillaConservaLaFila() throws Exception {
+        Usuario admin = usuario(2L, "Admin", "admin@teamflow.com", "admin", "activo");
+        when(usuarioRepository.findByEmail(admin.getEmail())).thenReturn(Optional.of(admin));
+        TipoTarea plantilla = new TipoTarea("Analisis", "Detalles"); plantilla.setId(8L);
+        when(tipoTareaRepository.findByIdForUpdate(8L)).thenReturn(Optional.of(plantilla));
+        mockMvc.perform(delete("/api/tipos-tarea/8").header("Authorization", "Bearer " + jwtService.generateToken(admin)))
+                .andExpect(status().isNoContent());
+        org.junit.jupiter.api.Assertions.assertFalse(plantilla.isActivo());
+        verify(tipoTareaRepository).save(plantilla);
+        verify(tipoTareaRepository, never()).deleteById(8L);
+    }
+
+    @Test
+    @DisplayName("S5-ARCH-07 - Mensaje archivado no se borra fisicamente")
+    void desactivarMensajeMantieneLaFila() throws Exception {
+        Usuario admin = usuario(2L, "Admin", "admin@teamflow.com", "admin", "activo");
+        when(usuarioRepository.findByEmail(admin.getEmail())).thenReturn(Optional.of(admin));
+        Mensaje mensaje = new Mensaje(); mensaje.setId(3L); mensaje.setSenderId(2L);
+        when(mensajeRepository.findById(3L)).thenReturn(Optional.of(mensaje));
+        mockMvc.perform(delete("/api/mensajes/3").header("Authorization", "Bearer " + jwtService.generateToken(admin)))
+                .andExpect(status().isNoContent());
+        org.junit.jupiter.api.Assertions.assertFalse(mensaje.isActivo());
+        verify(mensajeRepository).save(mensaje);
+        verify(mensajeRepository, never()).delete(any(Mensaje.class));
+    }
+
+    @Test
+    @DisplayName("S5-ARCH-08 - El administrador puede reactivar una tarea desactivada")
+    void administradorReactivaTarea() throws Exception {
+        Usuario admin = usuario(2L, "Admin", "admin@teamflow.com", "admin", "activo");
+        when(usuarioRepository.findByEmail(admin.getEmail())).thenReturn(Optional.of(admin));
+        Tarea tarea = new Tarea(); tarea.setId(99L); tarea.setActivo(false);
+        when(tareaRepository.findByIdForUpdate(99L)).thenReturn(Optional.of(tarea));
+        when(tareaRepository.save(any(Tarea.class))).thenAnswer(inv -> inv.getArgument(0));
+        mockMvc.perform(patch("/api/tareas/99/reactivar")
+                .header("Authorization", "Bearer " + jwtService.generateToken(admin)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.activo").value(true));
+        verify(tareaRepository).save(tarea);
     }
 
     private Usuario usuario(Long id, String nombre, String email, String rol, String estado) {

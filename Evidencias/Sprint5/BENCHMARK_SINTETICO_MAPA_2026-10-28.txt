@@ -1,0 +1,4 @@
+100 nodos, 1500 iteraciones, mediana=0.008 ms, p95=0.095 ms, vista final=56 nodos y 57 conexiones
+250 nodos, 1500 iteraciones, mediana=0.021 ms, p95=0.113 ms, vista final=56 nodos y 57 conexiones
+500 nodos, 1500 iteraciones, mediana=0.007 ms, p95=0.130 ms, vista final=56 nodos y 57 conexiones
+Nota: medición sintética de cálculos. No demuestra FPS ni tiempos de respuesta de TimeFlow.

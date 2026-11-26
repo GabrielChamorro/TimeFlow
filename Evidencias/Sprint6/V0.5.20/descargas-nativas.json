@@ -1,0 +1,19 @@
+{
+  "downloads": [
+    {
+      "type": "pdf",
+      "downloadHttp": 200,
+      "bytes": 1431,
+      "sha256": "faf2976934987c67f85406d703a80870b7c71a547a9d36ee9ebe8f4048536891"
+    },
+    {
+      "type": "docx",
+      "downloadHttp": 200,
+      "bytes": 42520,
+      "sha256": "f364fab9e101480f9b979c6d089862aaa4f14e0e5fcf4b99bbedcc5f392d3dc5"
+    }
+  ],
+  "wordOpenedAndExported": true,
+  "pdfParsedByPoppler": true,
+  "scope": "Descarga HTTP real; Word COM abre DOCX en solo lectura y exporta PDF. Poppler abre PDF válido. No es una prueba de interfaz nativa Chrome/Edge."
+}

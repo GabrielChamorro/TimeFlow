@@ -1,0 +1,12 @@
+{
+  "version": "0.5.21-SNAPSHOT",
+  "checkedCandidateSourceFiles": 541,
+  "knownPrivateSecretsAbsentInSourceJarAndDist": true,
+  "docxXlsxXmlChecked": true,
+  "publicPythonScriptsCompile": true,
+  "migrationHelperPowerShellSyntaxValid": true,
+  "versionsConsistent": true,
+  "baselineFilesPreserved": true,
+  "allExportedChecksPassed": true,
+  "privateHarnessExcluded": true
+}

@@ -1,0 +1,34 @@
+TIMEFLOW V0.5.3-SNAPSHOT - VALIDACIONES MANUALES
+Fecha de confirmacion: 9 nov de 2026
+Origen: resultados comunicados por el equipo durante las pruebas en Windows.
+No se incluyen mediciones de FPS ni capturas de cada caso manual.
+
+MAPA DE 100 NODOS
+OK: aparecen 100 nodos ficticios.
+OK: el mapa no se congela ni presenta movimientos bruscos observados.
+OK: zoom, desplazamiento y Encajar nodos.
+OK: no desaparecen nodos al mover el mapa.
+OK: seleccionar nodos ficticios y abrir detalles.
+OK: cerrar con Escape y boton.
+OK: usar teclado para seleccionar y sin acciones de editar o eliminar.
+
+TAREAS REALES Y PLANTILLAS
+OK: modo normal sin parametro demoSprint5.
+OK: elegir otra plantilla que no sea Diseno UI/UX en Figma.
+OK: cambiar descripcion segun la plantilla.
+OK: crear tarea preestablecida con otra plantilla.
+OK: crear tarea personalizada.
+OK: editar tareas reales y conservar cambios.
+OK: mover tarea real y conservar posicion tras recarga.
+
+JORNADAS, CHAT Y PERMISOS
+OK: chat se actualiza cada 30 segundos.
+OK: Check In y Check Out guardan jornada.
+OK: mensajes enviados y recibidos.
+OK: trabajador sin permiso no altera tareas o mensajes ajenos.
+
+NAVEGADORES
+OK: pantallas principales en Chrome, Brave y Firefox.
+OK: mapa con 100 nodos en esos tres navegadores.
+
+Este registro resume confirmaciones manuales, no una medicion automatizada.

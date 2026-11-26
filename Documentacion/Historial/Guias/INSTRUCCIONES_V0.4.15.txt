@@ -1,0 +1,37 @@
+TIMEFLOW V0.4.15 - GUIA RAPIDA
+===============================
+
+Version completa basada en V0.4.14 con auditor Maven/NVD incluido.
+NO necesitas copiar parches ni reemplazar archivos manualmente.
+
+1. Extrae el ZIP completo en una carpeta NUEVA.
+2. Conserva TimeFlow V0.4.14 y tu copia de seguridad de teamflow_db.
+3. Ejecuta INSTALAR_DEPENDENCIAS_TIMEFLOW.bat si quieres preparar esta
+   carpeta nueva. El instalador detecta las dependencias ya instaladas.
+   Se solicitara tu contraseña actual de MySQL: no inventes una.
+4. Puedes iniciar backend e interfaz desde sus iniciar_servidor.bat.
+5. Para auditar seguridad Maven, ejecuta el archivo DE LA RAIZ:
+
+   AUDITAR_SEGURIDAD_BACKEND.bat
+
+   (No necesita permisos de administrador.)
+6. Solicita/activa la clave NVD gratuita en:
+   https://nvd.nist.gov/developers/request-an-api-key
+   Al solicitarla el auditor, pegala SOLO en tu propio PC.
+7. La primera descarga NVD puede ser lenta y requiere Internet.
+8. Al terminar, busca los archivos:
+
+   backend\target\auditoria_backend_sprint4\dependency-check-report.html
+   backend\target\auditoria_backend_sprint4\dependency-check-report.json
+   backend\target\auditoria_backend_sprint4\arbol_dependencias.txt
+
+9. Adjunta al chat los informes JSON y el arbol de dependencias.
+   No compartas claves NVD, contraseñas de MySQL, JWT ni config_local.bat.
+
+IMPORTANTE
+- Se ha integrado la HERRAMIENTA de auditoria; no se ha realizado
+  aun el analisis NVD de las dependencias Maven en tu Windows.
+- Un resultado BUILD FAILURE con informes puede indicar hallazgos
+  de gravedad alta, no necesariamente un fallo de TimeFlow.
+- BUILD FAILURE sin informes indica auditoria incompleta.
+- El auditor no toca la base de datos ni modifica pom.xml.

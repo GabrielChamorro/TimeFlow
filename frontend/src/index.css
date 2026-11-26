@@ -1,1 +1,202 @@
 @import "tailwindcss";
+.tf-node {
+  position: absolute;
+  isolation: isolate;
+}
+
+.tf-node::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.tf-node-selected::after,
+.tf-node-dependency::after {
+  opacity: 1;
+  animation: tfNodeBorderPulse 3s ease-in-out infinite;
+}
+
+.tf-flow-line {
+  animation: tfFlowPulse 3.8s ease-in-out infinite;
+}
+
+.tf-flow-chevron {
+  animation: tfChevronPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes tfNodeBorderPulse {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.10),
+      0 0 10px rgba(34, 211, 238, 0.08),
+      0 0 0 0 rgba(56, 189, 248, 0.10);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+      0 0 16px rgba(34, 211, 238, 0.14),
+      0 0 0 1px rgba(56, 189, 248, 0.14);
+  }
+}
+
+@keyframes tfFlowPulse {
+  0%,
+  100% { opacity: 0.78; }
+  50% { opacity: 0.92; }
+}
+
+@keyframes tfChevronPulse {
+  0%,
+  100% { opacity: 0.66; }
+  50% { opacity: 0.98; }
+}
+
+
+/* TimeFlow: microinteracciones discretas y accesibles, sin librerías adicionales. */
+#root .tf-ui button {
+  transition: background-color 150ms ease, border-color 150ms ease,
+    color 150ms ease, box-shadow 150ms ease, filter 150ms ease, transform 130ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+#root .tf-ui button:not(:disabled):not([aria-disabled="true"]):hover {
+  filter: brightness(1.035);
+}
+#root .tf-ui button:not(:disabled):not([aria-disabled="true"]):active {
+  transform: scale(0.977);
+  filter: brightness(0.97);
+}
+#root .tf-ui button:disabled {
+  cursor: not-allowed;
+  filter: none;
+  transform: none;
+}
+#root .tf-ui button:focus-visible,
+#root .tf-ui a:focus-visible,
+#root .tf-ui [role="button"]:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 3px;
+}
+#root .tf-ui :is(input, select, textarea):not(:disabled) {
+  transition: border-color 145ms ease, box-shadow 145ms ease, background-color 145ms ease;
+}
+#root .tf-ui input[type="checkbox"],
+#root .tf-ui input[type="radio"] {
+  accent-color: #4f46e5;
+}
+#root .tf-ui :is(input, select, textarea):not(:disabled):focus-visible {
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+#root .tf-ui button[data-loading="true"] {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: progress;
+}
+#root .tf-ui button[data-loading="true"]::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  flex: none;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: tf-ui-spin 700ms linear infinite;
+}
+.tf-primary-nav {
+  scrollbar-width: thin;
+}
+.tf-primary-nav > button {
+  position: relative;
+  white-space: nowrap;
+}
+.tf-primary-nav > button[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 18%;
+  right: 18%;
+  height: 2px;
+  border-radius: 999px;
+  background: #6366f1;
+  animation: tf-ui-underline 160ms ease-out both;
+}
+.tf-ui-view {
+  animation: tf-ui-fade-in 175ms ease-out both;
+}
+.tf-ui-alert,
+#root .tf-ui [role="alert"],
+#root .tf-ui [role="status"] {
+  animation: tf-ui-fade-in 150ms ease-out both;
+}
+.tf-ui-panel-enter {
+  animation: tf-ui-panel-in 170ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.tf-ui-list > *,
+.tf-ui-list :is(tr, article) {
+  transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+}
+.tf-ui-list :is(tr, article):hover {
+  background-color: rgba(99, 102, 241, 0.035);
+}
+.tf-ui-expander[aria-expanded="true"] {
+  background-color: rgba(99, 102, 241, 0.095);
+}
+.tf-ui-expander .tf-ui-chevron {
+  display: inline-block;
+  transition: transform 155ms ease;
+}
+.tf-ui-expander[aria-expanded="true"] .tf-ui-chevron {
+  transform: rotate(180deg);
+}
+.tf-presence-overlay {
+  position: relative;
+  z-index: 70;
+  animation: tf-ui-fade-in 145ms ease-out both;
+}
+.tf-presence-overlay.tf-presence-leaving {
+  pointer-events: none;
+  animation: tf-ui-fade-out 150ms ease-in both;
+}
+.tf-presence-overlay [role="dialog"],
+.tf-presence-overlay [role="alertdialog"] {
+  animation: tf-ui-dialog-in 165ms cubic-bezier(0.2, 0.85, 0.25, 1) both;
+}
+.tf-presence-overlay.tf-presence-leaving [role="dialog"],
+.tf-presence-overlay.tf-presence-leaving [role="alertdialog"] {
+  animation: none;
+}
+@keyframes tf-ui-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes tf-ui-fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes tf-ui-panel-in {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes tf-ui-dialog-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.988); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes tf-ui-underline {
+  from { transform: scaleX(0.65); opacity: 0.3; }
+  to { transform: scaleX(1); opacity: 1; }
+}
+@keyframes tf-ui-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  #root .tf-ui *, #root .tf-ui *::before, #root .tf-ui *::after,
+  .tf-presence-overlay, .tf-presence-overlay * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.tf-ui-chat-history { animation: tf-ui-fade-in 145ms ease-out both; }
+.tf-ui-item { animation: tf-ui-fade-in 130ms ease-out both; }

@@ -1,0 +1,922 @@
+{
+  "info": {
+    "name": "TimeFlow Sprint 6 V0.5.23",
+    "description": "Solo entorno de prueba local. No se distribuyen credenciales ni JWT. Ejecutar después de scripts/probar_sprint6.py.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Login administrador",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Origin",
+            "value": "{{test_origin}}"
+          },
+          {
+            "key": "X-TimeFlow-CSRF",
+            "value": "1"
+          }
+        ],
+        "url": "{{base_url}}/api/auth/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"{{admin_email}}\", \"password\": \"{{admin_password}}\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.collectionVariables.set('admin_token',pm.response.json().token);",
+              "pm.test('JWT y usuario sin contraseñas',()=>{const r=pm.response.json(); pm.expect(r.token).to.be.a('string'); pm.expect(r.user).not.to.have.property('passwordHash'); pm.expect(r.user).not.to.have.property('password');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login trabajador",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Origin",
+            "value": "{{test_origin}}"
+          },
+          {
+            "key": "X-TimeFlow-CSRF",
+            "value": "1"
+          }
+        ],
+        "url": "{{base_url}}/api/auth/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"{{worker_email}}\", \"password\": \"{{worker_password}}\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.collectionVariables.set('worker_token',pm.response.json().token);",
+              "pm.test('JWT y usuario sin contraseñas',()=>{const r=pm.response.json(); pm.expect(r.token).to.be.a('string'); pm.expect(r.user).not.to.have.property('passwordHash'); pm.expect(r.user).not.to.have.property('password');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sin token",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/tareas"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 401', () => pm.response.to.have.status(401));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Token manipulado",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{invalid_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/tareas"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 401', () => pm.response.to.have.status(401));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tareas persistidas",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/tareas"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('dependencias y posiciones conservadas',()=>{const rows=pm.response.json(); const t=rows.find(t=>t.id===Number(pm.environment.get('task_c'))); pm.expect(t.dependenciaIds).to.include(Number(pm.environment.get('task_a'))); pm.expect(t.dependenciaIds).to.include(Number(pm.environment.get('task_b')));});",
+              "pm.environment.set('task_a_version',pm.response.json().find(t=>t.id===Number(pm.environment.get('task_a'))).version);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Directorio trabajador sin correos",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{worker_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/usuarios"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('directorio sin email ni hash',()=>pm.response.json().forEach(u=>{pm.expect(u).not.to.have.property('email');pm.expect(u).not.to.have.property('passwordHash');}));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin lista /api/usuarios/administracion",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/usuarios/administracion"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Trabajador no lista /api/usuarios/administracion",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{worker_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/usuarios/administracion"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403', () => pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin lista /api/tipos-tarea/administracion",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/tipos-tarea/administracion"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Trabajador no lista /api/tipos-tarea/administracion",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{worker_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/tipos-tarea/administracion"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403', () => pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Permisos POST /api/usuarios",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{worker_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/usuarios",
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403', () => pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Permisos PUT /api/usuarios/{{worker_id}}",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{worker_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/usuarios/{{worker_id}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403', () => pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Permisos DELETE /api/usuarios/{{worker_id}}",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{worker_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/usuarios/{{worker_id}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403', () => pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Permisos PATCH /api/usuarios/{{worker_id}}/reactivar",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{worker_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/usuarios/{{worker_id}}/reactivar"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403', () => pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Permisos POST /api/tipos-tarea",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{worker_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/tipos-tarea",
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403', () => pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Permisos PUT /api/tipos-tarea/{{template_id}}",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{worker_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/tipos-tarea/{{template_id}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403', () => pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Permisos DELETE /api/tipos-tarea/{{template_id}}",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{worker_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/tipos-tarea/{{template_id}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403', () => pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Permisos PATCH /api/tareas/{{task_a}}/posicion",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{worker_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/tareas/{{task_a}}/posicion",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"posicionX\": 2, \"posicionY\": 4, \"anteriorX\": null, \"anteriorY\": null}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403', () => pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Permisos PATCH /api/tareas/posiciones",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{worker_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/tareas/posiciones",
+        "body": {
+          "mode": "raw",
+          "raw": "[{\"id\": \"{{task_a}}\", \"posicionX\": 2, \"posicionY\": 4}]"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403', () => pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dependencia duplicada",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/tareas",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"nombre\": \"Postman\", \"dependenciaIds\": [\"{{task_a}}\", \"{{task_a}}\"]}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400', () => pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dependencia inexistente",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/tareas",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"nombre\": \"Postman\", \"dependenciaIds\": [99999999]}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400', () => pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Autodependencia",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/tareas/{{task_a}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"nombre\": \"Postman\", \"dependenciaIds\": [\"{{task_a}}\"], \"version\": \"{{task_a_version}}\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400', () => pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Manual requiere posición original",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/tareas/{{task_a}}/posicion",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"posicionX\": 10, \"posicionY\": 20}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400', () => pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lote duplicado",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/tareas/posiciones",
+        "body": {
+          "mode": "raw",
+          "raw": "[{\"id\": \"{{task_a}}\", \"posicionX\": 1, \"posicionY\": 2}, {\"id\": \"{{task_a}}\", \"posicionX\": 3, \"posicionY\": 4}]"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400', () => pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Consulta de jornada",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{worker_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/jornadas/actual"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Anuncio prohibido",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{worker_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/mensajes",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"chatId\": \"announcements\", \"text\": \"No autorizado\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403', () => pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Mensajes propios",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{worker_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/mensajes"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "No aceptar SQL en correo",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Origin",
+            "value": "{{test_origin}}"
+          },
+          {
+            "key": "X-TimeFlow-CSRF",
+            "value": "1"
+          }
+        ],
+        "url": "{{base_url}}/api/auth/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"' OR 1=1 --\", \"password\": \"invalid\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 401', () => pm.response.to.have.status(401));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Presencia sin sesión",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/jornadas/presencia"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 401', () => pm.response.to.have.status(401));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Presencia autenticada",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{worker_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/jornadas/presencia"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('No-store',()=>pm.expect(pm.response.headers.get('Cache-Control')).to.eql('no-store'));",
+              "pm.test('Contrato ligero sin datos sensibles',()=>{const r=pm.response.json();pm.expect(Array.isArray(r.members) && r.members.every(m => !('email' in m) && !('passwordHash' in m) && typeof m.presente==='boolean')).to.eql(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sincronización sin sesión",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/tareas/sincronizacion"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 401', () => pm.response.to.have.status(401));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sincronización autenticada",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{worker_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/tareas/sincronizacion"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('No-store',()=>pm.expect(pm.response.headers.get('Cache-Control')).to.eql('no-store'));",
+              "pm.test('Contrato ligero sin datos sensibles',()=>{const r=pm.response.json();pm.expect(Array.isArray(r.tasks) && Number.isFinite(r.serverNowMs) && r.tasks.every(t => !('evidencia' in t) && !('bitacora' in t))).to.eql(true);});"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "if(!/^http:\\/\\/(127\\.0\\.0\\.1|localhost):\\d+$/.test(pm.environment.get('base_url'))) throw new Error('Solo entorno de pruebas localhost');"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "invalid_token",
+      "value": "invalid.jwt.signature"
+    }
+  ]
+}

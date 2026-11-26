@@ -1,0 +1,59 @@
+{
+  "version": "0.5.23-SNAPSHOT",
+  "checks": [
+    {
+      "case": "Esquema V23 nuevo se ejecuta dos veces",
+      "passed": true
+    },
+    {
+      "case": "Actualizar desde esquema exacto V0.5.21 repetido conserva todas las filas",
+      "passed": true
+    },
+    {
+      "case": "Legado V0.5.21 no recibe duración ni cierre inventados",
+      "passed": true
+    },
+    {
+      "case": "Migración V0.5.21 no inventa registros históricos",
+      "passed": true
+    },
+    {
+      "case": "Actualizar desde esquema exacto V0.5.19 repetido conserva todas las filas",
+      "passed": true
+    },
+    {
+      "case": "Legado V0.5.19 no recibe duración ni cierre inventados",
+      "passed": true
+    },
+    {
+      "case": "Migración V0.5.19 no inventa registros históricos",
+      "passed": true
+    },
+    {
+      "case": "Helper real genera respaldo privado antes de migrar en cada ejecución",
+      "passed": true
+    },
+    {
+      "case": "Primer respaldo fue creado sobre V19 antes de añadir columnas",
+      "passed": true
+    },
+    {
+      "case": "Respaldo V19 se restaura y actualiza a V23 sin pérdida",
+      "passed": true
+    },
+    {
+      "case": "Restore no trae sesiones activas",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "scope": "Esquemas exactos entregados V19 y V21; MySQL aislado 33316. Helper PowerShell real y restore SQL; no login HTTP del restore.",
+  "freshExecutedTwice": true,
+  "upgradeRepeatedTwice": true,
+  "allThreeMigrationsFrom19": true,
+  "personalDatabaseTouched": false,
+  "backupHashes": [
+    "7b5e882104811a884c2e2f82d98584cea453dcb93b7a12bc6400eda40c779c58",
+    "dfd26aefd4ea4212b290ec60bc6aeefb9694ac0907a17dd56bc9245fda2a7cf6"
+  ]
+}

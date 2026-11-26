@@ -1,0 +1,35 @@
+TIMEFLOW V0.5.3-SNAPSHOT - REGISTRO DE PRUEBAS AUTOMATICAS
+Fecha: 9 nov de 2026
+Origen: transcripcion resumida de los registros de PowerShell aportados durante la revision.
+Este archivo no sustituye los archivos originales de salida de Maven o Node.
+
+FRONTEND
+Comando: npm.cmd run test:sprint5
+Ejecutadas: 16
+Aprobadas: 16
+Fallidas: 0
+Canceladas: 0
+Omitidas: 0
+Duracion total informada: 97.1649 ms
+
+Comando: npm.cmd run build
+Vite: 8.2.4
+Modulos transformados: 28
+Resultado: built in 207ms
+
+BACKEND
+Comando: PROBAR_MIGRACION_SPRING4.bat
+Spring Boot: 4.1.2
+Java: 21.0.13.0.2
+BackendMockMvcTests: 32/32
+JornadaServiceTests: 4/4
+SecurityDatabaseMigrationTests: 3/3
+Total: 39/39
+Failures: 0
+Errors: 0
+Skipped: 0
+BUILD SUCCESS
+Duracion total informada: 14.490 s
+
+OBSERVACION
+Los avisos de Mockito y Java corresponden a la carga dinamica de un agente de pruebas y no impidieron la compilacion.

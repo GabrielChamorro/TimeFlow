@@ -1,0 +1,21 @@
+TIMEFLOW V0.4.10 - CORRECCIONES DEL INSTALADOR WINDOWS
+
+Base: V0.4.9. Conserva Check In/Check Out y los datos del proyecto.
+
+1) Node.js: nueva deteccion independiente (_verificar_node.ps1), valida node.exe,
+   npm.cmd y version compatible con Vite aun con rutas que contienen espacios.
+   No reinstala una version valida ya instalada.
+2) MySQL: verifica --version con _verificar_mysql.ps1 y no da un [OK] falso
+   si el numero de version esta vacio o no se puede interpretar.
+   Comprueba el cliente y deja la comprobacion de conexion a la etapa 7/9.
+   No actualiza un servidor MySQL existente automaticamente.
+3) PATH: indica por separado si falla la deteccion de Java, Node o MySQL.
+4) Secretos: el instalador no pregunta contrasenas nuevas cuando fallaron
+   dependencias previas. No se deben compartir config_local.bat ni contrasenas.
+5) Backend: reutiliza la misma verificacion de version del cliente MySQL.
+6) Versiones sincronizadas: backend pom.xml, frontend package.json y lock,
+   scripts de arranque y del instalador.
+
+VALIDACION: revision estatica de scripts y ZIP efectuada en Linux.
+NO se han ejecutado el instalador en Windows, Java/Maven, npm ni MySQL.
+Antes de probar en Windows, conserva respaldo de teamflow_db y de config_local.bat.

@@ -1,0 +1,26 @@
+TIMEFLOW - SPRINT 4 - REGISTRO DE HALLAZGOS V0.4.0
+==================================================
+
+Estado: correcciones implementadas; re-prueba en PC pendiente.
+
+ID      Riesgo   Hallazgo                                              Corrección V0.4.0
+S4-H01  Alto     Contraseña MySQL escrita en application.properties.   DB_PASSWORD local/entorno, sin valor fijo.
+S4-H02  Alto     JWT tenía clave de respaldo dentro del proyecto.      JWT_SECRET obligatorio y >= 32 bytes.
+S4-H03  Alto     Esquema histórico podía conservar password plano.     Campo @Transient + migración elimina columna password.
+S4-H04  Medio    Instalación nueva usaba contraseña demo conocida.     Admin inicial definido localmente y BCrypt costo 12.
+S4-H05  Medio    Contraseñas nuevas solo requerían no estar vacías.    8-64 caracteres + letra + número.
+S4-H06  Medio    Evidencia se validaba principalmente en React.        Backend valida tipo, firma y tamaño <= 2 MB.
+S4-H07  Medio    Tarea finalizada podía eliminarse vía API.             Eliminación bloqueada para tarea finalizada.
+S4-H08  Medio    Varios textos no tenían límite de longitud.           Límites en backend + frontend.
+S4-H09  Bajo     Datos de remitente/hora podían venir del cliente.     Backend los reemplaza siempre desde JWT/reloj.
+S4-H10  Bajo     CORS repetido en controladores.                        CORS único en SecurityConfig.
+S4-H11  Medio    Dependencias base antiguas.                           Spring Boot 3.5.16 y JJWT 0.12.7.
+
+PENDIENTE
+S4-H12  Alto*    Check In aún existe solo en estado React.              Programado para V0.4.1: jornada persistida y regla backend.
+
+*Se considera alto respecto de la regla de negocio de TimeFlow porque una llamada directa a
+POST /api/tareas todavía puede evitar el Check In. No se declara Sprint 4 cerrado hasta corregirlo.
+
+Pruebas de seguridad añadidas al código: S4-01 a S4-06.
+Resultado real: PENDIENTE DE EJECUCIÓN EN EL PC DEL PROYECTO.

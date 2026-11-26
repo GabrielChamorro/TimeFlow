@@ -1,0 +1,13 @@
+PRUEBA RAPIDA V0.4.6
+
+1. Extrae el ZIP completo en una carpeta NUEVA y realiza una copia de
+   seguridad de MySQL antes de instalar o migrar datos.
+2. Si antes usabas backend\config_local.bat, conserva ese archivo
+   solo en tu equipo y dentro de la carpeta backend de esta version.
+3. Doble clic en INSTALAR_DEPENDENCIAS_TIMEFLOW.bat.
+4. Acepta la ventana de UAC. Se abrira una segunda ventana CMD de administrador.
+5. Debe mostrar los pasos 1/9 al 9/9 y al final el resumen.
+6. Si aparece un error, la ventana queda abierta; toma una captura.
+7. Solo cuando el instalador termine correctamente, inicia backend y frontend.
+
+NUNCA compartas contrasenas, JWT_SECRET ni config_local.bat.

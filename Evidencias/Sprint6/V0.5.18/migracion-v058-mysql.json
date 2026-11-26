@@ -1,0 +1,8 @@
+{
+  "script": "migracion_v0.5.8_dependencias_multiples.sql",
+  "database": "tf_migration_s6",
+  "first": "2\t1\n3\t2",
+  "cleared": "0",
+  "afterRemovalAndRerun": "3\t2",
+  "passed": true
+}

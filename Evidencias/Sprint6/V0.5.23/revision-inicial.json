@@ -1,0 +1,22 @@
+{
+  "base": "0.5.22-SNAPSHOT",
+  "exactSourceCompared": 626,
+  "allTwelveArtifactsAndCopiesVerified": true,
+  "personalDatabaseTouched": false,
+  "confirmedClockRules": "Continúa en En Progreso incluso tras Check-out; revisión/baja pausan; rechazo/reactivación reanudan; finalizada detiene.",
+  "clockSourceSha256": "aff5194e8dcf20bfbe4065b8a012ecf6bd54662a00656c3c3d5bd969d41a0dde",
+  "needsCorrection": [
+    "Confirmación nativa de evidencias y cierre/foco de confirmación de tareas",
+    "Conflictos al confirmar bajas con una versión antigua",
+    "Historial no tiene sondeo al permanecer abierto",
+    "Advertencias de refs/efectos y trabajo repetido en mapa requieren investigación"
+  ],
+  "needsCertification": [
+    "Chrome/Edge independientes",
+    "Rendimiento comparable/prolongado",
+    "Seguridad actualizada",
+    "Restore operativo y sesiones invalidadas",
+    "Archivos complejos y permisos",
+    "Usabilidad humana y online autorizado pendientes externos"
+  ]
+}

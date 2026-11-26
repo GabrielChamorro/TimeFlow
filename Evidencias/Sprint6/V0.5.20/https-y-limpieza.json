@@ -1,0 +1,47 @@
+{
+  "version": "0.5.20-SNAPSHOT",
+  "scope": "TLS local aislado directo, certificado efímero confiado solo por el cliente de prueba; no certifica producción ni Chrome/Edge",
+  "checks": [
+    {
+      "case": "TLS con cadena y hostname validados por cliente, sin omitir verificaciones",
+      "passed": true
+    },
+    {
+      "case": "Login HTTPS directo sin proxy",
+      "passed": true
+    },
+    {
+      "case": "Cookie Secure HttpOnly Strict host-only",
+      "passed": true
+    },
+    {
+      "case": "API con JWT sobre TLS",
+      "passed": true
+    },
+    {
+      "case": "Renovación y rotación sobre TLS",
+      "passed": true
+    },
+    {
+      "case": "Origen hostil bloqueado sobre TLS",
+      "passed": true
+    },
+    {
+      "case": "CSRF ausente bloqueado sobre TLS",
+      "passed": true
+    },
+    {
+      "case": "Logout HTTPS",
+      "passed": true
+    },
+    {
+      "case": "Cookie borrada y acceso revocado",
+      "passed": true
+    },
+    {
+      "case": "Limpieza programada elimina caducadas y conserva vigentes",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

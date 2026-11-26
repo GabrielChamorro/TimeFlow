@@ -1,0 +1,22 @@
+TIMEFLOW V0.4.2 - LIBERICA JDK 21 SEGURO / SPRINT 4
+
+Cambios principales:
+- Se elimina la instalacion automatica de Oracle.JDK.21 mediante winget, porque al
+  24/10/2026 ese paquete instala Oracle JDK 21.0.12.0.
+- instalar_dependencias.bat descarga directamente desde BellSoft el ZIP oficial:
+  Liberica JDK 21.0.13.0.2+5 para Windows x64.
+- El JDK se extrae en backend\.timeflow-tools\liberica-jdk21 y solo TimeFlow lo usa.
+  No modifica JAVA_HOME ni el PATH global de Windows, por lo que Java 17 puede seguir
+  siendo el Java predeterminado para Minecraft y otros proyectos.
+- La descarga se valida como ZIP y, despues de extraerla, usar_java21_seguro.bat
+  comprueba que java.exe reporte al menos 21.0.13.0.2.
+- usar_java21_seguro.bat ahora detecta tambien instalaciones globales de BellSoft.
+- iniciar_servidor.bat y ejecutar_pruebas.bat pasan a V0.4.2 y siguen seleccionando
+  automaticamente el JDK 21 seguro.
+- backend\.timeflow-tools queda excluido de Git.
+
+Descarga oficial usada por TimeFlow:
+https://download.bell-sw.com/java/21.0.13.0.2+5/bellsoft-jdk21.0.13.0.2+5-windows-amd64.zip
+
+Version objetivo:
+Liberica JDK 21.0.13.0.2+5 (Windows x64, JDK Standard).

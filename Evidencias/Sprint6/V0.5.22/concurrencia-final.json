@@ -1,0 +1,25 @@
+{
+  "version": "0.5.21-SNAPSHOT",
+  "tests": [
+    {
+      "case": "cuota 25 concurrente",
+      "http": [
+        400,
+        201
+      ],
+      "count": 25,
+      "passed": true
+    },
+    {
+      "case": "edición obsoleta rechazada y revisada",
+      "http": [
+        200,
+        409
+      ],
+      "retryHttp": 200,
+      "posicionX": 555.0,
+      "bitacora": "Edición concurrente",
+      "passed": true
+    }
+  ]
+}

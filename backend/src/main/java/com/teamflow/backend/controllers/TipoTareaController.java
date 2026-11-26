@@ -26,7 +26,18 @@ public class TipoTareaController {
 
     @GetMapping
     public List<TipoTarea> obtenerTodos() {
-        return tipoTareaRepository.findAll();
+        return tipoTareaRepository.findByActivoTrue();
+    }
+
+    // La vista administrativa necesita mostrar las plantillas desactivadas.
+    @GetMapping("/administracion")
+    public ResponseEntity<?> listarAdministracion(org.springframework.security.core.Authentication autenticacion) {
+        boolean esAdmin = autenticacion != null && autenticacion.getAuthorities() != null
+                && autenticacion.getAuthorities().stream()
+                    .anyMatch(a -> "ROLE_ADMIN".equals(a.getAuthority()));
+        if (!esAdmin) return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(Map.of("message", "No tienes permisos para consultar esta lista"));
+        return ResponseEntity.ok(tipoTareaRepository.findAll());
     }
 
     @PostMapping
@@ -43,11 +54,14 @@ public class TipoTareaController {
         }
 
         tipoTarea.setId(null);
+        tipoTarea.setVersion(null);
+        tipoTarea.setActivo(true);
         tipoTarea.setNombre(nombre);
         tipoTarea.setDescripcion(limpiar(tipoTarea.getDescripcion()));
         return ResponseEntity.status(HttpStatus.CREATED).body(tipoTareaRepository.save(tipoTarea));
     }
 
+    @org.springframework.transaction.annotation.Transactional(isolation=org.springframework.transaction.annotation.Isolation.READ_COMMITTED)
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizar(@PathVariable Long id, @RequestBody TipoTarea datos) {
         String error = validar(datos);
@@ -55,6 +69,11 @@ public class TipoTareaController {
             return ResponseEntity.badRequest().body(Map.of("message", error));
         }
 
+        TipoTarea actual=tipoTareaRepository.findByIdForUpdate(id).orElse(null);
+        if (actual==null) return ResponseEntity.notFound().build();
+        if (!actual.isActivo() || !java.util.Objects.equals(actual.getVersion(),datos.getVersion())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("message", "Otra sesión modificó o desactivó la plantilla. Tu borrador se conserva; revisa los valores actuales."));
+        }
         String nombre = datos.getNombre().trim();
         Optional<TipoTarea> repetido = tipoTareaRepository.findByNombreIgnoreCase(nombre);
         if (repetido.isPresent() && !repetido.get().getId().equals(id)) {
@@ -62,20 +81,36 @@ public class TipoTareaController {
                     .body(Map.of("message", "Ya existe un tipo de tarea con ese nombre"));
         }
 
-        return tipoTareaRepository.findById(id).map(tipo -> {
-            tipo.setNombre(nombre);
-            tipo.setDescripcion(limpiar(datos.getDescripcion()));
-            return ResponseEntity.ok(tipoTareaRepository.save(tipo));
-        }).orElse(ResponseEntity.notFound().build());
+        actual.setNombre(nombre);
+        actual.setDescripcion(limpiar(datos.getDescripcion()));
+        return ResponseEntity.ok(tipoTareaRepository.save(actual));
     }
 
+    @org.springframework.transaction.annotation.Transactional(isolation=org.springframework.transaction.annotation.Isolation.READ_COMMITTED)
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
-        if (tipoTareaRepository.existsById(id)) {
-            tipoTareaRepository.deleteById(id);
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<?> eliminar(@PathVariable Long id, @RequestParam(required=false) Long version) {
+        TipoTarea tipo = tipoTareaRepository.findByIdForUpdate(id).orElse(null);
+        if (tipo == null || !tipo.isActivo()) return ResponseEntity.notFound().build();
+        if (version != null && !java.util.Objects.equals(version,tipo.getVersion()))
+            return ResponseEntity.status(409).body(Map.of("message","Otra sesión modificó la plantilla. Actualiza el catálogo y vuelve a revisar la confirmación."));
+        tipo.setActivo(false);
+        tipoTareaRepository.save(tipo);
+        return ResponseEntity.noContent().build();
+    }
+
+    @org.springframework.transaction.annotation.Transactional(isolation=org.springframework.transaction.annotation.Isolation.READ_COMMITTED)
+    @PatchMapping("/{id}/reactivar")
+    public ResponseEntity<?> reactivar(@PathVariable Long id) {
+        TipoTarea tipo = tipoTareaRepository.findByIdForUpdate(id).orElse(null);
+        if (tipo == null || tipo.isActivo()) return ResponseEntity.notFound().build();
+        tipo.setActivo(true);
+        return ResponseEntity.ok(tipoTareaRepository.save(tipo));
+    }
+
+    @ExceptionHandler(org.springframework.dao.DataIntegrityViolationException.class)
+    public ResponseEntity<?> conflictoDeDatos() {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(Map.of("message", "No se pudo guardar: el nombre ya existe o hay una restricción de base de datos"));
     }
 
     private String validar(TipoTarea tipoTarea) {

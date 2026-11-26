@@ -2,14 +2,14 @@
 setlocal EnableExtensions
 chcp 65001 >nul
 cd /d "%~dp0"
-title Frontend TimeFlow V0.5.0
+title Frontend TimeFlow V0.5.23
 set "FAILED=0"
 
 echo ============================================================
-echo    TimeFlow V0.5.0 - Comprobacion previa del FRONTEND
+echo    TimeFlow V0.5.23 - Comprobacion previa del FRONTEND
 echo ============================================================
 
-call usar_node.bat >nul 2>&1
+call "%~dp0interno\usar_node.bat" >nul 2>&1
 if errorlevel 1 (
     call :red "Node.js compatible: FALTA"
     set "FAILED=1"

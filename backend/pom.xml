@@ -12,7 +12,7 @@
 
     <groupId>com.teamflow</groupId>
     <artifactId>backend</artifactId>
-    <version>0.5.0</version>
+    <version>0.5.23-SNAPSHOT</version>
     <name>backend</name>
     <description>Backend TimeFlow - migracion Spring Boot 4</description>
     <developers>

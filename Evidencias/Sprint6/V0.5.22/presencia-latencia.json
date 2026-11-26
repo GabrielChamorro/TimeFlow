@@ -1,0 +1,25 @@
+{
+  "pollIntervalMs": 5000,
+  "method": "Primer snapshot correcto recibido por el cliente después de respuesta HTTP del cambio; sonda temporal retirada antes del build. DOM se comprobó con el color correcto sin F5 después de cada cambio.",
+  "samples": [
+    {
+      "action": "check-in",
+      "http": 201,
+      "httpAckAtMs": 1794800285706,
+      "expectedPresence": true,
+      "firstReceivedAfterAckMs": 3782,
+      "serverQueryAfterAckMs": 3773
+    },
+    {
+      "action": "check-out",
+      "http": 200,
+      "httpAckAtMs": 1794800328183,
+      "expectedPresence": false,
+      "firstReceivedAfterAckMs": 1304,
+      "serverQueryAfterAckMs": 1299
+    }
+  ],
+  "earlierToolControlUpperBoundMs": 6835,
+  "failedProbeAttempts": 1,
+  "note": "El primer intento de sondeo se pausaba en segundo plano; se corrigió y se repitió. La primera carga HMR de la sonda no registró consola; solo se usan muestras finitas tras cargarla explícitamente."
+}

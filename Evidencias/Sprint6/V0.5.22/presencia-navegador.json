@@ -1,0 +1,21 @@
+{
+  "version": "0.5.22-SNAPSHOT",
+  "browser": "IAB Chromium",
+  "independentOrigins": [
+    "http://127.0.0.1:15176",
+    "http://localhost:15177"
+  ],
+  "cookieIsolation": "Cookies host-only distintas y API del mismo hostname para cada frontend, sin relajar SameSite/CSRF/CORS",
+  "verified": [
+    "Administrador mantiene identidad al entrar trabajador distinto",
+    "Círculos rojo/verde reflejan jornada, independientes del color del estado de tarea",
+    "Check-in y Check-out reales desde UI de trabajador cambian mapa del administrador sin F5",
+    "Dos trabajadores con presencia distinta",
+    "F5 conserva sesión y muestra jornada/presencia del servidor",
+    "Trabajador no ve herramientas de administración"
+  ],
+  "latencyEvidence": "presencia-latencia.json",
+  "pollIntervalMs": 5000,
+  "probeRemoved": true,
+  "nativeChromeEdgeTested": false
+}

@@ -1,0 +1,236 @@
+{
+  "version": "0.5.19-SNAPSHOT",
+  "migrationTwicePreservesUsers": true,
+  "backendRestarted": true,
+  "checks": [
+    {
+      "case": "login admin@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "crear usuario sesiones19",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "login s6-a9d40dff-sesiones19@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "login s6-a9d40dff-sesiones19@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "JWT activo API",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "logout",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "JWT revocado API",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "otra sesión conservada",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "logout repetido no autentica",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "desactivar",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "JWT de cuenta inactiva",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "reactivar",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "JWT antiguo tras reactivar",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "login s6-a9d40dff-sesiones19@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "login s6-a9d40dff-sesiones19@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "cambiar contraseña",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "sesión previa a contraseña rechazada",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "sesión previa a contraseña rechazada",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "login s6-a9d40dff-sesiones19@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "JWT legado no registrado rechazado",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "baja simultánea con login",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "login durante baja solo 200 o 401",
+      "passed": true
+    },
+    {
+      "case": "token de login concurrente revocado",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "reactivar después de carrera",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "login s6-a9d40dff-sesiones19@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "revocado persiste tras reinicio",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "revocado persiste tras reinicio",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "revocado persiste tras reinicio",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "revocado persiste tras reinicio",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "revocado persiste tras reinicio",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "sesión activa persiste tras reinicio",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "logout después de reinicio",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "JWT rechazado después de logout final",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "SQL guarda solo huellas y ninguna sesión del usuario revocado",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

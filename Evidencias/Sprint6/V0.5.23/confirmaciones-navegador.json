@@ -1,0 +1,89 @@
+{
+  "version": "0.5.23-SNAPSHOT",
+  "browser": "IAB Chromium real",
+  "administrator": {
+    "file": {
+      "cancel": true,
+      "closeX": true,
+      "escape": true,
+      "confirmOnlySelected": true,
+      "focusInside": true
+    },
+    "task": {
+      "cancel": true,
+      "closeX": true,
+      "escape": true,
+      "confirmOnlySelected": true
+    },
+    "account": {
+      "stepsPreserved": 3,
+      "cancelFirstAndLast": true,
+      "closeX": true,
+      "escapeAtSecondStep": true,
+      "wrongEmailBlocked": true,
+      "confirmOnlySelected": true
+    },
+    "type": {
+      "stepsPreserved": 2,
+      "cancelFirstAndLast": true,
+      "closeX": true,
+      "escapeAtSecondStep": true,
+      "wrongNameBlocked": true,
+      "confirmOnlySelected": true,
+      "reopenStartsAtStep1": true
+    }
+  },
+  "worker": {
+    "paths": [
+      {
+        "entity": "file",
+        "route": "Cancelar",
+        "closed": true
+      },
+      {
+        "entity": "file",
+        "route": "Cerrar confirmación",
+        "closed": true
+      },
+      {
+        "entity": "file",
+        "route": "Escape",
+        "closed": true
+      },
+      {
+        "entity": "task",
+        "route": "Cancelar",
+        "closed": true
+      },
+      {
+        "entity": "task",
+        "route": "Cerrar confirmación",
+        "closed": true
+      },
+      {
+        "entity": "task",
+        "route": "Escape",
+        "closed": true
+      }
+    ],
+    "fileConfirmOnlySelected": true,
+    "taskConfirmOnlySelected": true,
+    "adminNavigationAbsent": true
+  },
+  "obsoleteTaskConfirmation": {
+    "remoteAdministratorEdit": true,
+    "http409MessageVisible": true,
+    "noBusinessWritesAfterFailure": true,
+    "draftPreserved": true,
+    "reviewRecentVersion": true,
+    "adoptBasePreservesDraft": true,
+    "reopenAndCancelAfterReview": true
+  },
+  "mysqlEvidence": "confirmaciones-mysql-ui.json; antes/después por fila, contenido de archivos SHA256",
+  "nativeDialogFinding": "V22 usaba window.confirm síncrono para archivos. El timeout no probó Cancelar y no determina por sí solo qué cerró el diálogo. V23 elimina esa dependencia: React exige confirmación explícita y las rutas de cancelación no producen escrituras.",
+  "inputLimitations": [
+    "Algunos clics automatizados inmediatamente después de un cierre no abrieron el siguiente diálogo en IAB; se observaron los estados y se abrió mediante Enter. No se cuenta el intento sin efecto como aprobación.",
+    "La certificación de Chrome/Edge con perfiles separados se ejecuta en otra fase."
+  ],
+  "reactTransitionCorrection": "Sin lecturas/escrituras de refs durante render; cierre queda inerte de inmediato y cada reapertura remonta el contenido para empezar en el paso 1."
+}

@@ -1,0 +1,10 @@
+{
+  "testFrontendsStopped": true,
+  "testBackendStopped": true,
+  "processIdentityCheckedBeforeStop": true,
+  "personalDatabaseTouched": false,
+  "privateHarnessAndDumpsExcluded": true,
+  "scope": "Solo PID propios con JAR/ruta/puerto/datadir comprobados. No se detuvo servicio MySQL personal ni se consultó su base.",
+  "isolatedMysql33316Stopped": true,
+  "version": "0.5.22-SNAPSHOT"
+}

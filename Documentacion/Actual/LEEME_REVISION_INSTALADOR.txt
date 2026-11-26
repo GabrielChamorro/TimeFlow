@@ -1,0 +1,33 @@
+TIMEFLOW V0.5.23 - REVISION DEL INSTALADOR (SIN CAMBIOS A LA APLICACION)
+
+FLUJO (doble clic):
+  1. INSTALAR_DEPENDENCIAS_TIMEFLOW.bat
+  2. backend\iniciar_servidor.bat
+  3. frontend\iniciar_servidor.bat
+
+El instalador mantiene la deteccion previa de dependencias:
+- Java 21: si ya existe un JDK 21 con actualizacion 21.0.13 o superior, no se descarga otro.
+- Node y npm: se usan los existentes si superan el verificador.
+- Visual C++: se omite si el runtime ya esta presente.
+- MySQL: se usa el cliente existente; no se reinstala MySQL.
+- Maven: se comprueba la cache en modo offline antes de descargar.
+- Frontend: npm ls verifica los paquetes ya presentes antes de ejecutar npm ci.
+
+BASE DE DATOS:
+- La base elegida sigue siendo teamflow_db, servidor local 127.0.0.1:3306.
+- Cuando falta el esquema actualizado, pide confirmacion y respaldo previo.
+- Si la base ya esta actualizada, no repite migraciones ni respaldo.
+- Si no se puede verificar el esquema, no ejecuta el backend.
+- Las comprobaciones de version MySQL y hashes BCrypt usan DB_USER configurado.
+
+RECOMENDACIONES:
+- Mantener apagado el backend V0.5.19 al instalar y actualizar.
+- Conservar la carpeta antigua y no borrar respaldos.
+- Si algun paso del instalador falla, NO iniciar backend. Revisar
+  backend\INSTALADOR_DIAGNOSTICO.txt sin compartir secretos.
+
+REVISION EFECTUADA:
+Se verificaron estructura ZIP/CRC, integridad de archivos, rutas,
+condiciones de omision, llamadas entre scripts y diferencias respecto al
+ZIP de entrada. No se dispone aqui de Windows, PowerShell ni de la base
+MySQL personal para realizar una prueba real de doble clic o migracion.

@@ -1,0 +1,44 @@
+TIMEFLOW V0.4.15 - AUDITORIA MAVEN INTEGRADA (SPRINT 4)
+====================================================
+
+BASE: TimeFlow V0.4.14, verificada en Windows por el usuario:
+- Instalador 9/9 sin errores.
+- Frontend y backend arrancan.
+- npm audit 0 vulnerabilidades detectadas.
+- Compilacion Vite aprobada.
+- 6/6 pruebas funcionales.
+- 17/17 Postman primera coleccion; 60/60 seguridad complementaria.
+- 37/37 JUnit/MockMvc.
+
+CAMBIOS EN V0.4.15
+1. Se integra el auditor Maven/NVD directamente en el proyecto:
+   - AUDITAR_SEGURIDAD_BACKEND.bat (lanzador principal)
+   - backend/AUDITAR_BACKEND_MAVEN.bat
+   - backend/_EJECUTAR_OWASP_NVD.ps1
+2. Se corrige el problema de PowerShell que pedia el parametro ReportDir.
+   El auditor localiza las carpetas automaticamente mediante PSScriptRoot.
+3. El auditor pide una clave personal de NVD sin imprimirla ni escribirla
+   en el ZIP, pom.xml o archivos de informe. Solo pasa la clave al
+   subproceso Maven mediante una variable de entorno temporal.
+4. Genera arbol de dependencias y reportes JSON y HTML en:
+   backend/target/auditoria_backend_sprint4/
+5. Si faltan los reportes, falla la auditoria; no inventa un resultado.
+6. Version 0.4.15 sincronizada en pom.xml, package.json,
+   package-lock.json y lanzadores correspondientes.
+
+SIN CAMBIOS FUNCIONALES: se conservan React, Spring Boot, MySQL, el
+instalador, Check In/Check Out y la configuracion de seguridad.
+No se alteraron versiones de Spring Boot ni otras dependencias Maven.
+No se incluyen credenciales ni JWT, ni bases de datos ni node_modules.
+
+PRUEBAS DE ESTA ENTREGA
+- Estructura de ZIP, referencias/rutas, formato CRLF y etiquetas de BAT:
+  verificadas estaticamente.
+- La auditoria NVD completa NO pudo ejecutarse aqui: requiere tu clave
+  personal NVD, red y Maven/Windows. No se declara aprobada.
+- Tampoco se han reejecutado JUnit/npm/Vite en Windows para V0.4.15;
+  la base funcional V0.4.14 si fue aprobada previamente por el usuario.
+
+El auditor detecta coincidencias con vulnerabilidades conocidas; el
+reporte requiere interpretar condiciones de explotacion y falsos positivos.
+No es garantia de ausencia total de vulnerabilidades.

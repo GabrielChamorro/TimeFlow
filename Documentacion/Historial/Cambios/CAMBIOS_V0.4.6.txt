@@ -1,0 +1,34 @@
+TIMEFLOW V0.4.6 - CORRECCION DE RUTA AL PEDIR ADMINISTRADOR
+Fecha: 24-10-2026
+Base: V0.4.5, con jornadas en MySQL desde V0.4.4.
+
+FALLO REPORTADO EN WINDOWS:
+"...\backend\backend\instalar_dependencias.bat" no se reconoce...
+
+CAUSA:
+La elevacion de permisos relanzaba %%~f0 despues de cambiar a backend.
+Si el archivo se habia invocado con ruta relativa, %%~f0 podia terminar
+resolviendo esa ruta desde backend, agregando la carpeta por segunda vez.
+
+CORRECCION:
+- El lanzador principal usa ruta absoluta desde %%~dp0.
+- El instalador solicita admin abriendo un CMD elevado en su directorio.
+- Ese CMD llama al auxiliar _iniciar_instalador_admin.bat con nombre simple.
+- El auxiliar usa %%~dp0 para llamar instalar_dependencias.bat.
+- Se elimina la dependencia de %%~f0 en el relanzamiento.
+- Si se rechaza el UAC, la consola original muestra error.
+- La consola elevada permanece abierta incluso si hay un error.
+- La consola original diferencia instalacion delegada de instalacion exitosa.
+- Se preservan scripts y funcionalidades de V0.4.5, incluido Check In/Out.
+- Versiones pom.xml y frontend/package{,-lock}.json actualizadas a 0.4.6.
+
+PRUEBAS:
+- Comprobadas rutas del ZIP, CRLF de todos los BAT/CMD,
+  integridad de archivos, XML/JSON y versiones.
+- No se ha ejecutado CMD/UAC en Windows; requiere prueba real del usuario.
+
+USO:
+1. Extraer todo el ZIP en una carpeta nueva.
+2. Ejecutar INSTALAR_DEPENDENCIAS_TIMEFLOW.bat.
+3. Aceptar UAC. La ventana nueva ejecutara el instalador y quedara abierta.
+4. Si hay errores, enviar captura del texto; no enviar config_local.bat.

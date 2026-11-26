@@ -1,0 +1,22 @@
+PRUEBA DE TIMEFLOW V0.4.8 EN WINDOWS
+==================================
+
+1. Extrae el ZIP completo en una carpeta nueva.
+2. Doble clic en INSTALAR_DEPENDENCIAS_TIMEFLOW.bat.
+3. Acepta la ventana de Control de cuentas de usuario (UAC).
+4. En la segunda ventana deberia aparecer el titulo
+   "TimeFlow V0.4.8 - INSTALADOR (ADMINISTRADOR)" y despues
+   "TimeFlow V0.4.8 - INSTALADOR COMPLETO PARA WINDOWS".
+5. El instalador revisara Java, Node, Visual C++, MySQL, PATH, etc.
+6. Comprueba su resumen y NO cierres el instalador antes de verlo.
+
+Si falla:
+- Envia una captura del mensaje de ERROR que permanezca en pantalla.
+- Busca backend\INSTALADOR_DIAGNOSTICO.txt en la carpeta EXTRAIDA,
+  no dentro del ZIP. (Se crea al comenzar instalar_dependencias.bat.)
+- No compartas contrasenas ni archivos config_local.bat.
+
+Como alternativa temporal, clic derecho > Ejecutar como administrador
+sobre backend\instalar_dependencias.bat (sin usar el lanzador de arriba).
+
+No borres la base MySQL actual ni reinstales Java 17 para esta prueba.

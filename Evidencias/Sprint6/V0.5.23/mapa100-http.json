@@ -1,0 +1,1270 @@
+{
+  "version": "0.5.23-SNAPSHOT",
+  "checks": [
+    {
+      "case": "login admin@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "crear usuario mapa23-100",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "login s6-26a0d64d-mapa23-100@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "Jornada mapa100",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 001",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 002",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 003",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 004",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 005",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 006",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 007",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 008",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 009",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 010",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 011",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 012",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 013",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 014",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 015",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 016",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 017",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 018",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 019",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 020",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 021",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 022",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 023",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 024",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 025",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 026",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 027",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 028",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 029",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 030",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 031",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 032",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 033",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 034",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 035",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 036",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 037",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 038",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 039",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 040",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 041",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 042",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 043",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 044",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 045",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 046",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 047",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 048",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 049",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 050",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 051",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 052",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 053",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 054",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 055",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 056",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 057",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 058",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 059",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 060",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 061",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 062",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 063",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 064",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 065",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 066",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 067",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 068",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 069",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 070",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 071",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 072",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 073",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 074",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 075",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 076",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 077",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 078",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 079",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 080",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 081",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 082",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 083",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 084",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 085",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 086",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 087",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 088",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 089",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 090",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 091",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 092",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 093",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 094",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 095",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 096",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 097",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Mapa23 098",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 099",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Mapa estado revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Mapa estado finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear tarea Mapa23 100",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Guardar autoorganización de 100 nodos",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "100 nodos conservados tras nueva consulta",
+      "passed": true
+    },
+    {
+      "case": "100 cronómetros conservan anclas al autoorganizar",
+      "passed": true
+    },
+    {
+      "case": "KPIs por subconjunto 100/33/33/33",
+      "passed": true
+    },
+    {
+      "case": "294 enlaces múltiples conservados",
+      "passed": true
+    },
+    {
+      "case": "Metadatos de cien tareas",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Metadatos omiten evidencias y texto de bitácoras",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "datasetNodes": 100,
+  "links": 294,
+  "layoutComputationMs": 1.714500000000001,
+  "bulkSaveHttpMs": 164.21240000636317,
+  "syncBytes": 69183,
+  "scope": "Cien tareas nuevas y294 dependencias múltiples: API/MySQL y autoorganización Node reales. No FPS ni interfaz o gestos."
+}

@@ -53,6 +53,6 @@ endlocal & set "JAVA_HOME=%TF_JAVA_HOME%" & set "PATH=%TF_JAVA_HOME%\bin;%PATH%"
 :check_java
 set "CANDIDATE=%~1"
 if not exist "%CANDIDATE%\bin\javac.exe" exit /b 1
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0_verificar_java21.ps1" -JavaExe "%CANDIDATE%\bin\java.exe" >nul 2>&1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0interno\_verificar_java21.ps1" -JavaExe "%CANDIDATE%\bin\java.exe" >nul 2>&1
 if not errorlevel 1 set "TF_JAVA_HOME=%CANDIDATE%"
 exit /b 0

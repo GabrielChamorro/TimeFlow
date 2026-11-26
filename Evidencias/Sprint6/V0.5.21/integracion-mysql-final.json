@@ -1,0 +1,881 @@
+{
+  "version": "0.5.21-SNAPSHOT",
+  "base": "http://127.0.0.1:18086",
+  "prefix": "S6-bbda5c4e",
+  "elapsedSeconds": 79.41,
+  "tests": [
+    {
+      "case": "login admin@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "sin token",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "token manipulado",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "crear usuario worker",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear usuario other",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear usuario admin2",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "login s6-bbda5c4e-worker@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "login s6-bbda5c4e-other@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "login s6-bbda5c4e-admin2@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "administración prohibida /api/usuarios/administracion",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "administración prohibida /api/tipos-tarea/administracion",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "elevación de rol bloqueada",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "permiso trabajador POST /api/usuarios",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "permiso trabajador DELETE /api/usuarios/52",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "permiso trabajador PATCH /api/usuarios/52/reactivar",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "permiso trabajador POST /api/tipos-tarea",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "permiso trabajador DELETE /api/tipos-tarea/999999",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "crear sin Check In",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "Check In concurrente 201 y 409",
+      "passed": true
+    },
+    {
+      "case": "Check In administrador",
+      "passed": true,
+      "http": 409,
+      "expected": [
+        201,
+        409
+      ]
+    },
+    {
+      "case": "crear tarea A",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea B",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea C",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "recargar tareas desde API",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "persistencia de dependencias múltiples",
+      "passed": true
+    },
+    {
+      "case": "rechazar dependencias duplicadas",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "rechazar dependencias inexistentes",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "rechazar dependencias negativas",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "rechazar dependencias nulas",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "rechazar ciclo",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "modificación de tarea ajena",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "recargar tareas desde API",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "mapa compartido oculta contenido privado",
+      "passed": true
+    },
+    {
+      "case": "trabajador no mueve nodos",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "trabajador no autoorganiza",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "guardar posición manual",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "rechazar posición obsoleta",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "rechazar posición incompleta",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "autoorganización concurrente 200 y 409",
+      "passed": true
+    },
+    {
+      "case": "recargar tareas desde API",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "lote con tarea inexistente",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "recargar tareas desde API",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "lote rechazado no guarda parcialmente",
+      "passed": true
+    },
+    {
+      "case": "crear tarea X",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Y",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "dependencias concurrentes sin ciclo",
+      "passed": true
+    },
+    {
+      "case": "desactivar requisito",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "no aceptar dependencia inactiva",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "recargar tareas desde API",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "editar conservando vínculo histórico",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "reactivar tarea",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "crear plantilla",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "plantilla duplicada",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "editar plantilla",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "desactivar plantilla",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "catálogo oculta plantilla inactiva",
+      "passed": true
+    },
+    {
+      "case": "reactivar plantilla",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "mensaje directo",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "tercero no lee mensaje directo",
+      "passed": true
+    },
+    {
+      "case": "anuncio prohibido a trabajador",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "anuncio administrativo",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "subir nota.txt",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "descargar nota.txt",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "integridad SHA256 nota.txt",
+      "passed": true
+    },
+    {
+      "case": "nosniff y no-store nota.txt",
+      "passed": true
+    },
+    {
+      "case": "archivo ajeno prohibido nota.txt",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "desactivar evidencia nota.txt",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "evidencia desactivada invisible nota.txt",
+      "passed": true,
+      "http": 404,
+      "expected": 404
+    },
+    {
+      "case": "subir imagen.png",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "descargar imagen.png",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "integridad SHA256 imagen.png",
+      "passed": true
+    },
+    {
+      "case": "nosniff y no-store imagen.png",
+      "passed": true
+    },
+    {
+      "case": "archivo ajeno prohibido imagen.png",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "desactivar evidencia imagen.png",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "evidencia desactivada invisible imagen.png",
+      "passed": true,
+      "http": 404,
+      "expected": 404
+    },
+    {
+      "case": "subir documento.pdf",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "descargar documento.pdf",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "integridad SHA256 documento.pdf",
+      "passed": true
+    },
+    {
+      "case": "nosniff y no-store documento.pdf",
+      "passed": true
+    },
+    {
+      "case": "archivo ajeno prohibido documento.pdf",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "desactivar evidencia documento.pdf",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "evidencia desactivada invisible documento.pdf",
+      "passed": true,
+      "http": 404,
+      "expected": 404
+    },
+    {
+      "case": "subir documento.docx",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "descargar documento.docx",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "integridad SHA256 documento.docx",
+      "passed": true
+    },
+    {
+      "case": "nosniff y no-store documento.docx",
+      "passed": true
+    },
+    {
+      "case": "archivo ajeno prohibido documento.docx",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "desactivar evidencia documento.docx",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "evidencia desactivada invisible documento.docx",
+      "passed": true,
+      "http": 404,
+      "expected": 404
+    },
+    {
+      "case": "rechazar mal.exe",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "rechazar falsa.png",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "rechazar ../ruta.txt",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "rechazar vacio.txt",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "rechazar expansión DOCX excesiva",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "crear tarea archivos grandes",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "60 MiB archivo 1",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "descargar 60 MiB",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "SHA256 60 MiB",
+      "passed": true
+    },
+    {
+      "case": "desactivar archivo grande",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "60 MiB archivo 2",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "60 MiB archivo 3",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "60 MiB archivo 4",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "60 MiB archivo 5",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "300 MiB incluye desactivados",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "crear tarea límite archivo y cantidad",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "60 MiB más un byte",
+      "passed": true,
+      "http": 413,
+      "expected": [
+        400,
+        413
+      ]
+    },
+    {
+      "case": "archivo pequeño 1/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 2/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 3/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 4/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 5/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 6/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 7/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 8/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 9/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 10/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 11/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 12/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 13/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 14/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 15/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 16/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 17/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 18/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 19/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 20/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 21/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 22/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 23/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 24/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo pequeño 25/25",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "archivo 26 rechazado",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "JSON mayor de 4 MiB",
+      "passed": true,
+      "http": 413,
+      "expected": 413
+    },
+    {
+      "case": "CORS no autorizado",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "SQL injection no autentica",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "Unicode excesivo al crear cuenta",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "cambiar password trabajador",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "JWT previo a cambio password inválido",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "login s6-bbda5c4e-worker@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "desactivar usuario",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "usuario inactivo no usa JWT",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "usuario inactivo no inicia sesión",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "reactivar usuario",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "login s6-bbda5c4e-worker@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "Check Out",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Check Out repetido",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    }
+  ],
+  "error": null
+}

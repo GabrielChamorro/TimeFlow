@@ -1,0 +1,16 @@
+{
+  "version": "0.5.23-SNAPSHOT",
+  "nativeChromeInstalled": true,
+  "disposableProfileCreated": true,
+  "chromeLoginObserved": true,
+  "chromeF5Certified": false,
+  "independentNativeProfilesCertified": false,
+  "edgeCertified": false,
+  "stoppedByPolicy": true,
+  "reason": "Computer Use no pudo determinar la URL actual de Chrome en Windows con suficiente confianza para aplicar su política. El entorno detuvo Computer Use para el resto del turno.",
+  "noAlternativeUiAutomationUsed": true,
+  "testChromeTerminatedOnlyForCleanup": true,
+  "browserCloseReopenCertified": false,
+  "personalBrowsersUntouched": true,
+  "scope": "Login observado por accesibilidad/captura nativa, con administrador A en perfil desechable. No se guardaron credenciales: se rechazó el aviso. Dos administradores HTTP sí usan sesiones independientes en otras pruebas."
+}

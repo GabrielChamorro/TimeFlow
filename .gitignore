@@ -1,4 +1,4 @@
-# TimeFlow V0.5.0 - Archivos que no deben subirse a Git
+# TimeFlow V0.5.23 - Archivos que no deben subirse a Git
 
 # Dependencias, compilaciones y archivos generados
 **/node_modules/
@@ -73,3 +73,10 @@
 
 # Guia para configurar Git: es auxiliar, no forma parte del proyecto
 /GUIA_PRIMER_COMMIT_TIMEFLOW.txt
+respaldos-privados/
+
+# Paquetes compilados: se regeneran desde las fuentes
+/bin/*.jar
+
+# Plantillas de entorno revisadas sin secretos
+!**/*.example.env

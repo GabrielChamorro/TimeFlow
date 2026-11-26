@@ -1,0 +1,19 @@
+TimeFlow V0.4.14 — PRUEBA EN WINDOWS
+
+1. NO sobrescribas tu carpeta V0.4.13 que ya funciona. Extrae V0.4.14 en otra carpeta.
+2. Conserva el respaldo de teamflow_db y, si corresponde, una copia privada de backend\config_local.bat. NUNCA compartas ese archivo.
+3. Cierra el servidor frontend V0.4.13 (Ctrl+C); deja backend anterior apagado tambien antes de arrancar backend nuevo para evitar el puerto ocupado.
+4. Ejecuta INSTALAR_DEPENDENCIAS_TIMEFLOW.bat. Usa la MISMA contrasena de MySQL que verificaste previamente.
+5. La etapa 9 instalara Vite 8.2.4 y source-map-js 1.2.2, verificara npm audit --audit-level=high y npm run build. Si falla algun paso NO ignores el error ni pases al arranque como si todo estuviera bien.
+6. Dentro de frontend comprueba desde CMD: npm ls vite source-map-js; npm audit; npm run build.
+   Resultado esperado: vite@8.2.4, source-map-js@1.2.2; ninguna alerta alta o critica; build correcto. Puede haber otras alertas nuevas (revisar).
+7. Abre backend\iniciar_servidor.bat y frontend\iniciar_servidor.bat y repite login, Check In, creacion de tarea, F5 y Check Out.
+8. Si encuentras error EBUSY, comparte el mensaje exacto y el nombre del archivo bloqueado.
+
+SEGURIDAD
+- No borres ni reinicialices teamflow_db.
+- No compartas tus contrasenas, JWT, config_local.bat ni variables locales de Postman.
+- No ejecutes npm audit fix --force.
+
+LIMITACIONES
+- No se verifico esta compilacion en Windows ni se ejecutaron pruebas de servidor real en esta sesion.

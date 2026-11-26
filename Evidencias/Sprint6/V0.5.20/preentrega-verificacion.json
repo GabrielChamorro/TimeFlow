@@ -1,0 +1,9 @@
+{
+  "version": "0.5.20-SNAPSHOT",
+  "knownPrivateSecretsAbsent": true,
+  "checkedDeliverableSourceFiles": 454,
+  "docxXlsxXmlChecked": true,
+  "pythonPublicScriptsCompile": true,
+  "packageVersionsConsistent": true,
+  "privateHarnessExcluded": true
+}

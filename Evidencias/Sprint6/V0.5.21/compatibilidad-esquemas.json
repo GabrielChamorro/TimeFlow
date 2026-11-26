@@ -1,0 +1,9 @@
+{
+  "version": "0.5.21-SNAPSHOT",
+  "freshSchemaExecutedTwice": true,
+  "upgradeFromExactV0520Schema": true,
+  "bothMigrationsExecutedTwice": true,
+  "legacyUnicodeBitacoraVersionPreserved": true,
+  "noInventedLegacyNotesOrCloseDate": true,
+  "oldSchemaSha256": "c19e7392277b421f76efe07f8d6e0c3d857d5d5ae56b088b7f22bcdd57a66aa2"
+}

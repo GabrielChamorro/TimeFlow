@@ -1,0 +1,7 @@
+{
+  "version": "0.5.19-SNAPSHOT",
+  "bytes": 57593340,
+  "sha256": "652b10a4addde31181f01fa61a0229d43811d6f3184440b0bb1d4b7c76a2d03c",
+  "crcValid": true,
+  "bootedWithMysql": true
+}

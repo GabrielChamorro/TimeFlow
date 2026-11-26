@@ -1,0 +1,367 @@
+[
+  {
+    "id": "US-01",
+    "function": "Registro de entrada (Check-in)",
+    "acceptance": [
+      "Registra automáticamente la fecha y hora del servidor al presionar el botón.",
+      "Deshabilita el botón de Check-in para evitar marcas dobles durante la misma jornada."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 8,
+    "testAndResult": "Check-in real, duplicado rechazado y botón deshabilitado en IAB.",
+    "evidence": "integracion-mysql-final.json; sesion-restaurada.jpg",
+    "status": "Verificación técnica local"
+  },
+  {
+    "id": "US-02",
+    "function": "Registro de salida (Check-out)",
+    "acceptance": [
+      "Calcula y muestra el tiempo total laborado en la sesión.",
+      "Muestra una advertencia si el trabajador intenta marcar salida con tareas aún activas en paralelo."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 16,
+    "testAndResult": "Checkout API comprobado; falta demostrar aviso de tareas activas y duración con criterios originales.",
+    "evidence": "integracion-mysql-final.json; frontend/src/pages/WorkdayView.jsx",
+    "status": "Parcial"
+  },
+  {
+    "id": "US-03",
+    "function": "Indicador de presencia del equipo",
+    "acceptance": [
+      "Muestra un círculo verde si el colaborador tiene una jornada iniciada sin Check-out.",
+      "Cambia automáticamente a rojo cuando el usuario marca su salida."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 25,
+    "testAndResult": "Cuenta activa no equivale a jornada abierta. Falta verificar semáforo rojo/verde según check-in/out.",
+    "evidence": "frontend/src/pages/MonitoringView.jsx",
+    "status": "Pendiente de aceptación"
+  },
+  {
+    "id": "US-04",
+    "function": "Iniciar tarea personalizada",
+    "acceptance": [
+      "Valida obligatoriamente los campos de nombre, meta y hora límite antes de guardar.",
+      "Inicia la tarea de inmediato en estado \"En progreso\"."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 34,
+    "testAndResult": "Creación de tareas comprobada; revisar obligatoriedad de meta y fecha límite frente a valores automáticos y validación API.",
+    "evidence": "integracion-mysql-final.json",
+    "status": "Parcial"
+  },
+  {
+    "id": "US-05",
+    "function": "Iniciar tarea desde plantilla frecuente",
+    "acceptance": [
+      "Despliega la lista de tareas preestablecidas activas creadas por la jefatura.",
+      "Rellena automáticamente los campos de título y descripción al seleccionarla."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 43,
+    "testAndResult": "Tipos activos y permisos API comprobados; falta aceptación completa del autollenado título/descripción.",
+    "evidence": "tipos-mysql.json; frontend/src/pages/WorkdayView.jsx",
+    "status": "Parcial"
+  },
+  {
+    "id": "US-06",
+    "function": "Múltiples tareas simultáneas",
+    "acceptance": [
+      "Permite mantener abiertas dos o más tarjetas de trabajo de forma simultánea.",
+      "Mantiene los cronómetros y datos de cada tarea aislados sin cruzar información."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 51,
+    "testAndResult": "Múltiples tareas y bitácoras independientes comprobadas por API; temporizadores independientes no aceptados visualmente.",
+    "evidence": "integracion-mysql-final.json; tareas-mysql.json",
+    "status": "Parcial"
+  },
+  {
+    "id": "US-07",
+    "function": "Bitácora independiente y privada",
+    "acceptance": [
+      "Cada nota ingresada guarda la fecha y hora exacta de registro.",
+      "Bloquea el acceso de edición a otros trabajadores que no sean el dueño de la tarea."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 60,
+    "testAndResult": "Bitácora y permisos protegidos; texto agregado sin registro individual con fecha exacta para cada nota.",
+    "evidence": "backend/sql/esquema_timeflow.sql; tareas-mysql.json",
+    "status": "No satisfecho completamente"
+  },
+  {
+    "id": "US-08",
+    "function": "Adjuntar foto de evidencia",
+    "acceptance": [
+      "Soporta subida de archivos en formatos estándar (PNG, JPG).",
+      "Muestra una vista previa de la imagen dentro de la bitácora de la tarea."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 68,
+    "testAndResult": "PNG/JPG cargados y descargables; antecedente visual PNG V0.5.18, no revisión visual JPG final en Chrome/Edge.",
+    "evidence": "preparacion-sintetica.json; integracion-mysql-final.json",
+    "status": "Parcial"
+  },
+  {
+    "id": "US-09",
+    "function": "Flujo de Aprobación y Cierre\nUS-09: Enviar tarea lista a revisión",
+    "acceptance": [
+      "Cambia el estado visual de la tarea a \"En Revisión\".",
+      "Deshabilita el ingreso de nuevas notas de bitácora mientras esté en revisión."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 77,
+    "testAndResult": "Envío a revisión y rechazo de edición de bitácora fuera de estado permitido comprobados por API.",
+    "evidence": "integracion-mysql-final.json; junit-final.xml",
+    "status": "Verificación técnica local"
+  },
+  {
+    "id": "US-10",
+    "function": "Aprobar o devolver tareas",
+    "acceptance": [
+      "Permite pulsar \"Aprobar\" para pasar la tarea a estado finalizado.",
+      "Si se devuelve la tarea, solicita escribir un motivo obligatorio y la regresa a estado \"En progreso\"."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 85,
+    "testAndResult": "Transiciones aprobar/rechazar verificadas por API; rechazo no exige motivo obligatorio.",
+    "evidence": "integracion-mysql-final.json; frontend/src/App.jsx",
+    "status": "No satisfecho completamente"
+  },
+  {
+    "id": "US-11",
+    "function": "Bloqueo total tras la aprobación",
+    "acceptance": [
+      "El backend bloquea peticiones de edición sobre tareas en estado aprobado.",
+      "La interfaz elimina los botones de edición y muestra la tarea en modo solo lectura."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 94,
+    "testAndResult": "Backend rechaza cambios en finalizadas; falta recorrido visual final completo con roles.",
+    "evidence": "integracion-mysql-final.json; junit-final.xml",
+    "status": "Parcial"
+  },
+  {
+    "id": "US-12",
+    "function": "Mantenimiento de plantillas de tareas",
+    "acceptance": [
+      "Formulario para ingresar nombre y descripción base de la tarea.",
+      "Las modificaciones no alteran los nombres de tareas que ya fueron creadas en el pasado."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 103,
+    "testAndResult": "CRUD de tipos y referencias conservados; conflictos entre dos administradores HTTP independientes aprobados.",
+    "evidence": "tipos-mysql.json; integracion-mysql-final.json",
+    "status": "Verificación técnica API"
+  },
+  {
+    "id": "US-13",
+    "function": "Mapa visual de constelación",
+    "acceptance": [
+      "Renderiza nodos y enlaces SVG dinámicos con los colores correspondientes al estado operativo.",
+      "Soporta hasta 100 tarjetas/nodos simultáneos sin degradar la fluidez del navegador (RNF-4).",
+      "Funciona de manera online en navegadores web modernos (RNF-2)."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 113,
+    "testAndResult": "100 nodos/160 relaciones visibles y muestra de fluidez; despliegue online y prueba prolongada faltantes.",
+    "evidence": "mapa-100.jpg; mapa-rAF.json",
+    "status": "Parcial"
+  },
+  {
+    "id": "US-14",
+    "function": "Navegación libre por el mapa",
+    "acceptance": [
+      "Permite desplazamiento de pantalla (pan 1:1) fluido al hacer clic y arrastrar.",
+      "Implementa acercamiento y alejamiento progresivo con la rueda del ratón (scroll)."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 122,
+    "testAndResult": "Zoom/encaje verificados; arrastre 1:1 y rueda física finales Chrome/Edge pendientes.",
+    "evidence": "navegador-resultados.json; node-final.log",
+    "status": "Parcial"
+  },
+  {
+    "id": "US-15",
+    "function": "Modo de pantalla completa",
+    "acceptance": [
+      "Botón dedicado para expandir el lienzo a pantalla completa.",
+      "Permite salir del modo de pantalla completa presionando la tecla Escape."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 131,
+    "testAndResult": "Pantalla completa y Escape comprobados en IAB.",
+    "evidence": "navegador-resultados.json; mapa-100.jpg",
+    "status": "Verificación técnica local"
+  },
+  {
+    "id": "US-16",
+    "function": "Tarjeta ampliada con detalles",
+    "acceptance": [
+      "Despliega un panel o modal con toda la información detallada de la tarea.",
+      "Muestra los botones de acción pertinentes según si el usuario es administrador o trabajador."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 139,
+    "testAndResult": "Modal de tarea abierto con campos y PDF; falta validación visual final del trabajador y todos los botones por rol.",
+    "evidence": "pdf-canvas.jpg; integracion-mysql-final.json",
+    "status": "Parcial"
+  },
+  {
+    "id": "US-17",
+    "function": "Filtro por colaborador",
+    "acceptance": [
+      "Menú desplegable con la lista de colaboradores del equipo.",
+      "Al elegir un usuario, destaca sus nodos y recalcula las métricas visibles."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 148,
+    "testAndResult": "Filtro del colaborador sintético muestra total 100 y métricas del subconjunto.",
+    "evidence": "mapa-100.jpg; navegador-resultados.json",
+    "status": "Verificación técnica local"
+  },
+  {
+    "id": "US-18",
+    "function": "Indicadores clave de rendimiento (KPIs)",
+    "acceptance": [
+      "Muestra tarjetas resumen con total de tareas, tareas aprobadas y metas alcanzadas.",
+      "Actualiza los valores en tiempo real a medida que cambian los estados."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 156,
+    "testAndResult": "KPIs y actualización API disponibles; falta validar todos los valores y tiempos de actualización con concurrencia.",
+    "evidence": "mapa-100.jpg; frontend/src/pages/MonitoringView.jsx",
+    "status": "Parcial"
+  },
+  {
+    "id": "US-19",
+    "function": "Historial y trazabilidad",
+    "acceptance": [
+      "Tabla paginada que lista todas las tareas finalizadas con fechas y responsables.",
+      "Permite buscar y filtrar registros por rango de fechas."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 165,
+    "testAndResult": "No se encontró el historial paginado de tareas finalizadas con rango de fechas exigido por la historia.",
+    "evidence": "frontend/src/pages/WorkdayView.jsx; frontend/src/App.jsx",
+    "status": "No satisfecho completamente"
+  },
+  {
+    "id": "US-20",
+    "function": "Confirmación de borrado accidental",
+    "acceptance": [
+      "Muestra un cuadro emergente de confirmación al presionar cualquier botón de eliminación.",
+      "Cancela la acción si el usuario cierra el diálogo o presiona \"Cancelar\"."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 174,
+    "testAndResult": "Confirmaciones y cancelación conservadas; antecedente UI V0.5.19, sin repetir todos los diálogos en Chrome/Edge.",
+    "evidence": "Evidencias/Sprint6/V0.5.19; integracion-mysql-final.json",
+    "status": "Parcial"
+  },
+  {
+    "id": "US-21",
+    "function": "Control de acceso por tipo de usuario",
+    "acceptance": [
+      "Oculta botones de gestión administrativa en las sesiones de rol Trabajador.",
+      "El backend en Spring Boot rechaza intentos no autorizados con código de acceso denegado."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 183,
+    "testAndResult": "API devuelve 403 para trabajador y acciones administrativas; falta nueva comprobación de ocultación visual en ambos navegadores.",
+    "evidence": "usuarios-mysql.json; tipos-mysql.json; integracion-mysql-final.json",
+    "status": "Parcial"
+  },
+  {
+    "id": "US-22",
+    "function": "Chat interno de equipo",
+    "acceptance": [
+      "Permite enviar y leer mensajes en una sala general compartida.",
+      "Permite abrir chats individuales entre dos personas con historial privado."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 192,
+    "testAndResult": "Mensajes generales/privados y acceso a historial propio comprobados por API.",
+    "evidence": "integracion-mysql-final.json; newman-resumen.json",
+    "status": "Verificación técnica API"
+  },
+  {
+    "id": "US-23",
+    "function": "Tablón de anuncios oficiales",
+    "acceptance": [
+      "Los trabajadores únicamente pueden leer los avisos publicados.",
+      "Solo la cuenta de Administrador cuenta con formulario para redactar y enviar comunicados."
+    ],
+    "source": "Product_Backlog_TimeFlow_V0.5.0.docx",
+    "sourceParagraphZeroBased": 201,
+    "testAndResult": "Anuncios: trabajador no publica; administrador sí; lectura y permisos comprobados por API.",
+    "evidence": "integracion-mysql-final.json; newman-resumen.json",
+    "status": "Verificación técnica API"
+  },
+  {
+    "id": "RNF-1",
+    "function": "Facilidad de uso, mediante interfaz visual",
+    "acceptance": [
+      "La interfaz debe ser visual y fácil de entender a primera vista, evitando listas densas sin estructura."
+    ],
+    "source": "Requerimientos_TimeFlow_V0.5.0.xlsx",
+    "sourceSheet": "Hoja1",
+    "sourceRow": 22,
+    "testAndResult": "Inspección visual IAB; falta aceptación de usabilidad por usuarios.",
+    "evidence": "pdf-canvas.jpg; mapa-100.jpg",
+    "status": "Parcial"
+  },
+  {
+    "id": "RNF-2",
+    "function": "Página web",
+    "acceptance": [
+      "El sistema debe ser una página web online."
+    ],
+    "source": "Requerimientos_TimeFlow_V0.5.0.xlsx",
+    "sourceSheet": "Hoja1",
+    "sourceRow": 23,
+    "testAndResult": "Aplicación web local disponible; no se verificó publicación online productiva.",
+    "evidence": "https-y-limpieza.json",
+    "status": "Pendiente"
+  },
+  {
+    "id": "RNF-3",
+    "function": "Actualización de página en tiempo real",
+    "acceptance": [
+      "La página debe actualizarse en tiempo real sin recargar manualmente el navegador."
+    ],
+    "source": "Requerimientos_TimeFlow_V0.5.0.xlsx",
+    "sourceSheet": "Hoja1",
+    "sourceRow": 24,
+    "testAndResult": "Cliente usa actualización periódica; no se midió cumplimiento integral en tiempo real ni todos los canales.",
+    "evidence": "frontend/src/App.jsx; integracion-mysql-final.json",
+    "status": "Parcial"
+  },
+  {
+    "id": "RNF-4",
+    "function": "Capacidad de nodos de trabajo",
+    "acceptance": [
+      "Soportar 100 tarjetas/nodos simultáneos sin degradar el rendimiento (Métrica: 100 nodos/tarjetas)."
+    ],
+    "source": "Requerimientos_TimeFlow_V0.5.0.xlsx",
+    "sourceSheet": "Hoja1",
+    "sourceRow": 25,
+    "testAndResult": "100 nodos y muestra de 15 s: 92,99 FPS, p95 14 ms, 8 intervalos >50 ms. Faltan arrastre continuo y comparación con menos nodos.",
+    "evidence": "mapa-rAF.json",
+    "status": "Parcial"
+  },
+  {
+    "id": "RNF-5",
+    "function": "Accesibilidad y control por teclado/ratón",
+    "acceptance": [
+      "La interfaz gráfica debe admitir interacción por gestos del ratón (scroll wheel para zoom, arrastre 1:1 sin retardo) y el uso de la tecla Escape para restablecer o salir del modo de pantalla completa."
+    ],
+    "source": "Requerimientos_TimeFlow_V0.5.0.xlsx",
+    "sourceSheet": "Hoja1",
+    "sourceRow": 31,
+    "testAndResult": "Zoom por botones y Escape comprobados; rueda y arrastre 1:1 finales pendientes.",
+    "evidence": "navegador-resultados.json",
+    "status": "Parcial"
+  }
+]

@@ -1,0 +1,266 @@
+{
+  "version": "0.5.21-SNAPSHOT",
+  "tests": [
+    {
+      "case": "login admin@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "crear usuario funciones21",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear usuario funciones-ajenas21",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "login s6-a86678dc-funciones21@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "login s6-a86678dc-funciones-ajenas21@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "Check-in funcional",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Check-in funcional",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Crear sin nombre",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Crear sin meta",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Crear sin fechaLimite",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "crear tarea Funciones21 A",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Funciones21 B",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Funciones21 C",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Notas sin sesión",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "Ajeno no lee notas",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Ajeno no agrega notas",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Dos notas simultáneas conservadas",
+      "passed": true
+    },
+    {
+      "case": "Notas con autor y hora servidor",
+      "passed": true
+    },
+    {
+      "case": "Contenido paralelo aislado",
+      "passed": true
+    },
+    {
+      "case": "Notas paginadas en servidor",
+      "passed": true
+    },
+    {
+      "case": "Revisión bloquea nuevas notas",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Rechazo sin motivo",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Trabajador no rechaza",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Rechazo válido",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Rechazo obsoleto no duplica historial",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "Responsable consulta motivo histórico",
+      "passed": true
+    },
+    {
+      "case": "Enviar a revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Aprobar tarea",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Cierre timestamp servidor",
+      "passed": true
+    },
+    {
+      "case": "Enviar a revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Aprobar tarea",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Cierre timestamp servidor",
+      "passed": true
+    },
+    {
+      "case": "Enviar a revisión",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Aprobar tarea",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Cierre timestamp servidor",
+      "passed": true
+    },
+    {
+      "case": "Historial propietario dos páginas",
+      "passed": true
+    },
+    {
+      "case": "Administrador incluye ambos responsables",
+      "passed": true
+    },
+    {
+      "case": "Ajeno solo consulta su tarea",
+      "passed": true
+    },
+    {
+      "case": "Resumen no descarga bitácoras ni evidencia",
+      "passed": true
+    },
+    {
+      "case": "Filtro fecha de cierre inclusivo",
+      "passed": true
+    },
+    {
+      "case": "Fecha inválida",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Detalle propio",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Detalle ajeno",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Finalizada bloquea notas",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Checkout sintético",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Duración coincide con datos de servidor",
+      "passed": true
+    }
+  ],
+  "error": null
+}

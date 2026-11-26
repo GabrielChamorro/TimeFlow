@@ -1,0 +1,104 @@
+{
+  "version": "0.5.21-SNAPSHOT",
+  "checks": [
+    {
+      "case": "login admin@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "crear usuario admin-tipo19",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "login s6-f6d5060b-admin-tipo19@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "crear plantilla",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "plantilla dos administradores 200 y 409",
+      "passed": true
+    },
+    {
+      "case": "versiÃ³n de plantilla incrementada",
+      "passed": true
+    },
+    {
+      "case": "plantilla obsoleta no sobrescribe",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "revisiÃ³n actual permite editar",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "desactivar durante ediciÃ³n",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "borrador de plantilla desactivada",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "reactivar plantilla",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "borrador anterior a reactivaciÃ³n",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "crear usuario worker-tipo19",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "login s6-f6d5060b-worker-tipo19@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "permiso trabajador plantillas",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    }
+  ],
+  "passed": true
+}

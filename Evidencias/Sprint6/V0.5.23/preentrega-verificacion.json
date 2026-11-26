@@ -1,0 +1,16 @@
+{
+  "version": "0.5.23-SNAPSHOT",
+  "checkedCandidateSourceFiles": 681,
+  "knownPrivateSecretsAbsentInSourceJarAndDist": true,
+  "docxXlsxXmlChecked": true,
+  "publicPythonScriptsCompile": true,
+  "migrationHelperPowerShellSyntaxValid": true,
+  "versionsConsistent": true,
+  "baselineFilesPreserved": true,
+  "allExportedChecksPassed": true,
+  "historicalSecurityModulesUnchanged": 12,
+  "bothV21MigrationsUnchanged": true,
+  "testBackendAbsentInProductionDist": true,
+  "temporaryProbesAbsent": true,
+  "privateHarnessExcluded": true
+}

@@ -1,0 +1,47 @@
+TIMEFLOW V0.3.4 - INTERFAZ Y POSICIONES DEL MAPA
+
+Cambios principales
+-------------------
+1. Se redujo el uso de emojis en la interfaz.
+   - Se reemplazaron emojis de estados, avisos, chat y botones por texto más limpio.
+   - El mapa ahora muestra "Meta cumplida" / "Meta pendiente" sin iconos decorativos.
+
+2. Edición del mapa exclusiva para administradores.
+   - El administrador puede arrastrar los nodos/tareas directamente en Monitoreo Espacial y Nodos.
+   - Los trabajadores pueden ver y abrir las tareas, pero no moverlas.
+   - El backend vuelve a validar el rol: no depende solo de ocultar la función en React.
+
+3. Posiciones persistentes.
+   - Se agregaron posicion_x y posicion_y a la entidad Tarea.
+   - Al soltar un nodo, React envía PATCH /api/tareas/{id}/posicion.
+   - La posición se guarda en MySQL y vuelve a aparecer igual al recargar o iniciar otra sesión.
+   - Las tareas antiguas sin posición guardada siguen usando una posición automática hasta que un admin las mueva.
+   - Las tareas finalizadas pueden moverse en el mapa sin desbloquear ni modificar su contenido.
+
+4. Seguridad adicional.
+   - Crear una tarea no permite fijar una posición arbitraria desde la petición.
+   - Solo el endpoint administrativo de posición puede guardar posicion_x/posicion_y.
+   - Se habilitó PATCH en la configuración CORS.
+
+5. Limpieza del mapa.
+   - Se quitó el nodo MOCK de ejemplo para que el mapa represente solamente tareas reales.
+
+Base de datos
+-------------
+No hace falta ejecutar un script SQL manual para estas dos columnas porque el proyecto mantiene:
+  spring.jpa.hibernate.ddl-auto=update
+Al iniciar el backend, Hibernate agrega posicion_x y posicion_y en la tabla tareas si todavía no existen.
+
+Pruebas agregadas
+-----------------
+AUTO-13: un administrador puede guardar la posición de una tarea.
+AUTO-14: un trabajador recibe 403 al intentar cambiar una posición.
+
+Prueba manual recomendada
+-------------------------
+1. Iniciar MySQL, backend y frontend.
+2. Entrar con una cuenta admin.
+3. Ir a Monitoreo Espacial y Nodos.
+4. Arrastrar una tarea y comprobar el mensaje "Posición guardada".
+5. Recargar la página: la tarea debe mantenerse en la misma posición.
+6. Cerrar sesión y entrar como trabajador: las posiciones deben verse igual, pero los nodos no deben poder arrastrarse.

@@ -1,0 +1,55 @@
+{
+  "version": "0.5.22-SNAPSHOT",
+  "attempts": [
+    {
+      "case": "US03 observador en pestaña de fondo",
+      "finding": "El sondeo se omitía con document.hidden y dejaba presencia antigua.",
+      "correction": "Consultar cada 5 s aunque el mapa esté en segundo plano; actualizar también al recuperar visibilidad.",
+      "verified": "63 HTTP/MySQL y UI; 3782 ms entrada, 1304 ms salida."
+    },
+    {
+      "case": "Compilación Java durante US06",
+      "finding": "Inferencia List.of produjo Object; además, el primer test importó namespace Jackson 2 en proyecto Jackson 3.",
+      "correction": "Lista de Usuario explícita y ObjectMapper tools.jackson ya usado en el proyecto.",
+      "verified": "160 JUnit/MockMvc y Maven clean verify final."
+    },
+    {
+      "case": "Test Node histórico de TaskRecords",
+      "finding": "Un orden distinto de props no coincidía con el contrato textual del test anterior.",
+      "correction": "Conservar orden de props anterior y añadir refreshTag después; no se alteró ni desactivó el test.",
+      "verified": "102/102 Node."
+    },
+    {
+      "case": "Arneses SQL/HTTP/fixtures",
+      "finding": "CRLF duplicado por subprocess de Windows, DTO sin usuarioId y parámetro duplicado dependenciaIds del helper.",
+      "correction": "Normalizar solo la entrada del arnés, comparar DTO vigente y usar dependencies del helper.",
+      "verified": "11 migraciones/backup, 81 relojes, 224 parciales."
+    },
+    {
+      "case": "US11 detalle abierto en otra sesión",
+      "finding": "Acciones y etiqueta podían conservar estado previo tras aprobación remota.",
+      "correction": "Estado visible y bloqueo siguen el listado sincronizado; versión base y borrador se conservan.",
+      "verified": "Ambos roles sin Guardar/Desactivar/Aprobar en finalizada; API devuelve 403."
+    },
+    {
+      "case": "US08 imagen ampliada",
+      "finding": "El modal desplazable recortaba el visor fixed; captura inicial y rectángulo fuera del viewport lo evidenciaron.",
+      "correction": "Portal a document.body; se conservaron las animaciones originales.",
+      "verified": "PNG/JPG completos 343×361; visor final BODY, rectángulo 1265×720; Escape cierra."
+    },
+    {
+      "case": "US20 confirmación nativa de evidencia",
+      "finding": "Input.dispatchMouseEvent y Emulation.setFocusEmulationEnabled agotaron tiempo; el JPG sintético terminó desactivado. No hubo Cancelar confirmado.",
+      "correction": "No se cuenta como aprobación. Se comprobó conservación lógica en MySQL y se usó otro JPG sintético para validar la vista previa. IAB se recuperó y permitió continuar las pruebas.",
+      "verified": false,
+      "pending": "Certificar Cancelar/cerrar en cada diálogo de eliminación, incluidos archivos."
+    },
+    {
+      "case": "Renderer Word",
+      "finding": "render_docx.py no encontró soffice.exe en el runtime disponible.",
+      "correction": "Exportación de solo lectura con Word instalado, Poppler y revisión visual de ocho páginas.",
+      "verified": "Portada, propiedades de formato y tablas conservadas; índice corregido."
+    }
+  ],
+  "failuresWereNotHidden": true
+}

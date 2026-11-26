@@ -1,0 +1,360 @@
+{
+  "version": "0.5.21-SNAPSHOT",
+  "checks": [
+    {
+      "case": "login admin@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "crear usuario historial21",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear usuario historial-ajeno21",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "login s6-10c38dc2-historial21@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "login s6-10c38dc2-historial-ajeno21@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "Check-in historial",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Check-in historial",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea Historia21 00",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Finalizar para historial",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Cierre asignado por servidor, ignora timestamp del cliente",
+      "passed": true
+    },
+    {
+      "case": "crear tarea Historia21 01",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Finalizar para historial",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Cierre asignado por servidor, ignora timestamp del cliente",
+      "passed": true
+    },
+    {
+      "case": "crear tarea Historia21 02",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Finalizar para historial",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Cierre asignado por servidor, ignora timestamp del cliente",
+      "passed": true
+    },
+    {
+      "case": "crear tarea Historia21 03",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Finalizar para historial",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Cierre asignado por servidor, ignora timestamp del cliente",
+      "passed": true
+    },
+    {
+      "case": "crear tarea Historia21 04",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Finalizar para historial",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Cierre asignado por servidor, ignora timestamp del cliente",
+      "passed": true
+    },
+    {
+      "case": "crear tarea Historia21 05",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Finalizar para historial",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Cierre asignado por servidor, ignora timestamp del cliente",
+      "passed": true
+    },
+    {
+      "case": "crear tarea Historia21 06",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Finalizar para historial",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Cierre asignado por servidor, ignora timestamp del cliente",
+      "passed": true
+    },
+    {
+      "case": "crear tarea Historia21 07",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Finalizar para historial",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Cierre asignado por servidor, ignora timestamp del cliente",
+      "passed": true
+    },
+    {
+      "case": "crear tarea Historia21 08",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Finalizar para historial",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Cierre asignado por servidor, ignora timestamp del cliente",
+      "passed": true
+    },
+    {
+      "case": "crear tarea Historia21 09",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Finalizar para historial",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Cierre asignado por servidor, ignora timestamp del cliente",
+      "passed": true
+    },
+    {
+      "case": "crear tarea Historia21 10",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Finalizar para historial",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Cierre asignado por servidor, ignora timestamp del cliente",
+      "passed": true
+    },
+    {
+      "case": "crear tarea Historia21 11",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Finalizar para historial",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Cierre asignado por servidor, ignora timestamp del cliente",
+      "passed": true
+    },
+    {
+      "case": "crear tarea Historia21 12",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Finalizar para historial",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Cierre asignado por servidor, ignora timestamp del cliente",
+      "passed": true
+    },
+    {
+      "case": "Historial sin token",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "Páginas SQL 5+5+1 y conteo propio 11",
+      "passed": true
+    },
+    {
+      "case": "Páginas sin duplicados y solo tareas propias",
+      "passed": true
+    },
+    {
+      "case": "Administrador ve 13 finalizadas de ambos responsables",
+      "passed": true
+    },
+    {
+      "case": "Otro trabajador solo ve sus dos tareas",
+      "passed": true
+    },
+    {
+      "case": "Lista sin bitácora/evidencia/dependencias",
+      "passed": true
+    },
+    {
+      "case": "Detalle propio finalizado",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Detalle ajeno bloqueado",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Finalizada sigue bloqueada",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Notas en finalizada bloqueadas",
+      "passed": true,
+      "http": 403,
+      "expected": 403
+    },
+    {
+      "case": "Rango de cierre excluye fecha vieja y desconocida",
+      "passed": true
+    },
+    {
+      "case": "Hasta incluye el día completo",
+      "passed": true
+    },
+    {
+      "case": "Sin filtro conserva el registro sin fecha",
+      "passed": true
+    },
+    {
+      "case": "Parámetros inválidos no consultan historial",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Parámetros inválidos no consultan historial",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Parámetros inválidos no consultan historial",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Parámetros inválidos no consultan historial",
+      "passed": true,
+      "http": 400,
+      "expected": 400
+    },
+    {
+      "case": "Búsqueda parametrizada no amplía acceso",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "explain": "1\tSIMPLE\ttareas\tNULL\tref\tidx_tareas_historial\tidx_tareas_historial\t204\tconst,const\t13\t100.00\tBackward index scan",
+  "scope": "Datos sintéticos; dos fechas ajustadas explícitamente para comprobar rango y ausencia de fecha histórica"
+}

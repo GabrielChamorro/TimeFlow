@@ -1,17 +1,19 @@
 {
   "name": "mi-mockup",
   "private": true,
-  "version": "0.5.0",
+  "version": "0.5.23-SNAPSHOT",
   "author": "Gabriel Chamorro, Diego Arias",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "test:sprint5": "node --test tests/*.test.mjs",
     "lint": "oxlint",
     "preview": "vite preview"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "pdfjs-dist": "6.5.438",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
@@ -23,7 +25,7 @@
     "oxlint": "^1.79.0",
     "postcss": "^8.5.26",
     "tailwindcss": "^4.3.3",
-    "vite": "8.2.4"
+    "vite": "8.2.6"
   },
   "overrides": {
     "source-map-js": "1.2.2"

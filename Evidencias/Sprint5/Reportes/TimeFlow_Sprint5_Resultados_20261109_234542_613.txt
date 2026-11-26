@@ -1,0 +1,52 @@
+TIMEFLOW V0.5.3 - SPRINT 5
+REPORTE DE RENDIMIENTO Y LECTURAS SIMULTANEAS
+================================================
+Fecha: 2026-11-09T23:45:42.613Z
+Backend local: http://127.0.0.1:8080
+Node: v24.22.1
+Solo GET autenticados. No contiene datos personales, JWT ni contrasenas.
+NOTA: el inicio de sesion puede renovar un hash de contrasena antiguo si procede.
+
+Criterio operativo: HTTP 200 en todas las consultas.
+Los tiempos NO tienen un umbral formal previamente aprobado.
+
+Comprobacion inicial de las 4 rutas: HTTP 200.
+
+RUTA: Tareas (/api/tareas)
+  Secuencial: 20/20 OK | En paralelo max. 1 | p50 10.6 ms | p95 13.7 ms | media 11.3 ms | max. 13.9 ms | duracion 225 ms | 88.7 pet/s
+    Respuestas: 200=20
+  Concurrente 4: 32/32 OK | En paralelo max. 4 | p50 14.7 ms | p95 19.2 ms | media 15.3 ms | max. 21.2 ms | duracion 125 ms | 256.9 pet/s
+    Respuestas: 200=32
+  Concurrente 8: 40/40 OK | En paralelo max. 8 | p50 20.0 ms | p95 26.2 ms | media 20.1 ms | max. 29.3 ms | duracion 109 ms | 365.4 pet/s
+    Respuestas: 200=40
+
+RUTA: Mensajes (/api/mensajes)
+  Secuencial: 20/20 OK | En paralelo max. 1 | p50 4.6 ms | p95 5.4 ms | media 4.5 ms | max. 5.5 ms | duracion 90 ms | 221.4 pet/s
+    Respuestas: 200=20
+  Concurrente 4: 32/32 OK | En paralelo max. 4 | p50 5.3 ms | p95 15.9 ms | media 6.9 ms | max. 15.9 ms | duracion 56 ms | 573.0 pet/s
+    Respuestas: 200=32
+  Concurrente 8: 40/40 OK | En paralelo max. 8 | p50 5.9 ms | p95 8.3 ms | media 6.2 ms | max. 8.4 ms | duracion 32 ms | 1261.1 pet/s
+    Respuestas: 200=40
+
+RUTA: Usuarios (/api/usuarios)
+  Secuencial: 20/20 OK | En paralelo max. 1 | p50 4.9 ms | p95 5.7 ms | media 5.0 ms | max. 7.5 ms | duracion 100 ms | 199.1 pet/s
+    Respuestas: 200=20
+  Concurrente 4: 32/32 OK | En paralelo max. 4 | p50 5.2 ms | p95 6.4 ms | media 5.1 ms | max. 6.4 ms | duracion 42 ms | 771.0 pet/s
+    Respuestas: 200=32
+  Concurrente 8: 40/40 OK | En paralelo max. 8 | p50 5.1 ms | p95 6.9 ms | media 5.2 ms | max. 7.4 ms | duracion 27 ms | 1490.0 pet/s
+    Respuestas: 200=40
+
+RUTA: Plantillas (/api/tipos-tarea)
+  Secuencial: 20/20 OK | En paralelo max. 1 | p50 3.4 ms | p95 4.1 ms | media 3.4 ms | max. 4.1 ms | duracion 69 ms | 291.6 pet/s
+    Respuestas: 200=20
+  Concurrente 4: 32/32 OK | En paralelo max. 4 | p50 4.7 ms | p95 5.5 ms | media 4.6 ms | max. 6.1 ms | duracion 38 ms | 852.6 pet/s
+    Respuestas: 200=32
+  Concurrente 8: 40/40 OK | En paralelo max. 8 | p50 5.8 ms | p95 7.1 ms | media 5.9 ms | max. 7.6 ms | duracion 30 ms | 1317.9 pet/s
+    Respuestas: 200=40
+
+Comprobacion final: 4/4 rutas siguen respondiendo HTTP 200.
+
+RESULTADO OPERATIVO: SIN ERRORES HTTP.
+Interpretacion: son mediciones locales de lecturas simultaneas.
+No comprueban escrituras concurrentes, integridad transaccional ni FPS del navegador.
+No permiten afirmar que se cumpla un objetivo de latencia no definido.

@@ -1,0 +1,34 @@
+TIMEFLOW V0.3.5 - MAPA ADMINISTRATIVO SIN LIMITES
+=================================================
+
+Cambio principal
+----------------
+Se eliminó el límite invisible que impedía mover las tareas fuera del área inicial del mapa.
+
+Comportamiento nuevo
+--------------------
+- Solo el administrador sigue pudiendo mover tareas.
+- Las tareas pueden colocarse en cualquier coordenada del mapa, incluyendo posiciones negativas.
+- No existe un borde máximo horizontal ni vertical para organizar los nodos.
+- El mapa puede desplazarse (pan) libremente para navegar hacia tareas lejanas.
+- Las posiciones continúan guardándose en MySQL mediante posicion_x y posicion_y.
+- Al recargar, cerrar sesión o volver a entrar, cada tarea conserva la posición elegida por el administrador.
+- Las líneas entre nodos pueden dibujarse también fuera del área inicial del lienzo.
+
+Motivo
+------
+El límite anterior usaba un área lógica de 1600 x 1100 px y forzaba cada nodo a mantenerse dentro de ella. A largo plazo esto podía provocar acumulación de tareas cerca de los bordes. V0.3.5 elimina ese recorte y usa coordenadas de mundo abiertas.
+
+Prueba manual recomendada
+-------------------------
+1. Iniciar sesión como administrador.
+2. Abrir Monitoreo Espacial y Nodos.
+3. Arrastrar una tarea mucho más allá del antiguo borde derecho o inferior.
+4. También probar mover una tarea hacia coordenadas negativas (izquierda/arriba), desplazando el mapa cuando sea necesario.
+5. Recargar la página.
+6. Confirmar que la tarea permanece en la misma posición.
+7. Iniciar sesión como trabajador y confirmar que las tareas no se pueden arrastrar.
+
+Base
+----
+Esta versión parte de TimeFlow V0.3.4 y conserva sus mejoras de interfaz y permisos del mapa.

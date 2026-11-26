@@ -1,0 +1,37 @@
+TIMEFLOW V0.4.4 - SPRINT 4 - JORNADAS EN MYSQL Y VALIDACIÓN REAL
+Base: ZIP completo TimeFlow V0.4.3. No se reconstruyó el proyecto.
+
+BACKEND
+- Nueva tabla jornadas relacionada con usuarios, con fecha y hora de entrada/salida registradas por el servidor en UTC.
+- Una jornada activa por usuario mediante columna única usuario_activo_id (NULL al cerrar) y bloqueo transaccional del usuario.
+- GET /api/jornadas/actual: última jornada propia. Devuelve 204 si aún no tiene jornadas.
+- POST /api/jornadas/check-in: registra jornada actual, devuelve 201; segundo Check In devuelve 409.
+- POST /api/jornadas/check-out: registra salida y duración de sesión, devuelve 200; sin entrada devuelve 409.
+- No se aceptan identificadores de usuario ni horas enviados por el navegador para marcar asistencia: se toma el usuario del JWT.
+- POST /api/tareas comprueba la jornada activa en MySQL ANTES de guardar; sin entrada retorna HTTP 409.
+- Operaciones Check In/Out y creación de tareas usan bloqueo sobre usuario para evitar cruces entre peticiones simultáneas.
+- Se conserva la eliminación de cuentas: al borrar usuario también se eliminan sus jornadas asociadas (ON DELETE CASCADE).
+- No se retrocede ni migra artificialmente historial de jornadas anteriores (V0.4.3 solo guardaba estado en memoria).
+
+FRONTEND
+- Mi Jornada ahora carga el estado desde /api/jornadas/actual al iniciar sesión y al recargar.
+- Botones de Check In y Check Out guardan en MySQL y reflejan el resultado real, no el reloj del cliente.
+- Hora y duración registradas por el servidor; presentación en horario local del navegador.
+- Indicadores de carga y error: no se permite crear una tarea si no se puede confirmar la jornada.
+- Si otro dispositivo altera la jornada, una respuesta 409 actualiza su estado desde el backend.
+- Advertencia antes de Check Out si quedan tareas sin finalizar.
+- La creación de tareas espera el resultado HTTP antes de limpiar el formulario y muestra errores.
+
+INSTALACIÓN Y VERSIONES
+- backend/crear_base_datos.bat crea la tabla jornadas de forma idempotente, sin borrar tablas existentes.
+- Spring JPA puede crearla al iniciar con ddl-auto=update en una base ya existente.
+- Actualizada versión a 0.4.4 en pom.xml, package.json, package-lock.json y scripts BAT pertinentes.
+- No se incluyen contraseñas de MySQL, claves JWT, ni config_local.bat.
+
+PRUEBAS
+- Nuevas pruebas MockMvc para autenticación, doble Check In, Check Out y bloqueo de tareas sin jornada.
+- Nuevas pruebas unitarias de JornadaService para registro, cierre y bloqueo de duplicados.
+- Sintaxis Java revisada con el parser de javac; JSX/JS con parser de TypeScript: sin errores sintácticos.
+- Compilación Maven/JUnit: NO ejecutada con éxito; el wrapper no pudo descargar Maven 3.9.16.
+- npm ci y build del frontend: NO ejecutados con éxito; el caché no contiene vite 8.2.2.
+- Pruebas con MySQL real y Windows BAT: pendientes en un equipo con las dependencias disponibles.

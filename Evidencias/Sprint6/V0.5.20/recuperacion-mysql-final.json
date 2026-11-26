@@ -1,0 +1,9 @@
+{
+  "version": "0.5.20-SNAPSHOT",
+  "mysqlOfflineHttp": 503,
+  "recoveredHttp": 200,
+  "persistencia": true,
+  "sha256Before": "30797126a1f0ac1947b8b63ab6ba0d65d01694987941594df25df390f606f151",
+  "sha256After": "30797126a1f0ac1947b8b63ab6ba0d65d01694987941594df25df390f606f151",
+  "passed": true
+}

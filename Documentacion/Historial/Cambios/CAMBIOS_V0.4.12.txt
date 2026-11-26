@@ -1,0 +1,21 @@
+TimeFlow V0.4.12 — Correccion del instalador Node / comprobacion MySQL
+
+Base: codigo y recursos completos de V0.4.11, sin modificaciones funcionales a Check In/Check Out.
+
+1. Node.js: se busca y ejecuta node.exe y npm.cmd antes de decidir instalar.
+   Si no funcionan, descarga ZIP oficial Node 24.19.0 para Windows x64 y lo extrae SOLO
+   dentro de backend\.timeflow-tools\nodejs, sin tocar Node ni PATH globales.
+   Comprueba SHA256 contra el publicado por Node.js:
+   57f71ab3652e797d84acddc79c81cc9ff1c6ddb2a1974cdb83f00fee9bff4c73
+   Deja diagnosticos NODE en backend\INSTALADOR_DIAGNOSTICO.txt.
+2. MySQL: separa cliente mysql.exe de la version real del servidor obtenida con
+   SELECT VERSION() tras autenticar con las credenciales locales.
+   El cliente 8.4.9 no determina por si solo la version del servidor.
+   Si el servidor usa una version afectada por el aviso del 20-10-2026, se bloquea
+   la actualizacion de la BD y el arranque hasta parchear; NO modifica ni elimina MySQL.
+3. Se mantiene el bloqueo de arranque inseguro, los respaldos antes de SQL,
+   la configuracion de secretos locales y los nueve pasos de instalacion.
+4. Se sincroniza version 0.4.12 en pom.xml, package.json, package-lock y BAT.
+
+Limitaciones: no ejecutamos cmd.exe/PowerShell 5.1, MSI ni MySQL Server real en Windows.
+Debe probarse en ese sistema antes de dar por instalado.

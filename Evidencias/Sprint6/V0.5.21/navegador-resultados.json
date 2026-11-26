@@ -1,0 +1,24 @@
+{
+  "version": "0.5.21-SNAPSHOT",
+  "browser": "IAB Chromium integrado",
+  "verified": [
+    "Notas con autor/fecha, agregado real desde UI y conservación del texto antiguo",
+    "Rechazo deshabilitado sin motivo, guardado e historial visible",
+    "Historial admin 13 y trabajador 11, dos páginas, detalles solo lectura y fecha desconocida explícita",
+    "Búsqueda de responsable ajeno devuelve cero para trabajador",
+    "Filtro de fecha UTC devuelve una tarea el día indicado",
+    "Nombre/meta/hora requeridos por navegador y creación completa",
+    "Cambio plantilla A/B rellena título/descripcion; tarea B creada y plantilla inactiva ausente",
+    "Aviso de 3 tareas antes de salida; Cancelar conserva jornada activa en MySQL; Confirmar muestra 29 s exactos",
+    "F5 restaura identidad y rol vigentes",
+    "PDF heredado sigue visible con el código final",
+    "Sin errores React/ReferenceError/TypeError/import en la consulta de consola final"
+  ],
+  "limits": [
+    "No prueba completa Chrome/Edge ni dos perfiles UI independientes",
+    "Un diálogo nativo del arnés bloqueó la interacción; se implementó y comprobó confirmación DOM y se recuperó con pestaña visible",
+    "Sin nueva medición de 100 nodos/FPS en V0.5.21",
+    "No se repitió apertura nativa de todos los medios"
+  ],
+  "manualUserTestsRequested": false
+}

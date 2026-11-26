@@ -1,0 +1,29 @@
+TIMEFLOW V0.3.7 - FECHA Y HORA LIMITE
+
+Cambios principales:
+- `fechaLimite` ahora representa una fecha y hora completas en formato `yyyy-MM-ddTHH:mm`.
+- El formulario de creación usa un selector de fecha y hora (`datetime-local`) en vez de solo hora.
+- Si no se define un límite, la tarea usa por defecto las 18:00 del mismo día de creación.
+- El backend valida el formato de la fecha límite antes de guardar.
+- Compatibilidad: si un cliente antiguo todavía envía solo `HH:mm`, el backend lo convierte automáticamente usando la fecha de la tarea.
+- El detalle de tarea muestra "Fecha y hora límite" con formato legible.
+- Mis Tareas muestra el límite completo.
+- Las tarjetas del Monitoreo muestran tanto la fecha de la tarea como la fecha/hora límite.
+- `crear_base_datos.bat` fue actualizado para incluir la columna `fecha` en instalaciones nuevas y crear datos de ejemplo con límite completo.
+- El script también convierte límites antiguos con formato `HH:mm` cuando la tarea ya tiene una fecha registrada; no inventa fechas para tareas antiguas sin fecha.
+- Se agregó AUTO-08C para verificar compatibilidad con clientes antiguos.
+
+FORMATO GUARDADO:
+Ejemplo: `2026-10-21T18:30` = 21/10/2026 a las 18:30.
+
+BASE DE DATOS:
+No hace falta crear una columna nueva para el límite: `fecha_limite` ya es VARCHAR(50) y puede guardar fecha + hora. Hibernate sigue usando `ddl-auto=update`.
+
+PRUEBA MANUAL RECOMENDADA:
+1. Iniciar MySQL, backend y frontend.
+2. Crear una tarea y elegir una fecha límite de otro día, por ejemplo mañana a las 18:30.
+3. Confirmar que en Mis Tareas se vea la fecha y hora completas.
+4. Entrar a Monitoreo y verificar que la tarjeta muestre el límite completo.
+5. Abrir la tarea y comprobar el campo "Fecha y hora límite".
+6. Recargar con F5 y verificar que el límite permanezca igual.
+7. Crear otra tarea sin elegir límite y comprobar que use las 18:00 del día de creación.

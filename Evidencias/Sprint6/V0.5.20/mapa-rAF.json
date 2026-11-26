@@ -1,0 +1,11 @@
+{
+  "scope": "IAB desarrollo, 100 nodos/160 dependencias filtradas; 15 s con clics de zoom y reposo; no es benchmark de arrastre continuo ni Chrome/Edge",
+  "logs": [
+    {
+      "level": "info",
+      "message": "TIMEFLOW_PERF20 {\"nodes\":100,\"seconds\":15.011934000000009,\"frames\":1396,\"fps\":92.99268168911476,\"p95ms\":14,\"over50ms\":8}",
+      "timestamp": "2026-11-15T19:05:10.368Z",
+      "url": "http://127.0.0.1:15176/src/pages/MonitoringView.jsx?t=1794769467094"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+TIMEFLOW V0.5.0 - CANDIDATA DE MIGRACION (SPRING BOOT 4)
+========================================================
+BASE: TimeFlow V0.4.16 (funcionalidad de V0.4.14 conservada).
+ESTADO: fuente migrada; pruebas Maven/MockMvc y MySQL pendientes en tu Windows.
+No es una version validada para reemplazar la V0.4.14 estable.
+
+MODIFICACIONES
+- Spring Boot 3.5.16 -> Spring Boot 4.1.2 (Spring Framework 7 / Security 7).
+- Web -> webmvc; pruebas MVC adaptadas a @MockitoBean y Jackson 3 JsonMapper.
+- MySQL Connector/J -> 26.10.0 (MySQL Server 8.4 soportado).
+- JWT sigue JJWT 0.12.7, sustituye jjwt-jackson por jjwt-gson.
+- JPA: ddl-auto=none, para que Hibernate 7 no modifique el esquema.
+- Frontend React/Vite y endpoints existentes preservados.
+- Auditor OWASP integrado: REGENERAR_INFORMES_OWASP.bat reutiliza caché NVD local.
+
+PRUEBA SEGURA
+1) NO elimines TimeFlow 0.4.14/0.4.15 ni el repositorio .m2.
+2) Extrae la V0.5.0 en una carpeta APARTE de versiones anteriores.
+3) Ejecuta PROBAR_MIGRACION_SPRING4.bat desde la carpeta principal.
+   La primera vez requiere Internet para descargar NUEVAS bibliotecas de
+   Spring Boot 4; NO descargara la base NVD de vulnerabilidades.
+4) Verifica al final BUILD SUCCESS, y que JUnit muestre fallos/errores = 0.
+5) ANTES DE INICIAR EL BACKEND con tus datos, haz un respaldo de teamflow_db.
+6) Inicia backend/iniciar_servidor.bat y luego frontend/iniciar_servidor.bat.
+   Prueba login, Check In, tarea, F5, Check Out, permisos y Postman.
+7) Ejecuta REGENERAR_INFORMES_OWASP.bat para una auditoria nueva desde la
+   NVD cacheada, sin usar la clave NVD. Puede devolver BUILD FAILURE por CVE;
+   adjunta el informe JSON para clasificarlo.
+
+ADVERTENCIAS
+- No hemos compilado Spring Boot 4 dentro de este entorno (Maven Central no es
+  accesible desde el contenedor). No se afirma BUILD SUCCESS ni 37/37 pruebas.
+- Las bibliotecas nuevas NO estan incluidas en el ZIP y se obtienen por Maven.
+- Las 50 alertas del escaneo previo corresponden al backend 0.4.14,
+  NO predicen el resultado del nuevo escaneo.
+- ddl-auto=none evita DDL de Hibernate pero NO equivale a prueba de compatibilidad
+  del esquema MySQL real. Las migraciones SQL existentes pueden seguir actuando.
+- No copies configuraciones .timeflow-tools ni contrasenas entre equipos.
+- Si necesitas revertir, cierra la 0.5.0 y usa la carpeta 0.4.14 estable.
+
+DOCUMENTACION
+https://spring.io/blog/2026/10/23/spring-boot-4-1-2-available-now/
+https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
+https://dev.mysql.com/doc/relnotes/connector-j/en/news-26-10-0.html

@@ -1,0 +1,333 @@
+{
+  "version": "0.5.22-SNAPSHOT",
+  "checks": [
+    {
+      "case": "login admin@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "crear usuario presencia22-a",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear usuario presencia22-b",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "login s6-04fa0c6a-presencia22-a@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "login s6-04fa0c6a-presencia22-a@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "login s6-04fa0c6a-presencia22-b@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "Sin sesión no expone presencia",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "Consulta de presencia autenticada",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Presencia no cacheable",
+      "passed": true
+    },
+    {
+      "case": "Login web no abre jornada",
+      "passed": true
+    },
+    {
+      "case": "Checkout duplicado sin jornada",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "Check-in B",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea P22 trabajador B",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Consulta de presencia autenticada",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Presencia no cacheable",
+      "passed": true
+    },
+    {
+      "case": "Consulta de presencia autenticada",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Presencia no cacheable",
+      "passed": true
+    },
+    {
+      "case": "Dos trabajadores tienen estados diferentes",
+      "passed": true
+    },
+    {
+      "case": "Duplicado check-in B",
+      "passed": true,
+      "http": 409,
+      "expected": 409
+    },
+    {
+      "case": "Check-in A",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "crear tarea P22 trabajador A",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Consulta de presencia autenticada",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Presencia no cacheable",
+      "passed": true
+    },
+    {
+      "case": "A pasa a verde por jornada real",
+      "passed": true
+    },
+    {
+      "case": "Salida A",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Consulta de presencia autenticada",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Presencia no cacheable",
+      "passed": true
+    },
+    {
+      "case": "A pasa a rojo tras salida",
+      "passed": true
+    },
+    {
+      "case": "Baja de cuenta B con jornada abierta",
+      "passed": true,
+      "http": 204,
+      "expected": 204
+    },
+    {
+      "case": "Consulta de presencia autenticada",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Presencia no cacheable",
+      "passed": true
+    },
+    {
+      "case": "Cuenta desactivada no aparece verde ni en directorio de presencia",
+      "passed": true
+    },
+    {
+      "case": "Token de cuenta desactivada no consulta presencia",
+      "passed": true,
+      "http": 401,
+      "expected": 401
+    },
+    {
+      "case": "Reactivar B",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "login s6-04fa0c6a-presencia22-b@sprint6.test",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "no exponer hash/password en login",
+      "passed": true
+    },
+    {
+      "case": "Cerrar jornada retenida de B",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Nueva entrada A",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Nueva salida A",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Nueva entrada A",
+      "passed": true,
+      "http": 201,
+      "expected": 201
+    },
+    {
+      "case": "Nueva salida A",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Consulta de presencia autenticada",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Presencia no cacheable",
+      "passed": true
+    },
+    {
+      "case": "Jornadas históricas cerradas no producen verde",
+      "passed": true
+    },
+    {
+      "case": "Dos sesiones simultáneas: una entrada y un 409",
+      "passed": true
+    },
+    {
+      "case": "Consulta de presencia autenticada",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Presencia no cacheable",
+      "passed": true
+    },
+    {
+      "case": "Consulta de presencia autenticada",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Presencia no cacheable",
+      "passed": true
+    },
+    {
+      "case": "Presencia abierta persiste tras reiniciar backend",
+      "passed": true
+    },
+    {
+      "case": "Dos sesiones simultáneas: una salida y un 409",
+      "passed": true
+    },
+    {
+      "case": "Consulta de presencia autenticada",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Presencia no cacheable",
+      "passed": true
+    },
+    {
+      "case": "Presencia cerrada persiste",
+      "passed": true
+    },
+    {
+      "case": "Trabajador consulta presencia del equipo",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "No expone correos, claves, jornadas privadas ni tokens",
+      "passed": true
+    },
+    {
+      "case": "MySQL solo conserva una entrada abierta como máximo",
+      "passed": true
+    },
+    {
+      "case": "Preparar nodo de presencia",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    },
+    {
+      "case": "Preparar nodo de presencia",
+      "passed": true,
+      "http": 200,
+      "expected": 200
+    }
+  ],
+  "passed": true,
+  "backendRestarted": true,
+  "snapshotBytes": 4941,
+  "scope": "Dos trabajadores, dos sesiones HTTP independientes del mismo usuario y reinicio real; actualización visual se mide aparte"
+}

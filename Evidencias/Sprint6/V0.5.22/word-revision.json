@@ -1,0 +1,13 @@
+{
+  "version": "0.5.22-SNAPSHOT",
+  "pages": 8,
+  "allPagesVisuallyInspected": true,
+  "layoutClean": true,
+  "indexMatchesPages": true,
+  "indexEvidenceEntryUpdatedFrom7To8": true,
+  "formatPropertiesPreservedAgainstExactV21": true,
+  "coverPreserved": true,
+  "primaryRenderer": "render_docx.py intentado; falta soffice.exe",
+  "fallback": "Word instalado exporta PDF en solo lectura; Poppler rasteriza; ocho páginas finales inspeccionadas",
+  "qaPngPdfExcludedFromDelivery": true
+}

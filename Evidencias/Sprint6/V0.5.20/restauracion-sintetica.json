@@ -1,0 +1,31 @@
+{
+  "version": "0.5.20-SNAPSHOT",
+  "scope": "Restauración MySQL real en puerto 33316; esquema completo y datos sintéticos de 1 usuario y 21 tareas; verificación SQL, no login HTTP sobre el esquema restaurado",
+  "checks": [
+    {
+      "case": "Revocación posterior al respaldo elimina familias",
+      "passed": true
+    },
+    {
+      "case": "Restauración conserva tareas, bitácoras, posiciones, versiones y dependencias",
+      "passed": true
+    },
+    {
+      "case": "Restaurar respaldo anterior recupera filas de sesiones revocadas",
+      "passed": true
+    },
+    {
+      "case": "Invalidación previa a reapertura elimina familias restauradas",
+      "passed": true
+    },
+    {
+      "case": "Cascada elimina renovaciones restauradas",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "dataSha256": "0af89a379eff2d290f7dafc3445a74349504bf8cb2189b769dcf4b02abc55a78",
+  "dumpSha256": "519cdc24ddfe2b1ec54ba073ae71bb58bfcdf17008db14c987a430c73de58c91",
+  "dumpBytes": 16515,
+  "restorePolicy": "Detener tráfico, restaurar, invalidar todas las familias y rotar JWT_SECRET antes de reabrir. Exigir nuevo login."
+}

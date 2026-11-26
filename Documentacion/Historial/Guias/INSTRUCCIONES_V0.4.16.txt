@@ -1,0 +1,31 @@
+TIMEFLOW V0.4.16 - AUDITORIA MAVEN/NVD CORREGIDA
+=================================================
+
+Esta entrega completa conserva el codigo funcional de V0.4.15.
+Corrige la generacion de informes OWASP: el parametro -Dformat=ALL
+es un formato valido en Dependency-Check Maven 13.0.0 e incluye
+los informes HTML y JSON. Antes se pasaba HTML,JSON como una unica
+plantilla y la auditoria fallaba despues de descargar la base NVD.
+
+COMO REPETIR LA AUDITORIA SIN DESCARGAR TODO OTRA VEZ
+1. Extrae este ZIP completo en una nueva carpeta.
+2. Ejecuta REGENERAR_INFORMES_OWASP.bat desde la raiz.
+3. Usa la cache local NVD que OWASP ya descargo en tu cuenta de Windows.
+4. Si falta la cache, ejecuta AUDITAR_SEGURIDAD_BACKEND.bat y
+   proporciona tu API key NVD (solo en tu ordenador).
+5. Al terminar, revisa:
+   backend\target\auditoria_backend_sprint4\dependency-check-report.html
+   backend\target\auditoria_backend_sprint4\dependency-check-report.json
+   backend\target\auditoria_backend_sprint4\arbol_dependencias.txt
+
+ATENCION:
+- Un BUILD FAILURE con informes presentes puede indicar CVSS >= 7.
+  Abre el JSON y el HTML; no concluyas que fue un fallo de descarga.
+- 'No se detectaron alertas CVSS >= 7' no significa riesgo cero.
+- No compartas la clave NVD ni los secretos de MySQL/JWT.
+- No modifica MySQL ni actualiza automaticamente paquetes Spring.
+- Para ejecutar TimeFlow V0.4.16 desde una carpeta nueva puedes usar
+  INSTALAR_DEPENDENCIAS_TIMEFLOW.bat para preparar su JDK/configuracion.
+  El auditor no requiere ejecutar ese instalador si Java 21 esta accesible.
+- Las pruebas funcionales y JUnit fueron ejecutadas por el usuario en
+  V0.4.14, no se han reejecutado aqui para V0.4.16.

@@ -1,0 +1,28 @@
+TIMEFLOW V0.4.5 — CORRECCION INSTALADOR WINDOWS
+Fecha: 24-10-2026
+Base: TimeFlow V0.4.4 (Check In / Check Out persistentes en MySQL).
+
+CAUSA PROBABLE DE CIERRE INMEDIATO DEL INSTALADOR
+- En el ZIP V0.4.4, los archivos .bat y mvnw.cmd se guardaron con saltos de linea LF.
+- El paquete V0.4.3 anterior usaba CRLF. El formato LF puede ocasionar errores en CMD, especialmente al usar CALL :etiqueta.
+
+CORRECCIONES
+1. Convertidos TODOS los archivos .bat y .cmd a saltos CRLF (Windows).
+2. Si el instalador necesita solicitar administrador, la consola elevada arranca con CMD /K y permanece abierta incluso si el script falla.
+3. El instalador principal muestra el codigo de resultado y hace PAUSE siempre.
+4. backend\INSTALADOR_DIAGNOSTICO.txt registra la ultima etapa alcanzada y estado general, sin secretos.
+5. Version actualizada a 0.4.5 en pom.xml, package.json y package-lock.json.
+6. No se cambiaron las funciones ni el almacenamiento de jornadas de V0.4.4.
+
+VALIDACION EN ESTE ENTORNO
+- Conversion CRLF comprobada para todos los archivos BAT/CMD del ZIP.
+- Archivos XML y JSON comprobados por parser; versiones sincronizadas.
+- Integridad ZIP comprobada.
+- No se ejecuto el instalador Windows; falta prueba real en Windows CMD, MySQL, Maven/JUnit y npm.
+
+COMO PROBAR
+- Haz copia de seguridad de la base de datos y conserva backend\config_local.bat local (nunca lo compartas).
+- Extrae este ZIP en carpeta nueva.
+- Ejecuta INSTALAR_DEPENDENCIAS_TIMEFLOW.bat. Autoriza UAC si se solicita.
+- Si se cierra la primera ventana, observa la consola elevada, que debe permanecer abierta.
+- Si falla, busca backend\INSTALADOR_DIAGNOSTICO.txt y comparte solo el nombre del ultimo paso / mensaje de error; nunca tus contrasenas.

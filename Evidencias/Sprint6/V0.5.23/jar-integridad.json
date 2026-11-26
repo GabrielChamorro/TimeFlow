@@ -1,0 +1,12 @@
+{
+  "version": "0.5.23-SNAPSHOT",
+  "bytes": 57618534,
+  "sha256": "3136391b19028bc2bbc038ef187921a0972323f043fe60502c1d542b42e10f8c",
+  "build": "Maven clean verify con Temurin21.0.13+9",
+  "tests": {
+    "tests": 169,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
+}
